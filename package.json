@@ -6,8 +6,31 @@
   "repository": "https://github.com/101digital/banking-components.git",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "tsc --noEmit && eslint src/ --ext .js,.jsx,.ts,.tsx"
   },
   "keywords": [],
-  "author": "tuyennguyen"
+  "author": "tuyennguyen",
+  "devDependencies": {
+    "@babel/core": "^7.11.5",
+    "@babel/runtime": "^7.11.2",
+    "@react-native-community/eslint-config": "^2.0.0",
+    "@types/lodash": "^4.14.170",
+    "@types/react": "^16.9.48",
+    "@types/react-native": "^0.63.13",
+    "@types/react-native-snap-carousel": "^3.8.3",
+    "eslint": "^7.8.1",
+    "lodash": "^4.17.21",
+    "moment": "^2.29.1",
+    "react": "16.13.1",
+    "react-native": "0.63.2",
+    "react-native-modal": "^12.0.2",
+    "react-native-snap-carousel": "^3.9.1",
+    "react-native-svg": "^12.1.1",
+    "react-native-webview": "^11.6.4",
+    "react-test-renderer": "^17.0.2",
+    "typescript": "^4.0.2"
+  },
+  "resolutions": {
+    "@react-native-community/cli-platform-ios": "4.13.0"
+  }
 }
