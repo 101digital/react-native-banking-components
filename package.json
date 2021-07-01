@@ -5,14 +5,16 @@
   "license": "MIT",
   "repository": "https://github.com/101digital/banking-components.git",
   "main": "index.js",
+  "types": "index.d.ts",
+  "files": [
+    "src/"
+  ],
   "scripts": {
     "lint": "tsc --noEmit && eslint src/ --ext .js,.jsx,.ts,.tsx"
   },
   "keywords": [],
   "author": "tuyennguyen",
   "devDependencies": {
-    "@babel/core": "^7.11.5",
-    "@babel/runtime": "^7.11.2",
     "@react-native-community/eslint-config": "^2.0.0",
     "@types/lodash": "^4.14.170",
     "@types/react": "^16.9.48",
