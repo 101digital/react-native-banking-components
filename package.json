@@ -1,5 +1,5 @@
 {
-  "name": "banking-components",
+  "name": "react-native-banking-components",
   "version": "1.0.0",
   "description": "A component for banking flow by 101D",
   "license": "MIT",
@@ -12,8 +12,12 @@
   "scripts": {
     "lint": "tsc --noEmit && eslint src/ --ext .js,.jsx,.ts,.tsx"
   },
-  "keywords": [],
-  "author": "tuyennguyen",
+  "keywords": [
+    "wallets",
+    "transactions",
+    "banks"
+  ],
+  "author": "tuyennguyen-101D",
   "devDependencies": {
     "@react-native-community/eslint-config": "^2.0.0",
     "@types/lodash": "^4.14.170",
