@@ -15,7 +15,7 @@ With high UI customizable, you can change the component's style to your styles o
 - Customize component's props
 - Provide Callback function to the app
 
-## Install
+## Installation
 
 To add these components to React Native app, install with:
 
