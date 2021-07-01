@@ -1,4 +1,4 @@
-import { AccountComponentRefs } from './src/components/account/types';
+export { AccountComponentRefs } from './src/components/account/types';
 export {
   WalletContext,
   TransactionContext,
@@ -13,4 +13,3 @@ export { default as LinkBankComponent } from './src/components/link-bank';
 export { default as SelectBankComponent } from './src/components/select-bank';
 export { default as TransactionComponent } from './src/components/transaction';
 export * from './src/types';
-export default AccountComponentRefs;
