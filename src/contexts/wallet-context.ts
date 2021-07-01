@@ -26,7 +26,7 @@ export interface WalletContextData {
   errorLinkWallet?: Error;
   linkedWallet?: Wallet;
   clearLinkedWallet: () => void;
-  clearErrors: () => void;
+  clearWalletErrors: () => void;
 }
 
 export const walletDefaultValue: WalletContextData = {
@@ -44,7 +44,7 @@ export const walletDefaultValue: WalletContextData = {
   linkWallet: () => null,
   isLinkingWallet: false,
   clearLinkedWallet: () => null,
-  clearErrors: () => null,
+  clearWalletErrors: () => null,
 };
 
 export const WalletContext = React.createContext<WalletContextData>(walletDefaultValue);
@@ -188,7 +188,7 @@ export function useWalletContextValue(): WalletContextData {
     setLinkedWallet(undefined);
   }, []);
 
-  const clearErrors = useCallback(() => {
+  const clearWalletErrors = useCallback(() => {
     setLoadError(undefined);
     setUnlinkError(undefined);
     setUpdatePrimaryError(undefined);
@@ -217,7 +217,7 @@ export function useWalletContextValue(): WalletContextData {
       errorLinkWallet: _linkWalletError,
       clearLinkedWallet,
       linkedWallet: _linkedWallet,
-      clearErrors,
+      clearWalletErrors,
     }),
     [
       _wallets,

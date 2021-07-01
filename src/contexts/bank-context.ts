@@ -25,7 +25,7 @@ export interface BankContextData {
   getAccounts: (consentId: string) => void;
   errorLoadAccounts?: Error;
   clearAccounts: () => void;
-  clearErrors: () => void;
+  clearBankErrors: () => void;
 }
 
 export const bankDefaultValue: BankContextData = {
@@ -42,7 +42,7 @@ export const bankDefaultValue: BankContextData = {
   accounts: [],
   getAccounts: () => null,
   clearAccounts: () => null,
-  clearErrors: () => null,
+  clearBankErrors: () => null,
 };
 
 export const BankContext = React.createContext<BankContextData>(bankDefaultValue);
@@ -124,7 +124,7 @@ export function useBankContextValue(): BankContextData {
     setAccounts([]);
   }, []);
 
-  const clearErrors = useCallback(() => {
+  const clearBankErrors = useCallback(() => {
     setErrorLoadBanks(undefined);
     setErrorLoadConsent(undefined);
     setErrorConfirmConsent(undefined);
@@ -151,7 +151,7 @@ export function useBankContextValue(): BankContextData {
       getAccounts,
       accounts: _accounts,
       clearAccounts,
-      clearErrors,
+      clearBankErrors,
     }),
     [
       _banks,
