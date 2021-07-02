@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import { Dimensions, Platform, SafeAreaView, View, TouchableOpacity, Text } from 'react-native';
 import Modal from 'react-native-modal';
-import { BRoundedCloseIcon, BRoundedTickIcon } from '../../../../assets/images';
+import { BRoundedCloseIcon, BRoundedTickIcon, BTransactionIcon } from '../../../../assets/images';
 import { Wallet } from '../../../../types';
 import { ActionSheetStyle } from '../../types';
 import useMergeStyles from './styles';
@@ -17,12 +17,15 @@ export type ActionSheetComponentProps = {
   style?: ActionSheetStyle;
   setPrimaryLabel?: string;
   unlinkLabel?: string;
+  viewTransactionLabel?: string;
   cancelLabel?: string;
   setPrimaryIcon?: ReactNode;
   unlinkIcon?: ReactNode;
+  viewTransactionIcon?: ReactNode;
   cancelIcon?: ReactNode;
-  onSetPrimaryPress?: () => void;
-  onUnlinkPress?: () => void;
+  onSetPrimaryPress?: (wallet: Wallet) => void;
+  onUnlinkPress?: (wallet: Wallet) => void;
+  onPressViewTransactions?: (wallet: Wallet) => void;
   onCancelPress?: () => void;
 };
 
@@ -37,9 +40,12 @@ const ActionSheetComponent = (props: ActionSheetComponentProps) => {
     unlinkLabel,
     cancelLabel,
     cancelIcon,
+    viewTransactionIcon,
+    viewTransactionLabel,
     onSetPrimaryPress,
     onUnlinkPress,
     onCancelPress,
+    onPressViewTransactions,
   } = props;
   const styles = useMergeStyles(style);
 
@@ -65,7 +71,10 @@ const ActionSheetComponent = (props: ActionSheetComponentProps) => {
               <TouchableOpacity
                 style={styles.buttonContainerStyle}
                 activeOpacity={0.8}
-                onPress={onSetPrimaryPress}
+                onPress={() => {
+                  onCancelPress?.();
+                  onSetPrimaryPress?.(wallet);
+                }}
               >
                 <View style={styles.leftIconContainer}>
                   {setPrimaryIcon ?? <BRoundedTickIcon width={20} height={20} />}
@@ -78,12 +87,30 @@ const ActionSheetComponent = (props: ActionSheetComponentProps) => {
             <TouchableOpacity
               style={styles.buttonContainerStyle}
               activeOpacity={0.8}
-              onPress={onUnlinkPress}
+              onPress={() => {
+                onCancelPress?.();
+                onUnlinkPress?.(wallet);
+              }}
             >
               <View style={styles.leftIconContainer}>
                 {unlinkIcon ?? <BRoundedCloseIcon width={20} height={20} />}
               </View>
               <Text style={styles.buttonTextStyle}>{unlinkLabel ?? 'Unlink bank account'}</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.buttonContainerStyle}
+              activeOpacity={0.8}
+              onPress={() => {
+                onCancelPress?.();
+                onPressViewTransactions?.(wallet);
+              }}
+            >
+              <View style={styles.leftIconContainer}>
+                {viewTransactionIcon ?? <BTransactionIcon width={20} height={20} />}
+              </View>
+              <Text style={styles.buttonTextStyle}>
+                {viewTransactionLabel ?? 'View transactions'}
+              </Text>
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.cancelContainerStyle}

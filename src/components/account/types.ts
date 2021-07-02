@@ -8,6 +8,7 @@ export type AccountComponentRefs = {
   unlinkWallet: (wallet: Wallet) => void;
   setAsPrimary: (wallet: Wallet) => void;
   showRecommandBanner: (wallet: Wallet) => void;
+  hideActionSheet: () => void;
 };
 
 export type AccountComponentProps = {

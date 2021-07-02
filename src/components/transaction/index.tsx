@@ -43,14 +43,21 @@ const TransactionComponent = (props: TransactionComponentProps) => {
   const { transactions, fetchTransactions } = useContext(TransactionContext);
   const aggregatedWallets = getAggregatedWallets();
   const { theme } = useContext(ThemeContext);
+  const [_initialWallet, setInitialWallet] = useState(initWallet);
 
   useEffect(() => {
-    if (initWallet && !isEmpty(aggregatedWallets)) {
+    setInitialWallet(initWallet);
+  }, [Root?.props]);
+
+  useEffect(() => {
+    if (_initialWallet && !isEmpty(aggregatedWallets)) {
       const initIndex =
-        aggregatedWallets.findIndex((wallet) => wallet.walletId === initWallet.walletId) || 0;
-      changeToIndex(initIndex);
+        aggregatedWallets.findIndex((wallet) => wallet.walletId === _initialWallet.walletId) || 0;
+      setTimeout(() => {
+        changeToIndex(initIndex);
+      }, 500);
     }
-  }, [initWallet]);
+  }, [aggregatedWallets, _initialWallet]);
 
   useEffect(() => {
     if (!isEmpty(wallets)) {
@@ -84,7 +91,13 @@ const TransactionComponent = (props: TransactionComponentProps) => {
         </View>
       );
     }
-    return <BNoWalletComponent style={EmptyWallet?.style} {...EmptyWallet?.props} />;
+    return (
+      <BNoWalletComponent
+        style={EmptyWallet?.style}
+        {...EmptyWallet?.props}
+        {...EmptyWallet?.components}
+      />
+    );
   }
 
   return (
@@ -113,7 +126,12 @@ const TransactionComponent = (props: TransactionComponentProps) => {
           loop={false}
           activeSlideAlignment="start"
           layout="default"
-          onSnapToItem={(index: number) => setCurrentIndex(index)}
+          onSnapToItem={(index: number) => {
+            if (_initialWallet) {
+              setInitialWallet(undefined);
+            }
+            setCurrentIndex(index);
+          }}
         />
       </View>
       <View style={styles.paginationWrap}>

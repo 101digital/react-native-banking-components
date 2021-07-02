@@ -73,6 +73,7 @@ const AccountComponent = forwardRef((props: AccountComponentProps, ref) => {
       unlinkWallet,
       setAsPrimary,
       showRecommandBanner,
+      hideActionSheet,
     })
   );
 
@@ -97,6 +98,11 @@ const AccountComponent = forwardRef((props: AccountComponentProps, ref) => {
 
   const showRecommandBanner = (wallet: Wallet) => {
     setWalletWithBanner(wallet);
+  };
+
+  const hideActionSheet = () => {
+    setSelectedWallet(undefined);
+    setShowActionSheet(false);
   };
 
   const renderSuccessModal = () => {
@@ -150,7 +156,11 @@ const AccountComponent = forwardRef((props: AccountComponentProps, ref) => {
     return (
       <>
         <View style={styles.listContainerStyle}>{Root.components?.headerTitle}</View>
-        <BNoWalletComponent style={EmptyWallet?.style} {...EmptyWallet?.props} />
+        <BNoWalletComponent
+          style={EmptyWallet?.style}
+          {...EmptyWallet?.props}
+          {...EmptyWallet?.components}
+        />
         {renderSuccessModal()}
       </>
     );
@@ -213,24 +223,10 @@ const AccountComponent = forwardRef((props: AccountComponentProps, ref) => {
       <ActionSheetComponent
         isVisible={isShowActionSheet}
         wallet={selectedWallet}
-        onCancelPress={() => {
-          setSelectedWallet(undefined);
-          setShowActionSheet(false);
-        }}
-        onSetPrimaryPress={() => {
-          setShowActionSheet(false);
-          setTimeout(() => {
-            setShowPrimary(true);
-          }, 500);
-        }}
-        onUnlinkPress={() => {
-          setShowActionSheet(false);
-          setTimeout(() => {
-            setShowUnlink(true);
-          }, 500);
-        }}
+        onCancelPress={hideActionSheet}
         style={ActionSheet?.style}
         {...ActionSheet?.props}
+        {...ActionSheet?.components}
       />
       <BAlertModal
         isVisible={isShowUnlink && !ConfirmUnlinkModal?.props?.disable}

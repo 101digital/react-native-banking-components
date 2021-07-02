@@ -14,3 +14,4 @@ export * from './rounded-tick.icon';
 export * from './no-wallet.icon';
 export * from './information.icon';
 export * from './tick.icon';
+export * from './transaction.icon';
