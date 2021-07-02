@@ -16,7 +16,7 @@ export interface WalletContextData {
   getWalletDetail: (walletId?: string) => Wallet | undefined;
   getAggregatedWallets: () => Wallet[];
   isUnlinking: boolean;
-  deleteWallet: (walletId: string) => void;
+  deleteWallet: (wallet: Wallet) => void;
   errorUnlinkWallet?: Error;
   isUpdatingPrimary: boolean;
   setPrimaryWallet: (walletId: string) => void;
@@ -27,6 +27,8 @@ export interface WalletContextData {
   linkedWallet?: Wallet;
   clearLinkedWallet: () => void;
   clearWalletErrors: () => void;
+  unlinkedWallet?: Wallet;
+  clearUnlinkedWallet: () => void;
 }
 
 export const walletDefaultValue: WalletContextData = {
@@ -45,6 +47,7 @@ export const walletDefaultValue: WalletContextData = {
   isLinkingWallet: false,
   clearLinkedWallet: () => null,
   clearWalletErrors: () => null,
+  clearUnlinkedWallet: () => null,
 };
 
 export const WalletContext = React.createContext<WalletContextData>(walletDefaultValue);
@@ -61,6 +64,7 @@ export function useWalletContextValue(): WalletContextData {
   const [_isLinkingWallet, setIsLinkingWallet] = useState(false);
   const [_linkWalletError, setLinkWalletError] = useState<Error | undefined>();
   const [_linkedWallet, setLinkedWallet] = useState<Wallet | undefined>(undefined);
+  const [_unLinkedWallet, setUnLinkedWallet] = useState<Wallet | undefined>(undefined);
 
   const fetchWallets = useCallback(async () => {
     try {
@@ -89,15 +93,18 @@ export function useWalletContextValue(): WalletContextData {
   }, []);
 
   const deleteWallet = useCallback(
-    async (walletId: string) => {
+    async (wallet: Wallet) => {
       try {
         setIsUnlinking(true);
-        await bankingService.unlinkBankWallet(walletId);
+        await bankingService.unlinkBankWallet(wallet.walletId);
         const newWallets = [..._wallets];
-        const removedWalletIndex = newWallets.findIndex((wallets) => wallets.walletId === walletId);
+        const removedWalletIndex = newWallets.findIndex(
+          (wallets) => wallets.walletId === wallet.walletId
+        );
         if (removedWalletIndex > -1) {
           newWallets.splice(removedWalletIndex, 1);
         }
+        setUnLinkedWallet(wallet);
         setWallets(newWallets);
         setIsUnlinking(false);
       } catch (error) {
@@ -195,6 +202,10 @@ export function useWalletContextValue(): WalletContextData {
     setLinkWalletError(undefined);
   }, []);
 
+  const clearUnlinkedWallet = useCallback(() => {
+    setUnLinkedWallet(undefined);
+  }, []);
+
   return useMemo(
     () => ({
       wallets: _wallets,
@@ -218,6 +229,8 @@ export function useWalletContextValue(): WalletContextData {
       clearLinkedWallet,
       linkedWallet: _linkedWallet,
       clearWalletErrors,
+      clearUnlinkedWallet,
+      unlinkedWallet: _unLinkedWallet,
     }),
     [
       _wallets,
@@ -231,6 +244,7 @@ export function useWalletContextValue(): WalletContextData {
       _isLinkingWallet,
       _linkWalletError,
       _linkedWallet,
+      _unLinkedWallet,
     ]
   );
 }

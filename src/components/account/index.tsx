@@ -62,7 +62,9 @@ const AccountComponent = forwardRef((props: AccountComponentProps, ref) => {
 
   useEffect(() => {
     if (!linkedWallet) {
-      setSelectedPrimary(true);
+      setTimeout(() => {
+        setSelectedPrimary(true);
+      }, 500);
     }
   }, [linkedWallet]);
 
@@ -113,7 +115,10 @@ const AccountComponent = forwardRef((props: AccountComponentProps, ref) => {
         }
         title={LinkAccountSuccessModal?.props?.title ?? 'Account Added Succefully'}
         confirmTitle={LinkAccountSuccessModal?.props?.confirmButonLabel ?? 'Continue'}
-        onClose={clearLinkedWallet}
+        onClose={() => {
+          clearLinkedWallet();
+          fetchWallets();
+        }}
         message={
           LinkAccountSuccessModal?.props?.message ??
           'Your bank account is successfully linked to your profile.'
@@ -135,6 +140,7 @@ const AccountComponent = forwardRef((props: AccountComponentProps, ref) => {
         }) ?? (
           <SetPrimaryComponent
             isSelected={isSelectedPrimary}
+            disabled={isEmpty(wallets)}
             style={LinkAccountSuccessModal?.style}
             onPressed={() => setSelectedPrimary(!isSelectedPrimary)}
             {...LinkAccountSuccessModal?.props}
@@ -248,7 +254,7 @@ const AccountComponent = forwardRef((props: AccountComponentProps, ref) => {
           const wallet = selectedWallet;
           setShowUnlink(false);
           if (wallet) {
-            deleteWallet(wallet.walletId);
+            deleteWallet(wallet);
           }
           setSelectedWallet(undefined);
         }}

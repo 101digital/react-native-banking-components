@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 import { StyleProp, TextStyle, ViewStyle } from 'react-native';
-import { Bank, BankAccount, Wallet } from '../../types';
+import { Bank, BankAccount } from '../../types';
 
 export type LinkBankComponentProps = {
   Root: {
@@ -8,7 +8,6 @@ export type LinkBankComponentProps = {
     props: {
       headingLabel?: string;
       bank: Bank;
-      onLinkSuccessful: (accountId: string, wallet: Wallet) => void;
       consentId: string;
       ctaButtonLabel?: string;
     };
