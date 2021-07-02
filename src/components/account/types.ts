@@ -40,7 +40,8 @@ export type AccountComponentProps = {
     props?: {
       onItemPressed?: (wallet: Wallet) => void;
       primaryLabel?: string;
-      bannerYOffset?: number;
+      bannerStartOffset?: number;
+      bannerEndOffset?: number;
     };
     components?: {
       tickIcon?: ReactNode;

@@ -1,5 +1,5 @@
 import { BCheckedIcon, images } from '../../../../assets/images';
-import React, { ReactNode, useContext, useEffect, useState } from 'react';
+import React, { ReactNode, useContext, useEffect, useRef, useState } from 'react';
 import { Text, View, TouchableOpacity, Animated } from 'react-native';
 import { WalletItemStyle } from '../../types';
 import useMergeStyles from './styles';
@@ -18,7 +18,8 @@ export type WalletItemProps = {
   formatCurrency: (amount: number, code: string) => string;
   isShowSwitch: boolean;
   recommandBanner?: ReactNode;
-  bannerYOffset?: number;
+  bannerStartOffset?: number;
+  bannerEndOffset?: number;
 };
 
 const WalletItemComponent = (props: WalletItemProps) => {
@@ -32,18 +33,21 @@ const WalletItemComponent = (props: WalletItemProps) => {
     moreIcon,
     isShowSwitch,
     recommandBanner,
-    bannerYOffset,
+    bannerStartOffset,
+    bannerEndOffset,
   } = props;
   const { bankImages } = useContext(BankContext);
   const { theme } = useContext(ThemeContext);
 
   const styles = useMergeStyles(style);
 
-  const value = new Animated.Value(0);
+  const value = useRef(new Animated.Value(0)).current;
   const [playAnimation, setPlayAnimation] = useState(true);
+  const _startOffset = bannerStartOffset ?? -50;
+  const _endOffset = bannerEndOffset ?? -8;
   const switchButton = value.interpolate({
     inputRange: [0, 1],
-    outputRange: [-47, -8],
+    outputRange: [_startOffset, _endOffset],
   });
 
   useEffect(() => {
@@ -92,7 +96,7 @@ const WalletItemComponent = (props: WalletItemProps) => {
       </TouchableOpacity>
       <Animated.View
         style={{
-          transform: [{ translateY: playAnimation ? switchButton : bannerYOffset ?? -8 }],
+          transform: [{ translateY: playAnimation ? switchButton : _endOffset }],
         }}
       >
         {isShowSwitch ? recommandBanner : <View />}
