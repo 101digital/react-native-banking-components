@@ -60,11 +60,16 @@ export type AccountComponentProps = {
     props?: {
       setPrimaryLabel?: string;
       unlinkLabel?: string;
+      viewTransactionLabel?: string;
       cancelLabel?: string;
+      onSetPrimaryPress?: (wallet: Wallet) => void;
+      onUnlinkPress?: (wallet: Wallet) => void;
+      onPressViewTransactions?: (wallet: Wallet) => void;
     };
     components?: {
       setPrimaryIcon?: ReactNode;
       unlinkIcon?: ReactNode;
+      viewTransactionIcon?: ReactNode;
       cancelIcon?: ReactNode;
     };
   };
