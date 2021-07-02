@@ -1,5 +1,5 @@
 import { isEmpty } from 'lodash';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { View, Text, ActivityIndicator, FlatList } from 'react-native';
 import { BankContext } from '../../contexts/bank-context';
 import { ThemeContext } from '../../contexts/them-context';
@@ -14,10 +14,17 @@ const LinkBankComponent = (props: LinkBankComponentProps) => {
   const { Root, EmptyAccount, AccountItem, AccessInfomation } = props;
   const styles = useMergeStyles(Root?.style);
   const { bank, consentId, headingLabel } = Root.props;
-  const { accounts, isLoadingAccounts } = useContext(BankContext);
+  const { accounts, isLoadingAccounts, clearAccounts, clearConsentData } = useContext(BankContext);
   const { isLinkingWallet, linkWallet } = useContext(WalletContext);
   const { theme } = useContext(ThemeContext);
   const [currentAccount, setCurrentAccount] = useState<BankAccount | undefined>(undefined);
+
+  useEffect(() => {
+    return () => {
+      clearAccounts();
+      clearConsentData();
+    };
+  }, []);
 
   if (isEmpty(accounts)) {
     if (isLoadingAccounts) {
