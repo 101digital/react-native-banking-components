@@ -9,6 +9,7 @@
 With high UI customizable, you can change the component's style to your styles or override these components.
 
 ## Features
+
 - Provide all functions to work with `wallet-service`, `banking-auth-service`, `banking-aisp-service`.
 - Access to wallets data, transactions data, and banking data (contain loading state, error state) from wherever in React native app.
 - Customize component's styles
@@ -63,7 +64,6 @@ yarn add react-native-webview
 
 We're done! Now you can run your project.
 
-
 ## Usage
 
 ### Initial Banking Component is important step.
@@ -94,31 +94,44 @@ const App = () => {
     <View>
       <BankComponentProvider
         theme={{
-            primaryColor: appPrimaryColor, // default is #0073F0
-            textColor: appPrimaryTextColor, // default is black
-            secondTextColor: appSecondTextColor, // default is #0D2050
-            fonts: {
-              regular: appFontRegular, // default is system
-              medium: appFontMedium, // default is system
-              bold: appFontBold, // default is system
-              semiBold: appFontSemiBold, // default is system
-            },
-          }}
+          primaryColor: appPrimaryColor, // default is #0073F0
+          textColor: appPrimaryTextColor, // default is black
+          secondTextColor: appSecondTextColor, // default is #0D2050
+          fonts: {
+            regular: appFontRegular, // default is system
+            medium: appFontMedium, // default is system
+            bold: appFontBold, // default is system
+            semiBold: appFontSemiBold, // default is system
+          },
+        }}
       >
-          {/* YOUR APP COMPONENTS */}
+        {/* YOUR APP COMPONENTS */}
       </BankComponentProvider>
     </View>
   );
-}
+};
 
 export default App;
 ```
 
+### Access to Context data and function
 
+This lib provides 3 main contexts: `WalletContext`, `TransactionContext` and `BankContext`
 
+To access to data, error and function inside these contexts, you can use `useContext` inside React Component.
 
+```javascript
+import React, { useContext } from 'react';
+import { View, Text } from 'react-native'
+import { WalletContext } from 'react-native-banking-components';
 
+const AccountScreen = () => {
+  const { wallets } = useContext(WalletContext);
 
-
-
-
+  return (
+  <View>
+    <Text>{wallets.lenght}<Text>
+  </View>
+  );
+};
+```
