@@ -23,6 +23,7 @@ To add these components to React Native app, run this command:
 ```
 yarn add git+ssh://git@github.com/101digital/react-native-banking-components.git
 ```
+
 Make sure you have permission to access this repository
 
 This lib also required some dependencies. Ignore any dependency if it already existed in your project.
@@ -131,7 +132,7 @@ const AccountScreen = () => {
 
   return (
   <View>
-    <Text>{wallets.lenght}<Text>
+    <Text>{wallets.length}<Text>
   </View>
   );
 };
