@@ -21,8 +21,9 @@ With high UI customizable, you can change the component's style to your styles o
 To add these components to React Native app, run this command:
 
 ```
-yarn add https://github.com/101digital/react-native-banking-components.git
+yarn add git+ssh://git@github.com/101digital/react-native-banking-components.git
 ```
+Make sure you have permission to access this repository
 
 This lib also required some dependencies. Ignore any dependency if it already existed in your project.
 
