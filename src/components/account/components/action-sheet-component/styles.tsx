@@ -1,6 +1,6 @@
 import { defaultsDeep } from 'lodash';
 import { useContext } from 'react';
-import { StyleSheet } from 'react-native';
+import { Platform, StyleSheet } from 'react-native';
 import { ThemeContext } from '../../../../contexts/them-context';
 import { ActionSheetStyle } from '../../types';
 
@@ -13,8 +13,8 @@ const useMergeStyles = (style?: ActionSheetStyle) => {
       margin: 0,
     },
     containerStyles: {
-      paddingHorizontal: 32,
-      paddingTop: 30,
+      paddingHorizontal: Platform.OS === 'ios' ? 32 : 20,
+      paddingTop: Platform.OS === 'ios' ? 30 : 15,
       paddingBottom: 10,
       justifyContent: 'center',
       borderTopLeftRadius: 15,

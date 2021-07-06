@@ -123,12 +123,16 @@ This lib provides 3 main contexts: `WalletContext`, `TransactionContext` and `Ba
 To access to data, error and function inside these contexts, you can use `useContext` inside React Component.
 
 ```javascript
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { View, Text } from 'react-native'
 import { WalletContext } from 'react-native-banking-components';
 
 const AccountScreen = () => {
-  const { wallets } = useContext(WalletContext);
+  const { wallets, fetchWallets } = useContext(WalletContext);
+
+  useEffect(() => {
+    fetchWallets();
+  }, [])
 
   return (
   <View>

@@ -27,6 +27,7 @@ const SearchBarComponent = (props: SearchBarComponentProps) => {
         style={styles.textInputStyle}
         onChangeText={onChangedText}
         returnKeyType="search"
+        textAlignVertical="center"
       />
       {rightIcon}
     </View>

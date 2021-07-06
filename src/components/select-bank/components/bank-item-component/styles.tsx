@@ -27,6 +27,7 @@ const useMergeStyles = (style?: BankItemComponentStyles) => {
       fontFamily: theme.fonts.regular,
       lineHeight: 21,
       color: '#3C3E4F',
+      textAlign: 'center',
     },
   });
 

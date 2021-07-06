@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { View, Text, FlatList } from 'react-native';
 import { SelectBankComponentProps } from './types';
 import useMergeStyles from './styles';
@@ -6,6 +6,7 @@ import { BankItemComponent, SearchBarComponent } from './components';
 import { filter, isEmpty } from 'lodash';
 import { BankContext } from '../../contexts/bank-context';
 import { Bank } from '../../types';
+import { useKeyboard } from './components/keyboard';
 
 const SelectBankComponent = (props: SelectBankComponentProps) => {
   const { Root, SearchBar, BankItem } = props;
@@ -14,6 +15,13 @@ const SelectBankComponent = (props: SelectBankComponentProps) => {
   const { banks } = useContext(BankContext);
   const _numColumns = Root?.props?.numberColumns ?? 2;
   const [displayBanks, setDisplayBanks] = useState<Bank[]>(banks);
+
+  const keyboardHeight = useKeyboard();
+  const [padding, setPadding] = useState(0);
+
+  useEffect(() => {
+    setPadding(keyboardHeight[0]);
+  }, [keyboardHeight]);
 
   const handleSearchBank = (key: string) => {
     const result = isEmpty(key)
@@ -45,12 +53,13 @@ const SelectBankComponent = (props: SelectBankComponentProps) => {
             )
           );
         }}
+        showsVerticalScrollIndicator={false}
         ItemSeparatorComponent={() => <View style={styles.listDivider} />}
         numColumns={_numColumns}
         key={_numColumns > 1 ? 'm' : 's'}
         columnWrapperStyle={_numColumns > 1 ? styles.columWrapperStyle : undefined}
         style={styles.listStyle}
-        contentContainerStyle={styles.listContentStyle}
+        contentContainerStyle={[styles.listContentStyle, { paddingBottom: padding }]}
       />
     </View>
   );

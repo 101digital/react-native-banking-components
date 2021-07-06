@@ -20,6 +20,8 @@ const useMergeStyles = (style?: SearchBarComponentStyles) => {
       fontFamily: theme.fonts.regular,
       fontSize: 14,
       color: '#3C3E4F',
+      paddingTop: 0,
+      paddingBottom: 0,
     },
   });
 

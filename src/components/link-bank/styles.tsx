@@ -23,7 +23,7 @@ const useMergeStyles = (style?: LinkBankComponentStyles) => {
       shadowRadius: 5,
       elevation: 5,
       paddingHorizontal: 15,
-      paddingTop: 15,
+      paddingVertical: 10,
     },
     headingTextStyle: {
       fontFamily: theme.fonts.regular,

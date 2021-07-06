@@ -1,5 +1,5 @@
 import React from 'react';
-import { TouchableOpacity, Text } from 'react-native';
+import { TouchableOpacity, Text, Keyboard } from 'react-native';
 import { images } from '../../../../assets/images';
 import { BImage } from '../../../../theme';
 import { Bank } from '../../../../types';
@@ -20,7 +20,10 @@ const BankItemComponent = (props: BankItemComponentProps) => {
     <TouchableOpacity
       activeOpacity={0.8}
       style={styles.containerStyle}
-      onPress={() => onPressedBank?.(bank)}
+      onPress={() => {
+        Keyboard.dismiss();
+        onPressedBank?.(bank);
+      }}
     >
       <BImage
         source={{ uri: bank.imageUrl }}
