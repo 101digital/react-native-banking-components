@@ -218,7 +218,7 @@ const AccountComponent = forwardRef((props: AccountComponentProps, ref) => {
             )}
             renderSectionHeader={({ section: { section } }) => {
               return (
-                Section?.props?.renderSection?.(section) ?? (
+                Section?.components?.renderSection?.(section) ?? (
                   <SelectionComponent title={section} style={Section?.style} />
                 )
               );

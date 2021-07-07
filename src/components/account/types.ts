@@ -52,7 +52,7 @@ export type AccountComponentProps = {
   };
   Section?: {
     style?: AccountSectionStyle;
-    props?: {
+    components?: {
       renderSection: (title: string) => React.ReactElement | null;
     };
   };

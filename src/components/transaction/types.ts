@@ -8,8 +8,10 @@ export type TransactionComponentProps = {
     style?: TransactionComponentStyle;
     props: {
       initWallet?: Wallet;
-      loadingIndicator?: ReactNode;
       formatCurrency: (amount: number, code: string) => string;
+    };
+    components?: {
+      loadingIndicator?: ReactNode;
     };
   };
   CarouselItem: {

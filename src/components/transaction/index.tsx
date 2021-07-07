@@ -26,7 +26,7 @@ const TransactionComponent = (props: TransactionComponentProps) => {
     TransactionItem,
     EmptyWallet,
   } = props;
-  const { initWallet, loadingIndicator, formatCurrency } = Root?.props;
+  const { initWallet, formatCurrency } = Root?.props;
   const containerStyle = Root?.style;
 
   const { carouselItemWidth, carouselWidth } = CarouselItem.props;
@@ -87,7 +87,7 @@ const TransactionComponent = (props: TransactionComponentProps) => {
     if (isLoadingWallets) {
       return (
         <View style={styles.loadingWrap}>
-          {loadingIndicator ?? <ActivityIndicator color={theme.primaryColor} />}
+          {Root?.components?.loadingIndicator ?? <ActivityIndicator color={theme.primaryColor} />}
         </View>
       );
     }
