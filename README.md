@@ -66,9 +66,9 @@ yarn add react-native-webview
 
 We're done! Now you can run your project.
 
-## Usage
+## Quick start
 
-### Quick start
+### Initial component
 
 Since <b>react-native-banking-components</b> have funtions to connect with API, we have to init `BankingService` with app's client before using. Also, wrap your app with `BankComponentProvider` to connect to Context API
 
@@ -78,7 +78,7 @@ Since <b>react-native-banking-components</b> have funtions to connect with API, 
 import { BankComponentProvider, BankingService } from 'react-native-banking-components';
 ```
 
-3. Init `BankingService`
+2. Init `BankingService`
 
 ```javascript
 BankingService.getInstance().initClients({
@@ -88,7 +88,7 @@ BankingService.getInstance().initClients({
 });
 ```
 
-5. Wrap with `BankComponentProvider` and init themes.
+3. Wrap with `BankComponentProvider` and init themes.
 
 ```javascript
 const App = () => {
@@ -172,3 +172,30 @@ const AccountScreen = () => {
 ```
 
 ## API reference
+
+### `AccountComponent`
+
+- Root
+
+| Type  | Name & Description  |
+| :------------ |:---------------|
+| styles     | `containerStyle`: styles of main component <br/> `listContainerStyle`: style of list wallets <br/> `listDivider`: styles of divider between wallet item|
+| props| `formatCurrency`: this is <b>required</b> using to format wallet balance         | 
+| components| are neat        |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
