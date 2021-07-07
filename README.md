@@ -68,7 +68,7 @@ We're done! Now you can run your project.
 
 ## Usage
 
-### Initial Banking Component is important step.
+### Quick start
 
 Since <b>react-native-banking-components</b> have funtions to connect with API, we have to init `BankingService` with app's client before using. Also, wrap your app with `BankComponentProvider` to connect to Context API
 
@@ -118,9 +118,9 @@ export default App;
 
 ### Access to Context data and function
 
-This lib provides 3 main contexts: `WalletContext`, `TransactionContext` and `BankContext`
+This component provides 3 main contexts: `WalletContext`, `TransactionContext` and `BankContext`
 
-To access to data, error and function inside these contexts, you can use `useContext` inside React Component.
+To access to data, error and function from these contexts, you can use `useContext` inside a React Component.
 
 ```javascript
 import React, { useContext, useEffect } from 'react';
@@ -141,3 +141,34 @@ const AccountScreen = () => {
   );
 };
 ```
+
+### Use component inside screen
+
+You can place components as a React Node inside your React Native screen. All styles, props are provided by default, you can customize them also. There are some required props, you need provide them if components request
+
+Styles, props, components you can find them in API reference
+
+```javascript
+import React, { useContext, useEffect } from 'react';
+import { View, Text } from 'react-native';
+import { currencyFormatter } from '@/helpers/currency-formatter';
+import { AccountComponent } from 'react-native-banking-components';
+
+const AccountScreen = () => {
+  return (
+    <View styles={styles.container}>
+      {/* Your component */}
+      <AccountComponent
+        Root={{
+          props: {
+            formatCurrency: currencyFormatter,
+          },
+        }}
+      />
+      {/* Your component */}
+    </View>
+  );
+};
+```
+
+## API reference
