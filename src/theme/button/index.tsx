@@ -9,7 +9,7 @@ import {
   View,
   ViewStyle,
 } from 'react-native';
-import { ThemeContext } from '../../contexts/them-context';
+import { BankThemeContext } from '../../contexts/theme-context';
 
 export type ButtonStyleProps = {
   label: string;
@@ -22,7 +22,7 @@ export type ButtonStyleProps = {
 
 const BButton = (props: ButtonStyleProps) => {
   const { label, isLoading, style, textStyle, disabled, isPrimary, ...restProps } = props;
-  const { theme } = useContext(ThemeContext);
+  const { theme } = useContext(BankThemeContext);
   const {
     primaryContainer,
     secondaryContainer,

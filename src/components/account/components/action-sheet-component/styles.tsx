@@ -1,11 +1,11 @@
 import { defaultsDeep } from 'lodash';
 import { useContext } from 'react';
 import { Platform, StyleSheet } from 'react-native';
-import { ThemeContext } from '../../../../contexts/them-context';
+import { BankThemeContext } from '../../../../contexts/theme-context';
 import { ActionSheetStyle } from '../../types';
 
 const useMergeStyles = (style?: ActionSheetStyle) => {
-  const { theme } = useContext(ThemeContext);
+  const { theme } = useContext(BankThemeContext);
 
   const defaultStyles = StyleSheet.create({
     modalStyle: {

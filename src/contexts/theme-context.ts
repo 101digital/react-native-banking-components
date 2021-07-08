@@ -10,9 +10,9 @@ export const themeDefaultValue: ThemeContextData = {
   theme: defaultTheme,
 };
 
-export const ThemeContext = React.createContext<ThemeContextData>(themeDefaultValue);
+export const BankThemeContext = React.createContext<ThemeContextData>(themeDefaultValue);
 
-export function useThemeContextValue(initial: BankingThemeProps): ThemeContextData {
+export function useBankThemeContextValue(initial: BankingThemeProps): ThemeContextData {
   const [theme] = useState<BankingThemeProps>(initial);
 
   return useMemo(

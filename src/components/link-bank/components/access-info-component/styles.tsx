@@ -1,11 +1,11 @@
 import { defaultsDeep } from 'lodash';
 import { useContext } from 'react';
 import { StyleSheet } from 'react-native';
-import { ThemeContext } from '../../../../contexts/them-context';
+import { BankThemeContext } from '../../../../contexts/theme-context';
 import { AccessInfoComponentStyles } from '../../types';
 
 const useMergeStyles = (style?: AccessInfoComponentStyles): AccessInfoComponentStyles => {
-  const { theme } = useContext(ThemeContext);
+  const { theme } = useContext(BankThemeContext);
   const defaultStyles: AccessInfoComponentStyles = StyleSheet.create({
     containerStyle: {
       marginTop: 45,

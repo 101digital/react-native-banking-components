@@ -1,11 +1,11 @@
 import { defaultsDeep } from 'lodash';
 import { useContext } from 'react';
 import { StyleSheet } from 'react-native';
-import { ThemeContext } from '../../../../contexts/them-context';
+import { BankThemeContext } from '../../../../contexts/theme-context';
 import { DotStyle } from '../../types';
 
 const useMergeStyles = (style?: DotStyle) => {
-  const { theme } = useContext(ThemeContext);
+  const { theme } = useContext(BankThemeContext);
 
   const defaultStyles = StyleSheet.create({
     dot: {

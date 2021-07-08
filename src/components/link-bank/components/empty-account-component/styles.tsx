@@ -1,11 +1,11 @@
 import { defaultsDeep } from 'lodash';
 import { useContext } from 'react';
 import { StyleSheet } from 'react-native';
-import { ThemeContext } from '../../../../contexts/them-context';
+import { BankThemeContext } from '../../../../contexts/theme-context';
 import { EmptyBankAccountStyles } from '../../types';
 
 const useMergeStyles = (style?: EmptyBankAccountStyles): EmptyBankAccountStyles => {
-  const { theme } = useContext(ThemeContext);
+  const { theme } = useContext(BankThemeContext);
   const defautStyles = StyleSheet.create({
     containerStyle: {
       flex: 1,

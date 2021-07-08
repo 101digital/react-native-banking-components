@@ -2,7 +2,7 @@ import React, { ReactNode, useContext } from 'react';
 import { Dimensions, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Modal from 'react-native-modal';
 import { BCloseIcon } from '../../assets/images';
-import { ThemeContext } from '../../contexts/them-context';
+import { BankThemeContext } from '../../contexts/theme-context';
 import BankingButton from '../button';
 
 const deviceHeight =
@@ -36,7 +36,7 @@ const BAlertModal = (props: AlertModalProps) => {
     confirmTitle,
     leftIcon,
   } = props;
-  const { theme } = useContext(ThemeContext);
+  const { theme } = useContext(BankThemeContext);
   const {
     containerStyle,
     headerStyle,

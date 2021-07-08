@@ -13,7 +13,7 @@ import useMergeStyles from './styles';
 import { WalletContext } from '../../contexts/wallet-context';
 import { Wallet } from '../../types';
 import { TransactionContext } from '../../contexts/transaction-context';
-import { ThemeContext } from '../../contexts/them-context';
+import { BankThemeContext } from '../../contexts/theme-context';
 import { BNoWalletComponent } from '../../theme';
 
 const TransactionComponent = (props: TransactionComponentProps) => {
@@ -42,7 +42,7 @@ const TransactionComponent = (props: TransactionComponentProps) => {
   const { wallets, getAggregatedWallets, isLoadingWallets } = useContext(WalletContext);
   const { transactions, fetchTransactions } = useContext(TransactionContext);
   const aggregatedWallets = getAggregatedWallets();
-  const { theme } = useContext(ThemeContext);
+  const { theme } = useContext(BankThemeContext);
   const [_initialWallet, setInitialWallet] = useState(initWallet);
 
   useEffect(() => {

@@ -3,7 +3,7 @@ import React, { ReactNode } from 'react';
 import { defaultTheme } from '../theme/styled-theme';
 import { BankingThemeProps } from '../theme/types';
 import { BankContext, useBankContextValue } from './bank-context';
-import { ThemeContext, useThemeContextValue } from './them-context';
+import { BankThemeContext, useBankThemeContextValue } from './theme-context';
 import { TransactionContext, useTransactionContextValue } from './transaction-context';
 import { useWalletContextValue, WalletContext } from './wallet-context';
 
@@ -17,16 +17,16 @@ const BankingProvider = (props: BankingProviderProps) => {
   const walletContextData = useWalletContextValue();
   const transactionContextData = useTransactionContextValue();
   const bankContextData = useBankContextValue();
-  const themeContextData = useThemeContextValue(defaultsDeep(theme, defaultTheme));
+  const themeContextData = useBankThemeContextValue(defaultsDeep(theme, defaultTheme));
 
   return (
-    <ThemeContext.Provider value={themeContextData}>
+    <BankThemeContext.Provider value={themeContextData}>
       <WalletContext.Provider value={walletContextData}>
         <TransactionContext.Provider value={transactionContextData}>
           <BankContext.Provider value={bankContextData}>{children}</BankContext.Provider>
         </TransactionContext.Provider>
       </WalletContext.Provider>
-    </ThemeContext.Provider>
+    </BankThemeContext.Provider>
   );
 };
 

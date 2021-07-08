@@ -5,7 +5,7 @@ import { WalletItemStyle } from '../../types';
 import useMergeStyles from './styles';
 import { Wallet } from '../../../../types';
 import { BankContext } from '../../../../contexts/bank-context';
-import { ThemeContext } from '../../../../contexts/them-context';
+import { BankThemeContext } from '../../../../contexts/theme-context';
 import { BImage } from '../../../../theme';
 
 export type WalletItemProps = {
@@ -37,7 +37,7 @@ const WalletItemComponent = (props: WalletItemProps) => {
     bannerEndOffset,
   } = props;
   const { bankImages } = useContext(BankContext);
-  const { theme } = useContext(ThemeContext);
+  const { theme } = useContext(BankThemeContext);
 
   const styles = useMergeStyles(style);
 

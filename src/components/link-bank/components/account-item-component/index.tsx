@@ -2,7 +2,7 @@ import { isEmpty } from 'lodash';
 import React, { ReactNode, useContext } from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
 import { BCheckedIcon } from '../../../../assets/checked.icon';
-import { ThemeContext } from '../../../../contexts/them-context';
+import { BankThemeContext } from '../../../../contexts/theme-context';
 import { BankAccount } from '../../../../types';
 import { AccountItemComponentStyles } from '../../types';
 
@@ -20,7 +20,7 @@ const AccountItemComponent = (props: AccountItemComponentProps) => {
   const { account, style, onPressed, isSelected, tickIcon } = props;
 
   const styles = useMergeStyles(style);
-  const { theme } = useContext(ThemeContext);
+  const { theme } = useContext(BankThemeContext);
 
   const getAccountNumber = () => {
     if (isEmpty(account.account)) {

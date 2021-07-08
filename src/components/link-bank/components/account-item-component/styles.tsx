@@ -1,11 +1,11 @@
 import { defaultsDeep } from 'lodash';
 import { useContext } from 'react';
 import { StyleSheet } from 'react-native';
-import { ThemeContext } from '../../../../contexts/them-context';
+import { BankThemeContext } from '../../../../contexts/theme-context';
 import { AccountItemComponentStyles } from '../../types';
 
 const useMergeStyles = (style?: AccountItemComponentStyles) => {
-  const { theme } = useContext(ThemeContext);
+  const { theme } = useContext(BankThemeContext);
 
   const defaultStyles = StyleSheet.create({
     containerStyle: {

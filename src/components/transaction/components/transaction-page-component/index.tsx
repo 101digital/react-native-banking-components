@@ -10,7 +10,7 @@ import {
   Text,
   View,
 } from 'react-native';
-import { ThemeContext } from '../../../../contexts/them-context';
+import { BankThemeContext } from '../../../../contexts/theme-context';
 import { TransactionContext } from '../../../../contexts/transaction-context';
 import { Transaction, Wallet } from '../../../../types';
 import { TransactionItemStyle, TransactionPageStyle } from '../../types';
@@ -41,7 +41,7 @@ const TransactionPageComponent = (props: TransactionPageProps) => {
     formatCurrency,
     onItemPress,
   } = props;
-  const { theme } = useContext(ThemeContext);
+  const { theme } = useContext(BankThemeContext);
 
   const styles = useMergeStyles(style);
 

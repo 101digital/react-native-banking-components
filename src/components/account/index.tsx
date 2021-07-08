@@ -11,7 +11,7 @@ import {
   SetPrimaryComponent,
   WalletItemComponent,
 } from './components';
-import { ThemeContext } from '../../contexts/them-context';
+import { BankThemeContext } from '../../contexts/theme-context';
 import { BankContext } from '../../contexts/bank-context';
 import { Wallet } from '../../types';
 import BAlertModal from '../../theme/alert';
@@ -48,7 +48,7 @@ const AccountComponent = forwardRef((props: AccountComponentProps, ref) => {
     clearLinkedWallet,
     fetchWallets,
   } = useContext(WalletContext);
-  const { theme } = useContext(ThemeContext);
+  const { theme } = useContext(BankThemeContext);
   const { bankImages } = useContext(BankContext);
   const currencyCode = getDefaultWallet()?.currencyCode ?? 'USD';
   const currentBalance = summary?.currentBalance ?? 0;

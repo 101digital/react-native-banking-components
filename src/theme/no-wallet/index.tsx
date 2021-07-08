@@ -1,7 +1,7 @@
 import React, { ReactNode, useContext } from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
 import { BNoWalletIcon, BPlusIcon } from '../../assets/images';
-import { ThemeContext } from '../../contexts/them-context';
+import { BankThemeContext } from '../../contexts/theme-context';
 import { NoWalletThemeStyles } from '../types';
 import useMergeStyles from './styles';
 
@@ -16,7 +16,7 @@ export type NoWalletComponentProps = {
 
 const BNoWalletComponent = (props: NoWalletComponentProps) => {
   const { message, placeholderIcon, leftIcon, style, onLinkAccountPressed, buttonLabel } = props;
-  const { theme } = useContext(ThemeContext);
+  const { theme } = useContext(BankThemeContext);
 
   const styles = useMergeStyles(style);
 

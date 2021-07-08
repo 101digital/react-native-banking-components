@@ -3,7 +3,7 @@ import React, { ReactNode, useContext } from 'react';
 import { Text, TouchableOpacity } from 'react-native';
 import { LinkAccountStyle } from '../../types';
 import useMergeStyles from './styles';
-import { ThemeContext } from '../../../../contexts/them-context';
+import { BankThemeContext } from '../../../../contexts/theme-context';
 
 export type LinkAccountComponentProps = {
   onLinkAccountPressed?: () => void;
@@ -14,7 +14,7 @@ export type LinkAccountComponentProps = {
 
 const LinkAccountComponent = (props: LinkAccountComponentProps) => {
   const { style, buttonLabel, onLinkAccountPressed, addIcon } = props;
-  const { theme } = useContext(ThemeContext);
+  const { theme } = useContext(BankThemeContext);
 
   const styles = useMergeStyles(style);
 

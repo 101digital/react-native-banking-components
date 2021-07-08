@@ -2,7 +2,7 @@ import { isEmpty } from 'lodash';
 import React, { useContext, useEffect, useState } from 'react';
 import { View, Text, ActivityIndicator, FlatList } from 'react-native';
 import { BankContext } from '../../contexts/bank-context';
-import { ThemeContext } from '../../contexts/them-context';
+import { BankThemeContext } from '../../contexts/theme-context';
 import { WalletContext } from '../../contexts/wallet-context';
 import { BButton } from '../../theme';
 import { BankAccount } from '../../types';
@@ -16,7 +16,7 @@ const LinkBankComponent = (props: LinkBankComponentProps) => {
   const { bank, consentId, headingLabel } = Root.props;
   const { accounts, isLoadingAccounts, clearAccounts, clearConsentData } = useContext(BankContext);
   const { isLinkingWallet, linkWallet } = useContext(WalletContext);
-  const { theme } = useContext(ThemeContext);
+  const { theme } = useContext(BankThemeContext);
   const [currentAccount, setCurrentAccount] = useState<BankAccount | undefined>(undefined);
 
   useEffect(() => {

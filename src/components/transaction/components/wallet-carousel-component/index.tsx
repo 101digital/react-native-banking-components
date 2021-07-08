@@ -2,7 +2,7 @@ import React, { ReactNode, useContext } from 'react';
 import { View, Text } from 'react-native';
 import { BCheckedIcon, BDownIcon, BUpIcon, images } from '../../../../assets/images';
 import { BankContext } from '../../../../contexts/bank-context';
-import { ThemeContext } from '../../../../contexts/them-context';
+import { BankThemeContext } from '../../../../contexts/theme-context';
 import { TransactionContext } from '../../../../contexts/transaction-context';
 import BImage from '../../../../theme/image';
 import { TransactionSummary, Wallet } from '../../../../types';
@@ -39,7 +39,7 @@ const WalletCarouselComponent = (props: WalletCarouselItemProps) => {
   } = props;
   const { getTransactionSummary } = useContext(TransactionContext);
   const { bankImages } = useContext(BankContext);
-  const { theme } = useContext(ThemeContext);
+  const { theme } = useContext(BankThemeContext);
   const summary = getTransactionSummary(wallet.walletId);
 
   const styles = useMergeStyles(style);
