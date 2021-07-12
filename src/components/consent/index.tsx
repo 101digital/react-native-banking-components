@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Text, View } from 'react-native';
 import { BankContext } from '../../contexts/bank-context';
-import { BButton } from '../../theme';
+import { Button } from 'react-native-theme-component';
 import { PermissionComponent, ShareContentComponent } from './components';
 import useMergeStyles from './styles';
 import { ConsentComponentProps } from './types';
@@ -28,7 +28,7 @@ const ConsentComponent = (props: ConsentComponentProps) => {
         />
       </View>
       <View style={styles.ctaButtonWrapper}>
-        <BButton
+        <Button
           label={Root.props.ctaButtonLabel ?? 'CONTINUE'}
           onPress={() => {
             getConsent(bank.id);

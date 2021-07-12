@@ -10,7 +10,7 @@ import {
   Text,
   View,
 } from 'react-native';
-import { BankThemeContext } from '../../../../contexts/theme-context';
+import { ThemeContext } from 'react-native-theme-component';
 import { TransactionContext } from '../../../../contexts/transaction-context';
 import { Transaction, Wallet } from '../../../../types';
 import { TransactionItemStyle, TransactionPageStyle } from '../../types';
@@ -41,7 +41,7 @@ const TransactionPageComponent = (props: TransactionPageProps) => {
     formatCurrency,
     onItemPress,
   } = props;
-  const { theme } = useContext(BankThemeContext);
+  const { colors } = useContext(ThemeContext);
 
   const styles = useMergeStyles(style);
 
@@ -77,7 +77,7 @@ const TransactionPageComponent = (props: TransactionPageProps) => {
   if (isLoadingTransaction && isEmpty(groupedTransactions)) {
     return (
       <View style={styles.containerStyle}>
-        {loadingIndicator ?? <ActivityIndicator color={theme.primaryColor} />}
+        {loadingIndicator ?? <ActivityIndicator color={colors.primaryColor} />}
       </View>
     );
   }
@@ -89,7 +89,7 @@ const TransactionPageComponent = (props: TransactionPageProps) => {
         onRefresh={() => {
           refreshTransactions(wallet.walletId);
         }}
-        tintColor={theme.primaryColor}
+        tintColor={colors.primaryColor}
       />
     );
   };
@@ -133,7 +133,7 @@ const TransactionPageComponent = (props: TransactionPageProps) => {
         if (isLoadingTransaction) {
           return (
             <View style={styles.footerWrap}>
-              {loadingIndicator ?? <ActivityIndicator color={theme.primaryColor} />}
+              {loadingIndicator ?? <ActivityIndicator color={colors.primaryColor} />}
             </View>
           );
         }

@@ -1,11 +1,11 @@
 import { defaultsDeep } from 'lodash';
 import { useContext } from 'react';
 import { StyleSheet } from 'react-native';
-import { BankThemeContext } from '../../../../contexts/theme-context';
+import { ThemeContext } from 'react-native-theme-component';
 import { WalletItemStyle } from '../../types';
 
 const useMergeStyles = (style?: WalletItemStyle) => {
-  const { theme } = useContext(BankThemeContext);
+  const { colors, fonts } = useContext(ThemeContext);
 
   const defaultStyles = StyleSheet.create({
     containerStyle: {
@@ -38,22 +38,22 @@ const useMergeStyles = (style?: WalletItemStyle) => {
       justifyContent: 'space-between',
     },
     accountNameTextStyle: {
-      fontFamily: theme.fonts?.regular,
+      fontFamily: fonts.regular,
       fontSize: 14,
       lineHeight: 20,
-      color: theme.textColor,
+      color: '#094884',
     },
     accountNumberTextStyle: {
       fontSize: 12,
-      fontFamily: theme.fonts?.regular,
+      fontFamily: fonts.regular,
       color: '#828282',
       lineHeight: 17,
     },
     amountTextStyle: {
-      fontFamily: theme.fonts?.bold,
+      fontFamily: fonts.bold,
       fontSize: 14,
       lineHeight: 21,
-      color: theme.textColor,
+      color: '#094884',
     },
     rightContainerStyle: {
       paddingHorizontal: 8,
@@ -66,8 +66,8 @@ const useMergeStyles = (style?: WalletItemStyle) => {
     },
     primaryTextStyle: {
       fontSize: 12,
-      fontFamily: theme.fonts?.regular,
-      color: theme.primaryColor,
+      fontFamily: fonts.regular,
+      color: colors.primaryColor,
       lineHeight: 16,
       marginLeft: 5,
     },

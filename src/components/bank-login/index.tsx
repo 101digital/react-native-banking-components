@@ -3,18 +3,18 @@ import { ActivityIndicator, View } from 'react-native';
 import WebView, { WebViewNavigation } from 'react-native-webview';
 import { BankLoginComponentProps } from './types';
 import styles from './styles';
-import { BankThemeContext } from '../../contexts/theme-context';
+import { ThemeContext } from 'react-native-theme-component';
 import { BankContext } from '../../contexts/bank-context';
 
 const BankLoginComponent = (props: BankLoginComponentProps) => {
   const { containerStyle, bank, loadingIndicator, onConfirmed } = props;
   const { consentData, isLoadingConsent, confirmConsent, getAccounts } = useContext(BankContext);
-  const { theme } = useContext(BankThemeContext);
+  const { colors } = useContext(ThemeContext);
 
   if (isLoadingConsent || !consentData) {
     return (
       <View style={styles.loadingWrap}>
-        {loadingIndicator ?? <ActivityIndicator color={theme.primaryColor} />}
+        {loadingIndicator ?? <ActivityIndicator color={colors.primaryColor} />}
       </View>
     );
   }

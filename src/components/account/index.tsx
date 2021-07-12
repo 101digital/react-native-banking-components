@@ -11,13 +11,12 @@ import {
   SetPrimaryComponent,
   WalletItemComponent,
 } from './components';
-import { BankThemeContext } from '../../contexts/theme-context';
 import { BankContext } from '../../contexts/bank-context';
 import { Wallet } from '../../types';
-import BAlertModal from '../../theme/alert';
-import BNoWalletComponent from '../../theme/no-wallet';
+import BNoWalletComponent from '../no-wallet';
 import { BInformationIcon } from '../../assets/images';
 import { WalletContext } from '../../contexts/wallet-context';
+import { ThemeContext, AlertModal } from 'react-native-theme-component';
 
 const AccountComponent = forwardRef((props: AccountComponentProps, ref) => {
   const {
@@ -48,7 +47,7 @@ const AccountComponent = forwardRef((props: AccountComponentProps, ref) => {
     clearLinkedWallet,
     fetchWallets,
   } = useContext(WalletContext);
-  const { theme } = useContext(BankThemeContext);
+  const { colors } = useContext(ThemeContext);
   const { bankImages } = useContext(BankContext);
   const currencyCode = getDefaultWallet()?.currencyCode ?? 'USD';
   const currentBalance = summary?.currentBalance ?? 0;
@@ -109,7 +108,7 @@ const AccountComponent = forwardRef((props: AccountComponentProps, ref) => {
 
   const renderSuccessModal = () => {
     return (
-      <BAlertModal
+      <AlertModal
         isVisible={
           !isLinkingWallet && linkedWallet !== undefined && !ConfirmSetPrimaryModal?.props?.disable
         }
@@ -147,7 +146,7 @@ const AccountComponent = forwardRef((props: AccountComponentProps, ref) => {
             {...LinkAccountSuccessModal?.components}
           />
         )}
-      </BAlertModal>
+      </AlertModal>
     );
   };
 
@@ -155,7 +154,7 @@ const AccountComponent = forwardRef((props: AccountComponentProps, ref) => {
     if (isLoadingWallets) {
       return (
         <View style={styles.loadingWrap}>
-          {Root?.components?.loadingIndicator ?? <ActivityIndicator color={theme.primaryColor} />}
+          {Root?.components?.loadingIndicator ?? <ActivityIndicator color={colors.primaryColor} />}
         </View>
       );
     }
@@ -234,7 +233,7 @@ const AccountComponent = forwardRef((props: AccountComponentProps, ref) => {
         {...ActionSheet?.props}
         {...ActionSheet?.components}
       />
-      <BAlertModal
+      <AlertModal
         isVisible={isShowUnlink && !ConfirmUnlinkModal?.props?.disable}
         title={ConfirmUnlinkModal?.props?.title ?? 'Unlink Bank Account'}
         cancelTitle={ConfirmUnlinkModal?.props?.cancelButtonLabel ?? 'Cancel'}
@@ -243,7 +242,7 @@ const AccountComponent = forwardRef((props: AccountComponentProps, ref) => {
         onCancel={() => setShowUnlink(false)}
         leftIcon={
           ConfirmUnlinkModal?.components?.leftIcon ?? (
-            <BInformationIcon width={20} height={20} color={theme.primaryColor} />
+            <BInformationIcon width={20} height={20} color={colors.primaryColor} />
           )
         }
         message={
@@ -259,7 +258,7 @@ const AccountComponent = forwardRef((props: AccountComponentProps, ref) => {
           setSelectedWallet(undefined);
         }}
       />
-      <BAlertModal
+      <AlertModal
         isVisible={isShowPrimary && !ConfirmSetPrimaryModal?.props?.disable}
         title={ConfirmSetPrimaryModal?.props?.title ?? 'Confirmation'}
         cancelTitle={ConfirmSetPrimaryModal?.props?.cancelButtonLabel ?? 'Cancel'}
@@ -268,7 +267,7 @@ const AccountComponent = forwardRef((props: AccountComponentProps, ref) => {
         onCancel={() => setShowPrimary(false)}
         leftIcon={
           ConfirmSetPrimaryModal?.components?.leftIcon ?? (
-            <BInformationIcon width={20} height={20} color={theme.primaryColor} />
+            <BInformationIcon width={20} height={20} color={colors.primaryColor} />
           )
         }
         message={(

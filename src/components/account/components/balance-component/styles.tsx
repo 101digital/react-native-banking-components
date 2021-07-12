@@ -1,11 +1,11 @@
 import { defaultsDeep } from 'lodash';
 import { useContext } from 'react';
 import { StyleSheet } from 'react-native';
-import { BankThemeContext } from '../../../../contexts/theme-context';
+import { ThemeContext } from 'react-native-theme-component';
 import { BalanceStyle } from '../../types';
 
 const useMergeStyles = (style?: BalanceStyle) => {
-  const { theme } = useContext(BankThemeContext);
+  const { fonts, colors } = useContext(ThemeContext);
 
   const defaultStyles = StyleSheet.create({
     containerStyle: {
@@ -19,14 +19,14 @@ const useMergeStyles = (style?: BalanceStyle) => {
       marginTop: 10,
     },
     titleTextStyle: {
-      fontFamily: theme.fonts?.semiBold,
+      fontFamily: fonts.semiBold,
       fontSize: 12,
-      color: theme.textColor,
+      color: '#094884',
     },
     amountTextStyle: {
-      fontFamily: theme.fonts?.semiBold,
+      fontFamily: fonts.semiBold,
       fontSize: 28,
-      color: theme.primaryColor,
+      color: colors.primaryColor,
     },
   });
 

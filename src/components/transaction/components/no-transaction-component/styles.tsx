@@ -1,11 +1,11 @@
 import { defaultsDeep } from 'lodash';
 import { useContext } from 'react';
 import { StyleSheet } from 'react-native';
-import { BankThemeContext } from '../../../../contexts/theme-context';
+import { ThemeContext } from 'react-native-theme-component';
 import { EmptyTransactionStyle } from '../../types';
 
 const useMergeStyles = (style?: EmptyTransactionStyle) => {
-  const { theme } = useContext(BankThemeContext);
+  const { fonts } = useContext(ThemeContext);
 
   const defaultStyles = StyleSheet.create({
     containerStyle: {
@@ -16,10 +16,10 @@ const useMergeStyles = (style?: EmptyTransactionStyle) => {
     },
     messageStyle: {
       fontSize: 15,
-      color: theme.textColor,
+      color: '#094884',
       lineHeight: 23,
       marginTop: 15,
-      fontFamily: theme.fonts?.medium,
+      fontFamily: fonts.medium,
     },
     iconStyle: {
       width: 100,

@@ -1,11 +1,11 @@
 import { defaultsDeep } from 'lodash';
 import { useContext } from 'react';
 import { StyleSheet } from 'react-native';
-import { BankThemeContext } from '../../../../contexts/theme-context';
+import { ThemeContext } from 'react-native-theme-component';
 import { EmptyBankAccountStyles } from '../../types';
 
 const useMergeStyles = (style?: EmptyBankAccountStyles): EmptyBankAccountStyles => {
-  const { theme } = useContext(BankThemeContext);
+  const { fonts } = useContext(ThemeContext);
   const defautStyles = StyleSheet.create({
     containerStyle: {
       flex: 1,
@@ -13,9 +13,9 @@ const useMergeStyles = (style?: EmptyBankAccountStyles): EmptyBankAccountStyles 
       alignItems: 'center',
     },
     messageTextStyle: {
-      fontFamily: theme.fonts.medium,
+      fontFamily: fonts.medium,
       fontSize: 15,
-      color: theme.textColor,
+      color: '#094884',
       lineHeight: 23,
       marginTop: 15,
     },

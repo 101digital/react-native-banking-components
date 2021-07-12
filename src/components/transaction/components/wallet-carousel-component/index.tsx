@@ -2,9 +2,8 @@ import React, { ReactNode, useContext } from 'react';
 import { View, Text } from 'react-native';
 import { BCheckedIcon, BDownIcon, BUpIcon, images } from '../../../../assets/images';
 import { BankContext } from '../../../../contexts/bank-context';
-import { BankThemeContext } from '../../../../contexts/theme-context';
+import { ThemeContext, Image } from 'react-native-theme-component';
 import { TransactionContext } from '../../../../contexts/transaction-context';
-import BImage from '../../../../theme/image';
 import { TransactionSummary, Wallet } from '../../../../types';
 import { CarouselItemStyle } from '../../types';
 import useMergeStyles from './styles';
@@ -39,7 +38,7 @@ const WalletCarouselComponent = (props: WalletCarouselItemProps) => {
   } = props;
   const { getTransactionSummary } = useContext(TransactionContext);
   const { bankImages } = useContext(BankContext);
-  const { theme } = useContext(BankThemeContext);
+  const { colors } = useContext(ThemeContext);
   const summary = getTransactionSummary(wallet.walletId);
 
   const styles = useMergeStyles(style);
@@ -49,7 +48,7 @@ const WalletCarouselComponent = (props: WalletCarouselItemProps) => {
       <View style={styles.headerStyle}>
         {!wallet.isAggregated && (
           <View style={styles.imageWrapStyle}>
-            <BImage
+            <Image
               resizeMode="contain"
               style={styles.imageStyle}
               fallbackImage={images.bank}
@@ -78,7 +77,7 @@ const WalletCarouselComponent = (props: WalletCarouselItemProps) => {
             </Text>
             {wallet.isDefaultWallet && (
               <View style={styles.primaryWrap}>
-                {tickIcon ?? <BCheckedIcon size={12} color={theme.primaryColor} />}
+                {tickIcon ?? <BCheckedIcon size={12} color={colors.primaryColor} />}
                 <Text style={styles.primaryTextStyle}>{primaryLabel ?? 'Primary'}</Text>
               </View>
             )}

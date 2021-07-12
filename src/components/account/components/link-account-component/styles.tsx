@@ -1,11 +1,11 @@
 import { defaultsDeep } from 'lodash';
 import { useContext } from 'react';
 import { StyleSheet } from 'react-native';
-import { BankThemeContext } from '../../../../contexts/theme-context';
+import { ThemeContext } from 'react-native-theme-component';
 import { LinkAccountStyle } from '../../types';
 
 const useMergeStyles = (style?: LinkAccountStyle) => {
-  const { theme } = useContext(BankThemeContext);
+  const { fonts, colors } = useContext(ThemeContext);
 
   const defaultStyles = StyleSheet.create({
     containerStyle: {
@@ -15,9 +15,9 @@ const useMergeStyles = (style?: LinkAccountStyle) => {
     },
     buttonTextStyle: {
       fontSize: 15,
-      fontFamily: theme.fonts.medium,
+      fontFamily: fonts.medium,
       lineHeight: 23,
-      color: theme.primaryColor,
+      color: colors.primaryColor,
       marginHorizontal: 8,
     },
   });

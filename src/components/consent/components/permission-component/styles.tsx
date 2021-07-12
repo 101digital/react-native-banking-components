@@ -1,11 +1,11 @@
 import { defaultsDeep } from 'lodash';
 import { useContext } from 'react';
 import { StyleSheet } from 'react-native';
-import { BankThemeContext } from '../../../../contexts/theme-context';
+import { ThemeContext } from 'react-native-theme-component';
 import { PermissionComponentStyles } from '../../types';
 
 const useMergeStyles = (style?: PermissionComponentStyles) => {
-  const { theme } = useContext(BankThemeContext);
+  const { fonts } = useContext(ThemeContext);
 
   const defaultStyles = StyleSheet.create({
     containerStyle: {
@@ -21,7 +21,7 @@ const useMergeStyles = (style?: PermissionComponentStyles) => {
     },
     messageTextStyle: {
       fontSize: 12,
-      fontFamily: theme.fonts.regular,
+      fontFamily: fonts.regular,
       color: 'rgba(13, 32, 80, 0.75)',
       lineHeight: 18,
       marginLeft: 18,

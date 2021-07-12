@@ -1,11 +1,11 @@
 import { defaultsDeep } from 'lodash';
 import { useContext } from 'react';
 import { StyleSheet } from 'react-native';
-import { BankThemeContext } from '../../../../contexts/theme-context';
+import { ThemeContext } from 'react-native-theme-component';
 import { AccountItemComponentStyles } from '../../types';
 
 const useMergeStyles = (style?: AccountItemComponentStyles) => {
-  const { theme } = useContext(BankThemeContext);
+  const { colors, fonts } = useContext(ThemeContext);
 
   const defaultStyles = StyleSheet.create({
     containerStyle: {
@@ -18,23 +18,23 @@ const useMergeStyles = (style?: AccountItemComponentStyles) => {
     },
     activeContainerStyle: {
       borderWidth: 1,
-      borderColor: theme.primaryColor,
+      borderColor: colors.primaryColor,
     },
     inactiveContainerStyle: {
       borderWidth: 1,
       borderColor: '#E4F2FF',
     },
     accountNameTextStyle: {
-      fontFamily: theme.fonts.regular,
+      fontFamily: fonts.regular,
       fontSize: 14,
       lineHeight: 21,
-      color: theme.secondTextColor,
+      color: '#0D2050',
     },
     accountIdTextStyle: {
-      fontFamily: theme.fonts.regular,
+      fontFamily: fonts.regular,
       fontSize: 12,
       lineHeight: 18,
-      color: theme.secondTextColor,
+      color: '#0D2050',
       marginTop: 5,
     },
     leftWrapper: {

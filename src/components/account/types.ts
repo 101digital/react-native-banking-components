@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 import { ImageStyle, StyleProp, TextStyle, ViewStyle } from 'react-native';
-import { EmptyWalletThemeProps } from '../../theme/types';
 import { Wallet } from '../../types';
+import { EmptyWalletThemeProps } from '../no-wallet';
 
 export type AccountComponentRefs = {
   showActionsSheet: (wallet: Wallet) => void;

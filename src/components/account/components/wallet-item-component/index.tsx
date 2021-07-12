@@ -5,8 +5,7 @@ import { WalletItemStyle } from '../../types';
 import useMergeStyles from './styles';
 import { Wallet } from '../../../../types';
 import { BankContext } from '../../../../contexts/bank-context';
-import { BankThemeContext } from '../../../../contexts/theme-context';
-import { BImage } from '../../../../theme';
+import { ThemeContext, Image } from 'react-native-theme-component';
 
 export type WalletItemProps = {
   wallet: Wallet;
@@ -37,7 +36,7 @@ const WalletItemComponent = (props: WalletItemProps) => {
     bannerEndOffset,
   } = props;
   const { bankImages } = useContext(BankContext);
-  const { theme } = useContext(BankThemeContext);
+  const { colors } = useContext(ThemeContext);
 
   const styles = useMergeStyles(style);
 
@@ -68,7 +67,7 @@ const WalletItemComponent = (props: WalletItemProps) => {
         onPress={() => onItemPressed?.(wallet)}
       >
         <View style={styles.imageContainerStyle}>
-          <BImage
+          <Image
             resizeMode="contain"
             style={styles.imageStyle}
             fallbackImage={images.bank}
@@ -87,7 +86,7 @@ const WalletItemComponent = (props: WalletItemProps) => {
           </Text>
           {wallet.isDefaultWallet && (
             <View style={styles.primaryContainerStyle}>
-              {tickIcon ?? <BCheckedIcon size={12} color={theme.primaryColor} />}
+              {tickIcon ?? <BCheckedIcon size={12} color={colors.primaryColor} />}
               <Text style={styles.primaryTextStyle}>{primaryLabel ?? 'Primary'}</Text>
             </View>
           )}

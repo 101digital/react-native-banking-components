@@ -1,24 +1,24 @@
 import { defaultsDeep } from 'lodash';
 import { useContext } from 'react';
 import { StyleSheet } from 'react-native';
-import { BankThemeContext } from '../../../../contexts/theme-context';
+import { ThemeContext } from 'react-native-theme-component';
 import { AccessInfoComponentStyles } from '../../types';
 
 const useMergeStyles = (style?: AccessInfoComponentStyles): AccessInfoComponentStyles => {
-  const { theme } = useContext(BankThemeContext);
+  const { fonts, colors } = useContext(ThemeContext);
   const defaultStyles: AccessInfoComponentStyles = StyleSheet.create({
     containerStyle: {
       marginTop: 45,
     },
     contentTextStyle: {
-      fontFamily: theme.fonts.regular,
-      color: theme.secondTextColor,
+      fontFamily: fonts.regular,
+      color: '#0D2050',
       fontSize: 14,
       lineHeight: 25,
     },
     titleTextStyle: {
-      fontFamily: theme.fonts.regular,
-      color: theme.secondTextColor,
+      fontFamily: fonts.regular,
+      color: '#0D2050',
       fontSize: 14,
       lineHeight: 21,
       marginBottom: 11,
@@ -27,7 +27,7 @@ const useMergeStyles = (style?: AccessInfoComponentStyles): AccessInfoComponentS
       width: 10,
       height: 10,
       borderRadius: 5,
-      backgroundColor: theme.primaryColor,
+      backgroundColor: colors.primaryColor,
       marginHorizontal: 10,
     },
     itemContentContainerStyle: {

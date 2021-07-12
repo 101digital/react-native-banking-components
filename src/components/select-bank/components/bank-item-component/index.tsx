@@ -1,7 +1,7 @@
 import React from 'react';
 import { TouchableOpacity, Text, Keyboard } from 'react-native';
 import { images } from '../../../../assets/images';
-import { BImage } from '../../../../theme';
+import { Image } from 'react-native-theme-component';
 import { Bank } from '../../../../types';
 import { BankItemComponentStyles } from '../../types';
 import useMergeStyles from './styles';
@@ -25,7 +25,7 @@ const BankItemComponent = (props: BankItemComponentProps) => {
         onPressedBank?.(bank);
       }}
     >
-      <BImage
+      <Image
         source={{ uri: bank.imageUrl }}
         fallbackImage={images.bank}
         style={styles.bankImageStyle}

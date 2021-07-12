@@ -1,11 +1,11 @@
 import { defaultsDeep } from 'lodash';
 import { useContext } from 'react';
 import { StyleSheet } from 'react-native';
-import { BankThemeContext } from '../../../../contexts/theme-context';
+import { ThemeContext } from 'react-native-theme-component';
 import { SearchBarComponentStyles } from '../../types';
 
 const useMergeStyles = (style?: SearchBarComponentStyles) => {
-  const { theme } = useContext(BankThemeContext);
+  const { fonts } = useContext(ThemeContext);
   const defaultStyles = StyleSheet.create({
     containerStyle: {
       flexDirection: 'row',
@@ -17,7 +17,7 @@ const useMergeStyles = (style?: SearchBarComponentStyles) => {
     },
     textInputStyle: {
       flex: 1,
-      fontFamily: theme.fonts.regular,
+      fontFamily: fonts.regular,
       fontSize: 14,
       color: '#3C3E4F',
       paddingTop: 0,

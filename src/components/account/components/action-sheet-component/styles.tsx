@@ -1,11 +1,11 @@
 import { defaultsDeep } from 'lodash';
 import { useContext } from 'react';
 import { Platform, StyleSheet } from 'react-native';
-import { BankThemeContext } from '../../../../contexts/theme-context';
+import { ThemeContext } from 'react-native-theme-component';
 import { ActionSheetStyle } from '../../types';
 
 const useMergeStyles = (style?: ActionSheetStyle) => {
-  const { theme } = useContext(BankThemeContext);
+  const { fonts } = useContext(ThemeContext);
 
   const defaultStyles = StyleSheet.create({
     modalStyle: {
@@ -27,7 +27,7 @@ const useMergeStyles = (style?: ActionSheetStyle) => {
       paddingVertical: 10,
     },
     buttonTextStyle: {
-      fontFamily: theme.fonts.regular,
+      fontFamily: fonts.regular,
       fontSize: 16,
       color: 'black',
     },
@@ -36,7 +36,7 @@ const useMergeStyles = (style?: ActionSheetStyle) => {
       alignItems: 'center',
     },
     cancelTextStyle: {
-      fontFamily: theme.fonts.medium,
+      fontFamily: fonts.medium,
       fontSize: 16,
       color: 'red',
     },

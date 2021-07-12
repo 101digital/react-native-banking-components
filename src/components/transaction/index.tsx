@@ -13,8 +13,8 @@ import useMergeStyles from './styles';
 import { WalletContext } from '../../contexts/wallet-context';
 import { Wallet } from '../../types';
 import { TransactionContext } from '../../contexts/transaction-context';
-import { BankThemeContext } from '../../contexts/theme-context';
-import { BNoWalletComponent } from '../../theme';
+import { ThemeContext } from 'react-native-theme-component';
+import BNoWalletComponent from '../no-wallet';
 
 const TransactionComponent = (props: TransactionComponentProps) => {
   const {
@@ -42,7 +42,7 @@ const TransactionComponent = (props: TransactionComponentProps) => {
   const { wallets, getAggregatedWallets, isLoadingWallets } = useContext(WalletContext);
   const { transactions, fetchTransactions } = useContext(TransactionContext);
   const aggregatedWallets = getAggregatedWallets();
-  const { theme } = useContext(BankThemeContext);
+  const { colors } = useContext(ThemeContext);
   const [_initialWallet, setInitialWallet] = useState(initWallet);
 
   useEffect(() => {
@@ -87,7 +87,7 @@ const TransactionComponent = (props: TransactionComponentProps) => {
     if (isLoadingWallets) {
       return (
         <View style={styles.loadingWrap}>
-          {Root?.components?.loadingIndicator ?? <ActivityIndicator color={theme.primaryColor} />}
+          {Root?.components?.loadingIndicator ?? <ActivityIndicator color={colors.primaryColor} />}
         </View>
       );
     }

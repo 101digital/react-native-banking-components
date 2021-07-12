@@ -1,18 +1,18 @@
 import { defaultsDeep } from 'lodash';
 import { useContext } from 'react';
 import { StyleSheet } from 'react-native';
-import { BankThemeContext } from '../../../../contexts/theme-context';
+import { ThemeContext } from 'react-native-theme-component';
 import { SetPrimaryComponentStyle } from '../../types';
 
 const useMergeStyles = (style?: SetPrimaryComponentStyle): SetPrimaryComponentStyle => {
-  const { theme } = useContext(BankThemeContext);
+  const { fonts, colors } = useContext(ThemeContext);
   const defaultStyles: SetPrimaryComponentStyle = StyleSheet.create({
     containerStyle: {
       flexDirection: 'row',
       marginTop: 10,
     },
     checkBoxStyle: {
-      backgroundColor: theme.primaryColor,
+      backgroundColor: colors.primaryColor,
       padding: 2,
       borderRadius: 2,
       width: 16,
@@ -21,7 +21,7 @@ const useMergeStyles = (style?: SetPrimaryComponentStyle): SetPrimaryComponentSt
       alignItems: 'center',
     },
     titleTextStyle: {
-      fontFamily: theme.fonts.regular,
+      fontFamily: fonts.regular,
       fontSize: 16,
       color: 'black',
       lineHeight: 20,

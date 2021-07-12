@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 import { ImageStyle, StyleProp, TextStyle, ViewStyle } from 'react-native';
-import { EmptyWalletThemeProps } from '../../theme/types';
 import { Transaction, TransactionSummary, Wallet } from '../../types';
+import { EmptyWalletThemeProps } from '../no-wallet';
 
 export type TransactionComponentProps = {
   Root: {

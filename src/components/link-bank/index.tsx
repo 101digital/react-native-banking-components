@@ -2,9 +2,8 @@ import { isEmpty } from 'lodash';
 import React, { useContext, useEffect, useState } from 'react';
 import { View, Text, ActivityIndicator, FlatList } from 'react-native';
 import { BankContext } from '../../contexts/bank-context';
-import { BankThemeContext } from '../../contexts/theme-context';
+import { ThemeContext, Button } from 'react-native-theme-component';
 import { WalletContext } from '../../contexts/wallet-context';
-import { BButton } from '../../theme';
 import { BankAccount } from '../../types';
 import { AccessInfoComponent, AccountItemComponent, EmptyAccountComponent } from './components';
 import useMergeStyles from './styles';
@@ -16,7 +15,7 @@ const LinkBankComponent = (props: LinkBankComponentProps) => {
   const { bank, consentId, headingLabel } = Root.props;
   const { accounts, isLoadingAccounts, clearAccounts, clearConsentData } = useContext(BankContext);
   const { isLinkingWallet, linkWallet } = useContext(WalletContext);
-  const { theme } = useContext(BankThemeContext);
+  const { colors } = useContext(ThemeContext);
   const [currentAccount, setCurrentAccount] = useState<BankAccount | undefined>(undefined);
 
   useEffect(() => {
@@ -30,7 +29,7 @@ const LinkBankComponent = (props: LinkBankComponentProps) => {
     if (isLoadingAccounts) {
       return (
         <View style={styles.loadingWrapper}>
-          {Root.components?.loadingIndicator ?? <ActivityIndicator color={theme.primaryColor} />}
+          {Root.components?.loadingIndicator ?? <ActivityIndicator color={colors.primaryColor} />}
         </View>
       );
     }
@@ -85,7 +84,7 @@ const LinkBankComponent = (props: LinkBankComponentProps) => {
         }}
       />
       <View style={styles.ctaButtonWrapper}>
-        <BButton
+        <Button
           disabled={!currentAccount}
           isLoading={isLinkingWallet}
           label={Root.props.ctaButtonLabel ?? 'CONTINUE'}

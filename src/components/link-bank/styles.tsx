@@ -1,11 +1,11 @@
 import { defaultsDeep } from 'lodash';
 import { useContext } from 'react';
 import { StyleSheet } from 'react-native';
-import { BankThemeContext } from '../../contexts/theme-context';
+import { ThemeContext } from 'react-native-theme-component';
 import { LinkBankComponentStyles } from './types';
 
 const useMergeStyles = (style?: LinkBankComponentStyles) => {
-  const { theme } = useContext(BankThemeContext);
+  const { fonts } = useContext(ThemeContext);
 
   const defaultStyles = StyleSheet.create({
     containerStyle: {
@@ -26,11 +26,11 @@ const useMergeStyles = (style?: LinkBankComponentStyles) => {
       paddingVertical: 10,
     },
     headingTextStyle: {
-      fontFamily: theme.fonts.regular,
+      fontFamily: fonts.regular,
       fontSize: 14,
       lineHeight: 21,
       paddingVertical: 30,
-      color: theme.secondTextColor,
+      color: '#0D2050',
     },
     loadingWrapper: {
       flex: 1,

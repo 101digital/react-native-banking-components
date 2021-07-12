@@ -1,11 +1,11 @@
 import { defaultsDeep } from 'lodash';
 import { useContext } from 'react';
 import { StyleSheet } from 'react-native';
-import { BankThemeContext } from '../../../../contexts/theme-context';
+import { ThemeContext } from 'react-native-theme-component';
 import { TransactionPageStyle } from '../../types';
 
 const useMergeStyles = (style?: TransactionPageStyle) => {
-  const { theme } = useContext(BankThemeContext);
+  const { fonts } = useContext(ThemeContext);
 
   const defaultStyles = StyleSheet.create({
     containerStyle: {
@@ -27,14 +27,14 @@ const useMergeStyles = (style?: TransactionPageStyle) => {
       flexDirection: 'row',
     },
     sectionTextStyle: {
-      fontFamily: theme.fonts?.medium,
+      fontFamily: fonts.medium,
       fontSize: 13,
-      color: theme.textColor,
+      color: '#094884',
     },
     sectionText2Style: {
-      fontFamily: theme.fonts?.medium,
+      fontFamily: fonts.medium,
       fontSize: 10,
-      color: theme.textColor,
+      color: '#094884',
       lineHeight: 15,
     },
     footerWrap: {

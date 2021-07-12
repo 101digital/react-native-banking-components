@@ -1,12 +1,12 @@
 import { defaultsDeep } from 'lodash';
 import { useContext } from 'react';
 import { Dimensions, StyleSheet } from 'react-native';
-import { BankThemeContext } from '../../../../contexts/theme-context';
+import { ThemeContext } from 'react-native-theme-component';
 import { BankItemComponentStyles } from '../../types';
 const { width } = Dimensions.get('window');
 
 const useMergeStyles = (style?: BankItemComponentStyles) => {
-  const { theme } = useContext(BankThemeContext);
+  const { fonts } = useContext(ThemeContext);
 
   const defaultStyles = StyleSheet.create({
     containerStyle: {
@@ -24,7 +24,7 @@ const useMergeStyles = (style?: BankItemComponentStyles) => {
     },
     bankNameTextStyle: {
       fontSize: 14,
-      fontFamily: theme.fonts.regular,
+      fontFamily: fonts.regular,
       lineHeight: 21,
       color: '#3C3E4F',
       textAlign: 'center',

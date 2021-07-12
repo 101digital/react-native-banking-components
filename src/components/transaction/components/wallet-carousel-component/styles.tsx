@@ -1,11 +1,11 @@
 import { defaultsDeep } from 'lodash';
 import { useContext } from 'react';
 import { StyleSheet } from 'react-native';
-import { BankThemeContext } from '../../../../contexts/theme-context';
+import { ThemeContext } from 'react-native-theme-component';
 import { CarouselItemStyle } from '../../types';
 
 const useMergeStyles = (style?: CarouselItemStyle) => {
-  const { theme } = useContext(BankThemeContext);
+  const { fonts, colors } = useContext(ThemeContext);
 
   const defaultStyles = StyleSheet.create({
     containerStyle: {
@@ -41,35 +41,35 @@ const useMergeStyles = (style?: CarouselItemStyle) => {
       marginLeft: 8,
     },
     walletNameTextStyle: {
-      fontFamily: theme.fonts?.regular,
+      fontFamily: fonts.regular,
       fontSize: 16,
-      color: theme.textColor,
+      color: '#094884',
       lineHeight: 20,
       marginRight: 5,
     },
     walletNumberTextStyle: {
       fontSize: 11,
-      fontFamily: theme.fonts?.regular,
-      color: theme.textColor,
+      fontFamily: fonts.regular,
+      color: '#094884',
     },
     balanceTextStyle: {
-      fontFamily: theme.fonts?.bold,
+      fontFamily: fonts.bold,
       fontSize: 16,
-      color: theme.textColor,
+      color: '#094884',
       lineHeight: 20,
     },
     primaryTextStyle: {
       fontSize: 13,
-      fontFamily: theme.fonts?.regular,
-      color: theme.primaryColor,
+      fontFamily: fonts.regular,
+      color: colors.primaryColor,
       lineHeight: 20,
       marginLeft: 5,
       marginRight: 8,
     },
     summaryTextStyle: {
-      fontFamily: theme.fonts?.regular,
+      fontFamily: fonts.regular,
       fontSize: 13,
-      color: theme.textColor,
+      color: '#094884',
       marginHorizontal: 2,
       lineHeight: 20,
       marginTop: 15,
@@ -91,15 +91,15 @@ const useMergeStyles = (style?: CarouselItemStyle) => {
       alignItems: 'center',
     },
     moneyLabelTextStyle: {
-      fontFamily: theme.fonts?.regular,
+      fontFamily: fonts.regular,
       fontSize: 13,
-      color: theme.textColor,
+      color: '#094884',
       lineHeight: 20,
     },
     moneyValueTextStyle: {
-      fontFamily: theme.fonts?.regular,
+      fontFamily: fonts.regular,
       fontSize: 16,
-      color: theme.textColor,
+      color: '#094884',
       lineHeight: 20,
     },
     headerStyle: {

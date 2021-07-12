@@ -1,11 +1,11 @@
 import { defaultsDeep } from 'lodash';
 import { useContext } from 'react';
 import { StyleSheet } from 'react-native';
-import { BankThemeContext } from '../../contexts/theme-context';
-import { NoWalletThemeStyles } from '../types';
+import { NoWalletThemeStyles } from '.';
+import { ThemeContext } from 'react-native-theme-component';
 
 const useMergeStyles = (style?: NoWalletThemeStyles) => {
-  const { theme } = useContext(BankThemeContext);
+  const { fonts } = useContext(ThemeContext);
 
   const defaultStyles = StyleSheet.create({
     containerStyle: {
@@ -14,17 +14,17 @@ const useMergeStyles = (style?: NoWalletThemeStyles) => {
       alignItems: 'center',
     },
     messageTextStyle: {
-      fontFamily: theme.fonts.medium,
+      fontFamily: fonts.medium,
       fontSize: 15,
-      color: theme.textColor,
+      color: '#094884',
       lineHeight: 23,
       marginTop: 15,
     },
     buttonTextStyle: {
       fontSize: 15,
-      fontFamily: theme.fonts.medium,
+      fontFamily: fonts.medium,
       lineHeight: 23,
-      color: theme.primaryColor,
+      color: '#094884',
       marginHorizontal: 8,
     },
     buttonContainerStyle: {
