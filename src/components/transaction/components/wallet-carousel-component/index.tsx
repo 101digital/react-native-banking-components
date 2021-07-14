@@ -94,7 +94,12 @@ const WalletCarouselComponent = (props: WalletCarouselItemProps) => {
               </View>
               <View style={styles.moneyWrapper}>
                 <Text style={styles.moneyLabelTextStyle}>{moneyInLabel ?? 'Money In'}</Text>
-                <Text style={styles.moneyValueTextStyle}>
+                <Text
+                  adjustsFontSizeToFit
+                  minimumFontScale={0.1}
+                  numberOfLines={1}
+                  style={styles.moneyValueTextStyle}
+                >
                   {summary ? formatCurrency(summary.totalMoneyIn, wallet.currencyCode) : '-'}
                 </Text>
               </View>
@@ -106,7 +111,12 @@ const WalletCarouselComponent = (props: WalletCarouselItemProps) => {
               </View>
               <View style={styles.moneyWrapper}>
                 <Text style={styles.moneyLabelTextStyle}>{moneyOutLabel ?? 'Money Out'}</Text>
-                <Text style={styles.moneyValueTextStyle}>
+                <Text
+                  adjustsFontSizeToFit
+                  minimumFontScale={0.1}
+                  numberOfLines={1}
+                  style={styles.moneyValueTextStyle}
+                >
                   {summary ? formatCurrency(summary.totalMoneyOut, wallet.currencyCode) : '-'}
                 </Text>
               </View>
