@@ -15,6 +15,7 @@ export interface Wallet {
     currencyCode: string;
     bankBranchId: string;
     accountSubType: string;
+    bankLogo: string;
   };
   currencyCode: string;
   walletName: string;

@@ -1,7 +1,6 @@
 import React, { ReactNode, useContext } from 'react';
 import { View, Text } from 'react-native';
 import { BCheckedIcon, BDownIcon, BUpIcon, images } from '../../../../assets/images';
-import { BankContext } from '../../../../contexts/bank-context';
 import { ThemeContext, Image } from 'react-native-theme-component';
 import { TransactionContext } from '../../../../contexts/transaction-context';
 import { TransactionSummary, Wallet } from '../../../../types';
@@ -37,7 +36,6 @@ const WalletCarouselComponent = (props: WalletCarouselItemProps) => {
     renderSummary,
   } = props;
   const { getTransactionSummary } = useContext(TransactionContext);
-  const { bankImages } = useContext(BankContext);
   const { colors } = useContext(ThemeContext);
   const summary = getTransactionSummary(wallet.walletId);
 
@@ -52,7 +50,7 @@ const WalletCarouselComponent = (props: WalletCarouselItemProps) => {
               resizeMode="contain"
               style={styles.imageStyle}
               fallbackImage={images.bank}
-              source={{ uri: bankImages[wallet.bankAccount.bankCode] }}
+              source={{ uri: wallet.bankAccount.bankLogo }}
             />
           </View>
         )}

@@ -4,7 +4,6 @@ import { Text, View, TouchableOpacity, Animated } from 'react-native';
 import { WalletItemStyle } from '../../types';
 import useMergeStyles from './styles';
 import { Wallet } from '../../../../types';
-import { BankContext } from '../../../../contexts/bank-context';
 import { ThemeContext, Image } from 'react-native-theme-component';
 
 export type WalletItemProps = {
@@ -35,7 +34,6 @@ const WalletItemComponent = (props: WalletItemProps) => {
     bannerStartOffset,
     bannerEndOffset,
   } = props;
-  const { bankImages } = useContext(BankContext);
   const { colors } = useContext(ThemeContext);
 
   const styles = useMergeStyles(style);
@@ -71,7 +69,7 @@ const WalletItemComponent = (props: WalletItemProps) => {
             resizeMode="contain"
             style={styles.imageStyle}
             fallbackImage={images.bank}
-            source={{ uri: bankImages[wallet.bankAccount.bankCode] }}
+            source={{ uri: wallet.bankAccount.bankLogo }}
           />
         </View>
         <View style={styles.leftContainerStyle}>
