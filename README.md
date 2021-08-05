@@ -26,9 +26,11 @@ yarn add git+ssh://git@github.com/101digital/react-native-banking-components.git
 
 Make sure you have permission to access this repository
 
+To get more details about how to install private repository, can found here: [https://nts.strzibny.name/using-private-github-repositories-with-yarn-and-npm-in-package-json/]
+
 This lib also required some dependencies. Ignore any dependency if it already existed in your project.
 
-- Lodash: Using to deep merge styles
+- ThemeComponent: Using for base theme styles
 
 ```
 yarn add lodash
@@ -37,25 +39,14 @@ yarn add lodash
 - React native snap carousel: Using to make card swipe in Transaction component
 
 ```
-yarn add react-native-snap-carousel
+yarn add git+ssh://git@github.com/101digital/react-native-theme-component.git
+
 ```
 
 - Moment: Using to format date time
 
 ```
 yarn add moment
-```
-
-- React native modal: Smooth transaction for modal
-
-```
-yarn add react-native-modal
-```
-
-- React native svg: render svg element
-
-```
-yarn add react-native-svg
 ```
 
 - React native web view: Login OB bank
@@ -177,25 +168,98 @@ const AccountScreen = () => {
 
 - Root
 
-| Type  | Name & Description  |
-| :------------ |:---------------|
-| styles     | `containerStyle`: styles of main component <br/> `listContainerStyle`: style of list wallets <br/> `listDivider`: styles of divider between wallet item|
-| props| `formatCurrency`: this is <b>required</b> using to format wallet balance         | 
-| components| are neat        |
+| Type       | Name & Description                                                                                                                                      |
+| :--------- | :------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| styles     | `containerStyle`: styles of main component <br/> `listContainerStyle`: style of list wallets <br/> `listDivider`: styles of divider between wallet item |
+| props      | `formatCurrency`: this is <b>required</b> using to format wallet balance                                                                                |
+| components | are neat                                                                                                                                                |
 
+### Add component to the config.json file manually
 
+1. Make sure you synced latest data in `component.json` to `auth-component.json`[https://github.com/101digital/components-data/blob/main/data/bank-component.json]
 
+2. Add the bank-component to `components` tags and replate `[data]` with your values.
+   The bank-component have `componentId` is "fc1456e9-5a30-4d02-bed5-8fc3a3367ab3" and it can't be changed.
 
+```
+{
+...
+ "components": [
+    {
+      "componentId": "fc1456e9-5a30-4d02-bed5-8fc3a3367ab3",
+      "name": "BankingService",
+      "isRequired": false,
+      "config": {
+        "walletClient": [data],
+        "openBankAispClient": [data],
+        "openBankAuthClient": [data]
+      }
+    }
+  ]
+...
+}
+```
 
+3. Check required dependencies of bank-component inside tag `dependencies` in `config.json`. Make sure tag `dependencies` must have enough below data
 
+```
+{
+...
+ "dependencies": [
+    { "name": "https://github.com/101digital/react-native-theme-component.git" },
+    {
+      "name": "react-native-snap-carousel",
+      "version": "^3.9.1",
+      "typescript": {
+        "name": "@types/react-native-snap-carousel",
+        "version": "^3.8.3"
+      }
+    },
+    {
+      "name": "moment"
+    },
+    { "name": "react-native-webview", "version": "^10.8.3" }
+  ]
+...
+}
+```
 
+If have any item is not existing in `dependencies` of `config.json` file, please find missing one from `src/component.json` and put it to `dependencies`.
 
+4. Place the child component with one template to the Screen
 
+- Example, if you want place `AccountComponent` to `WalletScreen` with `templateId` is "9decef3a-ea46-4f5c-a43b-c3c7e12d46cb". Then if user trigger `onPressViewTransactions` button, and you wanna navigate to `TransactionScreen`
 
+Note that: `templateId` is one of template defined in `src/component.json`. `TransactionScreen` is existing with `route` name is `transaction-screen`
 
-
-
-
-
-
-
+```
+{
+  ...
+  "screens": [
+     {
+      "screenName": "WalletScreen",
+      "route": "wallet-screen",
+      "stack": "main-navigator",
+      "screenParams": [],
+      "components": [
+        {
+          "componentId": "fc1456e9-5a30-4d02-bed5-8fc3a3367ab3",
+          "templateId": "9decef3a-ea46-4f5c-a43b-c3c7e12d46cb",
+          "componentName": "AccountComponent",
+          "functions": [
+            {
+              "id": "457fcfb9-5352-46f6-9d2c-e8735b76c2de",
+              "name": "onPressViewTransactions",
+              "action": {
+                "type": "openScreen",
+                "route": "transaction-screen"
+              }
+            }
+          ]
+        }
+      ]
+    },
+  ]
+  ...
+}
+```
