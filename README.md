@@ -159,7 +159,7 @@ const AccountScreen = () => {
 
 ### Add component to the config.json file manually
 
-1. Make sure you synced latest data in `component.json` to `auth-component.json`[https://github.com/101digital/components-data/blob/main/data/bank-component.json]
+1. Make sure you synced latest local data in `bank-component.json` into `bank-component.json`[https://github.com/101digital/components-data/blob/main/data/bank-component.json]
 
 2. Add the bank-component to `components` tags and replate `[data]` with your values.
    The bank-component have `componentId` is "fc1456e9-5a30-4d02-bed5-8fc3a3367ab3" and it can't be changed.
