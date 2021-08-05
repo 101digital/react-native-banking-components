@@ -38,10 +38,6 @@ This lib also required some dependencies. Ignore any dependency if it already ex
 
 - React native web view: Login OB bank [https://github.com/react-native-webview/react-native-webview]
 
-```
-yarn add react-native-webview
-```
-
 We're done! Now you can run your project.
 
 ## Quick start
