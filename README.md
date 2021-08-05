@@ -30,26 +30,13 @@ To get more details about how to install private repository, can found here: [ht
 
 This lib also required some dependencies. Ignore any dependency if it already existed in your project.
 
-- ThemeComponent: Using for base theme styles
+- ThemeComponent: Using for base theme styles [https://github.com/101digital/react-native-theme-component]
 
-```
-yarn add lodash
-```
+- React native snap carousel: Using to make card swipe in Transaction component [https://github.com/meliorence/react-native-snap-carousel]
 
-- React native snap carousel: Using to make card swipe in Transaction component
+- Moment: Using to format date time [https://github.com/moment/moment]
 
-```
-yarn add git+ssh://git@github.com/101digital/react-native-theme-component.git
-
-```
-
-- Moment: Using to format date time
-
-```
-yarn add moment
-```
-
-- React native web view: Login OB bank
+- React native web view: Login OB bank [https://github.com/react-native-webview/react-native-webview]
 
 ```
 yarn add react-native-webview
