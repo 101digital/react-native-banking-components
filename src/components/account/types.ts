@@ -46,7 +46,7 @@ export type AccountComponentProps = {
     components?: {
       tickIcon?: ReactNode;
       moreIcon?: ReactNode;
-      recommandBanner?: ReactNode;
+      recommandBanner?: (wallet: Wallet) => ReactNode;
       renderItem?: (index: number, item: Wallet) => React.ReactElement | null;
     };
   };
