@@ -68,21 +68,7 @@ BankingService.getInstance().initClients({
 const App = () => {
   return (
     <View>
-      <BankComponentProvider
-        theme={{
-          primaryColor: appPrimaryColor, // default is #0073F0
-          textColor: appPrimaryTextColor, // default is black
-          secondTextColor: appSecondTextColor, // default is #0D2050
-          fonts: {
-            regular: appFontRegular, // default is system
-            medium: appFontMedium, // default is system
-            bold: appFontBold, // default is system
-            semiBold: appFontSemiBold, // default is system
-          },
-        }}
-      >
-        {/* YOUR APP COMPONENTS */}
-      </BankComponentProvider>
+      <BankComponentProvider>{/* YOUR APP COMPONENTS */}</BankComponentProvider>
     </View>
   );
 };
@@ -90,7 +76,7 @@ const App = () => {
 export default App;
 ```
 
-### Access to Context data and function
+### Access to Context data and Function
 
 This component provides 3 main contexts: `WalletContext`, `TransactionContext` and `BankContext`
 
@@ -121,29 +107,6 @@ const AccountScreen = () => {
 You can place components as a React Node inside your React Native screen. All styles, props are provided by default, you can customize them also. There are some required props, you need provide them if components request
 
 Styles, props, components you can find them in API reference
-
-```javascript
-import React, { useContext, useEffect } from 'react';
-import { View, Text } from 'react-native';
-import { currencyFormatter } from '@/helpers/currency-formatter';
-import { AccountComponent } from 'react-native-banking-components';
-
-const AccountScreen = () => {
-  return (
-    <View styles={styles.container}>
-      {/* Your component */}
-      <AccountComponent
-        Root={{
-          props: {
-            formatCurrency: currencyFormatter,
-          },
-        }}
-      />
-      {/* Your component */}
-    </View>
-  );
-};
-```
 
 ## API reference
 

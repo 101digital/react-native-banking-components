@@ -9,13 +9,15 @@ export interface Wallet {
   currentBalance: number;
   bankAccount: {
     accountId: string;
+    accountSubType: string;
     accountHolderName: string;
     accountNumber: string;
     bankCode: string;
-    currencyCode: string;
-    bankBranchId: string;
-    accountSubType: string;
-    bankLogo: string;
+    bankLogo?: string;
+    bankBranchId?: string;
+    countryCode: string;
+    internalProductCategory: string;
+    productId: string;
   };
   currencyCode: string;
   walletName: string;
