@@ -15,7 +15,7 @@ export type WalletItemProps = {
   moreIcon?: ReactNode;
   formatCurrency: (amount: number, code: string) => string;
   isShowSwitch: boolean;
-  recommandBanner?: ReactNode;
+  recommandBanner?: (wallet: Wallet) => ReactNode;
   bannerStartOffset?: number;
   bannerEndOffset?: number;
 };
@@ -66,7 +66,7 @@ const WalletItemComponent = (props: WalletItemProps) => {
       >
         <View style={styles.imageContainerStyle}>
           <Image
-            resizeMode="contain"
+            resizeMode='contain'
             style={styles.imageStyle}
             fallbackImage={images.bank}
             source={{ uri: wallet.bankAccount.bankLogo }}
@@ -96,7 +96,7 @@ const WalletItemComponent = (props: WalletItemProps) => {
           transform: [{ translateY: playAnimation ? switchButton : _endOffset }],
         }}
       >
-        {isShowSwitch ? recommandBanner : <View />}
+        {isShowSwitch ? recommandBanner?.(wallet) : <View />}
       </Animated.View>
     </View>
   );

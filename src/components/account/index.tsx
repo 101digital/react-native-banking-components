@@ -1,4 +1,4 @@
-import { isEmpty } from 'lodash';
+import { isEmpty, uniq } from 'lodash';
 import React, { forwardRef, useContext, useEffect, useImperativeHandle, useState } from 'react';
 import { ActivityIndicator, SectionList, View } from 'react-native';
 import useMergeStyles from './styles';
@@ -56,7 +56,7 @@ const AccountComponent = forwardRef((props: AccountComponentProps, ref) => {
   const [isShowActionSheet, setShowActionSheet] = useState(false);
   const [isShowUnlink, setShowUnlink] = useState(false);
   const [isShowPrimary, setShowPrimary] = useState(false);
-  const [walletWithBanner, setWalletWithBanner] = useState<Wallet | undefined>(undefined);
+  const [walletWithBanners, setWalletWithBanners] = useState<Wallet[]>([]);
   const [isSelectedPrimary, setSelectedPrimary] = useState(false);
 
   useEffect(() => {
@@ -98,8 +98,10 @@ const AccountComponent = forwardRef((props: AccountComponentProps, ref) => {
   };
 
   const showRecommandBanner = (wallet: Wallet) => {
-    setWalletWithBanner(wallet);
+    setWalletWithBanners(uniq([...walletWithBanners, wallet]));
   };
+
+  console.log(walletWithBanners);
 
   const hideActionSheet = () => {
     setSelectedWallet(undefined);
@@ -182,7 +184,8 @@ const AccountComponent = forwardRef((props: AccountComponentProps, ref) => {
             keyExtractor={(item) => item.walletId}
             extraData={bankImages}
             renderItem={({ item, index }) => {
-              const isShowSwitch = item.walletId === walletWithBanner?.walletId;
+              const isShowSwitch =
+                walletWithBanners.find((w) => w.walletId === item.walletId) !== undefined;
               return (
                 WalletItem?.components?.renderItem?.(index, item) ?? (
                   <WalletItemComponent
