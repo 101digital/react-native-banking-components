@@ -1,4 +1,4 @@
-import { isEmpty, uniq } from 'lodash';
+import { isEmpty, uniqBy } from 'lodash';
 import React, { forwardRef, useContext, useEffect, useImperativeHandle, useState } from 'react';
 import { ActivityIndicator, SectionList, View } from 'react-native';
 import useMergeStyles from './styles';
@@ -98,10 +98,9 @@ const AccountComponent = forwardRef((props: AccountComponentProps, ref) => {
   };
 
   const showRecommandBanner = (wallet: Wallet) => {
-    setWalletWithBanners(uniq([...walletWithBanners, wallet]));
+    walletWithBanners.push(wallet);
+    setWalletWithBanners(uniqBy(walletWithBanners, 'walletId'));
   };
-
-  console.log(walletWithBanners);
 
   const hideActionSheet = () => {
     setSelectedWallet(undefined);
