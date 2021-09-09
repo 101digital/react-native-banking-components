@@ -1,9 +1,9 @@
-import { BCheckedIcon, images } from '../../../../assets/images';
+import { BCheckedIcon, images } from '../../assets/images';
 import React, { ReactNode, useContext, useEffect, useRef, useState } from 'react';
 import { Text, View, TouchableOpacity, Animated } from 'react-native';
 import { WalletItemStyle } from '../../types';
 import useMergeStyles from './styles';
-import { Wallet } from '../../../../types';
+import { Wallet } from '@banking-component/core';
 import { ThemeContext, Image } from 'react-native-theme-component';
 
 export type WalletItemProps = {

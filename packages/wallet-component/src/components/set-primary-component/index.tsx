@@ -1,4 +1,4 @@
-import { BTickIcon } from '../../../../assets/images';
+import { BTickIcon } from '../../assets/images';
 import React, { ReactNode } from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
 import { SetPrimaryComponentStyle } from '../../types';

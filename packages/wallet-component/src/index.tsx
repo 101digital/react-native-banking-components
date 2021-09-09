@@ -12,9 +12,9 @@ import {
   WalletItemComponent,
 } from './components';
 import { BankContext } from '../../contexts/bank-context';
-import { Wallet } from '../../types';
+import { Wallet } from '@banking-component/core';
 import BNoWalletComponent from '../no-wallet';
-import { BInformationIcon } from '../../assets/images';
+import { BInformationIcon } from './assets/images';
 import { WalletContext } from '../../contexts/wallet-context';
 import { ThemeContext, AlertModal } from 'react-native-theme-component';
 

@@ -1,4 +1,4 @@
-import { BPlusIcon } from '../../../../assets/images';
+import { BPlusIcon } from '../../assets/images';
 import React, { ReactNode, useContext } from 'react';
 import { Text, TouchableOpacity } from 'react-native';
 import { LinkAccountStyle } from '../../types';

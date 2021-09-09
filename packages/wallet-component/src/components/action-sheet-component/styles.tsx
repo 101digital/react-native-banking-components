@@ -1,4 +1,4 @@
-import { defaultsDeep } from 'lodash';
+import { defaultsDeep } from '@banking-component/core';
 import { useContext } from 'react';
 import { Platform, StyleSheet } from 'react-native';
 import { ThemeContext } from 'react-native-theme-component';

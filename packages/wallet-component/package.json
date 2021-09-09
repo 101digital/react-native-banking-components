@@ -1,5 +1,6 @@
 {
   "name": "wallet-component",
+  "private": true,
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -8,5 +9,16 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "@banking-component/core": "https://gitpkg.now.sh/101digital/react-native-banking-components/packages/core?sub-component"
+  },
+  "devDependencies": {
+    "react-native-theme-component": "https://github.com/101digital/react-native-theme-component.git",
+    "typescript": "^4.4.2"
+  },
+  "peerDependencies": {
+    "@banking-component/core": "https://gitpkg.now.sh/101digital/react-native-banking-components/packages/core?sub-component",
+    "react-native-theme-component": "https://github.com/101digital/react-native-theme-component.git"
+  }
 }

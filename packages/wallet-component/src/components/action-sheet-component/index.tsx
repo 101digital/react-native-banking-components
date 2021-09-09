@@ -1,8 +1,8 @@
 import React, { ReactNode } from 'react';
 import { Dimensions, Platform, SafeAreaView, View, TouchableOpacity, Text } from 'react-native';
 import Modal from 'react-native-modal';
-import { BRoundedCloseIcon, BRoundedTickIcon, BTransactionIcon } from '../../../../assets/images';
-import { Wallet } from '../../../../types';
+import { BRoundedCloseIcon, BRoundedTickIcon, BTransactionIcon } from '../../assets/images';
+import { Wallet } from '@banking-component/core';
 import { ActionSheetStyle } from '../../types';
 import useMergeStyles from './styles';
 
