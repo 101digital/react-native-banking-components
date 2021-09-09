@@ -1,4 +1,4 @@
-import { defaultsDeep } from 'lodash';
+import { defaultsDeep } from '@banking-component/core';
 import { StyleSheet } from 'react-native';
 import { AccountComponentStyle } from './types';
 

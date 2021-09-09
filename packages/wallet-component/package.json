@@ -14,6 +14,11 @@
     "@banking-component/core": "https://gitpkg.now.sh/101digital/react-native-banking-components/packages/core?sub-component"
   },
   "devDependencies": {
+    "@types/react": "^17.0.20",
+    "@types/react-native": "^0.65.0",
+    "react": "^17.0.2",
+    "react-native": "^0.65.1",
+    "react-native-svg": "^12.1.1",
     "react-native-theme-component": "https://github.com/101digital/react-native-theme-component.git",
     "typescript": "^4.4.2"
   },

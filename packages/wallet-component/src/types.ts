@@ -1,5 +1,5 @@
 import { EmptyWalletThemeProps } from 'lib/components/no-wallet';
-import { Wallet } from 'packages/core/src/types';
+import { Wallet } from '@banking-component/core';
 import { ReactNode } from 'react';
 import { ImageStyle, StyleProp, TextStyle, ViewStyle } from 'react-native';
 
