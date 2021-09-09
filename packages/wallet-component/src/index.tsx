@@ -1,4 +1,3 @@
-import { uniqBy } from 'lodash';
 import React, { forwardRef, useContext, useEffect, useImperativeHandle, useState } from 'react';
 import { ActivityIndicator, SectionList, View } from 'react-native';
 import useMergeStyles from './styles';
@@ -12,8 +11,7 @@ import {
   WalletItemComponent,
 } from './components';
 import { BankContext } from '../../contexts/bank-context';
-import { Wallet, isEmpty } from '@banking-component/core';
-import BNoWalletComponent from '../no-wallet';
+import { Wallet, isEmpty, BNoWalletComponent, uniqBy } from '@banking-component/core';
 import { BInformationIcon } from './assets/images';
 import { WalletContext } from '../../contexts/wallet-context';
 import { ThemeContext, AlertModal } from 'react-native-theme-component';
