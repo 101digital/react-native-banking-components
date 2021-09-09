@@ -1,14 +1,18 @@
 {
   "name": "react-native-banking-components",
-  "version": "1.0.21",
+  "version": "1.0.22",
   "description": "A component for banking flow by 101D",
   "license": "MIT",
-  "repository": "https://github.com/101digital/react-native-banking-components.git",
-  "main": "index.ts",
-  "types": "index.d.ts",
-  "files": [
-    "src/"
-  ],
+  "workspaces": {
+    "packages": [
+      "packages/*",
+      "example"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/101digital/react-native-banking-components.git"
+  },
   "scripts": {
     "lint": "tsc --noEmit && eslint src/ --ext .js,.jsx,.ts,.tsx"
   },
@@ -41,5 +45,12 @@
   },
   "resolutions": {
     "@react-native-community/cli-platform-ios": "4.13.0"
+  },
+  "prettier": {
+    "quoteProps": "consistent",
+    "tabWidth": 2,
+    "useTabs": false,
+    "singleQuote": true,
+    "trailingComma": "es5"
   }
 }
