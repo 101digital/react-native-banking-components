@@ -13,6 +13,8 @@ import {
   FunctionChain,
   ObjectChain,
   StringChain,
+  ListIteratee,
+  Many,
 } from 'lodash';
 
 export const defaultsDeep = (object: any, ...source: any[]) =>
@@ -48,3 +50,9 @@ export const chain = <TrapAny extends { __lodashAnyHack: any }>(
   ObjectChain<any> &
   PrimitiveChain<any> &
   StringChain => _chain(value);
+
+export const orderBy = <T>(
+  collection: List<T> | null | undefined,
+  iteratees?: Many<ListIteratee<T>>,
+  orders?: Many<boolean | 'asc' | 'desc'>
+): T[] => _orderBy(collection, iteratees, orders);

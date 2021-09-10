@@ -1,7 +1,13 @@
-import { chain, isEmpty, orderBy } from 'lodash';
 import React, { useCallback, useMemo, useState } from 'react';
 import { WalletService } from '../services/wallet-service';
-import { GroupedWallets, Wallet, WalletSummary } from '@banking-component/core';
+import {
+  GroupedWallets,
+  Wallet,
+  WalletSummary,
+  orderBy,
+  isEmpty,
+  chain,
+} from '@banking-component/core';
 
 const walletService = WalletService.getInstance();
 
