@@ -1,5 +1,5 @@
 import { EmptyWalletThemeProps } from 'lib/components/no-wallet';
-import { Wallet } from '@banking-component/core';
+import { BankImagesMap, Wallet } from '@banking-component/core';
 import { ReactNode } from 'react';
 import { ImageStyle, StyleProp, TextStyle, ViewStyle } from 'react-native';
 
@@ -20,6 +20,7 @@ export type AccountComponentProps = {
         onScroll: (...args: any[]) => void;
         scrollEventThrottle: number;
       };
+      bankImages: BankImagesMap;
     };
     components?: {
       loadingIndicator?: ReactNode;

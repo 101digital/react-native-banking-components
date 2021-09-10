@@ -10,10 +10,9 @@ import {
   SetPrimaryComponent,
   WalletItemComponent,
 } from './components';
-import { BankContext } from '../../contexts/bank-context';
 import { Wallet, isEmpty, BNoWalletComponent, uniqBy } from '@banking-component/core';
 import { BInformationIcon } from './assets/images';
-import { WalletContext } from '../../contexts/wallet-context';
+import { WalletContext } from '../src/context/wallet-context';
 import { ThemeContext, AlertModal } from 'react-native-theme-component';
 
 const AccountComponent = forwardRef((props: AccountComponentProps, ref) => {
@@ -46,7 +45,6 @@ const AccountComponent = forwardRef((props: AccountComponentProps, ref) => {
     fetchWallets,
   } = useContext(WalletContext);
   const { colors } = useContext(ThemeContext);
-  const { bankImages } = useContext(BankContext);
   const currencyCode = getDefaultWallet()?.currencyCode ?? 'USD';
   const currentBalance = summary?.currentBalance ?? 0;
   const groupedWallets = getGroupWallets();
@@ -179,7 +177,7 @@ const AccountComponent = forwardRef((props: AccountComponentProps, ref) => {
             sections={groupedWallets}
             style={styles.listContainerStyle}
             keyExtractor={(item) => item.walletId}
-            extraData={bankImages}
+            extraData={Root.props.bankImages}
             renderItem={({ item, index }) => {
               const isShowSwitch =
                 walletWithBanners.find((w) => w.walletId === item.walletId) !== undefined;

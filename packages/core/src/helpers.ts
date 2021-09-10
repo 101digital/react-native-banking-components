@@ -4,6 +4,15 @@ import {
   uniqBy as _uniqBy,
   ValueIteratee,
   List,
+  groupBy as _groupBy,
+  Dictionary,
+  chain as _chain,
+  orderBy as _orderBy,
+  PrimitiveChain,
+  CollectionChain,
+  FunctionChain,
+  ObjectChain,
+  StringChain,
 } from 'lodash';
 
 export const defaultsDeep = (object: any, ...source: any[]) =>
@@ -26,3 +35,16 @@ export const getUrlParameter = (url: string, name: string) => {
     ? ''
     : decodeURIComponent(results[1].replace(/\+/g, ' '));
 };
+
+export const groupBy = <T>(
+  collection: List<T> | null | undefined,
+  iteratee?: ValueIteratee<T>
+): Dictionary<T[]> => _groupBy(collection, iteratee);
+
+export const chain = <TrapAny extends { __lodashAnyHack: any }>(
+  value: TrapAny
+): CollectionChain<any> &
+  FunctionChain<any> &
+  ObjectChain<any> &
+  PrimitiveChain<any> &
+  StringChain => _chain(value);
