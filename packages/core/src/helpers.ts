@@ -8,13 +8,11 @@ import {
   Dictionary,
   chain as _chain,
   orderBy as _orderBy,
-  PrimitiveChain,
   CollectionChain,
   FunctionChain,
-  ObjectChain,
-  StringChain,
   ListIteratee,
   Many,
+  StringNullableChain,
 } from 'lodash';
 
 export const defaultsDeep = (object: any, ...source: any[]) =>
@@ -43,13 +41,16 @@ export const groupBy = <T>(
   iteratee?: ValueIteratee<T>
 ): Dictionary<T[]> => _groupBy(collection, iteratee);
 
-export const chain = <TrapAny extends { __lodashAnyHack: any }>(
-  value: TrapAny
-): CollectionChain<any> &
-  FunctionChain<any> &
-  ObjectChain<any> &
-  PrimitiveChain<any> &
-  StringChain => _chain(value);
+export const chain1 = (value: string | null | undefined): StringNullableChain =>
+  _chain(value);
+
+export const chain2 = <T extends (...args: any[]) => any>(
+  value: T
+): FunctionChain<T> => _chain(value);
+
+export const chain3 = <T = any>(
+  value: List<T> | null | undefined
+): CollectionChain<T> => _chain(value);
 
 export const orderBy = <T>(
   collection: List<T> | null | undefined,
