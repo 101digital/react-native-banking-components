@@ -18,9 +18,9 @@ import {
 export const defaultsDeep = (object: any, ...source: any[]) =>
   _defaultsDeep(object, source);
 
-export const isEmpty = (object: Object) => _isEmpty(object);
+export const isEmpty = (object?: Object) => _isEmpty(object);
 
-export const isNotEmpty = (object: Object) => !_isEmpty(object);
+export const isNotEmpty = (object?: Object) => !_isEmpty(object);
 
 export const uniqBy = <T>(
   array: List<T> | null | undefined,

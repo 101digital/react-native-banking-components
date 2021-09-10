@@ -1,11 +1,11 @@
-import React, { useContext } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Text, View, TouchableOpacity } from 'react-native';
-import { WalletContext } from '../../../../contexts/wallet-context';
-import { CreditDebitIndicator, Transaction } from '@banking-component/core';
+import { CreditDebitIndicator, Transaction, Wallet } from '@banking-component/core';
 import { TransactionItemStyle } from '../../types';
 import useMergStyles from './styles';
 
 export interface TransactionItemProps {
+  wallets: Wallet[];
   transaction: Transaction;
   isFromAggregated?: boolean;
   style?: TransactionItemStyle;
@@ -14,7 +14,7 @@ export interface TransactionItemProps {
 }
 
 const TransactionItemComponent = (props: TransactionItemProps) => {
-  const { transaction, isFromAggregated, style, formatCurrency, onItemPress } = props;
+  const { transaction, isFromAggregated, style, formatCurrency, onItemPress, wallets } = props;
 
   const styles = useMergStyles(style);
 
@@ -30,8 +30,17 @@ const TransactionItemComponent = (props: TransactionItemProps) => {
   };
 
   const formattedAmount = formatCurrency(transaction.amount.amount, transaction.amount.currency);
-  const { getWalletDetail } = useContext(WalletContext);
-  const targetWallet = getWalletDetail(getTargetWalletId());
+  const [targetWallet, setTargetWalet] = useState<Wallet | undefined>(undefined);
+
+  useEffect(() => {
+    const _targetWalletId = getTargetWalletId();
+    if (_targetWalletId) {
+      const wallet = wallets.find(
+        (item) => item.walletId.replace(/-/g, '') === _targetWalletId.replace(/-/g, '')
+      );
+      setTargetWalet(wallet);
+    }
+  }, [wallets]);
 
   const creditOrDebit =
     transaction.creditDebitIndicator === CreditDebitIndicator.Credit ? '+' : '-';

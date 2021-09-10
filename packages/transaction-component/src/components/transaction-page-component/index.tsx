@@ -10,7 +10,7 @@ import {
   View,
 } from 'react-native';
 import { ThemeContext } from 'react-native-theme-component';
-import { TransactionContext } from '../../../../contexts/transaction-context';
+import { TransactionContext } from '../../context/transaction-context';
 import { Transaction, Wallet, isEmpty } from '@banking-component/core';
 import { TransactionItemStyle, TransactionPageStyle } from '../../types';
 import TransactionItemComponent from '../transaction-item-component';
@@ -18,6 +18,7 @@ import useMergeStyles from './styles';
 
 export type TransactionPageProps = {
   wallet: Wallet;
+  wallets: Wallet[];
   emptyPlaceholder: ReactNode;
   loadingIndicator?: ReactNode;
   style?: TransactionPageStyle;
@@ -39,6 +40,7 @@ const TransactionPageComponent = (props: TransactionPageProps) => {
     itemStyle,
     formatCurrency,
     onItemPress,
+    wallets,
   } = props;
   const { colors } = useContext(ThemeContext);
 
@@ -116,6 +118,7 @@ const TransactionPageComponent = (props: TransactionPageProps) => {
         return (
           renderItem?.(index, item) ?? (
             <TransactionItemComponent
+              wallets={wallets}
               transaction={item}
               isFromAggregated={wallet.isAggregated}
               style={itemStyle}

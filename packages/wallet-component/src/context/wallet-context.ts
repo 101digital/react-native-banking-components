@@ -6,10 +6,10 @@ import {
   WalletSummary,
   orderBy,
   isEmpty,
-  chain,
+  chain3,
 } from '@banking-component/core';
 
-const walletService = WalletService.getInstance();
+const walletService = WalletService.instance();
 
 export interface WalletContextData {
   wallets: Wallet[];
@@ -83,7 +83,7 @@ export function useWalletContextValue(): WalletContextData {
     try {
       setIsLoading(true);
       const resp = await walletService.getWallets();
-      setWallets(orderBy(resp.data, ['isDefaultWallet'], ['desc']));
+      setWallets(orderBy<Wallet>(resp.data, ['isDefaultWallet'], ['desc']));
       setSummary(resp.summary);
       setIsLoading(false);
     } catch (err) {
@@ -150,7 +150,7 @@ export function useWalletContextValue(): WalletContextData {
   }, [_wallets, _summary]);
 
   const getGroupWallets = useCallback(() => {
-    const group = chain(_wallets).groupBy('type').value();
+    const group = chain3(_wallets).groupBy('type').value();
     return Object.keys(group).map((key) => {
       let section;
       switch (key) {
@@ -166,7 +166,7 @@ export function useWalletContextValue(): WalletContextData {
       }
       return {
         section,
-        data: orderBy(group[key], ['isDefaultWallet'], ['desc']),
+        data: orderBy<Wallet>(group[key], ['isDefaultWallet'], ['desc']),
       };
     });
   }, [_wallets]);

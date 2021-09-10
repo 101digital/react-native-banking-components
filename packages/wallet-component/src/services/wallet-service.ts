@@ -10,13 +10,13 @@ export class WalletService {
   constructor() {
     if (WalletService._instance) {
       throw new Error(
-        'Error: Instantiation failed: Use BankingService.getInstance() instead of new.'
+        'Error: Instantiation failed: Use WalletService.getInstance() instead of new.'
       );
     }
     WalletService._instance = this;
   }
 
-  public static getInstance(): WalletService {
+  public static instance(): WalletService {
     return WalletService._instance;
   }
 
