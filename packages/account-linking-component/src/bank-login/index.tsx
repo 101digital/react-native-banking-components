@@ -4,11 +4,13 @@ import WebView, { WebViewNavigation } from 'react-native-webview';
 import { BankLoginComponentProps } from './types';
 import styles from './styles';
 import { ThemeContext } from 'react-native-theme-component';
-import { BankContext } from '../../contexts/bank-context';
+import { AccountLinkingContext } from '../../src/context/account-linking-context';
 
 const BankLoginComponent = (props: BankLoginComponentProps) => {
   const { containerStyle, bank, loadingIndicator, onConfirmed } = props;
-  const { consentData, isLoadingConsent, confirmConsent, getAccounts } = useContext(BankContext);
+  const { consentData, isLoadingConsent, confirmConsent, getAccounts } = useContext(
+    AccountLinkingContext
+  );
   const { colors } = useContext(ThemeContext);
 
   if (isLoadingConsent || !consentData) {

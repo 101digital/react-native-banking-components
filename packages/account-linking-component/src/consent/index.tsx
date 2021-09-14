@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Text, View } from 'react-native';
-import { BankContext } from '../../contexts/bank-context';
+import { AccountLinkingContext } from '../../src/context/account-linking-context';
 import { Button } from 'react-native-theme-component';
 import { PermissionComponent, ShareContentComponent } from './components';
 import useMergeStyles from './styles';
@@ -12,7 +12,7 @@ const ConsentComponent = (props: ConsentComponentProps) => {
 
   const styles = useMergeStyles(Root?.style);
 
-  const { getConsent } = useContext(BankContext);
+  const { getConsent } = useContext(AccountLinkingContext);
 
   return (
     <View style={styles.containerStyle}>
