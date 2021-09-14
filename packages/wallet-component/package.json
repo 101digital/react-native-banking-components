@@ -16,13 +16,11 @@
   "keywords": [],
   "author": "tuyen101D",
   "license": "MIT",
-  "dependencies": {
-    "@banking-component/core": "https://gitpkg.now.sh/101digital/react-native-banking-components/packages/core",
-    "react": "^17.0.2",
-    "react-native": "^0.65.1"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@banking-component/core": "https://gitpkg.now.sh/101digital/react-native-banking-components/packages/core",
+    "react": "^17.0.2",
+    "react-native": "^0.65.1",
     "@types/react": "^17.0.20",
     "@types/react-native": "^0.65.0",
     "react-native-svg": "^12.1.1",
@@ -32,6 +30,8 @@
   "peerDependencies": {
     "@banking-component/core": "https://gitpkg.now.sh/101digital/react-native-banking-components/packages/core",
     "react-native-svg": "^12.1.1",
-    "react-native-theme-component": "https://github.com/101digital/react-native-theme-component.git"
+    "react-native-theme-component": "https://github.com/101digital/react-native-theme-component.git",
+    "react": "^17.0.2",
+    "react-native": "^0.65.1"
   }
 }
