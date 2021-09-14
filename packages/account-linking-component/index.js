@@ -1,5 +1,5 @@
 export { AccountLinkingContext } from './src/context/account-linking-context';
-export { default as AccountLinkingProvider } from './src/context/account-linking-provider';
+export { AccountLinkingProvider } from './src/context/account-linking-provider';
 export { AccountLinkingService } from './src/service/account-linking-service';
 export { default as BankLoginComponent } from './src/bank-login';
 export { default as ConsentComponent } from './src/consent';
