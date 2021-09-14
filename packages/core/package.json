@@ -1,8 +1,8 @@
 {
   "name": "@banking-component/core",
-  "description": "Core utilities for building banking component",
   "private": true,
-  "version": "1.1.0",
+  "description": "Core utilities for building banking component",
+  "version": "1.1.1",
   "repository": {
     "type": "git",
     "url": "https://github.com/101digital/react-native-banking-components.git",
