@@ -1,5 +1,6 @@
 {
   "name": "banking-components",
+  "private": true,
   "description": "A component for banking flow by 101D",
   "license": "MIT",
   "workspaces": {
