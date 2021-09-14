@@ -6,7 +6,7 @@ import {
 import { ReactNode } from 'react';
 import { ImageStyle, StyleProp, TextStyle, ViewStyle } from 'react-native';
 
-export type AccountComponentRefs = {
+export type WalletComponentRefs = {
   showActionsSheet: (wallet: Wallet) => void;
   unlinkWallet: (wallet: Wallet) => void;
   setAsPrimary: (wallet: Wallet) => void;
@@ -14,9 +14,9 @@ export type AccountComponentRefs = {
   hideActionSheet: () => void;
 };
 
-export type AccountComponentProps = {
+export type WalletComponentProps = {
   Root: {
-    style?: AccountComponentStyle;
+    style?: WalletComponentStyle;
     props: {
       formatCurrency: (amount: number, code: string) => string;
       scrollHandler?: {
@@ -133,7 +133,7 @@ export type AccountComponentProps = {
   EmptyWallet?: EmptyWalletThemeProps;
 };
 
-export type AccountComponentStyle = {
+export type WalletComponentStyle = {
   containerStyle?: StyleProp<ViewStyle>;
   listContainerStyle?: StyleProp<ViewStyle>;
   listDivider?: StyleProp<ViewStyle>;
