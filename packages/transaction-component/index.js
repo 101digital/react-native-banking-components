@@ -1,3 +1,4 @@
-export { TransactionContext, TransactionProvider } from './src/context';
-export { TransactionService } from './src/services/wallet-service';
+export { default as TransactionContext } from './src/context/transaction-context';
+export { default as TransactionProvider } from './src/context/transaction-provider';
+export { TransactionService } from './src/service/transaction-service';
 export { default as TransactionComponent } from './src/index';
