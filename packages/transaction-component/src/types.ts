@@ -12,6 +12,9 @@ export type TransactionComponentProps = {
     style?: TransactionComponentStyle;
     props: {
       initWallet?: Wallet;
+      wallets: Wallet[];
+      aggregatedWallets: Wallet[];
+      isLoadingWallets?: boolean;
       formatCurrency: (amount: number, code: string) => string;
     };
     components?: {

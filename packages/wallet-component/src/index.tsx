@@ -15,7 +15,7 @@ import { BInformationIcon } from './assets/images';
 import { WalletContext } from '../src/context/wallet-context';
 import { ThemeContext, AlertModal } from 'react-native-theme-component';
 
-const AccountComponent = forwardRef((props: AccountComponentProps, ref) => {
+const WalletComponent = forwardRef((props: AccountComponentProps, ref) => {
   const {
     Root,
     Balance,
@@ -286,4 +286,4 @@ const AccountComponent = forwardRef((props: AccountComponentProps, ref) => {
   );
 });
 
-export default AccountComponent;
+export default WalletComponent;

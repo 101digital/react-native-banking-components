@@ -2,7 +2,7 @@ import React, { ReactNode, useContext } from 'react';
 import { View, Text } from 'react-native';
 import { BCheckedIcon, BDownIcon, BUpIcon, images } from '../../assets/images';
 import { ThemeContext, Image } from 'react-native-theme-component';
-import { TransactionContext } from '../../../../contexts/transaction-context';
+import { TransactionContext } from '../../context/transaction-context';
 import { TransactionSummary, Wallet } from '@banking-component/core';
 import { CarouselItemStyle } from '../../types';
 import useMergeStyles from './styles';

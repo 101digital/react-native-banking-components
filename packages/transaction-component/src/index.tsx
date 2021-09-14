@@ -9,9 +9,8 @@ import {
 } from './components';
 import { TransactionComponentProps } from './types';
 import useMergeStyles from './styles';
-import { WalletContext } from '../../contexts/wallet-context';
 import { Wallet, isEmpty, BNoWalletComponent } from '@banking-component/core';
-import { TransactionContext } from '../../contexts/transaction-context';
+import { TransactionContext } from './context/transaction-context';
 import { ThemeContext } from 'react-native-theme-component';
 
 const TransactionComponent = (props: TransactionComponentProps) => {
@@ -24,7 +23,7 @@ const TransactionComponent = (props: TransactionComponentProps) => {
     TransactionItem,
     EmptyWallet,
   } = props;
-  const { initWallet, formatCurrency } = Root?.props;
+  const { initWallet, formatCurrency, aggregatedWallets, isLoadingWallets, wallets } = Root?.props;
   const containerStyle = Root?.style;
 
   const { carouselItemWidth, carouselWidth } = CarouselItem.props;
@@ -37,9 +36,7 @@ const TransactionComponent = (props: TransactionComponentProps) => {
   const [currentWallet, setCurrentWallet] = useState<Wallet | undefined>(undefined);
 
   //context data and function
-  const { wallets, getAggregatedWallets, isLoadingWallets } = useContext(WalletContext);
   const { transactions, fetchTransactions } = useContext(TransactionContext);
-  const aggregatedWallets = getAggregatedWallets();
   const { colors } = useContext(ThemeContext);
   const [_initialWallet, setInitialWallet] = useState(initWallet);
 
@@ -144,6 +141,7 @@ const TransactionComponent = (props: TransactionComponentProps) => {
       </View>
       {currentWallet && (
         <TransactionPageComponent
+          wallets={wallets}
           key={currentWallet.walletId}
           wallet={currentWallet}
           emptyPlaceholder={
