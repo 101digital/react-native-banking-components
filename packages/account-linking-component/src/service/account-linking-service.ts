@@ -3,23 +3,23 @@ type BankingClient = {
   openBankAuthClient: any;
 };
 
-export class BankingService {
-  private static _instance: BankingService = new BankingService();
+export class AccountLinkingService {
+  private static _instance: AccountLinkingService = new AccountLinkingService();
 
   private _openBankAispClient?: any;
   private _openBankAuthClient?: any;
 
   constructor() {
-    if (BankingService._instance) {
+    if (AccountLinkingService._instance) {
       throw new Error(
-        'Error: Instantiation failed: Use BankingService.getInstance() instead of new.'
+        'Error: Instantiation failed: Use AccountLinkingService.getInstance() instead of new.'
       );
     }
-    BankingService._instance = this;
+    AccountLinkingService._instance = this;
   }
 
-  public static instance(): BankingService {
-    return BankingService._instance;
+  public static instance(): AccountLinkingService {
+    return AccountLinkingService._instance;
   }
 
   public initClients = (clients: BankingClient) => {

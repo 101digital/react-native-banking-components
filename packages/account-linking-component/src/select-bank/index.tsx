@@ -4,14 +4,14 @@ import { SelectBankComponentProps } from './types';
 import useMergeStyles from './styles';
 import { BankItemComponent, SearchBarComponent } from './components';
 import { isEmpty, Bank } from '@banking-component/core';
-import { BankContext } from '../bank-context/bank-context';
+import { AccountLinkingContext } from '../context/account-linking-context';
 import { useKeyboard } from './components/keyboard';
 
 const SelectBankComponent = (props: SelectBankComponentProps) => {
   const { Root, SearchBar, BankItem } = props;
 
   const styles = useMergeStyles(Root?.style);
-  const { banks } = useContext(BankContext);
+  const { banks } = useContext(AccountLinkingContext);
   const _numColumns = Root?.props?.numberColumns ?? 2;
   const [displayBanks, setDisplayBanks] = useState<Bank[]>(banks);
 

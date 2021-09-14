@@ -1,7 +1,7 @@
 import { isEmpty, BankAccount } from '@banking-component/core';
 import React, { useContext, useEffect, useState } from 'react';
 import { View, Text, ActivityIndicator, FlatList } from 'react-native';
-import { BankContext } from '../bank-context/bank-context';
+import { AccountLinkingContext } from '../context/account-linking-context';
 import { ThemeContext, Button } from 'react-native-theme-component';
 import { AccessInfoComponent, AccountItemComponent, EmptyAccountComponent } from './components';
 import useMergeStyles from './styles';
@@ -11,7 +11,9 @@ const LinkBankComponent = (props: LinkBankComponentProps) => {
   const { Root, EmptyAccount, AccountItem, AccessInfomation } = props;
   const styles = useMergeStyles(Root?.style);
   const { bank, consentId, headingLabel, onLinkAccount, isLinkingAccount } = Root.props;
-  const { accounts, isLoadingAccounts, clearAccounts, clearConsentData } = useContext(BankContext);
+  const { accounts, isLoadingAccounts, clearAccounts, clearConsentData } = useContext(
+    AccountLinkingContext
+  );
   const { colors } = useContext(ThemeContext);
   const [currentAccount, setCurrentAccount] = useState<BankAccount | undefined>(undefined);
 

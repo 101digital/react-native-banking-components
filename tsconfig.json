@@ -15,6 +15,5 @@
     "paths": {
       "@banking-component/*": ["./packages/*/src"]
     }
-  },
-  "exclude": ["packages/*/lib"]
+  }
 }

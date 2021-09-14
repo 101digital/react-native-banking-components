@@ -1,10 +1,10 @@
 import React, { useCallback, useMemo, useState } from 'react';
-import { BankingService } from '../service/bank-service';
+import { AccountLinkingService } from '../service/account-linking-service';
 import { Bank, BankAccount, BankImagesMap, BankingConsentData } from '@banking-component/core';
 
-const bankService = BankingService.instance();
+const accountService = AccountLinkingService.instance();
 
-export interface BankContextData {
+export interface AccountLinkingContextData {
   banks: Bank[];
   bankImages: BankImagesMap;
   isLoadingBanks: boolean;
@@ -30,7 +30,7 @@ export interface BankContextData {
   clearAccounts: () => void;
 }
 
-export const bankDefaultValue: BankContextData = {
+export const bankDefaultValue: AccountLinkingContextData = {
   banks: [],
   bankImages: {},
   isLoadingBanks: false,
@@ -47,9 +47,11 @@ export const bankDefaultValue: BankContextData = {
   clearAccounts: () => null,
 };
 
-export const BankContext = React.createContext<BankContextData>(bankDefaultValue);
+export const AccountLinkingContext = React.createContext<AccountLinkingContextData>(
+  bankDefaultValue
+);
 
-export function useBankContextValue(): BankContextData {
+export function useBankContextValue(): AccountLinkingContextData {
   const [_banks, setBanks] = useState<Bank[]>([]);
   const [_isLoadingBanks, setLoadingBanks] = useState(false);
   const [_errorLoadBanks, setErrorLoadBanks] = useState<Error | undefined>(undefined);
@@ -66,7 +68,7 @@ export function useBankContextValue(): BankContextData {
   const getBanks = useCallback(async (searchText?: string) => {
     try {
       setLoadingBanks(true);
-      const { data } = await bankService.getBanks(searchText);
+      const { data } = await accountService.getBanks(searchText);
       setBanks(data);
       setBankImages(
         data.reduce((acc: BankImagesMap, bank: Bank) => {
@@ -84,7 +86,7 @@ export function useBankContextValue(): BankContextData {
   const getConsent = useCallback(async (bankId: string) => {
     try {
       setLoadingConsent(true);
-      const { data } = await bankService.requestConsent(bankId);
+      const { data } = await accountService.requestConsent(bankId);
       setConsentData(data);
       setLoadingConsent(false);
     } catch (error) {
@@ -100,7 +102,7 @@ export function useBankContextValue(): BankContextData {
   const confirmConsent = useCallback(async (bankId: string, requestId: string, code: string) => {
     try {
       setConfirmingConsent(true);
-      const { data } = await bankService.confirmConsent(bankId, requestId, code);
+      const { data } = await accountService.confirmConsent(bankId, requestId, code);
       setConfirmingConsent(false);
       return data.accountConsentId;
     } catch (error) {
@@ -113,7 +115,7 @@ export function useBankContextValue(): BankContextData {
   const getAccounts = useCallback(async (consentId: string) => {
     try {
       setLoadingAccounts(true);
-      const { data } = await bankService.fetchBankAccounts(consentId);
+      const { data } = await accountService.fetchBankAccounts(consentId);
       setAccounts(data.account);
       setLoadingAccounts(false);
     } catch (error) {
