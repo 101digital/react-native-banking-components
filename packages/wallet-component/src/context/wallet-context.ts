@@ -6,7 +6,7 @@ import {
   WalletSummary,
   orderBy,
   isEmpty,
-  chain3,
+  chain,
 } from '@banking-component/core';
 
 const walletService = WalletService.instance();
@@ -150,7 +150,7 @@ export function useWalletContextValue(): WalletContextData {
   }, [_wallets, _summary]);
 
   const getGroupWallets = useCallback(() => {
-    const group = chain3(_wallets).groupBy('type').value();
+    const group = chain(_wallets).groupBy('type').value();
     return Object.keys(group).map((key) => {
       let section;
       switch (key) {

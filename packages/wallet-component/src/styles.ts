@@ -1,8 +1,8 @@
 import { defaultsDeep } from '@banking-component/core';
 import { StyleSheet } from 'react-native';
-import { AccountComponentStyle } from './types';
+import { WalletComponentStyle } from './types';
 
-const useMergeStyles = (style?: AccountComponentStyle) => {
+const useMergeStyles = (style?: WalletComponentStyle) => {
   const defaultStyles = StyleSheet.create({
     containerStyle: {
       flex: 1,
