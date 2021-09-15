@@ -17,4 +17,4 @@ Open a Terminal in your project's folder and run the command
 yarn add https://gitpkg.now.sh/101digital/react-native-banking-components/packages/wallet-component
 ```
 
-If have any issue while installing, can see [Issue While Installing Sub-Component](../README.md##Issue While Installing Sub-Component)
+If have any issue while installing, can see [Issue While Installing Sub-Component](../README.md)
