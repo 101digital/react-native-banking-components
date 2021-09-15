@@ -45,6 +45,7 @@ const useMergeStyles = (style?: LinkBankComponentStyles) => {
     },
     listContentStyle: {
       paddingHorizontal: 15,
+      paddingBottom: 15,
     },
     listDivider: {
       width: '100%',
