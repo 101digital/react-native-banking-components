@@ -57,6 +57,8 @@ const WalletItemComponent = (props: WalletItemProps) => {
     }
   }, [isShowSwitch]);
 
+  console.log(wallet.bankAccount.bankLogo);
+
   return (
     <View>
       <TouchableOpacity
@@ -65,12 +67,21 @@ const WalletItemComponent = (props: WalletItemProps) => {
         onPress={() => onItemPressed?.(wallet)}
       >
         <View style={styles.imageContainerStyle}>
-          <Image
-            resizeMode='contain'
-            style={styles.imageStyle}
-            fallbackImage={images.bank}
-            source={{ uri: wallet.bankAccount.bankLogo }}
-          />
+          {wallet.bankAccount.bankLogo ? (
+            <Image
+              resizeMode='contain'
+              style={styles.imageStyle}
+              fallbackImage={images.bank}
+              source={{ uri: wallet.bankAccount.bankLogo }}
+            />
+          ) : (
+            <Image
+              resizeMode='contain'
+              style={styles.imageStyle}
+              fallbackImage={images.bank}
+              source={images.bank}
+            />
+          )}
         </View>
         <View style={styles.leftContainerStyle}>
           <Text style={styles.accountNameTextStyle}>{wallet.walletName}</Text>
