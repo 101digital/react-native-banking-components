@@ -19,7 +19,7 @@ With high UI customizable, you can change the component's style to your styles o
 
 ## Issue While Installing Sub-Component
 
-Because the components aren't publish into NPM, so we are using [GitPkg](https://gitpkg.vercel.app) to install sub-component by using `yarn` or `npm install`. After you run installing successfully but can't see version's sub-component is not latest, you can run this command in root project
+Because the components aren't publish into NPM, so we are using [GitPkg](https://gitpkg.vercel.app) to install sub-component by using `yarn` or `npm install`. After you run installing successfully but can't see version's sub-component is latest, you can run this command in root project
 
 ```sh
 rm -rf yarn.lock && yarn cache clean && yarn

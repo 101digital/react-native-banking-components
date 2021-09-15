@@ -668,8 +668,8 @@
 
 "@banking-component/core@https://gitpkg.now.sh/101digital/react-native-banking-components/packages/core":
   version "1.1.6"
-  uid ba16cfc2ffedffc766b3040cbac303f222f5c55e
-  resolved "https://gitpkg.now.sh/101digital/react-native-banking-components/packages/core#ba16cfc2ffedffc766b3040cbac303f222f5c55e"
+  uid "3f2df6e97b21a5df86c667418f65cdfed1a70a0d"
+  resolved "https://gitpkg.now.sh/101digital/react-native-banking-components/packages/core#3f2df6e97b21a5df86c667418f65cdfed1a70a0d"
   dependencies:
     lodash "^4.17.21"
 
