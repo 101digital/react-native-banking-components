@@ -16,7 +16,7 @@ Open a Terminal in your project's folder and run the command
 yarn add https://gitpkg.now.sh/101digital/react-native-banking-components/packages/core
 ```
 
-If have any issue while installing, can see [Issue While Installing Sub-Component](../README.md)
+If have any issue while installing, can see [Issue While Installing Sub-Component](https://github.com/101digital/react-native-banking-components/blob/master/README.md)
 
 ## API References
 
