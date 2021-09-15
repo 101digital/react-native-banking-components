@@ -1,9 +1,3 @@
-export interface Config {
-  baseWalletUrl: string;
-  baseBankAuthUrl: string;
-  baseBankAispUrl: string;
-}
-
 export interface Wallet {
   availableBalance: number;
   currentBalance: number;
