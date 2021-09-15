@@ -2,13 +2,11 @@ import {
   defaultsDeep as _defaultsDeep,
   isEmpty as _isEmpty,
   uniqBy as _uniqBy,
-  List,
   groupBy as _groupBy,
   chain as _chain,
   orderBy as _orderBy,
-  CollectionChain,
-  FunctionChain,
-  StringNullableChain,
+  filter as _filter,
+  union as _union,
 } from 'lodash';
 
 export const defaultsDeep = _defaultsDeep;
@@ -30,15 +28,10 @@ export const getUrlParameter = (url: string, name: string) => {
 
 export const groupBy = _groupBy;
 
-export const chain1 = (value: string | null | undefined): StringNullableChain =>
-  _chain(value);
-
-export const chain2 = <T extends (...args: any[]) => any>(
-  value: T
-): FunctionChain<T> => _chain(value);
-
-export const chain3 = <T = any>(
-  value: List<T> | null | undefined
-): CollectionChain<T> => _chain(value);
+export const chain = _chain;
 
 export const orderBy = _orderBy;
+
+export const filter = _filter;
+
+export const union = _union;
