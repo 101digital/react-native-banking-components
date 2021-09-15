@@ -8,6 +8,10 @@ const useMergeStyles = (style?: BalanceStyle) => {
   const { fonts, colors } = useContext(ThemeContext);
 
   const defaultStyles = StyleSheet.create({
+    wrapperStyle: {
+      marginTop: 10,
+      marginHorizontal: 16,
+    },
     containerStyle: {
       borderWidth: 1,
       borderColor: '#F5F5F5',
@@ -16,7 +20,6 @@ const useMergeStyles = (style?: BalanceStyle) => {
       borderRadius: 10,
       backgroundColor: 'white',
       flexDirection: 'row',
-      marginTop: 10,
     },
     titleTextStyle: {
       fontFamily: fonts.semiBold,

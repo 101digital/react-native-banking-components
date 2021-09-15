@@ -175,7 +175,6 @@ const WalletComponent = forwardRef((props: WalletComponentProps, ref) => {
           <SectionList
             {...scrollHandler}
             sections={groupedWallets}
-            style={styles.listContainerStyle}
             keyExtractor={(item) => item.walletId}
             extraData={Root.props.bankImages}
             renderItem={({ item, index }) => {

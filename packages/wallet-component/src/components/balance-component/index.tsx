@@ -16,12 +16,16 @@ const BalanceComponent = (props: BalanceComponentProps) => {
   const styles = mergeStyles(style);
 
   return (
-    <View style={styles.containerStyle}>
-      <View style={innerStyles.leftWrap}>
-        <Text style={styles.titleTextStyle}>{totalBalanceLabel ?? 'Total Available Balance'}</Text>
-        <Text style={styles.amountTextStyle}>{balance}</Text>
+    <View style={styles.wrapperStyle}>
+      <View style={styles.containerStyle}>
+        <View style={innerStyles.leftWrap}>
+          <Text style={styles.titleTextStyle}>
+            {totalBalanceLabel ?? 'Total Available Balance'}
+          </Text>
+          <Text style={styles.amountTextStyle}>{balance}</Text>
+        </View>
+        {rightIcon}
       </View>
-      {rightIcon}
     </View>
   );
 };

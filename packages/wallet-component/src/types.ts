@@ -135,11 +135,11 @@ export type WalletComponentProps = {
 
 export type WalletComponentStyle = {
   containerStyle?: StyleProp<ViewStyle>;
-  listContainerStyle?: StyleProp<ViewStyle>;
   listDivider?: StyleProp<ViewStyle>;
 };
 
 export type BalanceStyle = {
+  wrapperStyle?: StyleProp<ViewStyle>;
   containerStyle?: StyleProp<ViewStyle>;
   titleTextStyle?: StyleProp<TextStyle>;
   amountTextStyle?: StyleProp<TextStyle>;

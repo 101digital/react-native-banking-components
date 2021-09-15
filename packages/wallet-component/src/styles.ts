@@ -7,9 +7,7 @@ const useMergeStyles = (style?: WalletComponentStyle) => {
     containerStyle: {
       flex: 1,
     },
-    listContainerStyle: {
-      paddingHorizontal: 16,
-    },
+
     listDivider: {
       height: 10,
       width: '100%',

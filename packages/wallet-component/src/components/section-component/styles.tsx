@@ -9,8 +9,8 @@ const useMergeStyles = (style?: AccountSectionStyle) => {
 
   const defaultStyles = StyleSheet.create({
     containerStyle: {
-      backgroundColor: '#f7f9fb',
       marginVertical: 20,
+      marginHorizontal: 16,
     },
     sectionTextStyle: {
       fontFamily: fonts.medium,

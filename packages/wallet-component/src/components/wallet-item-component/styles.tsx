@@ -17,6 +17,7 @@ const useMergeStyles = (style?: WalletItemStyle) => {
       borderWidth: 1,
       zIndex: 2,
       flexDirection: 'row',
+      marginHorizontal: 16,
     },
     imageContainerStyle: {
       width: 50,
