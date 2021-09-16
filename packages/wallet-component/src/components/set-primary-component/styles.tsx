@@ -10,6 +10,7 @@ const useMergeStyles = (style?: SetPrimaryComponentStyle): SetPrimaryComponentSt
     containerStyle: {
       flexDirection: 'row',
       marginTop: 10,
+      alignItems: 'center',
     },
     checkBoxStyle: {
       backgroundColor: colors.primaryColor,

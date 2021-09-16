@@ -1,7 +1,7 @@
 export * from './src/types';
 export * from './src/helpers';
 export {
-  BNoWalletComponent,
+  default as BNoWalletComponent,
   EmptyWalletThemeProps,
   NoWalletComponentProps,
   NoWalletThemeStyles,
