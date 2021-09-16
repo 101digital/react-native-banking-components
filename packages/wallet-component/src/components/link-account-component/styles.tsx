@@ -9,7 +9,7 @@ const useMergeStyles = (style?: LinkAccountStyle) => {
 
   const defaultStyles = StyleSheet.create({
     containerStyle: {
-      marginHorizontal: 16,
+      paddingHorizontal: 16,
       paddingVertical: 17,
       flexDirection: 'row',
       alignItems: 'center',

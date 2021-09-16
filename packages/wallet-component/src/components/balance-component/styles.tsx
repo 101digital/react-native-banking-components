@@ -9,8 +9,8 @@ const useMergeStyles = (style?: BalanceStyle) => {
 
   const defaultStyles = StyleSheet.create({
     wrapperStyle: {
-      marginTop: 10,
-      marginHorizontal: 16,
+      paddingVertical: 10,
+      paddingHorizontal: 16,
     },
     containerStyle: {
       borderWidth: 1,

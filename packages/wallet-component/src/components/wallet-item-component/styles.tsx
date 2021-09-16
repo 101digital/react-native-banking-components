@@ -8,6 +8,9 @@ const useMergeStyles = (style?: WalletItemStyle) => {
   const { colors, fonts } = useContext(ThemeContext);
 
   const defaultStyles = StyleSheet.create({
+    wrapperStyle: {
+      paddingHorizontal: 16,
+    },
     containerStyle: {
       paddingHorizontal: 7,
       paddingVertical: 18,
@@ -17,7 +20,6 @@ const useMergeStyles = (style?: WalletItemStyle) => {
       borderWidth: 1,
       zIndex: 2,
       flexDirection: 'row',
-      marginHorizontal: 16,
     },
     imageContainerStyle: {
       width: 50,

@@ -57,10 +57,8 @@ const WalletItemComponent = (props: WalletItemProps) => {
     }
   }, [isShowSwitch]);
 
-  console.log(wallet.bankAccount.bankLogo);
-
   return (
-    <View>
+    <View style={styles.wrapperStyle}>
       <TouchableOpacity
         activeOpacity={0.8}
         style={styles.containerStyle}

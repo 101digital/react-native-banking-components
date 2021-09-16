@@ -146,6 +146,7 @@ export type BalanceStyle = {
 };
 
 export type WalletItemStyle = {
+  wrapperStyle?: StyleProp<ViewStyle>;
   containerStyle?: StyleProp<ViewStyle>;
   imageContainerStyle?: StyleProp<ViewStyle>;
   imageStyle?: StyleProp<ImageStyle>;
