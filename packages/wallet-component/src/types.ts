@@ -5,6 +5,7 @@ import {
 } from '@banking-component/core';
 import { ReactNode } from 'react';
 import { ImageStyle, StyleProp, TextStyle, ViewStyle } from 'react-native';
+import { AlertModalStyles } from 'react-native-theme-component/src/alert';
 
 export type WalletComponentRefs = {
   showActionsSheet: (wallet: Wallet) => void;
@@ -95,6 +96,8 @@ export type WalletComponentProps = {
       message?: string;
       cancelButtonLabel?: string;
       confirmButonLabel?: string;
+      isShowClose?: boolean;
+      isFullWidth?: boolean;
     };
     components?: {
       leftIcon?: ReactNode;
@@ -107,6 +110,8 @@ export type WalletComponentProps = {
       message?: string;
       cancelButtonLabel?: string;
       confirmButonLabel?: string;
+      isShowClose?: boolean;
+      isFullWidth?: boolean;
     };
     components?: {
       leftIcon?: ReactNode;
@@ -114,12 +119,15 @@ export type WalletComponentProps = {
   };
   LinkAccountSuccessModal?: {
     style?: SetPrimaryComponentStyle;
+    alertStyle?: AlertModalStyles;
     props?: {
       disable?: boolean;
       title?: string;
       message?: string;
       setPrimaryLabel?: string;
       confirmButonLabel?: string;
+      isShowClose?: boolean;
+      isFullWidth?: boolean;
     };
     components?: {
       leftIcon?: ReactNode;

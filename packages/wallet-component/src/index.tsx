@@ -106,6 +106,7 @@ const WalletComponent = forwardRef((props: WalletComponentProps, ref) => {
   const renderSuccessModal = () => {
     return (
       <AlertModal
+        style={LinkAccountSuccessModal?.alertStyle}
         isVisible={
           !isLinkingWallet && linkedWallet !== undefined && !ConfirmSetPrimaryModal?.props?.disable
         }
@@ -115,6 +116,8 @@ const WalletComponent = forwardRef((props: WalletComponentProps, ref) => {
           clearLinkedWallet();
           fetchWallets();
         }}
+        isFullWidth={LinkAccountSuccessModal?.props?.isFullWidth}
+        isShowClose={LinkAccountSuccessModal?.props?.isShowClose}
         message={
           LinkAccountSuccessModal?.props?.message ??
           'Your bank account is successfully linked to your profile.'
@@ -235,6 +238,8 @@ const WalletComponent = forwardRef((props: WalletComponentProps, ref) => {
         title={ConfirmUnlinkModal?.props?.title ?? 'Unlink Bank Account'}
         cancelTitle={ConfirmUnlinkModal?.props?.cancelButtonLabel ?? 'Cancel'}
         confirmTitle={ConfirmUnlinkModal?.props?.confirmButonLabel}
+        isFullWidth={ConfirmUnlinkModal?.props?.isFullWidth}
+        isShowClose={ConfirmUnlinkModal?.props?.isShowClose}
         onClose={() => setShowUnlink(false)}
         onCancel={() => setShowUnlink(false)}
         leftIcon={
@@ -260,6 +265,8 @@ const WalletComponent = forwardRef((props: WalletComponentProps, ref) => {
         title={ConfirmSetPrimaryModal?.props?.title ?? 'Confirmation'}
         cancelTitle={ConfirmSetPrimaryModal?.props?.cancelButtonLabel ?? 'Cancel'}
         confirmTitle={ConfirmSetPrimaryModal?.props?.confirmButonLabel}
+        isFullWidth={ConfirmSetPrimaryModal?.props?.isFullWidth}
+        isShowClose={ConfirmSetPrimaryModal?.props?.isShowClose}
         onClose={() => setShowPrimary(false)}
         onCancel={() => setShowPrimary(false)}
         leftIcon={
