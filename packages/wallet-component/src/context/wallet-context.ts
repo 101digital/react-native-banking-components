@@ -8,6 +8,7 @@ import {
   isEmpty,
   chain,
 } from '@banking-component/core';
+import { showMessage } from 'react-native-theme-component';
 
 const walletService = WalletService.instance();
 
@@ -99,6 +100,10 @@ export function useWalletContextValue(): WalletContextData {
       clearLinkedWallet();
       fetchWallets();
       setIsUpdatingPrimary(false);
+      showMessage({
+        message: 'Primary Account Changed Successfully',
+        backgroundColor: '#44ac44',
+      });
     } catch (error) {
       setIsUpdatingPrimary(false);
       setUpdatePrimaryError(error as Error);
@@ -120,6 +125,10 @@ export function useWalletContextValue(): WalletContextData {
         setUnLinkedWallet(wallet);
         setWallets(newWallets);
         setIsUnlinking(false);
+        showMessage({
+          message: 'Account successfully removed',
+          backgroundColor: '#44ac44',
+        });
       } catch (error) {
         setIsUnlinking(false);
         setUnlinkError(error as Error);
