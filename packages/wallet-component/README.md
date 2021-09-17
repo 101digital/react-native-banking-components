@@ -56,6 +56,8 @@ export default App;
 
 Manage wallet services connect to BE. First of all, you need init `WalletService` soon, should be from `App.ts`
 
+List of functions:
+
 - `getWallets()`: Get all wallets linked to user's account
 - `getWalletDetails(walletId: string)`: Get wallet details by `walletId`
 - `linkBankAccount(bankId: string, accountId: string, consentId: string)`:Link an account into current wallets
@@ -69,21 +71,22 @@ To access to data, error and function from these contexts, you can use `useConte
 
 ```javascript
 export interface WalletContextData {
-  wallets: Wallet[];
-  isLoadingWallets: boolean;
-  isLinkingWallet: boolean;
-  linkedWallet?: Wallet;
-  summary?: WalletSummary;
-  unlinkedWallet?: Wallet;
-  isUnlinking: boolean;
-  fetchWallets: () => void;
-  getGroupWallets: () => GroupedWallets | undefined;
-  getDefaultWallet: () => Wallet | undefined;
-  getWalletDetail: (walletId?: string) => Wallet | undefined;
-  getAggregatedWallets: () => Wallet[];
-  deleteWallet: (wallet: Wallet) => void;
-  setPrimaryWallet: (walletId: string) => void;
-  linkWallet: (bankId: string, accountId: string, consentId: string) => void;
+  wallets: Wallet[]; // all wallets linked to user's profile
+  isLoadingWallets: boolean; // fetching wallets status
+  isLinkingWallet: boolean; // linking wallet status
+  isUpdatingPrimary: boolean; // updating primary wallet status
+  linkedWallet?: Wallet; // wallet that just linked successfully
+  summary?: WalletSummary; // some wallets detail: total balance, total money in, total money out
+  unlinkedWallet?: Wallet; // wallet that just unlinked successfully
+  isUnlinking: boolean; // unlinking wallet status
+  fetchWallets: () => void; // fetch wallets from API
+  getGroupWallets: () => GroupedWallets | undefined; // wallets grouped by wallet type
+  getDefaultWallet: () => Wallet | undefined; // get primary wallet or first wallet in the list
+  getWalletDetail: (walletId?: string) => Wallet | undefined; //
+  getAggregatedWallets: () => Wallet[]; // get aggregated wallets
+  deleteWallet: (wallet: Wallet) => void; // remove wallet out of user's profile
+  setPrimaryWallet: (walletId: string) => void; // set a wallet as a primary wallet
+  linkWallet: (bankId: string, accountId: string, consentId: string) => void; // link new wallet
   clearLinkedWallet: () => void;
   clearWalletErrors: () => void;
   clearUnlinkedWallet: () => void;
@@ -91,13 +94,24 @@ export interface WalletContextData {
   errorUnlinkWallet?: Error;
   errorUpdatePrimary?: Error;
   errorLinkWallet?: Error;
-  isUpdatingPrimary: boolean;
 }
 ```
 
 ### WalletComponent
 
 - Props, styles and component can be found [here](./src/types.ts)
+
+- Reference call: You can use `useRef` to call function inside `WalletComponent` (see Example for using `showRecommandBanner`)
+
+```javascript
+export type WalletComponentRefs = {
+  showActionsSheet: (wallet: Wallet) => void, // show bottom action sheet
+  unlinkWallet: (wallet: Wallet) => void, // show confirm unlink dialog
+  setAsPrimary: (wallet: Wallet) => void, // show confirm set primary dialog
+  showRecommandBanner: (wallet: Wallet) => void, // show banner at bottom of wallet
+  hideActionSheet: () => void, // hide bottom action sheet
+};
+```
 
 - Example
 
