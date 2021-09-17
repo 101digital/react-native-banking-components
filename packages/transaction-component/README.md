@@ -28,7 +28,7 @@ If have any issue while installing, can see [Issue While Installing Sub-Componen
 import { TransactionService } from '@banking-component/transaction-component';
 
 TransactionService.instance().initClients({
-  walletClient: createAuthorizedApiClient(wallet),
+  walletClient: createAuthorizedApiClient(wallet), // Your Axios authorized client Wallet Url
 });
 ```
 
@@ -110,36 +110,29 @@ const TransactionsScreen = ({ navigation, route }: TransactionScreenProps) => {
 
   return (
     <>
-      <Box flex={1}>
-        <SafeAreaView style={styles.container}>
-          <Box style={styles.title}>
-            <Text variant="h1" mx="m">
-              {i18n.t('transaction.nav_transactions')}
-            </Text>
-          </Box>
-          <TransactionComponent
-            CarouselItem={{
-              props: {
-                carouselItemWidth: width - 32, // wallet carousel item width
-                carouselWidth: width,
-              },
-            }}
-            Root={{
-              props: {
-                wallets: wallets,
-                aggregatedWallets: getAggregatedWallets(),
-                initWallet,
-                formatCurrency: currencyFormatter,
-              },
-            }}
-            EmptyWallet={{
-              props: {
-                onLinkAccountPressed: handleAddBankAccountPressed,
-              },
-            }}
-          />
-        </SafeAreaView>
-      </Box>
+      <SafeAreaView style={styles.container}>
+        <TransactionComponent
+          CarouselItem={{
+            props: {
+              carouselItemWidth: width - 32, // wallet carousel item width
+              carouselWidth: width,
+            },
+          }}
+          Root={{
+            props: {
+              wallets: wallets,
+              aggregatedWallets: getAggregatedWallets(),
+              initWallet,
+              formatCurrency: currencyFormatter,
+            },
+          }}
+          EmptyWallet={{
+            props: {
+              onLinkAccountPressed: handleAddBankAccountPressed,
+            },
+          }}
+        />
+      </SafeAreaView>
       <AlertModal
         isVisible={!isEmpty(transactionError?.toString())}
         title={i18n.t('common.lbl_oop')}

@@ -30,7 +30,7 @@ If have any issue while installing, can see [Issue While Installing Sub-Componen
 import { WalletService } from '@banking-component/wallet-component';
 
 WalletService.instance().initClients({
-  walletClient: createAuthorizedApiClient(wallet),
+  walletClient: createAuthorizedApiClient(wallet), // Your Axios authorized client Wallet Url
 });
 ```
 
@@ -152,11 +152,6 @@ const AccountsScreen = (props: AccountScreenProps) => {
 
   return (
     <>
-      <View style={styles.container}>
-        <NavigationBar
-          title={i18n.t('account.nav_account')}
-          style={{ opacity: navigationBarOpacity }}
-        />
         <SafeAreaView style={styles.container}>
           <WalletComponent
             ref={accountRef}
@@ -232,7 +227,6 @@ const AccountsScreen = (props: AccountScreenProps) => {
             }}
           />
         </SafeAreaView>
-      </View>
       <AlertModal
         isVisible={!isEmpty(errorUnlinkWallet?.toString())}
         title={i18n.t('common.lbl_oop')}
