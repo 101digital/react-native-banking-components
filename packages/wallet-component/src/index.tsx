@@ -44,7 +44,7 @@ const WalletComponent = forwardRef((props: WalletComponentProps, ref) => {
     clearLinkedWallet,
     fetchWallets,
   } = useContext(WalletContext);
-  const { colors } = useContext(ThemeContext);
+  const { colors, i18n } = useContext(ThemeContext);
   const currencyCode = getDefaultWallet()?.currencyCode ?? 'USD';
   const currentBalance = summary?.currentBalance ?? 0;
   const groupedWallets = getGroupWallets();
@@ -110,8 +110,16 @@ const WalletComponent = forwardRef((props: WalletComponentProps, ref) => {
         isVisible={
           !isLinkingWallet && linkedWallet !== undefined && !ConfirmSetPrimaryModal?.props?.disable
         }
-        title={LinkAccountSuccessModal?.props?.title ?? 'Account Added Succefully'}
-        confirmTitle={LinkAccountSuccessModal?.props?.confirmButonLabel ?? 'Continue'}
+        title={
+          LinkAccountSuccessModal?.props?.title ??
+          i18n?.t('wallet_component.lbl_link_successfully') ??
+          'Account Added Succefully'
+        }
+        confirmTitle={
+          LinkAccountSuccessModal?.props?.confirmButonLabel ??
+          i18n?.t('wallet_component.btn_continue') ??
+          'Continue'
+        }
         onClose={() => {
           clearLinkedWallet();
           fetchWallets();
@@ -120,6 +128,7 @@ const WalletComponent = forwardRef((props: WalletComponentProps, ref) => {
         isShowClose={LinkAccountSuccessModal?.props?.isShowClose}
         message={
           LinkAccountSuccessModal?.props?.message ??
+          i18n?.t('wallet_component.msg_link_successfully') ??
           'Your bank account is successfully linked to your profile.'
         }
         onConfirmed={() => {
@@ -235,8 +244,16 @@ const WalletComponent = forwardRef((props: WalletComponentProps, ref) => {
       />
       <AlertModal
         isVisible={isShowUnlink && !ConfirmUnlinkModal?.props?.disable}
-        title={ConfirmUnlinkModal?.props?.title ?? 'Unlink Bank Account'}
-        cancelTitle={ConfirmUnlinkModal?.props?.cancelButtonLabel ?? 'Cancel'}
+        title={
+          ConfirmUnlinkModal?.props?.title ??
+          i18n?.t('wallet_component.lbl_unlink_account') ??
+          'Unlink Bank Account'
+        }
+        cancelTitle={
+          ConfirmUnlinkModal?.props?.cancelButtonLabel ??
+          i18n?.t('wallet_component.btn_cancel') ??
+          'Cancel'
+        }
         confirmTitle={ConfirmUnlinkModal?.props?.confirmButonLabel}
         isFullWidth={ConfirmUnlinkModal?.props?.isFullWidth}
         isShowClose={ConfirmUnlinkModal?.props?.isShowClose}
@@ -249,6 +266,7 @@ const WalletComponent = forwardRef((props: WalletComponentProps, ref) => {
         }
         message={
           ConfirmUnlinkModal?.props?.message ??
+          i18n?.t('wallet_component.msg_unlink_account') ??
           'Are you sure? once unlinked, you cannot undo this action.'
         }
         onConfirmed={() => {
@@ -262,8 +280,16 @@ const WalletComponent = forwardRef((props: WalletComponentProps, ref) => {
       />
       <AlertModal
         isVisible={isShowPrimary && !ConfirmSetPrimaryModal?.props?.disable}
-        title={ConfirmSetPrimaryModal?.props?.title ?? 'Confirmation'}
-        cancelTitle={ConfirmSetPrimaryModal?.props?.cancelButtonLabel ?? 'Cancel'}
+        title={
+          ConfirmSetPrimaryModal?.props?.title ??
+          i18n?.t('wallet_component.lbl_confirmation') ??
+          'Confirmation'
+        }
+        cancelTitle={
+          ConfirmSetPrimaryModal?.props?.cancelButtonLabel ??
+          i18n?.t('wallet_component.btn_cancel') ??
+          'Cancel'
+        }
         confirmTitle={ConfirmSetPrimaryModal?.props?.confirmButonLabel}
         isFullWidth={ConfirmSetPrimaryModal?.props?.isFullWidth}
         isShowClose={ConfirmSetPrimaryModal?.props?.isShowClose}
@@ -276,6 +302,7 @@ const WalletComponent = forwardRef((props: WalletComponentProps, ref) => {
         }
         message={(
           ConfirmSetPrimaryModal?.props?.message ??
+          i18n?.t('wallet_component.msg_set_primary') ??
           'Are you sure you want to set %s as the primary account?.'
         ).replace('%s', selectedWallet?.walletName ?? '')}
         onConfirmed={() => {

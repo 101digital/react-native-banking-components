@@ -1,0 +1,50 @@
+{
+  "id": "wallet-component",
+  "name": "WalletComponent",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/101digital/react-native-banking-components.git",
+    "directory": "packages/wallet-component"
+  },
+  "config": {
+    "env": {
+      "development": {
+        "walletBaseUrl": "https://sandbox.101digital.io/wallet-service/1.0.0"
+      },
+      "staging": {
+        "walletBaseUrl": "https://sandbox.101digital.io/wallet-service/1.0.0"
+      },
+      "production": {
+        "walletBaseUrl": "https://api.101digital.io/wallet-service/v1.0"
+      }
+    }
+  },
+  "dependencies": [
+    {
+      "name": "https://github.com/101digital/react-native-theme-component.git"
+    },
+    {
+      "name": "https://gitpkg.now.sh/101digital/react-native-banking-components/packages/core"
+    }
+  ],
+  "templates": [],
+  "texts": {
+    "wallet_component": {
+      "lbl_link_successfully": "Account Added Succefully",
+      "msg_link_successfully": "Your bank account is successfully linked to your profile.",
+      "btn_continue": "Continue",
+      "lbl_unlink_account": "Unlink Bank Account",
+      "msg_unlink_account": "Are you sure? once unlinked, you cannot undo this action.",
+      "btn_cancel": "Cancel",
+      "lbl_confirmation": "Confirmation",
+      "msg_set_primary": "Are you sure you want to set %s as the primary account?.",
+      "btn_set_primary": "Set as primary account",
+      "btn_unlink_account": "Unlink bank account",
+      "btn_view_transaction": "View transactions",
+      "lbl_total_balance": "Total Available Balance",
+      "btn_link_bank_account": "Link Bank Account",
+      "lbl_set_as_primary": "Set as primary",
+      "lbl_primary": "Primary"
+    }
+  }
+}

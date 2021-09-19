@@ -14,7 +14,7 @@ export type LinkAccountComponentProps = {
 
 const LinkAccountComponent = (props: LinkAccountComponentProps) => {
   const { style, buttonLabel, onLinkAccountPressed, addIcon } = props;
-  const { colors } = useContext(ThemeContext);
+  const { colors, i18n } = useContext(ThemeContext);
 
   const styles = useMergeStyles(style);
 
@@ -25,7 +25,9 @@ const LinkAccountComponent = (props: LinkAccountComponentProps) => {
       onPress={onLinkAccountPressed}
     >
       {addIcon ?? <BPlusIcon width={20} height={20} color={colors.primaryColor} />}
-      <Text style={styles.buttonTextStyle}>{buttonLabel ?? 'Link Bank Account'}</Text>
+      <Text style={styles.buttonTextStyle}>
+        {buttonLabel ?? i18n?.t('wallet_component.btn_link_bank_account') ?? 'Link Bank Account'}
+      </Text>
     </TouchableOpacity>
   );
 };

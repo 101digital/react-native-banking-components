@@ -34,7 +34,7 @@ const WalletItemComponent = (props: WalletItemProps) => {
     bannerStartOffset,
     bannerEndOffset,
   } = props;
-  const { colors } = useContext(ThemeContext);
+  const { colors, i18n } = useContext(ThemeContext);
 
   const styles = useMergeStyles(style);
 
@@ -94,7 +94,9 @@ const WalletItemComponent = (props: WalletItemProps) => {
           {wallet.isDefaultWallet && (
             <View style={styles.primaryContainerStyle}>
               {tickIcon ?? <BCheckedIcon size={12} color={colors.primaryColor} />}
-              <Text style={styles.primaryTextStyle}>{primaryLabel ?? 'Primary'}</Text>
+              <Text style={styles.primaryTextStyle}>
+                {primaryLabel ?? i18n?.t('wallet_component.lbl_primary') ?? 'Primary'}
+              </Text>
             </View>
           )}
         </View>

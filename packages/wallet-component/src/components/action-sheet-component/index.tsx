@@ -1,10 +1,11 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useContext } from 'react';
 import { Dimensions, Platform, SafeAreaView, View, TouchableOpacity, Text } from 'react-native';
 import Modal from 'react-native-modal';
 import { BRoundedCloseIcon, BRoundedTickIcon, BTransactionIcon } from '../../assets/images';
 import { Wallet } from '@banking-component/core';
 import { ActionSheetStyle } from '../../types';
 import useMergeStyles from './styles';
+import { ThemeContext } from 'react-native-theme-component';
 
 const deviceHeight =
   Platform.OS === 'ios'
@@ -48,6 +49,7 @@ const ActionSheetComponent = (props: ActionSheetComponentProps) => {
     onPressViewTransactions,
   } = props;
   const styles = useMergeStyles(style);
+  const { i18n } = useContext(ThemeContext);
 
   return (
     <Modal
@@ -80,7 +82,9 @@ const ActionSheetComponent = (props: ActionSheetComponentProps) => {
                   {setPrimaryIcon ?? <BRoundedTickIcon width={20} height={20} />}
                 </View>
                 <Text style={styles.buttonTextStyle}>
-                  {setPrimaryLabel ?? 'Set as primary account'}
+                  {setPrimaryLabel ??
+                    i18n?.t('wallet_component.btn_set_primary') ??
+                    'Set as primary account'}
                 </Text>
               </TouchableOpacity>
             )}
@@ -95,7 +99,11 @@ const ActionSheetComponent = (props: ActionSheetComponentProps) => {
               <View style={styles.leftIconContainer}>
                 {unlinkIcon ?? <BRoundedCloseIcon width={20} height={20} />}
               </View>
-              <Text style={styles.buttonTextStyle}>{unlinkLabel ?? 'Unlink bank account'}</Text>
+              <Text style={styles.buttonTextStyle}>
+                {unlinkLabel ??
+                  i18n?.t('wallet_component.btn_unlink_account') ??
+                  'Unlink bank account'}
+              </Text>
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.buttonContainerStyle}
@@ -109,7 +117,9 @@ const ActionSheetComponent = (props: ActionSheetComponentProps) => {
                 {viewTransactionIcon ?? <BTransactionIcon width={20} height={20} />}
               </View>
               <Text style={styles.buttonTextStyle}>
-                {viewTransactionLabel ?? 'View transactions'}
+                {viewTransactionLabel ??
+                  i18n?.t('wallet_component.btn_view_transaction') ??
+                  'View transactions'}
               </Text>
             </TouchableOpacity>
             <TouchableOpacity
@@ -118,7 +128,9 @@ const ActionSheetComponent = (props: ActionSheetComponentProps) => {
               onPress={onCancelPress}
             >
               {cancelIcon}
-              <Text style={styles.cancelTextStyle}>{cancelLabel ?? 'CANCEL'}</Text>
+              <Text style={styles.cancelTextStyle}>
+                {cancelLabel ?? i18n?.t('wallet_component.btn_cancel')?.toUpperCase() ?? 'CANCEL'}
+              </Text>
             </TouchableOpacity>
           </View>
         ) : (

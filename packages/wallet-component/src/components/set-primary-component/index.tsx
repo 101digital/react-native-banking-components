@@ -1,8 +1,9 @@
 import { BTickIcon } from '../../assets/images';
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useContext } from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
 import { SetPrimaryComponentStyle } from '../../types';
 import useMergeStyles from './styles';
+import { ThemeContext } from 'react-native-theme-component';
 
 export type SetPrimaryComponentProps = {
   isSelected: boolean;
@@ -16,6 +17,7 @@ export type SetPrimaryComponentProps = {
 const SetPrimaryComponent = (props: SetPrimaryComponentProps) => {
   const { isSelected, style, setPrimaryLabel, tickIcon, onPressed, disabled } = props;
   const styles = useMergeStyles(style);
+  const { i18n } = useContext(ThemeContext);
 
   return (
     <TouchableOpacity
@@ -25,7 +27,9 @@ const SetPrimaryComponent = (props: SetPrimaryComponentProps) => {
       onPress={onPressed}
     >
       <View style={styles.checkBoxStyle}>{isSelected && (tickIcon ?? <BTickIcon />)}</View>
-      <Text style={styles.titleTextStyle}>{setPrimaryLabel ?? 'Set as primary'}</Text>
+      <Text style={styles.titleTextStyle}>
+        {setPrimaryLabel ?? i18n?.t('wallet_component.lbl_set_as_primary') ?? 'Set as primary'}
+      </Text>
     </TouchableOpacity>
   );
 };
