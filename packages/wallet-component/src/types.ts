@@ -19,6 +19,7 @@ export type WalletComponentProps = {
   Root: {
     style?: WalletComponentStyle;
     props: {
+      i18n?: any;
       formatCurrency: (amount: number, code: string) => string;
       scrollHandler?: {
         onScroll: (...args: any[]) => void;

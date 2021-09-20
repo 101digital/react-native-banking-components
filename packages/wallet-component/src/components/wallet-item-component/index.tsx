@@ -7,6 +7,7 @@ import { Wallet } from '@banking-component/core';
 import { ThemeContext, Image } from 'react-native-theme-component';
 
 export type WalletItemProps = {
+  i18n?: any;
   wallet: Wallet;
   onItemPressed?: (wallet: Wallet) => void;
   style?: WalletItemStyle;
@@ -33,8 +34,9 @@ const WalletItemComponent = (props: WalletItemProps) => {
     recommandBanner,
     bannerStartOffset,
     bannerEndOffset,
+    i18n,
   } = props;
-  const { colors, i18n } = useContext(ThemeContext);
+  const { colors } = useContext(ThemeContext);
 
   const styles = useMergeStyles(style);
 

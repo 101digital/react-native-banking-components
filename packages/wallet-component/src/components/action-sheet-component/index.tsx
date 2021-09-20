@@ -1,11 +1,10 @@
-import React, { ReactNode, useContext } from 'react';
+import React, { ReactNode } from 'react';
 import { Dimensions, Platform, SafeAreaView, View, TouchableOpacity, Text } from 'react-native';
 import Modal from 'react-native-modal';
 import { BRoundedCloseIcon, BRoundedTickIcon, BTransactionIcon } from '../../assets/images';
 import { Wallet } from '@banking-component/core';
 import { ActionSheetStyle } from '../../types';
 import useMergeStyles from './styles';
-import { ThemeContext } from 'react-native-theme-component';
 
 const deviceHeight =
   Platform.OS === 'ios'
@@ -13,6 +12,7 @@ const deviceHeight =
     : require('react-native-extra-dimensions-android').get('REAL_WINDOW_HEIGHT');
 
 export type ActionSheetComponentProps = {
+  i18n?: any;
   wallet?: Wallet;
   isVisible?: boolean;
   style?: ActionSheetStyle;
@@ -47,9 +47,9 @@ const ActionSheetComponent = (props: ActionSheetComponentProps) => {
     onUnlinkPress,
     onCancelPress,
     onPressViewTransactions,
+    i18n,
   } = props;
   const styles = useMergeStyles(style);
-  const { i18n } = useContext(ThemeContext);
 
   return (
     <Modal

@@ -1,10 +1,10 @@
-import React, { ReactNode, useContext } from 'react';
+import React, { ReactNode } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { ThemeContext } from 'react-native-theme-component';
 import { BalanceStyle } from '../../types';
 import mergeStyles from './styles';
 
 export type BalanceComponentProps = {
+  i18n?: any;
   balance: string;
   totalBalanceLabel?: string;
   style?: BalanceStyle;
@@ -12,8 +12,7 @@ export type BalanceComponentProps = {
 };
 
 const BalanceComponent = (props: BalanceComponentProps) => {
-  const { style, totalBalanceLabel, balance, rightIcon } = props;
-  const { i18n } = useContext(ThemeContext);
+  const { style, totalBalanceLabel, balance, rightIcon, i18n } = props;
 
   const styles = mergeStyles(style);
 

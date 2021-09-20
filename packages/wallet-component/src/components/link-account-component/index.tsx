@@ -6,6 +6,7 @@ import useMergeStyles from './styles';
 import { ThemeContext } from 'react-native-theme-component';
 
 export type LinkAccountComponentProps = {
+  i18n?: any;
   onLinkAccountPressed?: () => void;
   addIcon?: ReactNode;
   buttonLabel?: string;
@@ -13,8 +14,8 @@ export type LinkAccountComponentProps = {
 };
 
 const LinkAccountComponent = (props: LinkAccountComponentProps) => {
-  const { style, buttonLabel, onLinkAccountPressed, addIcon } = props;
-  const { colors, i18n } = useContext(ThemeContext);
+  const { style, buttonLabel, onLinkAccountPressed, addIcon, i18n } = props;
+  const { colors } = useContext(ThemeContext);
 
   const styles = useMergeStyles(style);
 

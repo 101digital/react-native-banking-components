@@ -29,7 +29,7 @@ const WalletComponent = forwardRef((props: WalletComponentProps, ref) => {
     LinkAccountSuccessModal,
   } = props;
   const containerStyle = Root?.style;
-  const { formatCurrency, scrollHandler } = Root.props;
+  const { formatCurrency, scrollHandler, i18n } = Root.props;
   const styles = useMergeStyles(containerStyle);
   const {
     summary,
@@ -44,7 +44,7 @@ const WalletComponent = forwardRef((props: WalletComponentProps, ref) => {
     clearLinkedWallet,
     fetchWallets,
   } = useContext(WalletContext);
-  const { colors, i18n } = useContext(ThemeContext);
+  const { colors } = useContext(ThemeContext);
   const currencyCode = getDefaultWallet()?.currencyCode ?? 'USD';
   const currentBalance = summary?.currentBalance ?? 0;
   const groupedWallets = getGroupWallets();
@@ -147,6 +147,7 @@ const WalletComponent = forwardRef((props: WalletComponentProps, ref) => {
           setSelectedPrimary(!isSelectedPrimary);
         }) ?? (
           <SetPrimaryComponent
+            i18n={i18n}
             isSelected={isSelectedPrimary}
             disabled={isEmpty(wallets)}
             style={LinkAccountSuccessModal?.style}
@@ -199,6 +200,7 @@ const WalletComponent = forwardRef((props: WalletComponentProps, ref) => {
                     isShowSwitch={isShowSwitch}
                     style={WalletItem?.style}
                     formatCurrency={formatCurrency}
+                    i18n={i18n}
                     {...WalletItem?.props}
                     {...WalletItem?.components}
                   />
@@ -212,6 +214,7 @@ const WalletComponent = forwardRef((props: WalletComponentProps, ref) => {
                 <BalanceComponent
                   balance={formatCurrency(currentBalance, currencyCode)}
                   style={Balance?.style}
+                  i18n={i18n}
                   {...Balance?.props}
                   {...Balance?.components}
                 />
@@ -220,6 +223,7 @@ const WalletComponent = forwardRef((props: WalletComponentProps, ref) => {
             ListFooterComponent={() => (
               <LinkAccountComponent
                 style={LinkAccountButton?.style}
+                i18n={i18n}
                 {...LinkAccountButton?.props}
                 {...LinkAccountButton?.components}
               />
@@ -239,6 +243,7 @@ const WalletComponent = forwardRef((props: WalletComponentProps, ref) => {
         wallet={selectedWallet}
         onCancelPress={hideActionSheet}
         style={ActionSheet?.style}
+        i18n={i18n}
         {...ActionSheet?.props}
         {...ActionSheet?.components}
       />

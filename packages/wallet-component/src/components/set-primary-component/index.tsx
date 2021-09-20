@@ -1,11 +1,11 @@
 import { BTickIcon } from '../../assets/images';
-import React, { ReactNode, useContext } from 'react';
+import React, { ReactNode } from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
 import { SetPrimaryComponentStyle } from '../../types';
 import useMergeStyles from './styles';
-import { ThemeContext } from 'react-native-theme-component';
 
 export type SetPrimaryComponentProps = {
+  i18n?: any;
   isSelected: boolean;
   disabled: boolean;
   style?: SetPrimaryComponentStyle;
@@ -15,9 +15,8 @@ export type SetPrimaryComponentProps = {
 };
 
 const SetPrimaryComponent = (props: SetPrimaryComponentProps) => {
-  const { isSelected, style, setPrimaryLabel, tickIcon, onPressed, disabled } = props;
+  const { isSelected, style, setPrimaryLabel, tickIcon, onPressed, disabled, i18n } = props;
   const styles = useMergeStyles(style);
-  const { i18n } = useContext(ThemeContext);
 
   return (
     <TouchableOpacity
