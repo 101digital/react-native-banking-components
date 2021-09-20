@@ -22,6 +22,7 @@ export interface TransationContextData {
   getTransactionPaging: (walletId?: string) => Paging | undefined;
   groupTransactions: (walletId?: string) => GroupedTransactions | undefined;
   getTransactionSummary: (walletId?: string) => TransactionSummary | undefined;
+  clearTransactions: () => void;
 }
 
 export const transactionDefaultValue: TransationContextData = {
@@ -34,6 +35,7 @@ export const transactionDefaultValue: TransationContextData = {
   getTransactionPaging: () => undefined,
   groupTransactions: () => undefined,
   getTransactionSummary: () => undefined,
+  clearTransactions: () => undefined,
 };
 
 export const TransactionContext = React.createContext<TransationContextData>(
@@ -199,6 +201,10 @@ export function useTransactionContextValue(): TransationContextData {
     [_transactions]
   );
 
+  const clearTransactions = useCallback(() => {
+    setTransactions([]);
+  }, []);
+
   return useMemo(
     () => ({
       transactions: _transactions,
@@ -211,6 +217,7 @@ export function useTransactionContextValue(): TransationContextData {
       getTransactionPaging,
       groupTransactions,
       getTransactionSummary,
+      clearTransactions,
     }),
     [_transactions, _transactionError, _isLoading, _isRefreshing]
   );

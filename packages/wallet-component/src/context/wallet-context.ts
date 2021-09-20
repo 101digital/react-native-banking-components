@@ -36,6 +36,7 @@ export interface WalletContextData {
   errorUpdatePrimary?: Error;
   errorLinkWallet?: Error;
   isUpdatingPrimary: boolean;
+  clearWallets: () => void;
 }
 
 export const walletDefaultValue: WalletContextData = {
@@ -55,6 +56,7 @@ export const walletDefaultValue: WalletContextData = {
   clearLinkedWallet: () => null,
   clearWalletErrors: () => null,
   clearUnlinkedWallet: () => null,
+  clearWallets: () => null,
 };
 
 export const WalletContext =
@@ -224,6 +226,10 @@ export function useWalletContextValue(): WalletContextData {
     setUnLinkedWallet(undefined);
   }, []);
 
+  const clearWallets = useCallback(() => {
+    setWallets([]);
+  }, []);
+
   return useMemo(
     () => ({
       wallets: _wallets,
@@ -249,6 +255,7 @@ export function useWalletContextValue(): WalletContextData {
       clearWalletErrors,
       clearUnlinkedWallet,
       unlinkedWallet: _unLinkedWallet,
+      clearWallets,
     }),
     [
       _wallets,
