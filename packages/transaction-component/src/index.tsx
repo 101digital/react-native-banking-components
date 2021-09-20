@@ -23,7 +23,14 @@ const TransactionComponent = (props: TransactionComponentProps) => {
     TransactionItem,
     EmptyWallet,
   } = props;
-  const { initWallet, formatCurrency, aggregatedWallets, isLoadingWallets, wallets } = Root?.props;
+  const {
+    initWallet,
+    formatCurrency,
+    aggregatedWallets,
+    isLoadingWallets,
+    wallets,
+    i18n,
+  } = Root?.props;
   const containerStyle = Root?.style;
 
   const { carouselItemWidth, carouselWidth } = CarouselItem.props;
@@ -107,6 +114,7 @@ const TransactionComponent = (props: TransactionComponentProps) => {
           renderItem={({ item }: any) => {
             return (
               <WalletCarouselComponent
+                i18n={i18n}
                 style={CarouselItem.style}
                 wallet={item}
                 formatCurrency={formatCurrency}
@@ -146,6 +154,7 @@ const TransactionComponent = (props: TransactionComponentProps) => {
           wallet={currentWallet}
           emptyPlaceholder={
             <EmptyTransactionComponent
+              i18n={i18n}
               style={EmptyTransaction?.style}
               {...EmptyTransaction?.props}
               {...EmptyTransaction?.components}

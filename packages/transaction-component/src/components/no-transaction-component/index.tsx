@@ -6,14 +6,14 @@ import { EmptyTransactionStyle } from '../../types';
 import useMergeStyles from './styles';
 
 export type EmptyTransactionProps = {
+  i18n?: any;
   emptyIcon?: ReactNode;
   message?: string;
   style?: EmptyTransactionStyle;
 };
 
 const EmptyTransactionComponent = (props: EmptyTransactionProps) => {
-  const { emptyIcon, message, style } = props;
-  const { i18n } = useContext(ThemeContext);
+  const { emptyIcon, message, style, i18n } = props;
 
   const styles: EmptyTransactionStyle = useMergeStyles(style);
 

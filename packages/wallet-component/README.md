@@ -54,7 +54,28 @@ export default App;
 
 - All icons, images and texts are provided by default. You can use your custom by passing them as a props inside each component
 
-- In order to do multiple languages, you need to pass `i18n` (`i18n` should be configurated in the app level) into `WalletComponent` as a root props. And then, you have to copy and paste all attribute of `wallet_component` in [texts](wallet-component-data.json) into your app locale file. You can also change text value, but DON'T change the key.
+- In order to do multiple languages, you need to pass `i18n` (`i18n` should be configurated in the app level) into `WalletComponent` as a root props. And then, you have to copy and paste all attributes of `wallet_component` in [texts](wallet-component-data.json) into your app locale file. You can also change text value, but DON'T change the key.
+
+- Example
+
+```javascript
+const TestScreen = () => {
+  return (
+    <View>
+      <WalletComponent
+        Root={{
+          props: {
+            i18n: i18n,
+            formatCurrency: currencyFormatter,
+          },
+        }}
+      />
+    </View>
+  );
+};
+
+export default TestScreen;
+```
 
 ## API Reference
 

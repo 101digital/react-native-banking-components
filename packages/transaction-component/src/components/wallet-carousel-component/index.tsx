@@ -8,6 +8,7 @@ import { CarouselItemStyle } from '../../types';
 import useMergeStyles from './styles';
 
 export type WalletCarouselItemProps = {
+  i18n?: any;
   wallet: Wallet;
   style?: CarouselItemStyle;
   tickIcon?: ReactNode;
@@ -34,6 +35,7 @@ const WalletCarouselComponent = (props: WalletCarouselItemProps) => {
     moneyOutLabel,
     formatCurrency,
     renderSummary,
+    i18n,
   } = props;
   const { getTransactionSummary } = useContext(TransactionContext);
   const { colors } = useContext(ThemeContext);
@@ -76,7 +78,9 @@ const WalletCarouselComponent = (props: WalletCarouselItemProps) => {
             {wallet.isDefaultWallet && (
               <View style={styles.primaryWrap}>
                 {tickIcon ?? <BCheckedIcon size={12} color={colors.primaryColor} />}
-                <Text style={styles.primaryTextStyle}>{primaryLabel ?? 'Primary'}</Text>
+                <Text style={styles.primaryTextStyle}>
+                  {primaryLabel ?? i18n?.t('transaction_component.lbl_primary') ?? 'Primary'}
+                </Text>
               </View>
             )}
           </View>
@@ -84,14 +88,18 @@ const WalletCarouselComponent = (props: WalletCarouselItemProps) => {
       </View>
       {renderSummary?.(summary) ?? (
         <>
-          <Text style={styles.summaryTextStyle}>{summaryLabel ?? 'Summary'}</Text>
+          <Text style={styles.summaryTextStyle}>
+            {summaryLabel ?? i18n?.t('transaction_component.lbl_summary') ?? 'Summary'}
+          </Text>
           <View style={styles.summaryWrapper}>
             <View style={styles.moneyBoxWrapper}>
               <View style={styles.moneyInWrapStyle}>
                 {moneyInIcon ?? <BUpIcon width={18} height={40} color='#1DBF68' />}
               </View>
               <View style={styles.moneyWrapper}>
-                <Text style={styles.moneyLabelTextStyle}>{moneyInLabel ?? 'Money In'}</Text>
+                <Text style={styles.moneyLabelTextStyle}>
+                  {moneyInLabel ?? i18n?.t('transaction_component.lbl_money_in') ?? 'Money In'}
+                </Text>
                 <Text
                   adjustsFontSizeToFit
                   minimumFontScale={0.1}
@@ -108,7 +116,9 @@ const WalletCarouselComponent = (props: WalletCarouselItemProps) => {
                 {moneyOutIcon ?? <BDownIcon width={18} height={40} color='#F03E46' />}
               </View>
               <View style={styles.moneyWrapper}>
-                <Text style={styles.moneyLabelTextStyle}>{moneyOutLabel ?? 'Money Out'}</Text>
+                <Text style={styles.moneyLabelTextStyle}>
+                  {moneyOutLabel ?? i18n?.t('transaction_component.lbl_money_out') ?? 'Money Out'}
+                </Text>
                 <Text
                   adjustsFontSizeToFit
                   minimumFontScale={0.1}

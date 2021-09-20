@@ -11,6 +11,7 @@ export type TransactionComponentProps = {
   Root: {
     style?: TransactionComponentStyle;
     props: {
+      i18n?: any;
       initWallet?: Wallet;
       wallets: Wallet[];
       aggregatedWallets: Wallet[];
