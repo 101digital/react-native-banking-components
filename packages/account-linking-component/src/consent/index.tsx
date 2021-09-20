@@ -8,7 +8,7 @@ import { ConsentComponentProps } from './types';
 
 const ConsentComponent = (props: ConsentComponentProps) => {
   const { Root, ShareContent, Permission } = props;
-  const bank = Root.props.bank;
+  const { bank, i18n, headingLabel } = Root.props;
 
   const styles = useMergeStyles(Root?.style);
 
@@ -18,18 +18,27 @@ const ConsentComponent = (props: ConsentComponentProps) => {
     <View style={styles.containerStyle}>
       <View style={styles.subContainer}>
         <Text style={styles.headingTextStyle}>
-          {`${bank.name} will share below data with us when you link your account`}
+          {(
+            headingLabel ??
+            i18n?.t('consent_component.msg_share_consent_data') ??
+            '%s will share below data with us when you link your account'
+          ).replace('%s', bank.name)}
         </Text>
-        <ShareContentComponent style={ShareContent?.style} {...ShareContent?.props} />
+        <ShareContentComponent i18n={i18n} style={ShareContent?.style} {...ShareContent?.props} />
         <PermissionComponent
           style={Permission?.style}
+          i18n={i18n}
           {...Permission?.components}
           {...Permission?.props}
         />
       </View>
       <View style={styles.ctaButtonWrapper}>
         <Button
-          label={Root.props.ctaButtonLabel ?? 'CONTINUE'}
+          label={
+            Root.props.ctaButtonLabel ??
+            i18n?.t('consent_component.btn_continue')?.toUpperCase() ??
+            'CONTINUE'
+          }
           onPress={() => {
             getConsent(bank.id);
             Root.props.onContinue();

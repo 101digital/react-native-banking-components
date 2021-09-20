@@ -9,10 +9,10 @@ import { useKeyboard } from './components/keyboard';
 
 const SelectBankComponent = (props: SelectBankComponentProps) => {
   const { Root, SearchBar, BankItem } = props;
-
   const styles = useMergeStyles(Root?.style);
   const { banks } = useContext(AccountLinkingContext);
   const _numColumns = Root?.props?.numberColumns ?? 2;
+  const i18n = Root?.props?.i18n;
   const [displayBanks, setDisplayBanks] = useState<Bank[]>(banks);
 
   const keyboardHeight = useKeyboard();
@@ -33,7 +33,9 @@ const SelectBankComponent = (props: SelectBankComponentProps) => {
     <View style={styles.containerStyle}>
       {Root?.components?.renderHeading?.() ?? (
         <Text style={styles.headingTextStyle}>
-          {Root?.props?.headingLabel ?? 'Please select the banking provider you are\nbanking with'}
+          {Root?.props?.headingLabel ??
+            i18n?.t('select_bank_component.lbl_heading') ??
+            'Please select the banking provider you are\nbanking with'}
         </Text>
       )}
       <SearchBarComponent

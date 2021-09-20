@@ -5,6 +5,7 @@ import { SearchBarComponentStyles } from '../../types';
 import useMergeStyles from './styles';
 
 export type SearchBarComponentProps = {
+  i18n?: any;
   placeholder?: string;
   leftIcon?: ReactNode;
   rightIcon?: ReactNode;
@@ -13,21 +14,21 @@ export type SearchBarComponentProps = {
 };
 
 const SearchBarComponent = (props: SearchBarComponentProps) => {
-  const { placeholder, style, onChangedText, leftIcon, rightIcon } = props;
+  const { placeholder, style, onChangedText, leftIcon, rightIcon, i18n } = props;
 
   const styles = useMergeStyles(style);
   return (
     <View style={styles.containerStyle}>
       {leftIcon}
       <TextInput
-        clearButtonMode="while-editing"
-        autoCapitalize="none"
-        placeholderTextColor="#3C3E4F"
-        placeholder={placeholder ?? 'Search'}
+        clearButtonMode='while-editing'
+        autoCapitalize='none'
+        placeholderTextColor='#3C3E4F'
+        placeholder={placeholder ?? i18n?.('select_bank_component.plh_search_bank') ?? 'Search'}
         style={styles.textInputStyle}
         onChangeText={onChangedText}
-        returnKeyType="search"
-        textAlignVertical="center"
+        returnKeyType='search'
+        textAlignVertical='center'
       />
       {rightIcon}
     </View>

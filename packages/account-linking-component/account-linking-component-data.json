@@ -1,0 +1,62 @@
+{
+  "id": "account-linking-component",
+  "name": "Account Linking Component",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/101digital/react-native-banking-components.git",
+    "directory": "packages/wallet-component"
+  },
+  "config": {
+    "env": {
+      "development": {
+        "openBankAispBaseUrl": "https://sandbox.101digital.io/open-banking-aisp-service/1.0.0",
+        "openBankAuthBaseUrl": "https://sandbox.101digital.io/open-banking-auth-service/1.0.0"
+      },
+      "staging": {
+        "openBankAispBaseUrl": "https://sandbox.101digital.io/open-banking-aisp-service/1.0.0",
+        "openBankAuthBaseUrl": "https://sandbox.101digital.io/open-banking-auth-service/1.0.0"
+      },
+      "production": {
+        "openBankAispBaseUrl": "https://api.101digital.io/open-banking-aisp-service/v1.0",
+        "openBankAuthBaseUrl": "https://api.101digital.io/open-banking-auth-service/v1.0"
+      }
+    }
+  },
+  "dependencies": [
+    {
+      "name": "https://github.com/101digital/react-native-theme-component.git"
+    },
+    {
+      "name": "https://gitpkg.now.sh/101digital/react-native-banking-components/packages/core"
+    },
+    {
+      "name": "https://github.com/react-native-webview/react-native-webview",
+      "version": "11.13.0"
+    }
+  ],
+  "templates": [],
+  "texts": {
+    "consent_component": {
+      "msg_share_consent_data": "%s will share below data with us when you link your account",
+      "btn_continue": "Continue",
+      "msg_permission_provider": "By continuing you will be redirected to your bank provider to allow access to your account",
+      "lbl_what_will_share": "What you will share",
+      "lbl_account_details": "Account details",
+      "lbl_transactions": "Transactions",
+      "lbl_account_balance": "Account balance"
+    },
+    "link_bank_component": {
+      "lbl_heading": "Select the account to share information with\n101 Digital PTE LTD",
+      "btn_continue": "Continue",
+      "lbl_access_info": "101 Digital PTE LTD will have access to the below Information",
+      "lbl_account_details": "Account details",
+      "lbl_transactions": "Transactions",
+      "lbl_account_balance": "Account balance",
+      "msg_empty_account": "No Accounts Found"
+    },
+    "select_bank_component": {
+      "lbl_heading": "Please select the banking provider you are\nbanking with",
+      "plh_search_bank": "Search"
+    }
+  }
+}

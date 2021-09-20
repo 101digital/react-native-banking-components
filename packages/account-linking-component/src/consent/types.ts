@@ -6,6 +6,7 @@ export type ConsentComponentProps = {
   Root: {
     style?: ConsentComponentStyles;
     props: {
+      i18n?: any;
       headingLabel?: string;
       ctaButtonLabel?: string;
       bank: Bank;

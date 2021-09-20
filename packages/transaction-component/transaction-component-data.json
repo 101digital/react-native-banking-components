@@ -1,6 +1,6 @@
 {
   "id": "transaction-component",
-  "name": "TransactionComponent",
+  "name": "Transaction Component",
   "repository": {
     "type": "git",
     "url": "https://github.com/101digital/react-native-banking-components.git",
@@ -34,7 +34,9 @@
       "lbl_primary": "Primary",
       "lbl_summary": "Summary",
       "lbl_money_in": "Money In",
-      "lbl_money_out": "Money Out"
+      "lbl_money_out": "Money Out",
+      "msg_no_wallet": "No Bank Account Linked",
+      "btn_link_bank_account": "Link Bank Account"
     }
   }
 }

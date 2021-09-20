@@ -10,7 +10,7 @@ import { LinkBankComponentProps } from './types';
 const LinkBankComponent = (props: LinkBankComponentProps) => {
   const { Root, EmptyAccount, AccountItem, AccessInfomation } = props;
   const styles = useMergeStyles(Root?.style);
-  const { bank, consentId, headingLabel, onLinkAccount, isLinkingAccount } = Root.props;
+  const { bank, consentId, headingLabel, onLinkAccount, isLinkingAccount, i18n } = Root.props;
   const { accounts, isLoadingAccounts, clearAccounts, clearConsentData } = useContext(
     AccountLinkingContext
   );
@@ -34,6 +34,7 @@ const LinkBankComponent = (props: LinkBankComponentProps) => {
     }
     return (
       <EmptyAccountComponent
+        i18n={i18n}
         style={EmptyAccount?.style}
         {...EmptyAccount?.props}
         {...EmptyAccount?.components}
@@ -69,6 +70,7 @@ const LinkBankComponent = (props: LinkBankComponentProps) => {
             Root.components?.renderHeading?.() ?? (
               <Text style={styles.headingTextStyle}>
                 {headingLabel ??
+                  i18n?.t('link_bank_component.lbl_heading') ??
                   'Select the account to share information with\n101 Digital PTE LTD'}
               </Text>
             )
@@ -77,7 +79,11 @@ const LinkBankComponent = (props: LinkBankComponentProps) => {
         ListFooterComponent={() => {
           return (
             AccessInfomation?.components?.renderContent?.() ?? (
-              <AccessInfoComponent style={AccessInfomation?.style} {...AccessInfomation?.props} />
+              <AccessInfoComponent
+                i18n={i18n}
+                style={AccessInfomation?.style}
+                {...AccessInfomation?.props}
+              />
             )
           );
         }}
@@ -86,7 +92,11 @@ const LinkBankComponent = (props: LinkBankComponentProps) => {
         <Button
           disabled={!currentAccount}
           isLoading={isLinkingAccount}
-          label={Root.props.ctaButtonLabel ?? 'CONTINUE'}
+          label={
+            Root.props.ctaButtonLabel ??
+            i18n?.t('link_bank_component.btn_continue')?.toUpperCase() ??
+            'CONTINUE'
+          }
           onPress={() => {
             if (currentAccount) {
               onLinkAccount?.(bank.id, currentAccount?.accountId, consentId);

@@ -5,6 +5,7 @@ import { BankLoginComponentProps } from './types';
 import styles from './styles';
 import { ThemeContext } from 'react-native-theme-component';
 import { AccountLinkingContext } from '../../src/context/account-linking-context';
+import { getUrlParameter } from '@banking-component/core';
 
 const BankLoginComponent = (props: BankLoginComponentProps) => {
   const { containerStyle, bank, loadingIndicator, onConfirmed } = props;
@@ -34,13 +35,6 @@ const BankLoginComponent = (props: BankLoginComponentProps) => {
       return false;
     }
     return true;
-  };
-
-  const getUrlParameter = (url: string, name: string) => {
-    name = name.replace(/\\[[]/, '\\[').replace(/[\]]/, '\\]');
-    var regex = new RegExp('[\\?&#]' + name + '=([^&#]*)');
-    var results = regex.exec(url);
-    return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
   };
 
   return (

@@ -115,15 +115,8 @@ export function useWalletContextValue(): WalletContextData {
       try {
         setIsUnlinking(true);
         await walletService.unlinkBankWallet(wallet.walletId);
-        const newWallets = [..._wallets];
-        const removedWalletIndex = newWallets.findIndex(
-          (wallets) => wallets.walletId === wallet.walletId
-        );
-        if (removedWalletIndex > -1) {
-          newWallets.splice(removedWalletIndex, 1);
-        }
         setUnLinkedWallet(wallet);
-        setWallets(newWallets);
+        fetchWallets();
         setIsUnlinking(false);
         showMessage({
           message: 'Account successfully removed',

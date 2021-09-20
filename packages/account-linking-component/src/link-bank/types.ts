@@ -6,6 +6,7 @@ export type LinkBankComponentProps = {
   Root: {
     style?: LinkBankComponentStyles;
     props: {
+      i18n?: any;
       headingLabel?: string;
       bank: Bank;
       consentId: string;

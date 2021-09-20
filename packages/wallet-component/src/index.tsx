@@ -172,6 +172,10 @@ const WalletComponent = forwardRef((props: WalletComponentProps, ref) => {
       <>
         <View style={styles.listContainerStyle}>{Root.components?.headerTitle}</View>
         <BNoWalletComponent
+          message={EmptyWallet?.props.message ?? i18n?.t('wallet_component.msg_no_wallet')}
+          buttonLabel={
+            EmptyWallet?.props.buttonLabel ?? i18n?.t('wallet_component.btn_link_bank_account')
+          }
           style={EmptyWallet?.style}
           {...EmptyWallet?.props}
           {...EmptyWallet?.components}
