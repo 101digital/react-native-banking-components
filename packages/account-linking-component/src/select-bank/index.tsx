@@ -40,6 +40,7 @@ const SelectBankComponent = (props: SelectBankComponentProps) => {
       )}
       <SearchBarComponent
         onChangedText={handleSearchBank}
+        i18n={i18n}
         {...SearchBar?.props}
         {...SearchBar?.components}
       />

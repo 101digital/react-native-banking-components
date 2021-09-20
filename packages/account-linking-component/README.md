@@ -66,11 +66,24 @@ export default App;
 const TestScreen = () => {
   return (
     <View>
-      <WalletComponent
+      <ConsentComponent
         Root={{
           props: {
             i18n: i18n,
-            formatCurrency: currencyFormatter,
+          },
+        }}
+      />
+      <LinkBankComponent
+        Root={{
+          props: {
+            i18n: i18n,
+          },
+        }}
+      />
+      <SelectBankComponent
+        Root={{
+          props: {
+            i18n: i18n,
           },
         }}
       />
