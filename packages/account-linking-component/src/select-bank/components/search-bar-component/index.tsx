@@ -24,7 +24,7 @@ const SearchBarComponent = (props: SearchBarComponentProps) => {
         clearButtonMode='while-editing'
         autoCapitalize='none'
         placeholderTextColor='#3C3E4F'
-        placeholder={placeholder ?? i18n?.('select_bank_component.plh_search_bank') ?? 'Search'}
+        placeholder={placeholder ?? i18n?.t('select_bank_component.plh_search_bank') ?? 'Search'}
         style={styles.textInputStyle}
         onChangeText={onChangedText}
         returnKeyType='search'
