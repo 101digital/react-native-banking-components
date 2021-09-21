@@ -59,7 +59,7 @@ const WalletComponent = forwardRef((props: WalletComponentProps, ref) => {
     if (!linkedWallet) {
       setTimeout(() => {
         setSelectedPrimary(true);
-      }, 500);
+      }, 300);
     }
   }, [linkedWallet]);
 
