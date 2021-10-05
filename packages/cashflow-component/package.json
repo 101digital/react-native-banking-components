@@ -22,6 +22,7 @@
     "@types/react-native": "^0.65.0",
     "react": "^17.0.2",
     "react-native": "^0.65.1",
+    "react-native-charts-wrapper": "^0.5.7",
     "react-native-svg": "^12.1.1",
     "react-native-theme-component": "https://github.com/101digital/react-native-theme-component.git",
     "typescript": "^4.4.2"
@@ -31,6 +32,7 @@
     "react": "^17.0.2",
     "react-native": "^0.65.1",
     "react-native-svg": "^12.1.1",
-    "react-native-theme-component": "https://github.com/101digital/react-native-theme-component.git"
+    "react-native-theme-component": "https://github.com/101digital/react-native-theme-component.git",
+    "react-native-charts-wrapper": "^0.5.7"
   }
 }

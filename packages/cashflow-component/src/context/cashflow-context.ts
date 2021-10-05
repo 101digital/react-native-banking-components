@@ -1,7 +1,6 @@
 import { FinancialService } from './../services/financial-service';
-import { isEmpty } from './../../../core/src/helpers';
-import { Cashflow } from './../types';
 import React, { useCallback, useMemo, useState } from 'react';
+import { Cashflow, isEmpty } from '@banking-component/core';
 
 export interface CashflowContextData {
   cashflow?: Cashflow;
