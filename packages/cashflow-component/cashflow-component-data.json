@@ -1,0 +1,32 @@
+{
+  "id": "cashflow-component",
+  "name": "Cashflow Component",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/101digital/react-native-banking-components.git",
+    "directory": "packages/cashflow-component"
+  },
+  "config": {
+    "env": {
+      "development": {
+        "financialBaseUrl": "https://sandbox.101digital.io/financial-profile-service"
+      },
+      "staging": {
+        "financialBaseUrl": "https://sandbox.101digital.io/financial-profile-service"
+      },
+      "production": {
+        "financialBaseUrl": "https://sandbox.101digital.io/financial-profile-service"
+      }
+    }
+  },
+  "dependencies": [
+    {
+      "name": "https://github.com/101digital/react-native-theme-component.git"
+    },
+    {
+      "name": "https://gitpkg.now.sh/101digital/react-native-banking-components/packages/core"
+    }
+  ],
+  "templates": [],
+  "texts": {}
+}
