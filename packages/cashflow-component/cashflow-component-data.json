@@ -9,13 +9,13 @@
   "config": {
     "env": {
       "development": {
-        "financialBaseUrl": "https://sandbox.101digital.io/financial-profile-service"
+        "financialBaseUrl": "https://sandbox.101digital.io/financial-profile-service/1.0.0"
       },
       "staging": {
-        "financialBaseUrl": "https://sandbox.101digital.io/financial-profile-service"
+        "financialBaseUrl": "https://sandbox.101digital.io/financial-profile-service/1.0.0"
       },
       "production": {
-        "financialBaseUrl": "https://sandbox.101digital.io/financial-profile-service"
+        "financialBaseUrl": "https://sandbox.101digital.io/financial-profile-service/1.0.0"
       }
     }
   },

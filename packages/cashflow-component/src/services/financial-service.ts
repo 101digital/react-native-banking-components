@@ -26,48 +26,26 @@ export class FinancialService {
 
   getCashFlow = async (
     walletIds: string[],
-    periodFrequence: string,
+    periodFrequency: string,
     baseCurrencyCode: string,
     fromDateTime: string,
     toDateTime?: string,
     sort?: string
   ) => {
-    return `{
-            "fromDateTime": "2021-01-01T00:00:00",
-            "toDateTime": "2021-04-30T23:59:59",
-            "periodFrequence": "weekly",
-            "baseCurrencyCode": "Not used now",
-            "totalClosingAvailableBalance": 5000000,
-            "totalClosingCurrentBalance": 6000000,
-            "totalPendingMoneyIn": 10000,
-            "totalPendingMoneyOut": 10000,
-            "totalMoneyIn": 100000,
-            "totalMoneyOut": 200000,
-            "totalOpeningAvailableBalance": 6000000,
-            "totalOpeningCurrentBalance": 7000000,
-            "cashflowPeriods": [
-              {
-                "periodNumber": 1,
-                "totalPendingMoneyIn": 5000,
-                "totalPendingMoneyOut": 5000,
-                "totalMoneyIn": 50000,
-                "totalMoneyOut": 50000
-              },
-              {
-                "periodNumber": 2,
-                "totalPendingMoneyIn": 0,
-                "totalPendingMoneyOut": 0,
-                "totalMoneyIn": 0,
-                "totalMoneyOut": 50000
-              },
-              {
-                "periodNumber": 3,
-                "totalPendingMoneyIn": 0,
-                "totalPendingMoneyOut": 0,
-                "totalMoneyIn": 50000,
-                "totalMoneyOut": 100000
-              }
-            ]
-          }`;
+    if (this._financialClient) {
+      const response = await this._financialClient.get('cashflows', {
+        params: {
+          walletIds,
+          periodFrequency,
+          baseCurrencyCode,
+          fromDateTime,
+          toDateTime,
+          sort: sort ?? 'walletId',
+        },
+      });
+      return response.data;
+    } else {
+      throw new Error('Financial Client is not registered');
+    }
   };
 }
