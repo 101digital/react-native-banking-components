@@ -24,8 +24,8 @@ export class FinancialService {
     this._financialClient = clients.financialClient;
   };
 
-  getCashFlow = async (
-    walletIds: string[],
+  getCashflow = async (
+    walletIds: string,
     periodFrequency: string,
     baseCurrencyCode: string,
     fromDateTime: string,

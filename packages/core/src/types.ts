@@ -141,9 +141,11 @@ export interface Cashflow {
 }
 
 export interface CashflowPeriod {
-  periodNumber: number;
+  period: number;
   totalPendingMoneyIn: number;
   totalPendingMoneyOut: number;
   totalMoneyIn: number;
   totalMoneyOut: number;
+  from: string;
+  to: string;
 }

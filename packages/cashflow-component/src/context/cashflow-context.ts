@@ -8,7 +8,7 @@ export interface CashflowContextData {
   loadCashflowError?: Error;
   clearCashflowError: () => void;
   fetchCashflow: (
-    walletIds: string[],
+    walletIds: string,
     periodFrequence: string,
     baseCurrencyCode: string,
     fromDateTime: string,
@@ -39,7 +39,7 @@ export function useCashflowContextValue(): CashflowContextData {
 
   const fetchCashflow = useCallback(
     async (
-      walletIds: string[],
+      walletIds: string,
       periodFrequence: string,
       baseCurrencyCode: string,
       fromDateTime: string,
@@ -51,7 +51,7 @@ export function useCashflowContextValue(): CashflowContextData {
       }
       try {
         setIsLoadingCashflow(true);
-        const resp = await FinancialService.instance().getCashFlow(
+        const { data } = await FinancialService.instance().getCashflow(
           walletIds,
           periodFrequence,
           baseCurrencyCode,
@@ -60,7 +60,7 @@ export function useCashflowContextValue(): CashflowContextData {
           sort
         );
         setIsLoadingCashflow(false);
-        setCashflow(JSON.parse(resp));
+        setCashflow(data);
       } catch (error) {
         setIsLoadingCashflow(false);
         setCashflowError(error as Error);
