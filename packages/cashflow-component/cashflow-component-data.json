@@ -28,5 +28,19 @@
     }
   ],
   "templates": [],
-  "texts": {}
+  "texts": {
+    "cash_flow": {
+      "lbl_all_accounts": "All Accounts",
+      "btn_apply": "Apply",
+      "lbl_filter": "Filter By:",
+      "lbl_money_in": "Money In",
+      "lbl_money_out": "Money Out",
+      "lbl_today": "Today",
+      "lbl_1_month": "1 Month",
+      "lbl_3_months": "3 Months",
+      "lbl_6_months": "6 Months",
+      "lbl_1_year": "1 Year",
+      "lbl_custom_date": "Custom date"
+    }
+  }
 }
