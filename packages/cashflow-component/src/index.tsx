@@ -222,7 +222,9 @@ const CashflowComponent = (props: CashflowComponentProps) => {
             style={chartStyles.previousButtonStyle}
             onPress={handlePrevious}
           >
-            <PreviousIcon color={colors.primaryColor} />
+            {Chart?.components?.previousIcon ?? (
+              <PreviousIcon size={28} color={colors.primaryColor} />
+            )}
           </TouchableOpacity>
           <BarChart
             data={barData}
@@ -274,7 +276,7 @@ const CashflowComponent = (props: CashflowComponentProps) => {
               style={chartStyles.nextButtonStyle}
               onPress={handleNext}
             >
-              <NextIcon color={colors.primaryColor} />
+              {Chart?.components?.nextIcon ?? <NextIcon size={28} color={colors.primaryColor} />}
             </TouchableOpacity>
           )}
         </View>
