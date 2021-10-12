@@ -13,9 +13,9 @@ export type LinkBankComponentProps = {
       ctaButtonLabel?: string;
       onLinkAccount?: (
         bankId: string,
-        accountIds: string[],
         consentId: string,
-        async: boolean
+        async: boolean,
+        accountIds: string[]
       ) => void;
       isLinkingAccount?: boolean;
     };

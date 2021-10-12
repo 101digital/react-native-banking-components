@@ -108,9 +108,9 @@ const LinkBankComponent = (props: LinkBankComponentProps) => {
             if (!isEmpty(currentAccounts)) {
               onLinkAccount?.(
                 bank.id,
-                currentAccounts.map((acc) => acc.accountId),
                 consentId,
-                !bank.isInternalVirtualBank
+                !bank.isInternalVirtualBank,
+                currentAccounts.map((acc) => acc.accountId)
               );
             }
           }}
