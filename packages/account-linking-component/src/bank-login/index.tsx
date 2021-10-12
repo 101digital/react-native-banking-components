@@ -8,7 +8,7 @@ import { AccountLinkingContext } from '../../src/context/account-linking-context
 import { getUrlParameter } from '@banking-component/core';
 
 const BankLoginComponent = (props: BankLoginComponentProps) => {
-  const { containerStyle, bank, loadingIndicator, onConfirmed } = props;
+  const { containerStyle, bank, loadingIndicator, onConfirmed, onLinked } = props;
   const { consentData, isLoadingConsent, confirmConsent, getAccounts } = useContext(
     AccountLinkingContext
   );
@@ -28,8 +28,12 @@ const BankLoginComponent = (props: BankLoginComponentProps) => {
       const code = getUrlParameter(url, 'code');
       confirmConsent(bank.id, consentData.accountRequestId, code).then((consentId) => {
         if (consentId) {
-          getAccounts(consentId);
-          onConfirmed(consentId);
+          if (!bank.isInternalVirtualBank) {
+            onLinked(consentId);
+          } else {
+            getAccounts(consentId);
+            onConfirmed(consentId);
+          }
         }
       });
       return false;

@@ -49,16 +49,18 @@ export class WalletService {
 
   linkBankAccount = async (
     bankId: string,
-    accountId: string,
-    consentId: string
+    accountIds: string,
+    consentId: string,
+    async: boolean
   ) => {
     if (this._walletClient) {
       const response = await this._walletClient.post(
         'wallets/link-bank-accounts',
         {
           bankId,
-          accountId,
+          accountIds,
           consentId,
+          async,
         }
       );
       return response.data;

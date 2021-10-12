@@ -15,7 +15,7 @@ const LinkBankComponent = (props: LinkBankComponentProps) => {
     AccountLinkingContext
   );
   const { colors } = useContext(ThemeContext);
-  const [currentAccount, setCurrentAccount] = useState<BankAccount | undefined>(undefined);
+  const [currentAccounts, setCurrentAccounts] = useState<BankAccount[]>([]);
 
   useEffect(() => {
     return () => {
@@ -50,13 +50,20 @@ const LinkBankComponent = (props: LinkBankComponentProps) => {
         style={styles.listStyle}
         contentContainerStyle={styles.listContentStyle}
         renderItem={({ item, index }) => {
+          const _isSelected = currentAccounts.includes(item);
           return (
-            AccountItem?.component?.renderItem?.(index, item) ?? (
+            AccountItem?.component?.renderItem?.(index, item, _isSelected) ?? (
               <AccountItemComponent
                 account={item}
-                isSelected={currentAccount?.accountId === item.accountId}
+                isSelected={_isSelected}
                 onPressed={(account) => {
-                  setCurrentAccount(account);
+                  if (_isSelected) {
+                    setCurrentAccounts(
+                      currentAccounts.filter((acc) => acc.accountId !== item.accountId)
+                    );
+                  } else {
+                    setCurrentAccounts([...currentAccounts, account]);
+                  }
                 }}
                 style={AccountItem?.style}
                 {...AccountItem?.component}
@@ -90,7 +97,7 @@ const LinkBankComponent = (props: LinkBankComponentProps) => {
       />
       <View style={styles.ctaButtonWrapper}>
         <Button
-          disabled={!currentAccount}
+          disabled={isEmpty(currentAccounts)}
           isLoading={isLinkingAccount}
           label={
             Root.props.ctaButtonLabel ??
@@ -98,8 +105,13 @@ const LinkBankComponent = (props: LinkBankComponentProps) => {
             'CONTINUE'
           }
           onPress={() => {
-            if (currentAccount) {
-              onLinkAccount?.(bank.id, currentAccount?.accountId, consentId);
+            if (!isEmpty(currentAccounts)) {
+              onLinkAccount?.(
+                bank.id,
+                currentAccounts.map((acc) => acc.accountId),
+                consentId,
+                !bank.isInternalVirtualBank
+              );
             }
           }}
         />

@@ -13,8 +13,9 @@ export type LinkBankComponentProps = {
       ctaButtonLabel?: string;
       onLinkAccount?: (
         bankId: string,
-        accountId: string,
-        consentId: string
+        accountIds: string[],
+        consentId: string,
+        async: boolean
       ) => void;
       isLinkingAccount?: boolean;
     };
@@ -38,7 +39,8 @@ export type LinkBankComponentProps = {
       tickIcon?: ReactNode;
       renderItem?: (
         index: number,
-        account: BankAccount
+        account: BankAccount,
+        isSelected: boolean
       ) => React.ReactElement | null;
     };
   };

@@ -27,7 +27,12 @@ export interface WalletContextData {
   getAggregatedWallets: () => Wallet[];
   deleteWallet: (wallet: Wallet) => void;
   setPrimaryWallet: (walletId: string) => void;
-  linkWallet: (bankId: string, accountId: string, consentId: string) => void;
+  linkWallet: (
+    bankId: string,
+    accountIds: string[],
+    consentId: string,
+    async: boolean
+  ) => void;
   clearLinkedWallet: () => void;
   clearWalletErrors: () => void;
   clearUnlinkedWallet: () => void;
@@ -193,13 +198,19 @@ export function useWalletContextValue(): WalletContextData {
   );
 
   const linkWallet = useCallback(
-    async (bankId: string, accountId: string, consentId: string) => {
+    async (
+      bankId: string,
+      accountIds: string[],
+      consentId: string,
+      async: boolean
+    ) => {
       try {
         setIsLinkingWallet(true);
         const { data } = await walletService.linkBankAccount(
           bankId,
-          accountId,
-          consentId
+          accountIds.join(','),
+          consentId,
+          async
         );
         setLinkedWallet(data);
         setIsLinkingWallet(false);
