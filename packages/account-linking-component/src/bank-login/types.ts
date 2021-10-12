@@ -7,5 +7,5 @@ export type BankLoginComponentProps = {
   bank: Bank;
   loadingIndicator?: ReactNode;
   onConfirmed: (consentId: string) => void;
-  onLinked: (consentId: string) => void;
+  onLinked: (bankId: string, consentId: string) => void;
 };

@@ -29,7 +29,7 @@ const BankLoginComponent = (props: BankLoginComponentProps) => {
       confirmConsent(bank.id, consentData.accountRequestId, code).then((consentId) => {
         if (consentId) {
           if (!bank.isInternalVirtualBank) {
-            onLinked(consentId);
+            onLinked(bank.id, consentId);
           } else {
             getAccounts(consentId);
             onConfirmed(consentId);
