@@ -36,6 +36,9 @@ export type WalletComponentProps = {
     style?: BalanceStyle;
     props?: {
       totalBalanceLabel?: string;
+      onViewCashFlow?: () => void;
+      viewCashflowLabel?: string;
+      cashflowIconColor?: string;
     };
     components?: {
       rightIcon?: ReactNode;
@@ -140,6 +143,14 @@ export type WalletComponentProps = {
     };
   };
   EmptyWallet?: EmptyWalletThemeProps;
+  ViewCashFlow?: {
+    styles?: ViewCashflowComponentStyle;
+    props?: {
+      label?: string;
+      message?: string;
+      onViewCashFlow?: () => void;
+    };
+  };
 };
 
 export type WalletComponentStyle = {
@@ -152,6 +163,8 @@ export type BalanceStyle = {
   containerStyle?: StyleProp<ViewStyle>;
   titleTextStyle?: StyleProp<TextStyle>;
   amountTextStyle?: StyleProp<TextStyle>;
+  viewCashflowContainer?: StyleProp<ViewStyle>;
+  viewCashflowTextStyle?: StyleProp<TextStyle>;
 };
 
 export type WalletItemStyle = {
@@ -193,4 +206,13 @@ export type SetPrimaryComponentStyle = {
   containerStyle?: StyleProp<ViewStyle>;
   checkBoxStyle?: StyleProp<ViewStyle>;
   titleTextStyle?: StyleProp<TextStyle>;
+};
+
+export type ViewCashflowComponentStyle = {
+  containerStyle?: StyleProp<ViewStyle>;
+  labelTextStyle?: StyleProp<TextStyle>;
+  messageContainerStyle?: StyleProp<ViewStyle>;
+  messageTextStyle?: StyleProp<TextStyle>;
+  viewButtonContainerStyle?: StyleProp<ViewStyle>;
+  viewTitleTextStyle?: StyleProp<TextStyle>;
 };

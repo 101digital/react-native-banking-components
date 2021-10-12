@@ -7,8 +7,8 @@ import {
   BalanceComponent,
   LinkAccountComponent,
   SelectionComponent,
-  SetPrimaryComponent,
   WalletItemComponent,
+  ViewCashflowComponent,
 } from './components';
 import { Wallet, isEmpty, BNoWalletComponent, uniqBy } from '@banking-component/core';
 import { BInformationIcon } from './assets/images';
@@ -26,7 +26,7 @@ const WalletComponent = forwardRef((props: WalletComponentProps, ref) => {
     ConfirmSetPrimaryModal,
     ConfirmUnlinkModal,
     EmptyWallet,
-    LinkAccountSuccessModal,
+    ViewCashFlow,
   } = props;
   const containerStyle = Root?.style;
   const { formatCurrency, scrollHandler, i18n } = Root.props;
@@ -40,7 +40,6 @@ const WalletComponent = forwardRef((props: WalletComponentProps, ref) => {
     wallets,
     isLoadingWallets,
     linkedWallet,
-    isLinkingWallet,
     clearLinkedWallet,
     fetchWallets,
   } = useContext(WalletContext);
@@ -224,12 +223,19 @@ const WalletComponent = forwardRef((props: WalletComponentProps, ref) => {
               </View>
             }
             ListFooterComponent={() => (
-              <LinkAccountComponent
-                style={LinkAccountButton?.style}
-                i18n={i18n}
-                {...LinkAccountButton?.props}
-                {...LinkAccountButton?.components}
-              />
+              <View>
+                <LinkAccountComponent
+                  style={LinkAccountButton?.style}
+                  i18n={i18n}
+                  {...LinkAccountButton?.props}
+                  {...LinkAccountButton?.components}
+                />
+                <ViewCashflowComponent
+                  style={ViewCashFlow?.styles}
+                  i18n={i18n}
+                  {...ViewCashFlow?.props}
+                />
+              </View>
             )}
             renderSectionHeader={({ section: { section } }) => {
               return (

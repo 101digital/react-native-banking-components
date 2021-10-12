@@ -1,7 +1,9 @@
-import React, { ReactNode } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { ReactNode, useContext } from 'react';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { BalanceStyle } from '../../types';
 import mergeStyles from './styles';
+import { CashflowIcon, ArrowRightIcon } from '../../assets/images';
+import { ThemeContext } from 'react-native-theme-component';
 
 export type BalanceComponentProps = {
   i18n?: any;
@@ -9,25 +11,49 @@ export type BalanceComponentProps = {
   totalBalanceLabel?: string;
   style?: BalanceStyle;
   rightIcon?: ReactNode;
+  cashflowIconColor?: string;
+  onViewCashFlow?: () => void;
 };
 
 const BalanceComponent = (props: BalanceComponentProps) => {
-  const { style, totalBalanceLabel, balance, rightIcon, i18n } = props;
+  const {
+    style,
+    totalBalanceLabel,
+    balance,
+    rightIcon,
+    i18n,
+    onViewCashFlow,
+    cashflowIconColor,
+  } = props;
+  const { colors } = useContext(ThemeContext);
 
-  const styles = mergeStyles(style);
+  const styles: BalanceStyle = mergeStyles(style);
 
   return (
     <View style={styles.wrapperStyle}>
       <View style={styles.containerStyle}>
-        <View style={innerStyles.leftWrap}>
+        <View style={innerStyles.topWrap}>
           <Text style={styles.titleTextStyle}>
             {totalBalanceLabel ??
               i18n?.t('wallet_component.lbl_total_balance') ??
               'Total Available Balance'}
           </Text>
-          <Text style={styles.amountTextStyle}>{balance}</Text>
+          <TouchableOpacity
+            activeOpacity={0.8}
+            onPress={onViewCashFlow}
+            style={styles.viewCashflowContainer}
+          >
+            <CashflowIcon size={15} color={cashflowIconColor ?? colors.primaryColor} />
+            <Text style={styles.viewCashflowTextStyle}>
+              {i18n?.t('wallet_component.btn_view_cashflow') ?? 'View Cashflow'}
+            </Text>
+            <ArrowRightIcon size={9} color={cashflowIconColor ?? colors.primaryColor} />
+          </TouchableOpacity>
         </View>
-        {rightIcon}
+        <View style={innerStyles.leftWrap}>
+          <Text style={styles.amountTextStyle}>{balance}</Text>
+          {rightIcon}
+        </View>
       </View>
     </View>
   );
@@ -36,6 +62,11 @@ const BalanceComponent = (props: BalanceComponentProps) => {
 const innerStyles = StyleSheet.create({
   leftWrap: {
     flex: 1,
+  },
+  topWrap: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
 });
 

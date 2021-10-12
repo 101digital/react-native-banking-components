@@ -7,7 +7,7 @@ import { BalanceStyle } from '../../types';
 const useMergeStyles = (style?: BalanceStyle) => {
   const { fonts, colors } = useContext(ThemeContext);
 
-  const defaultStyles = StyleSheet.create({
+  const defaultStyles: BalanceStyle = StyleSheet.create({
     wrapperStyle: {
       paddingVertical: 10,
       paddingHorizontal: 16,
@@ -19,7 +19,6 @@ const useMergeStyles = (style?: BalanceStyle) => {
       paddingVertical: 17,
       borderRadius: 10,
       backgroundColor: 'white',
-      flexDirection: 'row',
     },
     titleTextStyle: {
       fontFamily: fonts.semiBold,
@@ -30,6 +29,16 @@ const useMergeStyles = (style?: BalanceStyle) => {
       fontFamily: fonts.semiBold,
       fontSize: 28,
       color: colors.primaryColor,
+    },
+    viewCashflowContainer: {
+      flexDirection: 'row',
+      alignItems: 'center',
+    },
+    viewCashflowTextStyle: {
+      fontSize: 12,
+      color: colors.primaryColor,
+      fontFamily: fonts.regular,
+      paddingHorizontal: 3,
     },
   });
 

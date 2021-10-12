@@ -45,7 +45,11 @@
       "btn_link_bank_account": "Link Bank Account",
       "lbl_set_as_primary": "Set as primary",
       "lbl_primary": "Primary",
-      "msg_no_wallet": "No Bank Account Linked"
+      "msg_no_wallet": "No Bank Account Linked",
+      "btn_view_cashflow": "View Cashflow",
+      "lbl_cashflow": "Cashflow",
+      "msg_cashflow": "View cashflow chart for your money in & money out to analyse your spending.",
+      "btn_view": "View"
     }
   }
 }

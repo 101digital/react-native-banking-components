@@ -10,3 +10,5 @@ export * from './no-wallet.icon';
 export * from './information.icon';
 export * from './tick.icon';
 export * from './transaction.icon';
+export * from './cash-flow.icon';
+export * from './arrow-right.icon';
