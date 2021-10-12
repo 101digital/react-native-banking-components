@@ -20,6 +20,7 @@
     "node_modules",
     "babel.config.js",
     "metro.config.js",
-    ".eslintrc.js"
+    ".eslintrc.js",
+    "node_modules/react-native-theme-component"
   ]
 }
