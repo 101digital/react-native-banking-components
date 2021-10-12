@@ -34,6 +34,10 @@ export interface Bank {
   id: string;
   imageUrl: string;
   isLinked: boolean;
+  isInternalVirtualBank: boolean;
+  countryCode: string;
+  accreditedDataRecipientId: string;
+  customerFacing: boolean;
 }
 
 export interface Paging {
