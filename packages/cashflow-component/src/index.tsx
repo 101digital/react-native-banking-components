@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { View, Dimensions, TouchableOpacity, Text } from 'react-native';
 import { CashflowContext } from './context/cashflow-context';
 import moment from 'moment';
+//@ts-ignore
 import { BarChart } from 'react-native-gifted-charts';
 import LegendComponent from './components/legend';
 import { NextIcon, PreviousIcon, ArrowDownIcon } from './assets/images';

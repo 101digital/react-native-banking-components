@@ -14,7 +14,7 @@
     "url": "https://github.com/101digital/react-native-banking-components.git"
   },
   "scripts": {
-    "lint": "tsc --noEmit && eslint src/ --ext .js,.jsx,.ts,.tsx"
+    "lint": "tsc --noEmit && eslint packages/ --ext .js,.jsx,.ts,.tsx"
   },
   "keywords": [
     "wallets",

@@ -109,7 +109,6 @@ const LinkBankComponent = (props: LinkBankComponentProps) => {
               onLinkAccount?.(
                 bank.id,
                 consentId,
-                !bank.isInternalVirtualBank,
                 currentAccounts.map((acc) => acc.accountId)
               );
             }

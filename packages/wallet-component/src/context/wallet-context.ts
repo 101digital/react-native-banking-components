@@ -30,7 +30,6 @@ export interface WalletContextData {
   linkWallet: (
     bankId: string,
     consentId: string,
-    async: boolean,
     accountIds?: string[]
   ) => void;
   clearLinkedWallet: () => void;
@@ -198,18 +197,12 @@ export function useWalletContextValue(): WalletContextData {
   );
 
   const linkWallet = useCallback(
-    async (
-      bankId: string,
-      consentId: string,
-      async: boolean,
-      accountIds?: string[]
-    ) => {
+    async (bankId: string, consentId: string, accountIds?: string[]) => {
       try {
         setIsLinkingWallet(true);
         const { data } = await walletService.linkBankAccount(
           bankId,
           consentId,
-          async,
           accountIds
         );
         setLinkedWallet(data);

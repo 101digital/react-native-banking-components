@@ -50,7 +50,6 @@ export class WalletService {
   linkBankAccount = async (
     bankId: string,
     consentId: string,
-    async: boolean,
     accountIds?: string[]
   ) => {
     if (this._walletClient) {
@@ -59,8 +58,8 @@ export class WalletService {
         {
           bankId,
           consentId,
-          async,
           accountIds,
+          async: true,
         }
       );
       return response.data;

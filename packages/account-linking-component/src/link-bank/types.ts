@@ -14,7 +14,6 @@ export type LinkBankComponentProps = {
       onLinkAccount?: (
         bankId: string,
         consentId: string,
-        async: boolean,
         accountIds: string[]
       ) => void;
       isLinkingAccount?: boolean;
