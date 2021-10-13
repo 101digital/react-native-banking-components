@@ -10,6 +10,7 @@ const useMergeStyles = (style?: ViewCashflowComponentStyle) => {
   const defaultStyles: ViewCashflowComponentStyle = StyleSheet.create({
     containerStyle: {
       marginHorizontal: 15,
+      marginBottom: 15,
     },
     labelTextStyle: {
       paddingVertical: 10,

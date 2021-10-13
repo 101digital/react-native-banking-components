@@ -7,7 +7,6 @@ const useMergeStyles = (style?: WalletComponentStyle) => {
     containerStyle: {
       flex: 1,
     },
-
     listDivider: {
       height: 10,
       width: '100%',
@@ -15,6 +14,10 @@ const useMergeStyles = (style?: WalletComponentStyle) => {
     loadingWrap: {
       flex: 1,
       alignItems: 'center',
+      justifyContent: 'center',
+    },
+    emptyPlaceholder: {
+      flex: 1,
       justifyContent: 'center',
     },
   });

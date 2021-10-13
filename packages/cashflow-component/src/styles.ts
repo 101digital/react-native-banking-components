@@ -36,7 +36,6 @@ const useMergeRootStyles = (
       alignItems: 'center',
     },
     accountNameTextStyle: {
-      flex: 1,
       color: 'black',
       fontSize: 14,
       fontFamily: fonts.regular,

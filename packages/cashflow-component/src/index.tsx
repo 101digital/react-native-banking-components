@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { View, Dimensions, TouchableOpacity, Text } from 'react-native';
+import { View, Dimensions, TouchableOpacity, Text, StyleSheet } from 'react-native';
 import { CashflowContext } from './context/cashflow-context';
 import moment from 'moment';
 import { BarChart } from 'react-native-gifted-charts';
@@ -10,6 +10,7 @@ import SelectAccountModal from './components/select-account-modal';
 import { DateRangePicker, ThemeContext } from 'react-native-theme-component';
 import { CashflowComponentProps, CashflowComponentStyle, ChartComponentStyle } from './types';
 import { useMergeChartStyles, useMergeRootStyles } from './styles';
+import { Wallet } from '@banking-component/core';
 
 const CashflowComponent = (props: CashflowComponentProps) => {
   const { Root, Chart, FilterItem, Legend, SelectAccount } = props;
@@ -21,10 +22,7 @@ const CashflowComponent = (props: CashflowComponentProps) => {
   const [frequency, setFrequency] = useState<'weekly' | 'monthly' | 'daily'>('daily');
   const [barData, setBarData] = useState<any[]>([]);
   const [filterIndex, setFilterIndex] = useState<number>(0);
-  const groupedWallet = Root.props.groupedWallets;
-  const [selectedGroups, setSelectedGroups] = useState<string[]>(
-    groupedWallet.map((gr) => gr.section)
-  );
+  const [selectedWallets, setSelectedWallets] = useState<Wallet[]>(Root.props.wallets);
   const [isShowSelectAccount, setShowSelectAccount] = useState(false);
   const [isShowDatePicker, setShowDatePicker] = useState(false);
 
@@ -32,19 +30,17 @@ const CashflowComponent = (props: CashflowComponentProps) => {
   const chartStyles: ChartComponentStyle = useMergeChartStyles(Chart?.styles);
 
   useEffect(() => {
-    let _walletIds: string[] = [];
-    if (selectedGroups) {
-      groupedWallet.forEach((group) => {
-        if (selectedGroups.includes(group.section)) {
-          _walletIds = [..._walletIds, ...group.data.map((w) => w.walletId)];
-        }
-      });
-    }
-    fetchCashflow(_walletIds.join(','), frequency, 'USD', fromDate, toDate);
+    fetchCashflow(
+      selectedWallets.map((w) => w.walletId).join(','),
+      frequency,
+      'USD',
+      fromDate,
+      toDate
+    );
     return () => {
       clearCashflow();
     };
-  }, [fromDate, toDate, frequency, selectedGroups]);
+  }, [fromDate, toDate, frequency, Root.props.wallets, selectedWallets]);
 
   const handleChangeFilter = (index: number) => {
     setFilterIndex(index);
@@ -207,11 +203,13 @@ const CashflowComponent = (props: CashflowComponentProps) => {
             activeOpacity={0.8}
             onPress={() => setShowSelectAccount(true)}
           >
-            <Text style={rootStyles.accountNameTextStyle}>
-              {selectedGroups?.length === groupedWallet.length
-                ? i18n?.t('cash_flow.lbl_all_accounts') ?? 'All Accounts'
-                : selectedGroups?.map((group) => group).join(', ')}
-            </Text>
+            <View style={innerStyle.accountNames}>
+              <Text numberOfLines={1} ellipsizeMode='tail' style={rootStyles.accountNameTextStyle}>
+                {selectedWallets?.length === Root.props.wallets.length
+                  ? i18n?.t('cash_flow.lbl_all_accounts') ?? 'All Accounts'
+                  : selectedWallets?.map((w) => w.walletName).join(', ')}
+              </Text>
+            </View>
             <ArrowDownIcon size={12} color={colors.primaryColor} />
           </TouchableOpacity>
         </View>
@@ -331,21 +329,20 @@ const CashflowComponent = (props: CashflowComponentProps) => {
           />
         </View>
       </View>
-      {groupedWallet && (
-        <SelectAccountModal
-          isVisible={isShowSelectAccount}
-          groupedWallet={groupedWallet}
-          selectedGroups={selectedGroups}
-          style={SelectAccount?.styles}
-          onClose={() => setShowSelectAccount(false)}
-          onApplied={(grs) => {
-            setShowSelectAccount(false);
-            setSelectedGroups(grs);
-          }}
-          {...SelectAccount?.components}
-          {...SelectAccount?.props}
-        />
-      )}
+      <SelectAccountModal
+        isVisible={isShowSelectAccount}
+        wallets={Root.props.wallets}
+        selectedWallets={selectedWallets}
+        style={SelectAccount?.styles}
+        onClose={() => setShowSelectAccount(false)}
+        onApplied={(ws) => {
+          setShowSelectAccount(false);
+          setSelectedWallets(ws);
+        }}
+        {...SelectAccount?.components}
+        {...SelectAccount?.props}
+      />
+
       <DateRangePicker
         isVisible={isShowDatePicker}
         maxDate={new Date()}
@@ -361,5 +358,13 @@ const CashflowComponent = (props: CashflowComponentProps) => {
     </>
   );
 };
+
+const innerStyle = StyleSheet.create({
+  accountNames: {
+    flex: 1,
+    justifyContent: 'center',
+    marginRight: 10,
+  },
+});
 
 export default CashflowComponent;

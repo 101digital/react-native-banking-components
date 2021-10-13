@@ -1,5 +1,5 @@
 import React, { useState, useContext, ReactNode } from 'react';
-import { GroupedWallets } from '@banking-component/core';
+import { Wallet } from '@banking-component/core';
 import { BottomSheet, ThemeContext, Button } from 'react-native-theme-component';
 import { View, FlatList, TouchableOpacity, Text } from 'react-native';
 import { CheckedIcon } from '../../assets/images';
@@ -8,22 +8,22 @@ import { SelectAccountModalStyle } from '../../types';
 
 interface SelectAccountModalProps {
   isVisible: boolean;
-  groupedWallet: GroupedWallets;
-  selectedGroups: string[];
+  wallets: Wallet[];
+  selectedWallets: Wallet[];
   applyTitle?: string;
   activeColor?: string;
   inactiveColor?: string;
   checkedIcon?: ReactNode;
   onClose: () => void;
-  onApplied: (groups: string[]) => void;
+  onApplied: (wallets: Wallet[]) => void;
   style?: SelectAccountModalStyle;
 }
 
 const SelectAccountModal = (props: SelectAccountModalProps) => {
   const {
     isVisible,
-    groupedWallet,
-    selectedGroups,
+    wallets,
+    selectedWallets,
     onClose,
     onApplied,
     style,
@@ -35,9 +35,14 @@ const SelectAccountModal = (props: SelectAccountModalProps) => {
   const { colors, i18n } = useContext(ThemeContext);
   const styles: SelectAccountModalStyle = useMergeStyles(style);
 
-  const [_selectedGroups, setSelectedGroups] = useState(selectedGroups);
+  const [_selectedWallets, setSelectedWallets] = useState<Wallet[]>(selectedWallets);
 
-  const _renderItem = (label: string, isSelected: boolean, onPress: () => void) => {
+  const _renderItem = (
+    label: string,
+    isSelected: boolean,
+    onPress: () => void,
+    subLabel?: string
+  ) => {
     return (
       <TouchableOpacity activeOpacity={0.8} style={styles.itemContainerStyle} onPress={onPress}>
         <View
@@ -53,6 +58,7 @@ const SelectAccountModal = (props: SelectAccountModalProps) => {
           {checkedIcon ?? <CheckedIcon size={16} color={'white'} />}
         </View>
         <Text style={styles.accountNameStyle}>{label}</Text>
+        {subLabel && <Text style={styles.subNameStyle}>{` (${subLabel})`}</Text>}
       </TouchableOpacity>
     );
   };
@@ -60,10 +66,10 @@ const SelectAccountModal = (props: SelectAccountModalProps) => {
   return (
     <BottomSheet isVisible={isVisible} onBackButtonPress={onClose} onBackdropPress={onClose}>
       <FlatList
-        keyExtractor={(item) => item.section}
-        data={groupedWallet}
+        keyExtractor={(item) => item.walletId}
+        data={wallets}
         ListHeaderComponent={() => {
-          const isSelected = _selectedGroups.length === groupedWallet.length;
+          const isSelected = _selectedWallets.length === wallets.length;
           return (
             <View>
               {_renderItem(
@@ -71,9 +77,9 @@ const SelectAccountModal = (props: SelectAccountModalProps) => {
                 isSelected,
                 () => {
                   if (isSelected) {
-                    setSelectedGroups([]);
+                    setSelectedWallets([]);
                   } else {
-                    setSelectedGroups(groupedWallet.map((gr) => gr.section));
+                    setSelectedWallets(wallets);
                   }
                 }
               )}
@@ -83,14 +89,19 @@ const SelectAccountModal = (props: SelectAccountModalProps) => {
         }}
         ItemSeparatorComponent={() => <View style={styles.itemSeparatorStyle} />}
         renderItem={({ item }) => {
-          const isSelected = _selectedGroups.includes(item.section);
-          return _renderItem(item.section.trim(), isSelected, () => {
-            if (isSelected) {
-              setSelectedGroups(_selectedGroups.filter((gr) => gr !== item.section));
-            } else {
-              setSelectedGroups([..._selectedGroups, item.section]);
-            }
-          });
+          const isSelected = _selectedWallets.includes(item);
+          return _renderItem(
+            item.walletName,
+            isSelected,
+            () => {
+              if (isSelected) {
+                setSelectedWallets(_selectedWallets.filter((w) => w.walletId !== item.walletId));
+              } else {
+                setSelectedWallets([..._selectedWallets, item]);
+              }
+            },
+            `${item.bankAccount?.bankBranchId ?? ''} ${item.bankAccount.accountNumber}`.trim()
+          );
         }}
         ListFooterComponent={() => {
           return (
@@ -103,7 +114,7 @@ const SelectAccountModal = (props: SelectAccountModalProps) => {
                 }
               }
               label={applyTitle ?? i18n?.t('cash_flow.btn_apply') ?? 'Apply'}
-              onPress={() => onApplied(_selectedGroups)}
+              onPress={() => onApplied(_selectedWallets)}
             />
           );
         }}

@@ -34,6 +34,11 @@ const useMergeStyles = (style?: SelectAccountModalStyle): SelectAccountModalStyl
     itemSeparatorStyle: {
       height: 6,
     },
+    subNameStyle: {
+      fontSize: 12,
+      fontFamily: fonts.regular,
+      color: '#646876',
+    },
   });
   return defaultsDeep(style, defaultStyles);
 };

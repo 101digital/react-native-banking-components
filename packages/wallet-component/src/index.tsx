@@ -1,5 +1,5 @@
-import React, { forwardRef, useContext, useEffect, useImperativeHandle, useState } from 'react';
-import { ActivityIndicator, SectionList, View } from 'react-native';
+import React, { forwardRef, useContext, useImperativeHandle, useState } from 'react';
+import { ActivityIndicator, SectionList, View, RefreshControl, ScrollView } from 'react-native';
 import useMergeStyles from './styles';
 import { WalletComponentProps, WalletComponentRefs } from './types';
 import {
@@ -39,9 +39,8 @@ const WalletComponent = forwardRef((props: WalletComponentProps, ref) => {
     setPrimaryWallet,
     wallets,
     isLoadingWallets,
-    linkedWallet,
-    clearLinkedWallet,
-    fetchWallets,
+    isRefreshingWallets,
+    refreshWallets,
   } = useContext(WalletContext);
   const { colors } = useContext(ThemeContext);
   const currencyCode = getDefaultWallet()?.currencyCode ?? 'USD';
@@ -52,14 +51,6 @@ const WalletComponent = forwardRef((props: WalletComponentProps, ref) => {
   const [isShowUnlink, setShowUnlink] = useState(false);
   const [isShowPrimary, setShowPrimary] = useState(false);
   const [walletWithBanners, setWalletWithBanners] = useState<Wallet[]>([]);
-  // const [isSelectedPrimary, setSelectedPrimary] = useState(false);
-
-  useEffect(() => {
-    if (!linkedWallet) {
-      fetchWallets();
-      clearLinkedWallet();
-    }
-  }, [linkedWallet]);
 
   useImperativeHandle(
     ref,
@@ -167,7 +158,16 @@ const WalletComponent = forwardRef((props: WalletComponentProps, ref) => {
       );
     }
     return (
-      <>
+      <ScrollView
+        contentContainerStyle={styles.emptyPlaceholder}
+        refreshControl={
+          <RefreshControl
+            refreshing={isRefreshingWallets}
+            onRefresh={refreshWallets}
+            tintColor={colors.primaryColor}
+          />
+        }
+      >
         <View style={styles.listContainerStyle}>{Root.components?.headerTitle}</View>
         <BNoWalletComponent
           message={EmptyWallet?.props.message ?? i18n?.t('wallet_component.msg_no_wallet')}
@@ -179,7 +179,7 @@ const WalletComponent = forwardRef((props: WalletComponentProps, ref) => {
           {...EmptyWallet?.components}
         />
         {/* {renderSuccessModal()} */}
-      </>
+      </ScrollView>
     );
   }
 
@@ -244,6 +244,13 @@ const WalletComponent = forwardRef((props: WalletComponentProps, ref) => {
                 )
               );
             }}
+            refreshControl={
+              <RefreshControl
+                refreshing={isRefreshingWallets}
+                onRefresh={refreshWallets}
+                tintColor={colors.primaryColor}
+              />
+            }
           />
         )}
       </View>

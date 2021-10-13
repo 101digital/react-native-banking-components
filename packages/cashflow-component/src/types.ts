@@ -1,4 +1,4 @@
-import { GroupedWallets } from '@banking-component/core';
+import { Wallet } from '@banking-component/core';
 import { ReactNode } from 'react';
 import { StyleProp, ViewStyle, TextStyle } from 'react-native';
 import { ButtonStyles } from 'react-native-theme-component/src/button';
@@ -7,7 +7,7 @@ export type CashflowComponentProps = {
   Root: {
     props: {
       filterTitle?: string;
-      groupedWallets: GroupedWallets;
+      wallets: Wallet[];
     };
     styles?: CashflowComponentStyle;
   };
@@ -78,6 +78,7 @@ export type SelectAccountModalStyle = {
   itemContainerStyle?: StyleProp<ViewStyle>;
   checkboxContainerStyle?: StyleProp<ViewStyle>;
   accountNameStyle?: StyleProp<TextStyle>;
+  subNameStyle?: StyleProp<TextStyle>;
   itemSeparatorStyle?: StyleProp<ViewStyle>;
   buttonStyle?: ButtonStyles;
 };

@@ -15,12 +15,12 @@ const walletService = WalletService.instance();
 export interface WalletContextData {
   wallets: Wallet[];
   isLoadingWallets: boolean;
+  isRefreshingWallets: boolean;
   isLinkingWallet: boolean;
-  linkedWallet?: Wallet;
   summary?: WalletSummary;
-  unlinkedWallet?: Wallet;
   isUnlinking: boolean;
   fetchWallets: () => void;
+  refreshWallets: () => void;
   getGroupWallets: () => GroupedWallets | undefined;
   getDefaultWallet: () => Wallet | undefined;
   getWalletDetail: (walletId?: string) => Wallet | undefined;
@@ -32,9 +32,7 @@ export interface WalletContextData {
     consentId: string,
     accountIds?: string[]
   ) => void;
-  clearLinkedWallet: () => void;
   clearWalletErrors: () => void;
-  clearUnlinkedWallet: () => void;
   errorLoadWallet?: Error;
   errorUnlinkWallet?: Error;
   errorUpdatePrimary?: Error;
@@ -46,6 +44,8 @@ export interface WalletContextData {
 export const walletDefaultValue: WalletContextData = {
   wallets: [],
   isLoadingWallets: false,
+  isRefreshingWallets: false,
+  refreshWallets: () => null,
   fetchWallets: () => null,
   getGroupWallets: () => undefined,
   getDefaultWallet: () => undefined,
@@ -57,9 +57,7 @@ export const walletDefaultValue: WalletContextData = {
   setPrimaryWallet: () => null,
   linkWallet: () => null,
   isLinkingWallet: false,
-  clearLinkedWallet: () => null,
   clearWalletErrors: () => null,
-  clearUnlinkedWallet: () => null,
   clearWallets: () => null,
 };
 
@@ -79,22 +77,48 @@ export function useWalletContextValue(): WalletContextData {
   >();
   const [_isLinkingWallet, setIsLinkingWallet] = useState(false);
   const [_linkWalletError, setLinkWalletError] = useState<Error | undefined>();
-  const [_linkedWallet, setLinkedWallet] = useState<Wallet | undefined>(
-    undefined
-  );
-  const [_unLinkedWallet, setUnLinkedWallet] = useState<Wallet | undefined>(
-    undefined
-  );
+  const [_isRefreshing, setIsRefreshing] = useState(false);
+
+  console.log(_wallets);
 
   const fetchWallets = useCallback(async () => {
     try {
       setIsLoading(true);
-      const resp = await walletService.getWallets();
-      setWallets(orderBy<Wallet>(resp.data, ['isDefaultWallet'], ['desc']));
-      setSummary(resp.summary);
+      await _fetchWallets();
       setIsLoading(false);
     } catch (err) {
       setIsLoading(false);
+      setLoadError(err as Error);
+    }
+  }, []);
+
+  const _fetchWallets = async () => {
+    const resp = await walletService.getWallets();
+    let _walletsData: Wallet[] = resp.data;
+    if (isEmpty(_walletsData)) {
+      setWallets([]);
+      setSummary(undefined);
+    } else {
+      const _defaultWallet = _walletsData.find((w) => w.isDefaultWallet);
+      if (!_defaultWallet) {
+        await walletService.setDefaultWallet(_walletsData[0].walletId, true);
+        _walletsData = _walletsData.map((w, index) => ({
+          ...w,
+          isDefaultWallet: index === 0,
+        }));
+      }
+      setWallets(orderBy<Wallet>(_walletsData, ['isDefaultWallet'], ['desc']));
+      setSummary(resp.summary);
+    }
+  };
+
+  const refreshWallets = useCallback(async () => {
+    try {
+      setIsRefreshing(true);
+      await _fetchWallets();
+      setIsRefreshing(false);
+    } catch (err) {
+      setIsRefreshing(false);
       setLoadError(err as Error);
     }
   }, []);
@@ -103,8 +127,7 @@ export function useWalletContextValue(): WalletContextData {
     try {
       setIsUpdatingPrimary(true);
       await walletService.setDefaultWallet(walletId, true);
-      clearLinkedWallet();
-      fetchWallets();
+      refreshWallets();
       setIsUpdatingPrimary(false);
       showMessage({
         message: 'Primary Account Changed Successfully',
@@ -120,9 +143,9 @@ export function useWalletContextValue(): WalletContextData {
     async (wallet: Wallet) => {
       try {
         setIsUnlinking(true);
-        await walletService.unlinkBankWallet(wallet.walletId);
-        setUnLinkedWallet(wallet);
-        fetchWallets();
+        const resp = await walletService.unlinkBankWallet(wallet.walletId);
+        console.log(resp);
+        refreshWallets();
         setIsUnlinking(false);
         showMessage({
           message: 'Account successfully removed',
@@ -200,12 +223,8 @@ export function useWalletContextValue(): WalletContextData {
     async (bankId: string, consentId: string, accountIds?: string[]) => {
       try {
         setIsLinkingWallet(true);
-        const { data } = await walletService.linkBankAccount(
-          bankId,
-          consentId,
-          accountIds
-        );
-        setLinkedWallet(data);
+        await walletService.linkBankAccount(bankId, consentId, accountIds);
+        refreshWallets();
         setIsLinkingWallet(false);
       } catch (error) {
         setLinkWalletError(error as Error);
@@ -215,19 +234,11 @@ export function useWalletContextValue(): WalletContextData {
     []
   );
 
-  const clearLinkedWallet = useCallback(() => {
-    setLinkedWallet(undefined);
-  }, []);
-
   const clearWalletErrors = useCallback(() => {
     setLoadError(undefined);
     setUnlinkError(undefined);
     setUpdatePrimaryError(undefined);
     setLinkWalletError(undefined);
-  }, []);
-
-  const clearUnlinkedWallet = useCallback(() => {
-    setUnLinkedWallet(undefined);
   }, []);
 
   const clearWallets = useCallback(() => {
@@ -254,12 +265,10 @@ export function useWalletContextValue(): WalletContextData {
       linkWallet,
       isLinkingWallet: _isLinkingWallet,
       errorLinkWallet: _linkWalletError,
-      clearLinkedWallet,
-      linkedWallet: _linkedWallet,
       clearWalletErrors,
-      clearUnlinkedWallet,
-      unlinkedWallet: _unLinkedWallet,
       clearWallets,
+      isRefreshingWallets: _isRefreshing,
+      refreshWallets,
     }),
     [
       _wallets,
@@ -272,8 +281,7 @@ export function useWalletContextValue(): WalletContextData {
       _updatePrimaryError,
       _isLinkingWallet,
       _linkWalletError,
-      _linkedWallet,
-      _unLinkedWallet,
+      _isRefreshing,
     ]
   );
 }
