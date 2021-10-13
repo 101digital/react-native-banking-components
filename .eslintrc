@@ -1,11 +1,9 @@
 {
   "root": true,
   "extends": "@react-native-community",
+  "ignoreDuringBuilds": true,
   "rules": {
-    "no-unused-vars": [
-      "error",
-      { "varsIgnorePattern": "^_", "argsIgnorePattern": "^_" }
-    ],
+    "no-unused-vars": ["error", { "varsIgnorePattern": "^_", "argsIgnorePattern": "^_" }],
     "react-hooks/exhaustive-deps": "off",
     "@typescript-eslint/no-unused-vars": [
       "error",
