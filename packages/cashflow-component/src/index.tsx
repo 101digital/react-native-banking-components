@@ -52,7 +52,7 @@ const CashflowComponent = (props: CashflowComponentProps) => {
         break;
       case 1:
         _fromDate = moment().startOf('M');
-        setFrequency('daily');
+        setFrequency('weekly');
         break;
       case 2:
         _fromDate = moment().startOf('M').subtract(2, 'M');
@@ -75,13 +75,23 @@ const CashflowComponent = (props: CashflowComponentProps) => {
     setToDate(undefined);
   };
 
+  const getXAxisLabel = (from: string, to: string) => {
+    if (frequency === 'monthly') {
+      return moment(from).format('MMM');
+    }
+    if (frequency === 'weekly') {
+      return `${moment(from).format('DD')}-${moment(to).format('DD')}`;
+    }
+    return moment(from).format('MMM DD');
+  };
+
   useEffect(() => {
     if (cashflow) {
       let _barData: any[] = [];
       cashflow.cashflowPeriods.forEach((cash) => {
         _barData.push({
           value: cash.totalMoneyIn ?? 0,
-          label: moment(cash.from).format(frequency === 'monthly' ? 'MMM' : 'MMM DD'),
+          label: getXAxisLabel(cash.from, cash.to),
           spacing: 0,
           frontColor: Chart?.props?.moneyInColor ?? '#1AA367',
           labelWidth: 46,
@@ -116,10 +126,8 @@ const CashflowComponent = (props: CashflowComponentProps) => {
       return (num / 1000).toFixed(0) + 'K';
     } else if (num > 1000000) {
       return (num / 1000000).toFixed(0) + 'M';
-    } else if (num < 900) {
-      return num.toFixed(0);
     }
-    return '';
+    return num.toFixed(0);
   };
 
   const handleNext = () => {
