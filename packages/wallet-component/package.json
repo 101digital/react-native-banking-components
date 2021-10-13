@@ -1,7 +1,7 @@
 {
   "name": "@banking-component/wallet-component",
   "private": true,
-  "version": "1.1.30",
+  "version": "1.1.31",
   "description": "Manage wallets",
   "repository": {
     "type": "git",
@@ -11,7 +11,8 @@
   "main": "index.js",
   "types": "index.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "tsc --noEmit && eslint src/ --ext .js,.jsx,.ts,.tsx"
   },
   "keywords": [],
   "author": "tuyen101D",
@@ -19,10 +20,13 @@
   "devDependencies": {
     "@banking-component/core": "https://gitpkg.now.sh/101digital/react-native-banking-components/packages/core",
     "@react-native-async-storage/async-storage": "^1.15.9",
+    "@types/lodash": "^4.14.175",
     "@types/react": "^17.0.20",
     "@types/react-native": "^0.65.0",
+    "lodash": "^4.17.21",
     "react": "^17.0.2",
     "react-native": "^0.65.1",
+    "react-native-calendars": "^1.1267.0",
     "react-native-image-crop-picker": "^0.36.4",
     "react-native-localize": "^2.1.5",
     "react-native-permissions": "^3.0.5",
@@ -36,8 +40,5 @@
     "react-native": "^0.65.1",
     "react-native-svg": "^12.1.1",
     "react-native-theme-component": "https://github.com/101digital/react-native-theme-component.git"
-  },
-  "dependencies": {
-    "react-native-gifted-charts": "https://github.com/101digital/react-native-gifted-charts.git"
   }
 }
