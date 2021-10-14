@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { ActivityIndicator, View } from 'react-native';
 import WebView, { WebViewNavigation } from 'react-native-webview';
 import { BankLoginComponentProps } from './types';
@@ -9,10 +9,22 @@ import { getUrlParameter } from '@banking-component/core';
 
 const BankLoginComponent = (props: BankLoginComponentProps) => {
   const { containerStyle, bank, loadingIndicator, onConfirmed, onLinked } = props;
-  const { consentData, isLoadingConsent, confirmConsent, getAccounts } = useContext(
-    AccountLinkingContext
-  );
+  const {
+    consentData,
+    isLoadingConsent,
+    confirmConsent,
+    getAccounts,
+    clearConsentData,
+    clearBankErrors,
+  } = useContext(AccountLinkingContext);
   const { colors } = useContext(ThemeContext);
+
+  useEffect(() => {
+    return () => {
+      clearConsentData();
+      clearBankErrors();
+    };
+  }, []);
 
   if (isLoadingConsent || !consentData) {
     return (

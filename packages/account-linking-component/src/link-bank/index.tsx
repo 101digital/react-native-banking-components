@@ -11,16 +11,13 @@ const LinkBankComponent = (props: LinkBankComponentProps) => {
   const { Root, EmptyAccount, AccountItem, AccessInfomation } = props;
   const styles = useMergeStyles(Root?.style);
   const { bank, consentId, headingLabel, onLinkAccount, isLinkingAccount, i18n } = Root.props;
-  const { accounts, isLoadingAccounts, clearAccounts, clearConsentData } = useContext(
-    AccountLinkingContext
-  );
+  const { accounts, isLoadingAccounts, clearAccounts } = useContext(AccountLinkingContext);
   const { colors } = useContext(ThemeContext);
   const [currentAccounts, setCurrentAccounts] = useState<BankAccount[]>([]);
 
   useEffect(() => {
     return () => {
       clearAccounts();
-      clearConsentData();
     };
   }, []);
 

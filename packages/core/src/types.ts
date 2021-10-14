@@ -38,6 +38,7 @@ export interface Bank {
   countryCode: string;
   accreditedDataRecipientId: string;
   customerFacing: boolean;
+  creditScoreSupported: boolean;
 }
 
 export interface Paging {
