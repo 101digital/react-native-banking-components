@@ -17,11 +17,12 @@ const CashflowComponent = (props: CashflowComponentProps) => {
   const dateFormat = 'YYYY-MM-DDTHH:mm:ss';
   const { cashflow, fetchCashflow, clearCashflow } = useContext(CashflowContext);
   const { colors, fonts, i18n } = useContext(ThemeContext);
-  const [fromDate, setFromDate] = useState<string>(moment().startOf('d').format(dateFormat));
+  /// start with 1 year
+  const [filterIndex, setFilterIndex] = useState<number>(4);
+  const [frequency, setFrequency] = useState<'weekly' | 'monthly' | 'daily'>('monthly');
+  const [fromDate, setFromDate] = useState<string>(moment().startOf('y').format(dateFormat));
   const [toDate, setToDate] = useState<string | undefined>(undefined);
-  const [frequency, setFrequency] = useState<'weekly' | 'monthly' | 'daily'>('daily');
   const [barData, setBarData] = useState<any[]>([]);
-  const [filterIndex, setFilterIndex] = useState<number>(0);
   const [selectedWallets, setSelectedWallets] = useState<Wallet[]>(Root.props.wallets);
   const [isShowSelectAccount, setShowSelectAccount] = useState(false);
   const [isShowDatePicker, setShowDatePicker] = useState(false);
@@ -350,7 +351,6 @@ const CashflowComponent = (props: CashflowComponentProps) => {
         {...SelectAccount?.components}
         {...SelectAccount?.props}
       />
-
       <DateRangePicker
         isVisible={isShowDatePicker}
         maxDate={new Date()}

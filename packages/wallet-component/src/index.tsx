@@ -257,7 +257,7 @@ const WalletComponent = forwardRef((props: WalletComponentProps, ref) => {
       <ActionSheetComponent
         isVisible={isShowActionSheet}
         wallet={selectedWallet}
-        onCancelPress={hideActionSheet}
+        onCancel={hideActionSheet}
         style={ActionSheet?.style}
         i18n={i18n}
         {...ActionSheet?.props}

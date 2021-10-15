@@ -12,3 +12,4 @@ export * from './tick.icon';
 export * from './transaction.icon';
 export * from './cash-flow.icon';
 export * from './arrow-right.icon';
+export * from './share.icon';

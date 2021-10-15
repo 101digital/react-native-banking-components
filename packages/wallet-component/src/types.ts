@@ -1,8 +1,4 @@
-import {
-  BankImagesMap,
-  Wallet,
-  EmptyWalletThemeProps,
-} from '@banking-component/core';
+import { BankImagesMap, Wallet, EmptyWalletThemeProps } from '@banking-component/core';
 import { ReactNode } from 'react';
 import { ImageStyle, StyleProp, TextStyle, ViewStyle } from 'react-native';
 import { AlertModalStyles } from 'react-native-theme-component/src/alert';
@@ -71,16 +67,19 @@ export type WalletComponentProps = {
       setPrimaryLabel?: string;
       unlinkLabel?: string;
       viewTransactionLabel?: string;
+      shareLabel?: string;
       cancelLabel?: string;
-      onSetPrimaryPress?: (wallet: Wallet) => void;
-      onUnlinkPress?: (wallet: Wallet) => void;
-      onPressViewTransactions?: (wallet: Wallet) => void;
+      onSetPrimary?: (wallet: Wallet) => void;
+      onUnlink?: (wallet: Wallet) => void;
+      onViewTransactions?: (wallet: Wallet) => void;
+      onShare?: (wallet: Wallet) => void;
     };
     components?: {
       setPrimaryIcon?: ReactNode;
       unlinkIcon?: ReactNode;
       viewTransactionIcon?: ReactNode;
       cancelIcon?: ReactNode;
+      shareIcon?: ReactNode;
     };
   };
   LinkAccountButton?: {

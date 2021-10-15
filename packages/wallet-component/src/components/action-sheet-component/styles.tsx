@@ -14,7 +14,7 @@ const useMergeStyles = (style?: ActionSheetStyle) => {
     },
     containerStyles: {
       paddingHorizontal: Platform.OS === 'ios' ? 32 : 20,
-      paddingTop: Platform.OS === 'ios' ? 30 : 15,
+      paddingTop: Platform.OS === 'ios' ? 20 : 15,
       paddingBottom: 10,
       justifyContent: 'center',
       borderTopLeftRadius: 15,
@@ -24,7 +24,7 @@ const useMergeStyles = (style?: ActionSheetStyle) => {
     buttonContainerStyle: {
       flexDirection: 'row',
       alignItems: 'center',
-      paddingVertical: 10,
+      paddingVertical: 15,
     },
     buttonTextStyle: {
       fontFamily: fonts.regular,

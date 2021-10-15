@@ -27,11 +27,7 @@ export interface WalletContextData {
   getAggregatedWallets: () => Wallet[];
   deleteWallet: (wallet: Wallet) => void;
   setPrimaryWallet: (walletId: string) => void;
-  linkWallet: (
-    bankId: string,
-    consentId: string,
-    accountIds?: string[]
-  ) => void;
+  linkWallet: (bankId: string, consentId: string, accountIds?: string[]) => void;
   clearWalletErrors: () => void;
   errorLoadWallet?: Error;
   errorUnlinkWallet?: Error;
@@ -61,8 +57,7 @@ export const walletDefaultValue: WalletContextData = {
   clearWallets: () => null,
 };
 
-export const WalletContext =
-  React.createContext<WalletContextData>(walletDefaultValue);
+export const WalletContext = React.createContext<WalletContextData>(walletDefaultValue);
 
 export function useWalletContextValue(): WalletContextData {
   const [_wallets, setWallets] = useState<Wallet[]>([]);
@@ -72,9 +67,7 @@ export function useWalletContextValue(): WalletContextData {
   const [_unlinkError, setUnlinkError] = useState<Error | undefined>();
   const [_isUnlinking, setIsUnlinking] = useState(false);
   const [_isUpdatingPrimary, setIsUpdatingPrimary] = useState(false);
-  const [_updatePrimaryError, setUpdatePrimaryError] = useState<
-    Error | undefined
-  >();
+  const [_updatePrimaryError, setUpdatePrimaryError] = useState<Error | undefined>();
   const [_isLinkingWallet, setIsLinkingWallet] = useState(false);
   const [_linkWalletError, setLinkWalletError] = useState<Error | undefined>();
   const [_isRefreshing, setIsRefreshing] = useState(false);
@@ -224,7 +217,9 @@ export function useWalletContextValue(): WalletContextData {
       try {
         setIsLinkingWallet(true);
         await walletService.linkBankAccount(bankId, consentId, accountIds);
-        refreshWallets();
+        setTimeout(() => {
+          refreshWallets();
+        }, 1000);
         setIsLinkingWallet(false);
       } catch (error) {
         setLinkWalletError(error as Error);

@@ -1,7 +1,12 @@
 import React, { ReactNode } from 'react';
 import { Dimensions, Platform, SafeAreaView, View, TouchableOpacity, Text } from 'react-native';
 import Modal from 'react-native-modal';
-import { BRoundedCloseIcon, BRoundedTickIcon, BTransactionIcon } from '../../assets/images';
+import {
+  BRoundedCloseIcon,
+  BRoundedTickIcon,
+  BTransactionIcon,
+  BShareIcon,
+} from '../../assets/images';
 import { Wallet } from '@banking-component/core';
 import { ActionSheetStyle } from '../../types';
 import useMergeStyles from './styles';
@@ -19,15 +24,18 @@ export type ActionSheetComponentProps = {
   setPrimaryLabel?: string;
   unlinkLabel?: string;
   viewTransactionLabel?: string;
+  shareLabel?: string;
   cancelLabel?: string;
   setPrimaryIcon?: ReactNode;
   unlinkIcon?: ReactNode;
   viewTransactionIcon?: ReactNode;
+  shareIcon?: ReactNode;
   cancelIcon?: ReactNode;
-  onSetPrimaryPress?: (wallet: Wallet) => void;
-  onUnlinkPress?: (wallet: Wallet) => void;
-  onPressViewTransactions?: (wallet: Wallet) => void;
-  onCancelPress?: () => void;
+  onSetPrimary?: (wallet: Wallet) => void;
+  onUnlink?: (wallet: Wallet) => void;
+  onViewTransactions?: (wallet: Wallet) => void;
+  onShare?: (wallet: Wallet) => void;
+  onCancel?: () => void;
 };
 
 const ActionSheetComponent = (props: ActionSheetComponentProps) => {
@@ -43,10 +51,13 @@ const ActionSheetComponent = (props: ActionSheetComponentProps) => {
     cancelIcon,
     viewTransactionIcon,
     viewTransactionLabel,
-    onSetPrimaryPress,
-    onUnlinkPress,
-    onCancelPress,
-    onPressViewTransactions,
+    onSetPrimary,
+    onUnlink,
+    onCancel,
+    onViewTransactions,
+    onShare,
+    shareIcon,
+    shareLabel,
     i18n,
   } = props;
   const styles = useMergeStyles(style);
@@ -63,8 +74,8 @@ const ActionSheetComponent = (props: ActionSheetComponentProps) => {
       statusBarTranslucent
       isVisible={isVisible && wallet !== undefined}
       style={styles.modalStyle}
-      onBackButtonPress={onCancelPress}
-      onBackdropPress={onCancelPress}
+      onBackButtonPress={onCancel}
+      onBackdropPress={onCancel}
     >
       <SafeAreaView style={styles.containerStyles}>
         {wallet !== undefined ? (
@@ -74,12 +85,12 @@ const ActionSheetComponent = (props: ActionSheetComponentProps) => {
                 style={styles.buttonContainerStyle}
                 activeOpacity={0.8}
                 onPress={() => {
-                  onCancelPress?.();
-                  onSetPrimaryPress?.(wallet);
+                  onCancel?.();
+                  onSetPrimary?.(wallet);
                 }}
               >
                 <View style={styles.leftIconContainer}>
-                  {setPrimaryIcon ?? <BRoundedTickIcon width={20} height={20} />}
+                  {setPrimaryIcon ?? <BRoundedTickIcon width={18} height={18} />}
                 </View>
                 <Text style={styles.buttonTextStyle}>
                   {setPrimaryLabel ??
@@ -92,12 +103,12 @@ const ActionSheetComponent = (props: ActionSheetComponentProps) => {
               style={styles.buttonContainerStyle}
               activeOpacity={0.8}
               onPress={() => {
-                onCancelPress?.();
-                onUnlinkPress?.(wallet);
+                onCancel?.();
+                onUnlink?.(wallet);
               }}
             >
               <View style={styles.leftIconContainer}>
-                {unlinkIcon ?? <BRoundedCloseIcon width={20} height={20} />}
+                {unlinkIcon ?? <BRoundedCloseIcon width={18} height={18} />}
               </View>
               <Text style={styles.buttonTextStyle}>
                 {unlinkLabel ??
@@ -109,12 +120,12 @@ const ActionSheetComponent = (props: ActionSheetComponentProps) => {
               style={styles.buttonContainerStyle}
               activeOpacity={0.8}
               onPress={() => {
-                onCancelPress?.();
-                onPressViewTransactions?.(wallet);
+                onCancel?.();
+                onViewTransactions?.(wallet);
               }}
             >
               <View style={styles.leftIconContainer}>
-                {viewTransactionIcon ?? <BTransactionIcon width={20} height={20} />}
+                {viewTransactionIcon ?? <BTransactionIcon width={18} height={18} />}
               </View>
               <Text style={styles.buttonTextStyle}>
                 {viewTransactionLabel ??
@@ -123,9 +134,24 @@ const ActionSheetComponent = (props: ActionSheetComponentProps) => {
               </Text>
             </TouchableOpacity>
             <TouchableOpacity
+              style={styles.buttonContainerStyle}
+              activeOpacity={0.8}
+              onPress={() => {
+                onCancel?.();
+                onShare?.(wallet);
+              }}
+            >
+              <View style={styles.leftIconContainer}>{shareIcon ?? <BShareIcon size={18} />}</View>
+              <Text style={styles.buttonTextStyle}>
+                {shareLabel ??
+                  i18n?.t('wallet_component.btn_share_information') ??
+                  'Share Information'}
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
               style={styles.cancelContainerStyle}
               activeOpacity={0.8}
-              onPress={onCancelPress}
+              onPress={onCancel}
             >
               {cancelIcon}
               <Text style={styles.cancelTextStyle}>
