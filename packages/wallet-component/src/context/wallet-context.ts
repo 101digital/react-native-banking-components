@@ -20,7 +20,7 @@ export interface WalletContextData {
   summary?: WalletSummary;
   isUnlinking: boolean;
   fetchWallets: () => void;
-  refreshWallets: () => void;
+  refreshWallets: (delayTime?: number) => void;
   getGroupWallets: () => GroupedWallets | undefined;
   getDefaultWallet: () => Wallet | undefined;
   getWalletDetail: (walletId?: string) => Wallet | undefined;
@@ -105,11 +105,18 @@ export function useWalletContextValue(): WalletContextData {
     }
   };
 
-  const refreshWallets = useCallback(async () => {
+  const refreshWallets = useCallback(async (delayTime?: number) => {
     try {
       setIsRefreshing(true);
-      await _fetchWallets();
-      setIsRefreshing(false);
+      if (delayTime) {
+        setTimeout(async () => {
+          await _fetchWallets();
+          setIsRefreshing(false);
+        }, delayTime);
+      } else {
+        await _fetchWallets();
+        setIsRefreshing(false);
+      }
     } catch (err) {
       setIsRefreshing(false);
       setLoadError(err as Error);
@@ -136,8 +143,7 @@ export function useWalletContextValue(): WalletContextData {
     async (wallet: Wallet) => {
       try {
         setIsUnlinking(true);
-        const resp = await walletService.unlinkBankWallet(wallet.walletId);
-        console.log(resp);
+        await walletService.unlinkBankWallet(wallet.walletId);
         refreshWallets();
         setIsUnlinking(false);
         showMessage({
@@ -217,9 +223,7 @@ export function useWalletContextValue(): WalletContextData {
       try {
         setIsLinkingWallet(true);
         await walletService.linkBankAccount(bankId, consentId, accountIds);
-        setTimeout(() => {
-          refreshWallets();
-        }, 1000);
+        refreshWallets(1000);
         setIsLinkingWallet(false);
       } catch (error) {
         setLinkWalletError(error as Error);

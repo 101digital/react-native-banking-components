@@ -46,6 +46,7 @@ const TransactionComponent = (props: TransactionComponentProps) => {
   const { transactions, fetchTransactions } = useContext(TransactionContext);
   const { colors } = useContext(ThemeContext);
   const [_initialWallet, setInitialWallet] = useState(initWallet);
+  const [_initIndex, setInitIndex] = useState<number | undefined>(undefined);
 
   useEffect(() => {
     setInitialWallet(initWallet);
@@ -55,9 +56,12 @@ const TransactionComponent = (props: TransactionComponentProps) => {
     if (_initialWallet && !isEmpty(aggregatedWallets)) {
       const initIndex =
         aggregatedWallets.findIndex((wallet) => wallet.walletId === _initialWallet.walletId) || 0;
-      setTimeout(() => {
-        changeToIndex(initIndex);
-      }, 500);
+      if (!_initIndex) {
+        setTimeout(() => {
+          changeToIndex(initIndex);
+        }, 500);
+        setInitIndex(initIndex);
+      }
     }
   }, [aggregatedWallets, _initialWallet]);
 
