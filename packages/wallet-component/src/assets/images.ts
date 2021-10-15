@@ -13,3 +13,5 @@ export * from './transaction.icon';
 export * from './cash-flow.icon';
 export * from './arrow-right.icon';
 export * from './share.icon';
+export * from './calendar.icon';
+export * from './warning.icon';

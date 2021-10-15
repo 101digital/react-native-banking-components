@@ -51,6 +51,27 @@
       "msg_cashflow": "View cashflow chart for your money in & money out to analyse your spending.",
       "btn_view": "View",
       "btn_share_information": "Share Information"
+    },
+    "share_information_component": {
+      "lbl_recipient_email": "Recipient Email",
+      "plh_enter_recipient_email": "Enter recipient email",
+      "lbl_message": "Message (Optional)",
+      "plh_enter_message": "Enter message",
+      "lbl_data_share": "Data To Share",
+      "lbl_account_transaction": "Account & Transaction Details",
+      "lbl_invoices": "Invoices",
+      "lbl_date_range": "Date Range",
+      "lbl_from": "From",
+      "lbl_to": "To",
+      "val_enter_email": "Recipient email is required",
+      "val_email_invalid": "Recipient email is invalid",
+      "lbl_send_copy": "Send me a copy of this",
+      "btn_cancel": "Cancel",
+      "btn_share": "Share",
+      "btn_continue": "Continue",
+      "lbl_confirmation": "Confirmation",
+      "msg_confirm_share": "Are you sure you want to share these sensitive information? Please click “Continue” to proceed.",
+      "msg_shared_successfully": "Account Information are sent successfully"
     }
   }
 }
