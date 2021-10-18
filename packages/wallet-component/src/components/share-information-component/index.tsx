@@ -18,7 +18,7 @@ import CheckBox, { CheckBoxStyle } from './component/check-box';
 import ShareDatePicker, { ShareDatePickerStyle } from './component/share-date-picker';
 import { ShareInformationData, ShareInformationSchema } from './data/share-information-data';
 import useMergeStyle from './theme';
-import { WalletContext } from 'index';
+import { WalletContext } from '../../context/wallet-context';
 
 export type ShareInformationComponentStyle = {
   containerStyle?: StyleProp<ViewStyle>;

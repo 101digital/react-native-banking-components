@@ -71,7 +71,9 @@
       "btn_continue": "Continue",
       "lbl_confirmation": "Confirmation",
       "msg_confirm_share": "Are you sure you want to share these sensitive information? Please click “Continue” to proceed.",
-      "msg_shared_successfully": "Account Information are sent successfully"
+      "msg_shared_successfully": "Account Information are sent successfully",
+      "lbl_unable_share": "Unable to share",
+      "msg_share_failed": "An error occured while trying to share your transaction details. Please try again."
     }
   }
 }
