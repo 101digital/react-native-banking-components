@@ -35,6 +35,17 @@ export interface WalletContextData {
   errorLinkWallet?: Error;
   isUpdatingPrimary: boolean;
   clearWallets: () => void;
+  isSharingInformation: boolean;
+  isShareSuccessfully: boolean;
+  errorShareInformation?: Error;
+  shareInformation: (
+    userId: string,
+    accountIds: string[],
+    emails: string[],
+    fromDate: string,
+    toDate: string,
+    expiredDate: string
+  ) => void;
 }
 
 export const walletDefaultValue: WalletContextData = {
@@ -55,6 +66,9 @@ export const walletDefaultValue: WalletContextData = {
   isLinkingWallet: false,
   clearWalletErrors: () => null,
   clearWallets: () => null,
+  isSharingInformation: false,
+  shareInformation: () => null,
+  isShareSuccessfully: false,
 };
 
 export const WalletContext = React.createContext<WalletContextData>(walletDefaultValue);
@@ -71,8 +85,9 @@ export function useWalletContextValue(): WalletContextData {
   const [_isLinkingWallet, setIsLinkingWallet] = useState(false);
   const [_linkWalletError, setLinkWalletError] = useState<Error | undefined>();
   const [_isRefreshing, setIsRefreshing] = useState(false);
-
-  console.log(_wallets);
+  const [_isSharingInformation, setIsSharingInformation] = useState(false);
+  const [_errorShareInformation, setErrorShareInformation] = useState<Error | undefined>();
+  const [_isShareSuccessfully, setShareSucessfully] = useState(false);
 
   const fetchWallets = useCallback(async () => {
     try {
@@ -233,11 +248,44 @@ export function useWalletContextValue(): WalletContextData {
     []
   );
 
+  const shareInformation = useCallback(
+    async (
+      userId: string,
+      accountIds: string[],
+      emails: string[],
+      fromDate: string,
+      toDate: string,
+      expiredDate: string
+    ) => {
+      try {
+        setIsSharingInformation(true);
+        await walletService.shareInformation(
+          userId,
+          accountIds,
+          emails,
+          fromDate,
+          toDate,
+          expiredDate
+        );
+        setShareSucessfully(true);
+        setTimeout(() => {
+          setShareSucessfully(false);
+        }, 500);
+        setIsSharingInformation(false);
+      } catch (error) {
+        setErrorShareInformation(error as Error);
+        setIsSharingInformation(false);
+      }
+    },
+    []
+  );
+
   const clearWalletErrors = useCallback(() => {
     setLoadError(undefined);
     setUnlinkError(undefined);
     setUpdatePrimaryError(undefined);
     setLinkWalletError(undefined);
+    setErrorShareInformation(undefined);
   }, []);
 
   const clearWallets = useCallback(() => {
@@ -268,6 +316,10 @@ export function useWalletContextValue(): WalletContextData {
       clearWallets,
       isRefreshingWallets: _isRefreshing,
       refreshWallets,
+      isSharingInformation: _isSharingInformation,
+      errorShareInformation: _errorShareInformation,
+      shareInformation,
+      isShareSuccessfully: _isShareSuccessfully,
     }),
     [
       _wallets,
@@ -281,6 +333,9 @@ export function useWalletContextValue(): WalletContextData {
       _isLinkingWallet,
       _linkWalletError,
       _isRefreshing,
+      _isSharingInformation,
+      _errorShareInformation,
+      _isShareSuccessfully,
     ]
   );
 }

@@ -1,11 +1,13 @@
 type WalletClient = {
   walletClient: any;
+  financialClient: any;
 };
 
 export class WalletService {
   private static _instance: WalletService = new WalletService();
 
   private _walletClient?: any;
+  private _financialClient?: any;
 
   constructor() {
     if (WalletService._instance) {
@@ -22,6 +24,7 @@ export class WalletService {
 
   public initClients = (clients: WalletClient) => {
     this._walletClient = clients.walletClient;
+    this._financialClient = clients.financialClient;
   };
 
   getWallets = async () => {
@@ -47,21 +50,14 @@ export class WalletService {
     }
   };
 
-  linkBankAccount = async (
-    bankId: string,
-    consentId: string,
-    accountIds?: string[]
-  ) => {
+  linkBankAccount = async (bankId: string, consentId: string, accountIds?: string[]) => {
     if (this._walletClient) {
-      const response = await this._walletClient.post(
-        'wallets/link-bank-accounts',
-        {
-          bankId,
-          consentId,
-          accountIds,
-          async: true,
-        }
-      );
+      const response = await this._walletClient.post('wallets/link-bank-accounts', {
+        bankId,
+        consentId,
+        accountIds,
+        async: true,
+      });
       return response.data;
     } else {
       throw new Error('Wallet Client is not registered');
@@ -85,6 +81,31 @@ export class WalletService {
       return response.data;
     } else {
       throw new Error('Wallet Client is not registered');
+    }
+  };
+
+  shareInformation = async (
+    userId: string,
+    accountNumbers: string[],
+    toEmails: string[],
+    fromDateTime: string,
+    toDateTime: string,
+    expiryDateTime: string
+  ) => {
+    if (this._financialClient) {
+      const response = await this._financialClient.post(`users/${userId}/financialProfile`, {
+        accountNumbers,
+        toEmails,
+        fromDateTime,
+        toDateTime,
+        maskAccountNumber: true,
+        fileFormat: 'EXCEL',
+        sendAsEmbeddedAttachment: true,
+        expiryDateTime,
+      });
+      return response.data;
+    } else {
+      throw new Error('Financial Client is not registered');
     }
   };
 }

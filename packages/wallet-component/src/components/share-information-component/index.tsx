@@ -2,7 +2,7 @@ import { BWarningIcon } from '../../assets/warning.icon';
 import { Wallet } from '@banking-component/core';
 import { Formik, FormikProps } from 'formik';
 import moment from 'moment';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -18,6 +18,7 @@ import CheckBox, { CheckBoxStyle } from './component/check-box';
 import ShareDatePicker, { ShareDatePickerStyle } from './component/share-date-picker';
 import { ShareInformationData, ShareInformationSchema } from './data/share-information-data';
 import useMergeStyle from './theme';
+import { WalletContext } from 'index';
 
 export type ShareInformationComponentStyle = {
   containerStyle?: StyleProp<ViewStyle>;
@@ -27,6 +28,7 @@ export type ShareInformationComponentStyle = {
 };
 
 export type ShareInformationComponentProps = {
+  userId: string;
   wallet: Wallet;
   i18n?: any;
   checkBoxStyle?: CheckBoxStyle;
@@ -37,7 +39,16 @@ export type ShareInformationComponentProps = {
 };
 
 const ShareInformationComponent = (props: ShareInformationComponentProps) => {
-  const { onCancel, onSuccess, checkBoxStyle, datePickerStyle, style, i18n } = props;
+  const {
+    userId,
+    onCancel,
+    onSuccess,
+    checkBoxStyle,
+    datePickerStyle,
+    style,
+    i18n,
+    wallet,
+  } = props;
   const [fromDate, setFromDate] = useState(moment().subtract(1, 'M').startOf('M').toDate());
   const [toDate, setToDate] = useState(moment().subtract(1, 'M').endOf('M').toDate());
   const [isShareAccount, setShareAccount] = useState(false);
@@ -47,6 +58,19 @@ const ShareInformationComponent = (props: ShareInformationComponentProps) => {
   const formikRef: any = useRef(null);
   const [isConfirmAlert, setConfirmAlert] = useState(false);
   const styles: ShareInformationComponentStyle = useMergeStyle(style);
+  const { isSharingInformation, shareInformation, isShareSuccessfully } = useContext(WalletContext);
+
+  useEffect(() => {
+    if (isShareSuccessfully) {
+      onSuccess();
+      showMessage({
+        message:
+          i18n?.t('share_information_component.msg_shared_successfully') ??
+          'Account Information are sent successfully',
+        backgroundColor: '#44ac44',
+      });
+    }
+  }, [isShareSuccessfully]);
 
   useEffect(() => {
     setTimeout(() => {
@@ -180,6 +204,7 @@ const ShareInformationComponent = (props: ShareInformationComponentProps) => {
           />
           <Button
             disabled={(!isShareAccount && !isShareInvoice) || !isValidEmail}
+            isLoading={isSharingInformation}
             style={{
               primaryContainerStyle: {
                 flex: 1,
@@ -208,13 +233,14 @@ const ShareInformationComponent = (props: ShareInformationComponentProps) => {
         }
         onConfirmed={() => {
           setConfirmAlert(false);
-          onSuccess();
-          showMessage({
-            message:
-              i18n?.t('share_information_component.msg_shared_successfully') ??
-              'Account Information are sent successfully',
-            backgroundColor: '#44ac44',
-          });
+          shareInformation(
+            userId,
+            [wallet.walletId],
+            [formikRef?.current.values['email']],
+            moment(fromDate).format('YYYY-MM-DD'),
+            moment(toDate).format('YYYY-MM-DD'),
+            moment().add(1, 'y').format('YYYY-MM-DD')
+          );
         }}
       />
     </>
