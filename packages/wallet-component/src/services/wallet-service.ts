@@ -93,16 +93,19 @@ export class WalletService {
     expiryDateTime: string
   ) => {
     if (this._financialClient) {
-      const response = await this._financialClient.post(`users/${userId}/financialProfile`, {
-        accountNumbers,
-        toEmails,
-        fromDateTime,
-        toDateTime,
-        maskAccountNumber: true,
-        fileFormat: 'EXCEL',
-        sendAsEmbeddedAttachment: true,
-        expiryDateTime,
-      });
+      const response = await this._financialClient.post(
+        `users/${userId}/financial-profiles/shares`,
+        {
+          accountNumbers,
+          toEmails,
+          fromDateTime,
+          toDateTime,
+          maskAccountNumber: true,
+          fileFormat: 'EXCEL',
+          sendAsEmbeddedAttachment: true,
+          expiryDateTime,
+        }
+      );
       return response.data;
     } else {
       throw new Error('Financial Client is not registered');

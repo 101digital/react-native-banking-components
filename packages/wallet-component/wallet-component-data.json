@@ -9,13 +9,16 @@
   "config": {
     "env": {
       "development": {
-        "walletBaseUrl": "https://sandbox.101digital.io/wallet-service/1.0.0"
+        "walletBaseUrl": "https://sandbox.101digital.io/wallet-service/1.0.0",
+        "financialBaseUrl": "https://sandbox.101digital.io/financial-profile-service/1.0.0"
       },
       "staging": {
-        "walletBaseUrl": "https://sandbox.101digital.io/wallet-service/1.0.0"
+        "walletBaseUrl": "https://sandbox.101digital.io/wallet-service/1.0.0",
+        "financialBaseUrl": "https://sandbox.101digital.io/financial-profile-service/1.0.0"
       },
       "production": {
-        "walletBaseUrl": "https://api.101digital.io/wallet-service/v1.0"
+        "walletBaseUrl": "https://api.101digital.io/wallet-service/v1.0",
+        "financialBaseUrl": "https://sandbox.101digital.io/financial-profile-service/1.0.0"
       }
     }
   },
