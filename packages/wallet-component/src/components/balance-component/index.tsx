@@ -38,17 +38,19 @@ const BalanceComponent = (props: BalanceComponentProps) => {
               i18n?.t('wallet_component.lbl_total_balance') ??
               'Total Available Balance'}
           </Text>
-          <TouchableOpacity
-            activeOpacity={0.8}
-            onPress={onViewCashFlow}
-            style={styles.viewCashflowContainer}
-          >
-            <CashflowIcon size={15} color={cashflowIconColor ?? colors.primaryColor} />
-            <Text style={styles.viewCashflowTextStyle}>
-              {i18n?.t('wallet_component.btn_view_cashflow') ?? 'View Cashflow'}
-            </Text>
-            <ArrowRightIcon size={9} color={cashflowIconColor ?? colors.primaryColor} />
-          </TouchableOpacity>
+          {onViewCashFlow && (
+            <TouchableOpacity
+              activeOpacity={0.8}
+              onPress={onViewCashFlow}
+              style={styles.viewCashflowContainer}
+            >
+              <CashflowIcon size={15} color={cashflowIconColor ?? colors.primaryColor} />
+              <Text style={styles.viewCashflowTextStyle}>
+                {i18n?.t('wallet_component.btn_view_cashflow') ?? 'View Cashflow'}
+              </Text>
+              <ArrowRightIcon size={9} color={cashflowIconColor ?? colors.primaryColor} />
+            </TouchableOpacity>
+          )}
         </View>
         <View style={innerStyles.leftWrap}>
           <Text style={styles.amountTextStyle}>{balance}</Text>

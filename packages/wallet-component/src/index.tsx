@@ -230,11 +230,13 @@ const WalletComponent = forwardRef((props: WalletComponentProps, ref) => {
                   {...LinkAccountButton?.props}
                   {...LinkAccountButton?.components}
                 />
-                <ViewCashflowComponent
-                  style={ViewCashFlow?.styles}
-                  i18n={i18n}
-                  {...ViewCashFlow?.props}
-                />
+                {ViewCashFlow?.props?.onViewCashFlow && (
+                  <ViewCashflowComponent
+                    style={ViewCashFlow?.styles}
+                    i18n={i18n}
+                    {...ViewCashFlow?.props}
+                  />
+                )}
               </View>
             )}
             renderSectionHeader={({ section: { section } }) => {
