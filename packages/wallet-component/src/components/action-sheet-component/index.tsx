@@ -99,55 +99,63 @@ const ActionSheetComponent = (props: ActionSheetComponentProps) => {
                 </Text>
               </TouchableOpacity>
             )}
-            <TouchableOpacity
-              style={styles.buttonContainerStyle}
-              activeOpacity={0.8}
-              onPress={() => {
-                onCancel?.();
-                onUnlink?.(wallet);
-              }}
-            >
-              <View style={styles.leftIconContainer}>
-                {unlinkIcon ?? <BRoundedCloseIcon width={18} height={18} />}
-              </View>
-              <Text style={styles.buttonTextStyle}>
-                {unlinkLabel ??
-                  i18n?.t('wallet_component.btn_unlink_account') ??
-                  'Unlink bank account'}
-              </Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.buttonContainerStyle}
-              activeOpacity={0.8}
-              onPress={() => {
-                onCancel?.();
-                onViewTransactions?.(wallet);
-              }}
-            >
-              <View style={styles.leftIconContainer}>
-                {viewTransactionIcon ?? <BTransactionIcon width={18} height={18} />}
-              </View>
-              <Text style={styles.buttonTextStyle}>
-                {viewTransactionLabel ??
-                  i18n?.t('wallet_component.btn_view_transaction') ??
-                  'View transactions'}
-              </Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.buttonContainerStyle}
-              activeOpacity={0.8}
-              onPress={() => {
-                onCancel?.();
-                onShare?.(wallet);
-              }}
-            >
-              <View style={styles.leftIconContainer}>{shareIcon ?? <BShareIcon size={18} />}</View>
-              <Text style={styles.buttonTextStyle}>
-                {shareLabel ??
-                  i18n?.t('wallet_component.btn_share_information') ??
-                  'Share Information'}
-              </Text>
-            </TouchableOpacity>
+            {onUnlink && (
+              <TouchableOpacity
+                style={styles.buttonContainerStyle}
+                activeOpacity={0.8}
+                onPress={() => {
+                  onCancel?.();
+                  onUnlink(wallet);
+                }}
+              >
+                <View style={styles.leftIconContainer}>
+                  {unlinkIcon ?? <BRoundedCloseIcon width={18} height={18} />}
+                </View>
+                <Text style={styles.buttonTextStyle}>
+                  {unlinkLabel ??
+                    i18n?.t('wallet_component.btn_unlink_account') ??
+                    'Unlink bank account'}
+                </Text>
+              </TouchableOpacity>
+            )}
+            {onViewTransactions && (
+              <TouchableOpacity
+                style={styles.buttonContainerStyle}
+                activeOpacity={0.8}
+                onPress={() => {
+                  onCancel?.();
+                  onViewTransactions(wallet);
+                }}
+              >
+                <View style={styles.leftIconContainer}>
+                  {viewTransactionIcon ?? <BTransactionIcon width={18} height={18} />}
+                </View>
+                <Text style={styles.buttonTextStyle}>
+                  {viewTransactionLabel ??
+                    i18n?.t('wallet_component.btn_view_transaction') ??
+                    'View transactions'}
+                </Text>
+              </TouchableOpacity>
+            )}
+            {onShare && (
+              <TouchableOpacity
+                style={styles.buttonContainerStyle}
+                activeOpacity={0.8}
+                onPress={() => {
+                  onCancel?.();
+                  onShare(wallet);
+                }}
+              >
+                <View style={styles.leftIconContainer}>
+                  {shareIcon ?? <BShareIcon size={18} />}
+                </View>
+                <Text style={styles.buttonTextStyle}>
+                  {shareLabel ??
+                    i18n?.t('wallet_component.btn_share_information') ??
+                    'Share Information'}
+                </Text>
+              </TouchableOpacity>
+            )}
             <TouchableOpacity
               style={styles.cancelContainerStyle}
               activeOpacity={0.8}

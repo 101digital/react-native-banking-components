@@ -120,18 +120,18 @@ export function useWalletContextValue(): WalletContextData {
     }
   };
 
+  const sleep = (ms: number) => {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  };
+
   const refreshWallets = useCallback(async (delayTime?: number) => {
     try {
       setIsRefreshing(true);
       if (delayTime) {
-        setTimeout(async () => {
-          await _fetchWallets();
-          setIsRefreshing(false);
-        }, delayTime);
-      } else {
-        await _fetchWallets();
-        setIsRefreshing(false);
+        await sleep(delayTime);
       }
+      await _fetchWallets();
+      setIsRefreshing(false);
     } catch (err) {
       setIsRefreshing(false);
       setLoadError(err as Error);
