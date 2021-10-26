@@ -104,7 +104,9 @@ export type WalletComponentProps = {
     };
     components?: {
       leftIcon?: ReactNode;
+      closeIcon?: ReactNode;
     };
+    style?: AlertModalStyles;
   };
   ConfirmSetPrimaryModal?: {
     props?: {
@@ -118,7 +120,9 @@ export type WalletComponentProps = {
     };
     components?: {
       leftIcon?: ReactNode;
+      closeIcon?: ReactNode;
     };
+    style?: AlertModalStyles;
   };
   LinkAccountSuccessModal?: {
     style?: SetPrimaryComponentStyle;

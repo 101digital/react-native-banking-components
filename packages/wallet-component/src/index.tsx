@@ -300,6 +300,8 @@ const WalletComponent = forwardRef((props: WalletComponentProps, ref) => {
           }
           setSelectedWallet(undefined);
         }}
+        style={ConfirmUnlinkModal?.style}
+        closeIcon={ConfirmUnlinkModal?.components?.closeIcon}
       />
       <AlertModal
         isVisible={isShowPrimary && !ConfirmSetPrimaryModal?.props?.disable}
@@ -336,6 +338,8 @@ const WalletComponent = forwardRef((props: WalletComponentProps, ref) => {
           }
           setSelectedWallet(undefined);
         }}
+        style={ConfirmSetPrimaryModal?.style}
+        closeIcon={ConfirmSetPrimaryModal?.components?.closeIcon}
       />
       {/* {renderSuccessModal()} */}
     </>
