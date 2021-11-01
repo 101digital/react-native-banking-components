@@ -37,6 +37,37 @@ const useMergeStyle = (style?: ShareInformationComponentStyle): ShareInformation
       paddingVertical: 10,
       flexDirection: 'row',
     },
+    accountWrapperStyle: {
+      backgroundColor: 'white',
+      shadowColor: 'grey',
+      shadowOffset: {
+        width: 0,
+        height: 5,
+      },
+      shadowOpacity: 0.1,
+      shadowRadius: 5,
+      elevation: 3,
+    },
+    accountContainerStyle: {
+      flexDirection: 'row',
+      height: 40,
+      borderWidth: 1,
+      borderColor: '#e2e2e2',
+      borderRadius: 5,
+      paddingHorizontal: 10,
+      alignItems: 'center',
+    },
+    accountNameTextStyle: {
+      color: 'black',
+      fontSize: 14,
+      fontFamily: fonts.regular,
+    },
+    accountNameContainerStyle:{flexDirection:'row',alignItems:'center'},
+    accountNumberTextStyle: {
+      fontSize: 14,
+      fontFamily: fonts.regular,
+      color: '#646876',
+    },
   });
   return defaultsDeep(style, defaultStyles);
 };
