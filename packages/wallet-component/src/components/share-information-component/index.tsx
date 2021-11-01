@@ -40,11 +40,7 @@ export type ShareInformationComponentProps = {
   style?: ShareInformationComponentStyle;
   onCancel: () => void;
   onSuccess: () => void;
-  Root: {
-    props: {
-      wallets: Wallet[];
-    };
-  };
+
 };
 
 const ShareInformationComponent = (props: ShareInformationComponentProps) => {
@@ -57,7 +53,6 @@ const ShareInformationComponent = (props: ShareInformationComponentProps) => {
     style,
     i18n,
     wallet,
-    Root,
   } = props;
   const [fromDate, setFromDate] = useState(moment().subtract(1, 'M').startOf('M').toDate());
   const [toDate, setToDate] = useState(moment().subtract(1, 'M').endOf('M').toDate());
@@ -69,9 +64,10 @@ const ShareInformationComponent = (props: ShareInformationComponentProps) => {
   const [isConfirmAlert, setConfirmAlert] = useState(false);
   const [isShowSelectAccount, setShowSelectAccount] = useState(false);
   const styles: ShareInformationComponentStyle = useMergeStyle(style);
-  const { isSharingInformation, shareInformation, isShareSuccessfully } = useContext(WalletContext);
-  const [selectedWallets, setSelectedWallets] = useState<Wallet[]>(Root.props.wallets);
+  const { isSharingInformation, shareInformation, isShareSuccessfully,wallets } = useContext(WalletContext);
+  const [selectedWallets, setSelectedWallets] = useState<Wallet[]>(wallets);
   const { colors } = useContext(ThemeContext);
+
   const SelectAccount =[]
 
   useEffect(() => {
@@ -157,7 +153,7 @@ const ShareInformationComponent = (props: ShareInformationComponentProps) => {
                     <Text style={styles.accountNumberTextStyle}>
                       {i18n?.t('share_information_component.lbl_select_account') ?? 'Select a account '}
                     </Text>
-                    :selectedWallets?.length === Root.props.wallets.length
+                    :selectedWallets?.length === wallets.length
                     ? i18n?.t('cash_flow.lbl_all_accounts') ?? 'All Accounts'
                     : selectedWallets?.map((w) => w.walletName).join(', ')}
                 </Text>
@@ -267,7 +263,7 @@ const ShareInformationComponent = (props: ShareInformationComponentProps) => {
       />
       <SelectAccountModal
         isVisible={isShowSelectAccount}
-        wallets={Root.props.wallets}
+        wallets={wallets}
         selectedWallets={selectedWallets}
         style={SelectAccount?.styles}
         onClose={() => setShowSelectAccount(false)}
