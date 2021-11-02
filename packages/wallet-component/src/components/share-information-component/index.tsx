@@ -1,4 +1,5 @@
 import { BWarningIcon } from '../../assets/warning.icon';
+import { ArrowDownIcon } from '../../../../cashflow-component/src/assets/images';
 import { Wallet } from '@banking-component/core';
 import { Formik, FormikProps } from 'formik';
 import moment from 'moment';
@@ -12,6 +13,7 @@ import {
   TextStyle,
   View,
   ViewStyle,
+  TouchableOpacity
 } from 'react-native';
 import { AlertModal, Button, InputField, showMessage } from 'react-native-theme-component';
 import CheckBox, { CheckBoxStyle } from './component/check-box';
@@ -19,6 +21,8 @@ import ShareDatePicker, { ShareDatePickerStyle } from './component/share-date-pi
 import { ShareInformationData, ShareInformationSchema } from './data/share-information-data';
 import useMergeStyle from './theme';
 import { WalletContext } from '../../context/wallet-context';
+import SelectAccountModal from '../../../../cashflow-component/src/components/select-account-modal';
+import { ThemeContext } from 'react-native-theme-component';
 
 export type ShareInformationComponentStyle = {
   containerStyle?: StyleProp<ViewStyle>;
@@ -36,6 +40,7 @@ export type ShareInformationComponentProps = {
   style?: ShareInformationComponentStyle;
   onCancel: () => void;
   onSuccess: () => void;
+
 };
 
 const ShareInformationComponent = (props: ShareInformationComponentProps) => {
@@ -57,8 +62,13 @@ const ShareInformationComponent = (props: ShareInformationComponentProps) => {
   const [isValidEmail, setValidEmail] = useState(false);
   const formikRef: any = useRef(null);
   const [isConfirmAlert, setConfirmAlert] = useState(false);
+  const [isShowSelectAccount, setShowSelectAccount] = useState(false);
   const styles: ShareInformationComponentStyle = useMergeStyle(style);
-  const { isSharingInformation, shareInformation, isShareSuccessfully } = useContext(WalletContext);
+  const { isSharingInformation, shareInformation, isShareSuccessfully,wallets } = useContext(WalletContext);
+  const [selectedWallets, setSelectedWallets] = useState<Wallet[]>(wallets);
+  const { colors } = useContext(ThemeContext);
+
+  const SelectAccount =[]
 
   useEffect(() => {
     if (isShareSuccessfully) {
@@ -128,23 +138,30 @@ const ShareInformationComponent = (props: ShareInformationComponentProps) => {
       <SafeAreaView style={styles.containerStyle}>
         <ScrollView style={styles.mainContainerStyle}>
           <Text style={styles.sectionTextStyle}>
-            {i18n?.t('share_information_component.lbl_data_share') ?? 'Data To Share'}
+            {i18n?.t('share_information_component.lbl_data_account') ?? 'Account'}
           </Text>
-          <CheckBox
-            isSelected={isShareAccount}
-            label={
-              i18n?.t('share_information_component.lbl_account_transaction') ??
-              'Account & Transaction Details'
-            }
-            onPress={() => setShareAccount(!isShareAccount)}
-            style={checkBoxStyle}
-          />
-          <CheckBox
-            isSelected={isShareInvoice}
-            label={i18n?.t('share_information_component.lbl_invoices') ?? 'Invoices'}
-            onPress={() => setShareInvoice(!isShareInvoice)}
-            style={checkBoxStyle}
-          />
+
+          <View style={styles.accountWrapperStyle}>
+            <TouchableOpacity
+              style={styles.accountContainerStyle}
+              activeOpacity={0.8}
+              onPress={() => setShowSelectAccount(true)}
+            >
+              <View style={innerStyles.accountNames}>
+                <Text numberOfLines={1} ellipsizeMode='tail' style={styles.accountNameTextStyle}>
+                  {selectedWallets?.length ===0 ?
+                    <Text style={styles.accountNumberTextStyle}>
+                      {i18n?.t('share_information_component.lbl_select_account') ?? 'Select a account '}
+                    </Text>
+                    :selectedWallets?.length === wallets.length
+                    ? i18n?.t('cash_flow.lbl_all_accounts') ?? 'All Accounts'
+                    : selectedWallets?.map((w) => w.walletName).join(', ')}
+                </Text>
+              </View>
+              <ArrowDownIcon size={12} color={colors.primaryColor} />
+            </TouchableOpacity>
+          </View>
+
           <Text style={styles.sectionTextStyle}>
             {i18n?.t('share_information_component.lbl_date_range') ?? 'Date Range'}
           </Text>
@@ -203,7 +220,7 @@ const ShareInformationComponent = (props: ShareInformationComponentProps) => {
             onPress={onCancel}
           />
           <Button
-            disabled={(!isShareAccount && !isShareInvoice) || !isValidEmail}
+            disabled={selectedWallets.length === 0 || !isValidEmail}
             isLoading={isSharingInformation}
             style={{
               primaryContainerStyle: {
@@ -233,15 +250,29 @@ const ShareInformationComponent = (props: ShareInformationComponentProps) => {
         }
         onConfirmed={() => {
           setConfirmAlert(false);
+          let selectedWalletIds = selectedWallets.map(a => a.walletId);
           shareInformation(
             userId,
-            [wallet.walletId],
+            selectedWalletIds,
             [formikRef?.current.values['email']],
             moment(fromDate).format('YYYY-MM-DD'),
             moment(toDate).format('YYYY-MM-DD'),
             moment().add(1, 'y').format('YYYY-MM-DD')
           );
         }}
+      />
+      <SelectAccountModal
+        isVisible={isShowSelectAccount}
+        wallets={wallets}
+        selectedWallets={selectedWallets}
+        style={SelectAccount?.styles}
+        onClose={() => setShowSelectAccount(false)}
+        onApplied={(ws) => {
+          setShowSelectAccount(false);
+          setSelectedWallets(ws);
+        }}
+        {...SelectAccount?.components}
+        {...SelectAccount?.props}
       />
     </>
   );
@@ -253,6 +284,11 @@ const innerStyles = StyleSheet.create({
   },
   seperatorDate: {
     width: 20,
+  },
+  accountNames: {
+    flex: 1,
+    justifyContent: 'center',
+    marginRight: 10,
   },
 });
 
