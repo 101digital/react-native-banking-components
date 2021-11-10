@@ -61,6 +61,8 @@
       "lbl_message": "Message (Optional)",
       "plh_enter_message": "Enter message",
       "lbl_data_share": "Data To Share",
+      "lbl_data_account": "Account",
+      "lbl_select_account": "Select a account",
       "lbl_account_transaction": "Account & Transaction Details",
       "lbl_invoices": "Invoices",
       "lbl_date_range": "Date Range",
