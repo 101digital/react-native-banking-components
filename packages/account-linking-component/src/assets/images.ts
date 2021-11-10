@@ -5,3 +5,4 @@ export const images = {
 export * from './checked.icon';
 export * from './warning.icon';
 export * from './no-wallet.icon';
+export * from './search.icon';

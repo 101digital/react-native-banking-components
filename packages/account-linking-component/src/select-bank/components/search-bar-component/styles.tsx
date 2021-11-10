@@ -23,6 +23,10 @@ const useMergeStyles = (style?: SearchBarComponentStyles) => {
       paddingTop: 0,
       paddingBottom: 0,
     },
+    searchBox: {
+      marginRight: 8,
+      marginLeft: 10,
+    },
   });
 
   return defaultsDeep(style, defaultStyles);

@@ -1,3 +1,4 @@
+import { SearchIcon } from '../../../assets/images';
 import React, { ReactNode } from 'react';
 import { TextInput, View } from 'react-native';
 import { SearchBarComponentStyles } from '../../types';
@@ -17,9 +18,14 @@ const SearchBarComponent = (props: SearchBarComponentProps) => {
   const { placeholder, style, onChangedText, leftIcon, rightIcon, i18n } = props;
 
   const styles = useMergeStyles(style);
+
   return (
     <View style={styles.containerStyle}>
-      {leftIcon}
+      {leftIcon ?? (
+        <View style={styles.searchBox}>
+          <SearchIcon size={15} />
+        </View>
+      )}
       <TextInput
         clearButtonMode='while-editing'
         autoCapitalize='none'
