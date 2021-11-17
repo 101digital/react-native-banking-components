@@ -1,9 +1,11 @@
-import { BWarningIcon } from "../../assets/warning.icon";
-import { ArrowDownIcon } from "../../../../cashflow-component/src/assets/images";
+import {
+  BWarningIcon,
+  ArrowDownIcon,
+} from '../../assets/images';
 import { Wallet } from "@banking-component/core";
 import { Formik, FormikProps } from "formik";
 import moment from "moment";
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { ReactNode, useContext, useEffect, useRef, useState } from "react";
 import {
   SafeAreaView,
   ScrollView,
@@ -31,7 +33,7 @@ import {
 } from "./data/share-information-data";
 import useMergeStyle from "./theme";
 import { WalletContext } from "../../context/wallet-context";
-import SelectAccountModal from "../../../../cashflow-component/src/components/select-account-modal";
+import SelectAccountModal, { SelectAccountModalStyle } from "./component/select-account-modal";
 import { ThemeContext } from "react-native-theme-component";
 
 export type ShareInformationComponentStyle = {
@@ -39,6 +41,11 @@ export type ShareInformationComponentStyle = {
   mainContainerStyle: StyleProp<ViewStyle>;
   sectionTextStyle?: StyleProp<TextStyle>;
   applyContainerStyle?: StyleProp<ViewStyle>;
+  accountNameContainerStyle?: StyleProp<ViewStyle>
+  accountNameTextStyle?: StyleProp<TextStyle>
+  accountWrapperStyle?: StyleProp<ViewStyle>;
+  accountNumberTextStyle?: StyleProp<TextStyle>;
+  accountContainerStyle?: StyleProp<ViewStyle>
 };
 
 export type ShareInformationComponentProps = {
@@ -50,6 +57,17 @@ export type ShareInformationComponentProps = {
   style?: ShareInformationComponentStyle;
   onCancel: () => void;
   onSuccess: () => void;
+  SelectAccount?: {
+    props?: {
+      applyTitle?: string;
+      activeColor?: string;
+      inactiveColor?: string;
+    };
+    components?: {
+      checkedIcon?: ReactNode;
+    };
+    styles?: SelectAccountModalStyle;
+  };
 };
 
 const ShareInformationComponent = (props: ShareInformationComponentProps) => {
@@ -61,7 +79,8 @@ const ShareInformationComponent = (props: ShareInformationComponentProps) => {
     datePickerStyle,
     style,
     i18n,
-    wallet
+    wallet,
+    SelectAccount
   } = props;
   const [fromDate, setFromDate] = useState(
     moment()
@@ -75,14 +94,12 @@ const ShareInformationComponent = (props: ShareInformationComponentProps) => {
       .endOf("M")
       .toDate()
   );
-  const [isShareAccount, setShareAccount] = useState(false);
-  const [isShareInvoice, setShareInvoice] = useState(false);
   const [isShareCopy, setShareCopy] = useState(false);
   const [isValidEmail, setValidEmail] = useState(false);
   const formikRef: any = useRef(null);
   const [isConfirmAlert, setConfirmAlert] = useState(false);
   const [isShowSelectAccount, setShowSelectAccount] = useState(false);
-  const styles: ShareInformationComponentStyle = useMergeStyle(style);
+  const styles = useMergeStyle(style);
   const {
     isSharingInformation,
     shareInformation,
@@ -91,8 +108,6 @@ const ShareInformationComponent = (props: ShareInformationComponentProps) => {
   } = useContext(WalletContext);
   const [selectedWallets, setSelectedWallets] = useState<Wallet[]>([wallet]);
   const { colors } = useContext(ThemeContext);
-
-  const SelectAccount = [];
 
   useEffect(() => {
     if (isShareSuccessfully) {

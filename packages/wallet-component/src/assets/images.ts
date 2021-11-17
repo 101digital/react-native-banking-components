@@ -15,3 +15,5 @@ export * from './arrow-right.icon';
 export * from './share.icon';
 export * from './calendar.icon';
 export * from './warning.icon';
+export * from './arrow-down.icon'
+export * from './checked2.icon'

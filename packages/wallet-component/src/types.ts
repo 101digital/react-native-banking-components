@@ -2,6 +2,7 @@ import { BankImagesMap, Wallet, EmptyWalletThemeProps } from '@banking-component
 import { ReactNode } from 'react';
 import { ImageStyle, StyleProp, TextStyle, ViewStyle } from 'react-native';
 import { AlertModalStyles } from 'react-native-theme-component/src/alert';
+import { ButtonStyles } from 'react-native-theme-component/src/button';
 
 export type WalletComponentRefs = {
   showActionsSheet: (wallet: Wallet) => void;
@@ -219,3 +220,5 @@ export type ViewCashflowComponentStyle = {
   viewButtonContainerStyle?: StyleProp<ViewStyle>;
   viewTitleTextStyle?: StyleProp<TextStyle>;
 };
+
+
