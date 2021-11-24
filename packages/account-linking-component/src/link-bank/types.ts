@@ -84,3 +84,5 @@ export type AccessInfoComponentStyles = {
   contentTextStyle?: StyleProp<TextStyle>;
   itemContentContainerStyle?: StyleProp<ViewStyle>;
 };
+
+

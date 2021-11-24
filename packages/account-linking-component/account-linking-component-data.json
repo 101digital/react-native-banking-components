@@ -57,6 +57,13 @@
     "select_bank_component": {
       "lbl_heading": "Please select the banking provider you are\nbanking with",
       "plh_search_bank": "Search"
+    },
+    "consumer_data_component": {
+      "lbl_we_using": "We are using",
+      "lbl_to_link_account": "to link your account",
+      "lbl_open_banking": "Open Banking",
+      "btn_view_cdr_policy": "View our CDR policy",
+      "btn_link": "Link"
     }
   }
 }
