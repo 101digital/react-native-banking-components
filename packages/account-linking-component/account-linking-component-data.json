@@ -56,7 +56,9 @@
     },
     "select_bank_component": {
       "lbl_heading": "Please select the banking provider you are\nbanking with",
-      "plh_search_bank": "Search"
+      "plh_search_bank": "Search",
+      "lbl_how_link_account": "How to link an account?",
+      "btn_view_guide": "View here"
     },
     "consumer_data_component": {
       "lbl_we_using": "We are using",

@@ -1,13 +1,7 @@
 import * as React from 'react';
 import { SvgCss } from 'react-native-svg';
 
-interface Props {
-  width?: number;
-  height?: number;
-  color?: string;
-}
-
-const SecurityIcon: React.FC<Props> = ({ width, height, color }) => {
+const SecurityIcon = () => {
   return (
     <SvgCss
       xml={`<svg width="25" height="26" viewBox="0 0 25 26" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -25,9 +19,6 @@ const SecurityIcon: React.FC<Props> = ({ width, height, color }) => {
       </defs>
       </svg>
       `}
-      width={width}
-      height={height}
-      fill={color ? color : 'yellow'}
     />
   );
 };

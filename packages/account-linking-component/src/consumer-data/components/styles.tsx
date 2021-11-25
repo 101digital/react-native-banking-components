@@ -14,7 +14,6 @@ const useMergeStyle = (style?: ItemCDRStyles): ItemCDRStyles => {
       flexDirection: 'row',
     },
     contentContainerStyle: {
-      flex: 1,
       marginLeft: 16,
     },
     titleTextStyle: {

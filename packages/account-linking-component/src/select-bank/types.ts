@@ -9,6 +9,7 @@ export type SelectBankComponentProps = {
       i18n?: any;
       headingLabel?: string;
       numberColumns?: number;
+      onViewGuide?: () => void
     };
     components?: {
       renderHeading?: () => React.ReactElement | null;
@@ -42,6 +43,8 @@ export type SelectBankComponentStyles = {
   listStyle?: StyleProp<ViewStyle>;
   listContentStyle?: StyleProp<ViewStyle>;
   listDivider?: StyleProp<ViewStyle>;
+  linkAccountTextStyle?: StyleProp<TextStyle>
+  viewGuideButtonStyle?: StyleProp<TextStyle>
 };
 
 export type SearchBarComponentStyles = {

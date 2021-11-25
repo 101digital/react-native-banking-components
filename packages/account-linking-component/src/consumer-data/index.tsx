@@ -44,11 +44,15 @@ const ConsumerDataComponent = ({ style, props }: ComsumerDataComponentProps) => 
           </Text>{' '}
           {i18n?.t('consumer_data_component.lbl_to_link_account') ?? 'to link your account'}
         </Text>
-        <ConsumerDataRightIcon />
+        <ConsumerDataRightIcon size={100} />
         <FlatList
           keyExtractor={(item) => item.title}
           data={cdrData ?? DEFAULT_CDR_DATA}
-          style={styles.cdrListContainerStyle}
+          contentContainerStyle={styles.cdrListContainerStyle}
+          directionalLockEnabled={true}
+          horizontal={false}
+          showsHorizontalScrollIndicator={false}
+          showsVerticalScrollIndicator={false}
           renderItem={({ item }) => <ItemCDR data={item} />}
         />
       </View>
@@ -64,6 +68,7 @@ const ConsumerDataComponent = ({ style, props }: ComsumerDataComponentProps) => 
           style?.linkButtonStyle ?? {
             primaryContainerStyle: {
               marginHorizontal: 15,
+              marginBottom: 10,
             },
           }
         }

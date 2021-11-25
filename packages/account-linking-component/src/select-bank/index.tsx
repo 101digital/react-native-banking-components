@@ -63,6 +63,12 @@ const SelectBankComponent = (props: SelectBankComponentProps) => {
         style={styles.listStyle}
         contentContainerStyle={[styles.listContentStyle, { paddingBottom: padding }]}
       />
+      <Text style={styles.linkAccountTextStyle}>
+        {i18n?.t('select_bank_component.lbl_how_link_account') ?? 'How to link an account?'}{' '}
+        <Text onPress={() => Root?.props?.onViewGuide?.()} style={styles.viewGuideButtonStyle}>
+          {i18n?.t('select_bank_component.btn_view_guide') ?? 'View here'}
+        </Text>
+      </Text>
     </View>
   );
 };
