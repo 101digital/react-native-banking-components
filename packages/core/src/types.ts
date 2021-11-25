@@ -39,6 +39,18 @@ export interface Bank {
   accreditedDataRecipientId: string;
   customerFacing: boolean;
   creditScoreSupported: boolean;
+  permissions: BankPermission[];
+}
+
+export interface BankPermission {
+  countryCode: string;
+  description: string;
+  id: string;
+  ordinal: number;
+  permissionCode: string;
+  permissionGroup: string;
+  permissionTitle: string;
+  shortDescription: string;
 }
 
 export interface Paging {
