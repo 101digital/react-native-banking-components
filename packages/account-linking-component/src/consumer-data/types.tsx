@@ -5,11 +5,11 @@ import { ButtonStyles } from 'react-native-theme-component/src/button';
 
 export type ComsumerDataComponentProps = {
   props: {
-    bank: Bank;
     itemCDRStyle?: ItemCDRStyles;
     placeHolderImage?: ReactNode;
     cdrData?: CDRData[];
-    onLinkPressed: (bank: Bank) => void;
+    onLinkPressed: () => void;
+    onCDRPolicyPressed: () => void;
   };
   style?: ComsumerDataComponentStyles;
 };

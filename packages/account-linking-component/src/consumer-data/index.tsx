@@ -31,7 +31,7 @@ const DEFAULT_CDR_DATA: CDRData[] = [
 
 const ConsumerDataComponent = ({ style, props }: ComsumerDataComponentProps) => {
   const styles: ComsumerDataComponentStyles = useMergeStyle(style);
-  const { bank, onLinkPressed, cdrData } = props;
+  const { onLinkPressed, cdrData, onCDRPolicyPressed } = props;
   const { i18n } = useContext(ThemeContext);
 
   return (
@@ -56,14 +56,18 @@ const ConsumerDataComponent = ({ style, props }: ComsumerDataComponentProps) => 
           renderItem={({ item }) => <ItemCDR data={item} />}
         />
       </View>
-      <TouchableOpacity activeOpacity={0.8} style={styles.buttonCDRPolicyStyle}>
+      <TouchableOpacity
+        activeOpacity={0.8}
+        style={styles.buttonCDRPolicyStyle}
+        onPress={onCDRPolicyPressed}
+      >
         <Text style={styles.cdrPolicyTextStyle}>
           {i18n?.t('consumer_data_component.btn_view_cdr_policy') ?? 'View our CDR policy'}
         </Text>
       </TouchableOpacity>
       <Button
         label={i18n?.t('consumer_data_component.btn_link') ?? 'Link'}
-        onPress={() => onLinkPressed(bank)}
+        onPress={onLinkPressed}
         style={
           style?.linkButtonStyle ?? {
             primaryContainerStyle: {

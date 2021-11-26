@@ -66,6 +66,16 @@
       "lbl_open_banking": "Open Banking",
       "btn_view_cdr_policy": "View our CDR policy",
       "btn_link": "Link"
+    },
+    "dynamic_consent_component": {
+      "lbl_data_accessible_period": "Data accessible period",
+      "btn_next": "Next",
+      "lbl_data_can_accessed": "Data can be accessed",
+      "lbl_consumer_data_recipient": "Accredited Consumer Data Right Recipient",
+      "lbl_recipient_id": "Accredited Data Recipient: %s",
+      "lbl_data_we_need": "Data we need",
+      "msg_select_data_to_share": "Plese select the data you like to share. We use the data to provide you a consolidated view of your money, to provide recomendation, and help you to reconcile your finances.",
+      "btn_show_full_list_data": "Show full data list"
     }
   }
 }
