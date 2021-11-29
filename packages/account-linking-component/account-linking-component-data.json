@@ -36,15 +36,6 @@
   ],
   "templates": [],
   "texts": {
-    "consent_component": {
-      "msg_share_consent_data": "%s will share below data with us when you link your account",
-      "btn_continue": "Continue",
-      "msg_permission_provider": "By continuing you will be redirected to your bank provider to allow access to your account",
-      "lbl_what_will_share": "What you will share",
-      "lbl_account_details": "Account details",
-      "lbl_transactions": "Transactions",
-      "lbl_account_balance": "Account balance"
-    },
     "link_bank_component": {
       "lbl_heading": "Select the account to share information with\n101 Digital PTE LTD",
       "btn_continue": "Continue",
@@ -75,7 +66,8 @@
       "lbl_recipient_id": "Accredited Data Recipient: %s",
       "lbl_data_we_need": "Data we need",
       "msg_select_data_to_share": "Plese select the data you like to share. We use the data to provide you a consolidated view of your money, to provide recomendation, and help you to reconcile your finances.",
-      "btn_show_full_list_data": "Show full data list"
+      "btn_show_full_list_data": "Show full data list",
+      "btn_consent" : "I consent"
     }
   }
 }

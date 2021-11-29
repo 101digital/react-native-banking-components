@@ -7,7 +7,7 @@ import ItemConsentPermission from './item-consent-permission';
 import useMergeStyles from './styles';
 
 const PermissionSelectionComponent = (props: PermissionSelectionComponentProps) => {
-  const { bank, style, itemConsentPermissionStyle } = props;
+  const { bank, style, onNext } = props;
   const styles: PermissonSelectionComponentStyles = useMergeStyles(style);
   const [permissions, setPermissions] = useState<BankPermission[]>([]);
   const { i18n } = useContext(ThemeContext);
@@ -36,11 +36,12 @@ const PermissionSelectionComponent = (props: PermissionSelectionComponentProps) 
                 setPermissions(permissions.filter((p) => p.id !== item.id));
               }
             }}
-            style={itemConsentPermissionStyle}
+            style={styles.itemConsentPermissionStyle}
           />
         )}
       />
       <Button
+        onPress={() => onNext?.()}
         label={i18n?.t('dynamic_consent_component.btn_next') ?? 'Next'}
         disabled={permissions.length !== bank.permissions.length}
         style={{

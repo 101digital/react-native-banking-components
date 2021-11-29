@@ -2,15 +2,41 @@ import { Bank, BankPermission } from '@banking-component/core';
 import { StyleProp, TextStyle, ViewStyle } from 'react-native';
 import { ButtonStyles } from 'react-native-theme-component/src/button';
 
-export type DynamicConsentComponentProps = {
-  bank: Bank;
-  companyName: string;
-  periods: string[];
-  style?: DynamicConsentComponentStyles;
+export type DynamicConsentComponentRefs = {
+  goBack: () => void;
 };
+export interface ConsentPeriod {
+  period: number;
+  type: string;
+}
 
-export type DynamicConsentComponentStyles = {
-  containerStyles?: StyleProp<ViewStyle>;
+export interface ConsentSummaryItem {
+  id: string;
+  title: string;
+  message?: string;
+}
+
+export interface ConsentSummary {
+  summaryTitle: string;
+  summaryMessage?: string;
+  items: ConsentSummaryItem[];
+  directUrl?: {
+    title: string;
+    link: string;
+  };
+}
+export interface DynamicConsent {
+  companyName: string;
+  cdrPolicyLink: string;
+  periods: ConsentPeriod[];
+  summaries: ConsentSummary[];
+}
+
+export type DynamicConsentComponentProps = {
+  stepperComponent?: StepperComponentProps;
+  periodComponent: PeriodSelectionComponentProps;
+  permissionSelectionComponent: PermissionSelectionComponentProps;
+  consentSummaryComponent: ConsentSummaryComponentProps;
 };
 
 export type StepperComponentProps = {
@@ -38,9 +64,9 @@ export type StepperComponentStyles = {
 export type PeriodSelectionComponentProps = {
   recipientId: string;
   companyName: string;
-  periods: string[];
+  periods: ConsentPeriod[];
   activeColor?: string;
-  onNext: (period: string) => void;
+  onNext?: (period: ConsentPeriod) => void;
   style?: PeriodSelectionComponentStyles;
 };
 
@@ -61,8 +87,8 @@ export type PeriodSelectionComponentStyles = {
 
 export type PermissionSelectionComponentProps = {
   bank: Bank;
+  onNext?: () => void;
   style?: PermissonSelectionComponentStyles;
-  itemConsentPermissionStyle?: ItemConsentPermissionStyles;
 };
 
 export type PermissonSelectionComponentStyles = {
@@ -78,6 +104,7 @@ export type PermissonSelectionComponentStyles = {
   permissionShortDesStyle?: StyleProp<TextStyle>;
   buttonViewFullStyle?: StyleProp<ViewStyle>;
   viewFullTextStyle?: StyleProp<TextStyle>;
+  itemConsentPermissionStyle?: ItemConsentPermissionStyles;
 };
 
 export type ItemConsentPermissionProps = {
@@ -94,4 +121,38 @@ export type ItemConsentPermissionStyles = {
   buttonViewFullStyle?: StyleProp<ViewStyle>;
   viewFullTextStyle?: StyleProp<TextStyle>;
   permissionHeaderStyle?: StyleProp<ViewStyle>;
+};
+
+export type ExpandableItemProps = {
+  title: string;
+  message: string;
+  canExpanded: boolean;
+  style?: ExpandableItemStyles;
+};
+
+export type ExpandableItemStyles = {
+  containerStyle?: StyleProp<ViewStyle>;
+  titleContainerStyle?: StyleProp<ViewStyle>;
+  titleTextStyle?: StyleProp<TextStyle>;
+  messageTextStyle?: StyleProp<TextStyle>;
+};
+
+export type ConsentSummaryComponentProps = {
+  summaries: ConsentSummary[];
+  period: ConsentPeriod;
+  dateFormat?: string;
+  onPressedLink?: (link: string) => void;
+  style?: ConsentSummaryComponentStyles;
+  onConsented?: () => void;
+};
+
+export type ConsentSummaryComponentStyles = {
+  containerStyle?: StyleProp<ViewStyle>;
+  contentContainerStyle?: StyleProp<ViewStyle>;
+  itemContainerStyle?: StyleProp<ViewStyle>;
+  titleTextStyle?: StyleProp<TextStyle>;
+  messageTextStyle?: StyleProp<TextStyle>;
+  directLinkTextStyle?: StyleProp<TextStyle>;
+  expandableItemStyle?: ExpandableItemStyles;
+  consentButtonStyle?: ButtonStyles;
 };

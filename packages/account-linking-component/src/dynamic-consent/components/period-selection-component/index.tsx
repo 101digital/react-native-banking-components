@@ -2,7 +2,11 @@ import { CalendarIcon, CDRIcon } from '../../../assets/images';
 import React, { useContext, useState } from 'react';
 import { Dimensions, FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Button, ThemeContext } from 'react-native-theme-component';
-import { PeriodSelectionComponentProps, PeriodSelectionComponentStyles } from '../../types';
+import {
+  ConsentPeriod,
+  PeriodSelectionComponentProps,
+  PeriodSelectionComponentStyles,
+} from '../../types';
 import useMergeStyles from './styles';
 
 const { width } = Dimensions.get('window');
@@ -11,15 +15,15 @@ const PeriodSelectionComponent = (props: PeriodSelectionComponentProps) => {
   const { recipientId, companyName, periods, activeColor, style, onNext } = props;
   const styles: PeriodSelectionComponentStyles = useMergeStyles(style);
   const { i18n, colors } = useContext(ThemeContext);
-  const [period, setPeriod] = useState<string | undefined>(undefined);
+  const [period, setPeriod] = useState<ConsentPeriod | undefined>(undefined);
   const _listPadding =
     StyleSheet.flatten(styles.periodListStyle).marginHorizontal?.toString() ?? '16';
   const _separatorWidth = StyleSheet.flatten(styles.separatorStyle).width?.toString() ?? '15';
   const _activeColor = activeColor ?? 'white';
   const _itemWidth = (width - parseInt(_listPadding) * 2 - parseInt(_separatorWidth) * 2) / 3;
 
-  const _renderPeriodItem = (title: string) => {
-    const _isSelected = title === period;
+  const _renderPeriodItem = (_period: ConsentPeriod) => {
+    const _isSelected = period === _period;
     return (
       <TouchableOpacity
         activeOpacity={1}
@@ -27,11 +31,11 @@ const PeriodSelectionComponent = (props: PeriodSelectionComponentProps) => {
           styles.periodContainerStyle,
           { backgroundColor: _isSelected ? colors.primaryColor : 'white', width: _itemWidth },
         ]}
-        onPress={() => setPeriod(title)}
+        onPress={() => setPeriod(_period)}
       >
         <CalendarIcon color={_isSelected ? _activeColor : colors.primaryColor} />
         <Text style={[styles.periodTextStyle, { color: _isSelected ? _activeColor : '#244065' }]}>
-          {title}
+          {`${_period.period} ${_period.type}${_period.period > 1 ? 's' : ''}`}
         </Text>
       </TouchableOpacity>
     );
@@ -63,7 +67,7 @@ const PeriodSelectionComponent = (props: PeriodSelectionComponentProps) => {
         {i18n?.t('dynamic_consent_component.lbl_data_can_accessed') ?? 'Data can be accessed'}
       </Text>
       <FlatList
-        keyExtractor={(item) => item}
+        keyExtractor={(item) => item.period.toString()}
         data={periods}
         horizontal
         style={styles.periodListStyle}
@@ -72,7 +76,7 @@ const PeriodSelectionComponent = (props: PeriodSelectionComponentProps) => {
       />
       <Button
         label={i18n?.t('dynamic_consent_component.btn_next') ?? 'Next'}
-        onPress={() => onNext(period!)}
+        onPress={() => onNext?.(period!)}
         disabled={!period}
         style={
           style?.nextButtonStyle ?? {
