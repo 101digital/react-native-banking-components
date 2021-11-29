@@ -29,7 +29,7 @@ const AuthoriseComponent = (props: AuthoriseComponentProps) => {
           {i18n?.t('dynamic_consent_component.lbl_need_to_connect_bank') ??
             'We need to securely connect you with your bank'}
         </Text>
-        <Text>
+        <Text style={styles.messageTextStyle}>
           {i18n?.t('dynamic_consent_component.msg_continue_connect_bank') ??
             'By selecting “Continue” you will be securely transfered to your bank to authorise Data Sharing.'}
         </Text>
