@@ -7,7 +7,7 @@ import ExpandableItem from './expandable-item';
 import useMergeStyles from './styles';
 
 const ConsentSummaryComponent = (props: ConsentSummaryComponentProps) => {
-  const { summaries, style, onPressedLink, period, dateFormat } = props;
+  const { summaries, style, onPressedLink, period, dateFormat, onConsented } = props;
   const styles: ConsentSummaryComponentStyles = useMergeStyles(style);
   const { i18n } = useContext(ThemeContext);
 
@@ -64,6 +64,7 @@ const ConsentSummaryComponent = (props: ConsentSummaryComponentProps) => {
       </ScrollView>
       <Button
         label={i18n?.t('dynamic_consent_component.btn_consent') ?? 'I consent'}
+        onPress={onConsented}
         style={
           styles?.consentButtonStyle ?? {
             primaryContainerStyle: {
