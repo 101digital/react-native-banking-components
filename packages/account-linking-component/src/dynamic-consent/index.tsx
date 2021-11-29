@@ -30,9 +30,6 @@ const DynamicConsentComponent = forwardRef((props: DynamicConsentComponentProps,
   const currentStep = () => activeStep;
 
   const goBack = () => {
-    if (activeStep === 2) {
-      setPeriod(undefined);
-    }
     setActiveStep(activeStep - 1);
   };
 

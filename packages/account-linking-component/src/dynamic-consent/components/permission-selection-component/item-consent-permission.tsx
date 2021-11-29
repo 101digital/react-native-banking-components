@@ -9,8 +9,8 @@ import { ArrowDownIcon } from '../../../assets/images';
 const { width } = Dimensions.get('window');
 
 const ItemConsentPermission = (props: ItemConsentPermissionProps) => {
-  const { permission, onValueChanged, style } = props;
-  const [isSelected, setSelected] = useState(false);
+  const { permission, onValueChanged, style, value } = props;
+  const [isSelected, setSelected] = useState(value);
   const [isShowFull, setShowFull] = useState(false);
   const { colors, fonts, i18n } = useContext(ThemeContext);
   const styles: ItemConsentPermissionStyles = useMergeStyles(style);

@@ -28,6 +28,7 @@ const PermissionSelectionComponent = (props: PermissionSelectionComponentProps) 
         renderItem={({ item }) => (
           <ItemConsentPermission
             permission={item}
+            value={permissions.includes(item)}
             onValueChanged={(value) => {
               if (value) {
                 onChanged([...permissions, item]);

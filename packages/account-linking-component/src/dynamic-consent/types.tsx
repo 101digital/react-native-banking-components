@@ -141,6 +141,7 @@ export type PermissonSelectionComponentStyles = {
 
 export type ItemConsentPermissionProps = {
   permission: BankPermission;
+  value?: boolean;
   onValueChanged: (isSelected: boolean) => void;
   style?: ItemConsentPermissionStyles;
 };
