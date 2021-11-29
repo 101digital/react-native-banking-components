@@ -67,7 +67,10 @@
       "lbl_data_we_need": "Data we need",
       "msg_select_data_to_share": "Plese select the data you like to share. We use the data to provide you a consolidated view of your money, to provide recomendation, and help you to reconcile your finances.",
       "btn_show_full_list_data": "Show full data list",
-      "btn_consent" : "I consent"
+      "btn_consent" : "I consent",
+      "btn_continue": "Continue",
+      "lbl_need_to_connect_bank": "We need to securely connect you with your bank",
+      "msg_continue_connect_bank": "By selecting “Continue” you will be securely transfered to your bank to authorise Data Sharing."
     }
   }
 }

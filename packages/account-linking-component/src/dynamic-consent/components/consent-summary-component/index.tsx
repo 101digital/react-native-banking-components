@@ -51,6 +51,7 @@ const ConsentSummaryComponent = (props: ConsentSummaryComponentProps) => {
                 }
                 return (
                   <ExpandableItem
+                    key={item.id}
                     title={item.title}
                     message={_message}
                     canExpanded={item.message !== undefined}

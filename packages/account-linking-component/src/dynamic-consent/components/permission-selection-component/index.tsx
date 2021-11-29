@@ -7,9 +7,8 @@ import ItemConsentPermission from './item-consent-permission';
 import useMergeStyles from './styles';
 
 const PermissionSelectionComponent = (props: PermissionSelectionComponentProps) => {
-  const { bank, style, onNext } = props;
+  const { bank, style, onNext, permissions, onChanged } = props;
   const styles: PermissonSelectionComponentStyles = useMergeStyles(style);
-  const [permissions, setPermissions] = useState<BankPermission[]>([]);
   const { i18n } = useContext(ThemeContext);
 
   return (
@@ -31,9 +30,9 @@ const PermissionSelectionComponent = (props: PermissionSelectionComponentProps) 
             permission={item}
             onValueChanged={(value) => {
               if (value) {
-                setPermissions([...permissions, item]);
+                onChanged([...permissions, item]);
               } else {
-                setPermissions(permissions.filter((p) => p.id !== item.id));
+                onChanged(permissions.filter((p) => p.id !== item.id));
               }
             }}
             style={styles.itemConsentPermissionStyle}

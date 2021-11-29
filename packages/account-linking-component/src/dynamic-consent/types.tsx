@@ -1,5 +1,6 @@
 import { Bank, BankPermission } from '@banking-component/core';
-import { StyleProp, TextStyle, ViewStyle } from 'react-native';
+import { ReactNode } from 'react';
+import { ImageStyle, StyleProp, TextStyle, ViewStyle } from 'react-native';
 import { ButtonStyles } from 'react-native-theme-component/src/button';
 
 export type DynamicConsentComponentRefs = {
@@ -56,10 +57,14 @@ export type DynamicConsentComponentProps = {
   };
   consentSummaryComponent: {
     summaries: ConsentSummary[];
-    period?: ConsentPeriod;
     dateFormat?: string;
     onPressedLink?: (link: string) => void;
     style?: ConsentSummaryComponentStyles;
+  };
+  authoriseComponent: {
+    bank: Bank;
+    appIcon: ReactNode;
+    style?: AuthoriseComponentStyles;
   };
 };
 
@@ -86,6 +91,7 @@ export type StepperComponentStyles = {
 };
 
 export type PeriodSelectionComponentProps = {
+  initialPeriod?: ConsentPeriod;
   recipientId: string;
   companyName: string;
   periods: ConsentPeriod[];
@@ -112,6 +118,8 @@ export type PeriodSelectionComponentStyles = {
 export type PermissionSelectionComponentProps = {
   bank: Bank;
   onNext: () => void;
+  permissions: BankPermission[];
+  onChanged: (permissions: BankPermission[]) => void;
   style?: PermissonSelectionComponentStyles;
 };
 
@@ -179,4 +187,23 @@ export type ConsentSummaryComponentStyles = {
   directLinkTextStyle?: StyleProp<TextStyle>;
   expandableItemStyle?: ExpandableItemStyles;
   consentButtonStyle?: ButtonStyles;
+};
+
+export type AuthoriseComponentProps = {
+  bank: Bank;
+  appIcon: ReactNode;
+  onContinue: () => void;
+  style?: AuthoriseComponentStyles;
+};
+
+export type AuthoriseComponentStyles = {
+  containerStyle?: StyleProp<ViewStyle>;
+  mainContainerStyle?: StyleProp<ViewStyle>;
+  bankContainerStyle?: StyleProp<ViewStyle>;
+  bankItemContainerStyle?: StyleProp<ViewStyle>;
+  dividerStyle?: StyleProp<ViewStyle>;
+  bankImageStyle?: StyleProp<ImageStyle>;
+  titleTextStyle?: StyleProp<TextStyle>;
+  messageTextStyle?: StyleProp<TextStyle>;
+  continueButtonStyle?: ButtonStyles;
 };

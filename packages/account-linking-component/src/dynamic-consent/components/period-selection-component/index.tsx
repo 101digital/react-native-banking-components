@@ -12,10 +12,10 @@ import useMergeStyles from './styles';
 const { width } = Dimensions.get('window');
 
 const PeriodSelectionComponent = (props: PeriodSelectionComponentProps) => {
-  const { recipientId, companyName, periods, activeColor, style, onNext } = props;
+  const { recipientId, companyName, periods, activeColor, style, onNext, initialPeriod } = props;
   const styles: PeriodSelectionComponentStyles = useMergeStyles(style);
   const { i18n, colors } = useContext(ThemeContext);
-  const [period, setPeriod] = useState<ConsentPeriod | undefined>(undefined);
+  const [period, setPeriod] = useState<ConsentPeriod | undefined>(initialPeriod);
   const _listPadding =
     StyleSheet.flatten(styles.periodListStyle).marginHorizontal?.toString() ?? '16';
   const _separatorWidth = StyleSheet.flatten(styles.separatorStyle).width?.toString() ?? '15';

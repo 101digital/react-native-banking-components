@@ -1,4 +1,6 @@
+import { BankPermission } from '@banking-component/core';
 import React, { forwardRef, useImperativeHandle, useState } from 'react';
+import AuthoriseComponent from './components/authorise-component';
 import ConsentSummaryComponent from './components/consent-summary-component';
 import PeriodSelectionComponent from './components/period-selection-component';
 import PermissionSelectionComponent from './components/permission-selection-component';
@@ -11,9 +13,11 @@ const DynamicConsentComponent = forwardRef((props: DynamicConsentComponentProps,
     periodComponent,
     permissionSelectionComponent,
     consentSummaryComponent,
+    authoriseComponent,
   } = props;
   const [activeStep, setActiveStep] = useState(0);
   const [period, setPeriod] = useState<ConsentPeriod | undefined>(undefined);
+  const [permissions, setPermissions] = useState<BankPermission[]>([]);
 
   useImperativeHandle(
     ref,
@@ -38,8 +42,10 @@ const DynamicConsentComponent = forwardRef((props: DynamicConsentComponentProps,
       case 1:
       case 2:
         return 0;
+      case 3:
+        return 1;
       default:
-        return activeStep;
+        return 0;
     }
   };
 
@@ -49,6 +55,7 @@ const DynamicConsentComponent = forwardRef((props: DynamicConsentComponentProps,
       {activeStep === 0 && (
         <PeriodSelectionComponent
           {...periodComponent}
+          initialPeriod={period}
           onNext={(value) => {
             setPeriod(value);
             setActiveStep(1);
@@ -57,9 +64,11 @@ const DynamicConsentComponent = forwardRef((props: DynamicConsentComponentProps,
       )}
       {activeStep === 1 && (
         <PermissionSelectionComponent
+          permissions={permissions}
           onNext={() => {
             setActiveStep(2);
           }}
+          onChanged={setPermissions}
           {...permissionSelectionComponent}
         />
       )}
@@ -70,6 +79,7 @@ const DynamicConsentComponent = forwardRef((props: DynamicConsentComponentProps,
           {...consentSummaryComponent}
         />
       )}
+      {activeStep === 3 && <AuthoriseComponent onContinue={() => {}} {...authoriseComponent} />}
     </>
   );
 });
