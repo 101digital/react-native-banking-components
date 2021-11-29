@@ -41,7 +41,7 @@ const PermissionSelectionComponent = (props: PermissionSelectionComponentProps) 
         )}
       />
       <Button
-        onPress={() => onNext?.()}
+        onPress={onNext}
         label={i18n?.t('dynamic_consent_component.btn_next') ?? 'Next'}
         disabled={permissions.length !== bank.permissions.length}
         style={{

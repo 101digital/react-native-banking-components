@@ -19,8 +19,11 @@ const DynamicConsentComponent = forwardRef((props: DynamicConsentComponentProps,
     ref,
     (): DynamicConsentComponentRefs => ({
       goBack,
+      currentStep,
     })
   );
+
+  const currentStep = () => activeStep;
 
   const goBack = () => {
     if (activeStep === 2) {
@@ -42,7 +45,7 @@ const DynamicConsentComponent = forwardRef((props: DynamicConsentComponentProps,
 
   return (
     <>
-      <StepperComponent {...stepperComponent} activeStep={getActiveStep()} />
+      <StepperComponent activeStep={getActiveStep()} {...stepperComponent} />
       {activeStep === 0 && (
         <PeriodSelectionComponent
           {...periodComponent}
@@ -54,16 +57,17 @@ const DynamicConsentComponent = forwardRef((props: DynamicConsentComponentProps,
       )}
       {activeStep === 1 && (
         <PermissionSelectionComponent
-          {...permissionSelectionComponent}
           onNext={() => {
             setActiveStep(2);
           }}
+          {...permissionSelectionComponent}
         />
       )}
       {activeStep === 2 && period && (
         <ConsentSummaryComponent
-          {...consentSummaryComponent}
+          period={period}
           onConsented={() => setActiveStep(3)}
+          {...consentSummaryComponent}
         />
       )}
     </>

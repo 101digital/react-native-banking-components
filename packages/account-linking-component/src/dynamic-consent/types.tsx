@@ -4,6 +4,7 @@ import { ButtonStyles } from 'react-native-theme-component/src/button';
 
 export type DynamicConsentComponentRefs = {
   goBack: () => void;
+  currentStep: () => number;
 };
 export interface ConsentPeriod {
   period: number;
@@ -33,10 +34,33 @@ export interface DynamicConsent {
 }
 
 export type DynamicConsentComponentProps = {
-  stepperComponent?: StepperComponentProps;
-  periodComponent: PeriodSelectionComponentProps;
-  permissionSelectionComponent: PermissionSelectionComponentProps;
-  consentSummaryComponent: ConsentSummaryComponentProps;
+  stepperComponent?: {
+    steps?: string[];
+    stepDotSize?: number;
+    activeColor?: string;
+    inActiveColor?: string;
+    activeNumberColor?: string;
+    inActiveNumberColor?: string;
+    style?: StepperComponentStyles;
+  };
+  periodComponent: {
+    recipientId: string;
+    companyName: string;
+    periods: ConsentPeriod[];
+    activeColor?: string;
+    style?: PeriodSelectionComponentStyles;
+  };
+  permissionSelectionComponent: {
+    bank: Bank;
+    style?: PermissonSelectionComponentStyles;
+  };
+  consentSummaryComponent: {
+    summaries: ConsentSummary[];
+    period?: ConsentPeriod;
+    dateFormat?: string;
+    onPressedLink?: (link: string) => void;
+    style?: ConsentSummaryComponentStyles;
+  };
 };
 
 export type StepperComponentProps = {
@@ -66,7 +90,7 @@ export type PeriodSelectionComponentProps = {
   companyName: string;
   periods: ConsentPeriod[];
   activeColor?: string;
-  onNext?: (period: ConsentPeriod) => void;
+  onNext: (period: ConsentPeriod) => void;
   style?: PeriodSelectionComponentStyles;
 };
 
@@ -87,7 +111,7 @@ export type PeriodSelectionComponentStyles = {
 
 export type PermissionSelectionComponentProps = {
   bank: Bank;
-  onNext?: () => void;
+  onNext: () => void;
   style?: PermissonSelectionComponentStyles;
 };
 
@@ -143,7 +167,7 @@ export type ConsentSummaryComponentProps = {
   dateFormat?: string;
   onPressedLink?: (link: string) => void;
   style?: ConsentSummaryComponentStyles;
-  onConsented?: () => void;
+  onConsented: () => void;
 };
 
 export type ConsentSummaryComponentStyles = {

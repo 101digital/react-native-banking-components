@@ -76,7 +76,7 @@ const PeriodSelectionComponent = (props: PeriodSelectionComponentProps) => {
       />
       <Button
         label={i18n?.t('dynamic_consent_component.btn_next') ?? 'Next'}
-        onPress={() => onNext?.(period!)}
+        onPress={() => onNext(period!)}
         disabled={!period}
         style={
           style?.nextButtonStyle ?? {
