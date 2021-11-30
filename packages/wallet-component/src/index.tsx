@@ -92,63 +92,6 @@ const WalletComponent = forwardRef((props: WalletComponentProps, ref) => {
     setShowActionSheet(false);
   };
 
-  // const renderSuccessModal = () => {
-  //   return (
-  //     <AlertModal
-  //       style={LinkAccountSuccessModal?.alertStyle}
-  //       isVisible={
-  //         !isLinkingWallet && linkedWallet !== undefined && !ConfirmSetPrimaryModal?.props?.disable
-  //       }
-  //       title={
-  //         LinkAccountSuccessModal?.props?.title ??
-  //         i18n?.t('wallet_component.lbl_link_successfully') ??
-  //         'Account Added Succefully'
-  //       }
-  //       confirmTitle={
-  //         LinkAccountSuccessModal?.props?.confirmButonLabel ??
-  //         i18n?.t('wallet_component.btn_continue') ??
-  //         'Continue'
-  //       }
-  //       onClose={() => {
-  //         clearLinkedWallet();
-  //         fetchWallets();
-  //       }}
-  //       isFullWidth={LinkAccountSuccessModal?.props?.isFullWidth}
-  //       isShowClose={LinkAccountSuccessModal?.props?.isShowClose}
-  //       message={
-  //         LinkAccountSuccessModal?.props?.message ??
-  //         i18n?.t('wallet_component.msg_link_successfully') ??
-  //         'Your bank account is successfully linked to your profile.'
-  //       }
-  //       onConfirmed={() => {
-  //         if (isSelectedPrimary) {
-  //           const wallet = linkedWallet;
-  //           if (wallet) {
-  //             setPrimaryWallet(wallet.walletId);
-  //           }
-  //         } else {
-  //           clearLinkedWallet();
-  //           fetchWallets();
-  //         }
-  //       }}
-  //     >
-  //       {LinkAccountSuccessModal?.components?.renderSetPrimary?.(isSelectedPrimary, () => {
-  //         setSelectedPrimary(!isSelectedPrimary);
-  //       }) ?? (
-  //         <SetPrimaryComponent
-  //           i18n={i18n}
-  //           isSelected={isSelectedPrimary}
-  //           disabled={isEmpty(wallets)}
-  //           style={LinkAccountSuccessModal?.style}
-  //           onPressed={() => setSelectedPrimary(!isSelectedPrimary)}
-  //           {...LinkAccountSuccessModal?.props}
-  //           {...LinkAccountSuccessModal?.components}
-  //         />
-  //       )}
-  //     </AlertModal>
-  //   );
-  // };
-
   if (isEmpty(wallets)) {
     if (isLoadingWallets) {
       return (
@@ -341,7 +284,6 @@ const WalletComponent = forwardRef((props: WalletComponentProps, ref) => {
         style={ConfirmSetPrimaryModal?.style}
         closeIcon={ConfirmSetPrimaryModal?.components?.closeIcon}
       />
-      {/* {renderSuccessModal()} */}
     </>
   );
 });
