@@ -40,6 +40,7 @@ export interface Bank {
   customerFacing: boolean;
   creditScoreSupported: boolean;
   permissions: BankPermission[];
+  openBankingId: string
 }
 
 export interface BankPermission {
@@ -165,4 +166,23 @@ export interface CashflowPeriod {
   totalMoneyOut: number;
   from: string;
   to: string;
+}
+
+
+export interface AccountConsent {
+  accountConsentId: string;
+  accountRequestId: string;
+  createdAt: string;
+  organisationId: string;
+  status: string;
+  userId: string;
+  consentData: ConsentData;
+  aspspInfo: Bank
+}
+
+export interface ConsentData {
+  AccountRequestId: string;
+  ConsentId: string;
+  Permissions: string[];
+  Status: string;
 }
