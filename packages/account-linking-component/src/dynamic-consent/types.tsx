@@ -30,8 +30,9 @@ export interface ConsentSummary {
 export interface DynamicConsent {
   companyName: string;
   cdrPolicyLink: string;
-  periods: ConsentPeriod[];
-  summaries: ConsentSummary[];
+  guideLinkAccountLink: string;
+  consentPeriods: ConsentPeriod[];
+  consentSummaries: ConsentSummary[];
 }
 
 export type DynamicConsentComponentProps = {
