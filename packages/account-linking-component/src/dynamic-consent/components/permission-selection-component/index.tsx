@@ -1,5 +1,4 @@
-import { BankPermission } from '@banking-component/core';
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { FlatList, Text, View } from 'react-native';
 import { Button, ThemeContext } from 'react-native-theme-component';
 import { PermissionSelectionComponentProps, PermissonSelectionComponentStyles } from '../../types';
