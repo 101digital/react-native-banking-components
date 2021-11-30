@@ -1,6 +1,12 @@
 import React, { useCallback, useMemo, useState } from 'react';
 import { AccountLinkingService } from '../service/account-linking-service';
-import { Bank, BankAccount, BankImagesMap, BankingConsentData } from '@banking-component/core';
+import {
+  AccountConsent,
+  Bank,
+  BankAccount,
+  BankImagesMap,
+  BankingConsentData,
+} from '@banking-component/core';
 
 const accountService = AccountLinkingService.instance();
 
@@ -28,6 +34,10 @@ export interface AccountLinkingContextData {
   errorLoadAccounts?: Error;
   clearBankErrors: () => void;
   clearAccounts: () => void;
+  accountConsents: AccountConsent[];
+  isLoadingAccountConsents: boolean;
+  errorLoadAccountConsents?: Error;
+  getAccountConsents: () => void;
 }
 
 export const bankDefaultValue: AccountLinkingContextData = {
@@ -45,6 +55,9 @@ export const bankDefaultValue: AccountLinkingContextData = {
   getAccounts: () => null,
   clearBankErrors: () => null,
   clearAccounts: () => null,
+  isLoadingAccountConsents: false,
+  getAccountConsents: () => null,
+  accountConsents: [],
 };
 
 export const AccountLinkingContext = React.createContext<AccountLinkingContextData>(
@@ -64,6 +77,11 @@ export function useBankContextValue(): AccountLinkingContextData {
   const [_accounts, setAccounts] = useState<BankAccount[]>([]);
   const [_isLoadingAccounts, setLoadingAccounts] = useState(false);
   const [_errorLoadAccounts, setErrorLoadAccounts] = useState<Error | undefined>(undefined);
+  const [_isLoadingAccountConsents, setLoadingAccountConsent] = useState(false);
+  const [_errorLoadAccountConsents, setErrorLoadAccountConsents] = useState<Error | undefined>(
+    undefined
+  );
+  const [_accountConsents, setAccountConsents] = useState<AccountConsent[]>([]);
 
   const getBanks = useCallback(async (searchText?: string) => {
     try {
@@ -133,6 +151,19 @@ export function useBankContextValue(): AccountLinkingContextData {
     setErrorLoadConsent(undefined);
     setErrorConfirmConsent(undefined);
     setErrorLoadAccounts(undefined);
+    setErrorLoadAccountConsents(undefined);
+  }, []);
+
+  const getAccountConsents = useCallback(async () => {
+    try {
+      setLoadingAccountConsent(true);
+      const { data } = await accountService.getAccountConsents();
+      setAccountConsents(data);
+      setLoadingAccountConsent(false);
+    } catch (error) {
+      setLoadingAccountConsent(false);
+      setErrorLoadAccountConsents(error as Error);
+    }
   }, []);
 
   return useMemo(
@@ -156,6 +187,10 @@ export function useBankContextValue(): AccountLinkingContextData {
       accounts: _accounts,
       clearAccounts,
       clearBankErrors,
+      getAccountConsents,
+      errorLoadAccountConsents: _errorLoadAccountConsents,
+      isLoadingAccountConsents: _isLoadingAccountConsents,
+      accountConsents: _accountConsents,
     }),
     [
       _banks,
@@ -170,6 +205,9 @@ export function useBankContextValue(): AccountLinkingContextData {
       _isLoadingAccounts,
       _errorLoadAccounts,
       _accounts,
+      _errorLoadAccountConsents,
+      _isLoadingAccountConsents,
+      _accountConsents,
     ]
   );
 }

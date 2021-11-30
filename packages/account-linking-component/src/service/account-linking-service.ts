@@ -86,4 +86,15 @@ export class AccountLinkingService {
       throw new Error('Bank AISP Client is not registered');
     }
   };
+
+  getAccountConsents = async () => {
+    if (this._openBankAuthClient) {
+      const response = await this._openBankAuthClient.get(
+        'account-access-consents/consents'
+      );
+      return response.data;
+    } else {
+      throw new Error('Bank Auth Client is not registered');
+    }
+  };
 }
