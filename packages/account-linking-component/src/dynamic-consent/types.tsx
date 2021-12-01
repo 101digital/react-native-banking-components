@@ -36,6 +36,7 @@ export interface DynamicConsent {
 }
 
 export type DynamicConsentComponentProps = {
+  style?: DynamicConsentComponentStyles;
   stepperComponent?: {
     steps?: string[];
     stepDotSize?: number;
@@ -67,6 +68,14 @@ export type DynamicConsentComponentProps = {
     appIcon: ReactNode;
     style?: AuthoriseComponentStyles;
   };
+};
+
+export type DynamicConsentComponentStyles = {
+  containerStyle?: StyleProp<ViewStyle>;
+  catalogContainerStyle?: StyleProp<ViewStyle>;
+  catalogTitleContainerStyle?: StyleProp<ViewStyle>;
+  catalogTitleStyle?: StyleProp<TextStyle>;
+  catalogEditButtonStyle?: StyleProp<ViewStyle>;
 };
 
 export type StepperComponentProps = {
