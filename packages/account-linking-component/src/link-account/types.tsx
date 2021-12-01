@@ -1,11 +1,28 @@
-import { Bank, BankPermission } from '@banking-component/core';
+import { Bank, BankAccount, BankPermission } from '@banking-component/core';
 import { ReactNode } from 'react';
 import { ImageStyle, StyleProp, TextStyle, ViewStyle } from 'react-native';
 import { ButtonStyles } from 'react-native-theme-component/src/button';
 
-export type DynamicConsentComponentRefs = {
+export enum ProgressStep {
+  accessiblePeriod = 0,
+  permissionRequest = 1,
+  summaryData = 2,
+  confirmLogin = 3,
+  loginBank = 4,
+  selectAccounts = 5,
+  confirmResult = 6,
+}
+
+export enum LinkBankStatus {
+  isLinking,
+  isFailed,
+  isSuccess,
+}
+
+export type LinkAccountComponentRefs = {
   goBack: () => void;
-  currentStep: () => number;
+  currentStep: () => ProgressStep;
+  updateLinkBankStatus: (status: LinkBankStatus) => void;
 };
 export interface ConsentPeriod {
   period: number;
@@ -35,10 +52,17 @@ export interface DynamicConsent {
   consentSummaries: ConsentSummary[];
 }
 
-export type DynamicConsentComponentProps = {
-  style?: DynamicConsentComponentStyles;
+export type LinkAccountComponentProps = {
+  props: {
+    bank: Bank;
+    onStepChanged: (step: ProgressStep) => void;
+    consentData: DynamicConsent;
+    appIcon: ReactNode;
+    onLinkAccount: (bankId: string, consentId: string, accountIds: string[]) => void;
+  };
+  style?: LinkAccountComponentStyles;
   stepperComponent?: {
-    steps?: string[];
+    steps?: Step[];
     stepDotSize?: number;
     activeColor?: string;
     inActiveColor?: string;
@@ -47,30 +71,49 @@ export type DynamicConsentComponentProps = {
     style?: StepperComponentStyles;
   };
   periodComponent: {
-    recipientId: string;
-    companyName: string;
-    periods: ConsentPeriod[];
     activeColor?: string;
     style?: PeriodSelectionComponentStyles;
   };
   permissionSelectionComponent: {
-    bank: Bank;
     style?: PermissonSelectionComponentStyles;
   };
   consentSummaryComponent: {
-    summaries: ConsentSummary[];
     dateFormat?: string;
     onPressedLink?: (link: string) => void;
     style?: ConsentSummaryComponentStyles;
   };
   authoriseComponent: {
-    bank: Bank;
-    appIcon: ReactNode;
     style?: AuthoriseComponentStyles;
+  };
+  bankLoginComponent: {
+    loadingIndicator?: ReactNode;
+  };
+  selectAccountComponent: {
+    loadingIndicator?: ReactNode;
+    renderHeading?: () => React.ReactElement | null;
+    style?: SelectAccountComponentStyles;
+    emptyAccountsComponent?: {
+      style?: EmptyBankAccountStyles;
+      placeholderIcon?: ReactNode;
+    };
+    accountItemComponent?: {
+      style?: AccountItemComponentStyles;
+      tickIcon?: ReactNode;
+      renderItem?: (
+        index: number,
+        account: BankAccount,
+        isSelected: boolean
+      ) => React.ReactElement | null;
+    };
+    accessInfoComponent?: {
+      style?: AccessInfoComponentStyles;
+      data?: string[];
+      renderContent?: () => React.ReactElement | null;
+    };
   };
 };
 
-export type DynamicConsentComponentStyles = {
+export type LinkAccountComponentStyles = {
   containerStyle?: StyleProp<ViewStyle>;
   catalogContainerStyle?: StyleProp<ViewStyle>;
   catalogTitleContainerStyle?: StyleProp<ViewStyle>;
@@ -78,9 +121,14 @@ export type DynamicConsentComponentStyles = {
   catalogEditButtonStyle?: StyleProp<ViewStyle>;
 };
 
+export interface Step {
+  title: string;
+  status?: 'success' | 'failed';
+}
+
 export type StepperComponentProps = {
   activeStep: number;
-  steps?: string[];
+  steps: Step[];
   stepDotSize?: number;
   activeColor?: string;
   inActiveColor?: string;
@@ -217,4 +265,73 @@ export type AuthoriseComponentStyles = {
   titleTextStyle?: StyleProp<TextStyle>;
   messageTextStyle?: StyleProp<TextStyle>;
   continueButtonStyle?: ButtonStyles;
+};
+
+export type BankLoginComponentProps = {
+  bank: Bank;
+  loadingIndicator?: ReactNode;
+  onConfirmed: (consentId: string) => void;
+  onLinked: (bankId: string, consentId: string, accountIds?: string[]) => void;
+};
+
+export type ConfirmLinkingComponentProps = {
+  lastStep: Step;
+};
+
+export type SelectAccountComponentProps = {
+  bank: Bank;
+  consentId: string;
+  companyName: string;
+  onLinkAccount?: (bankId: string, consentId: string, accountIds: string[]) => void;
+  loadingIndicator?: ReactNode;
+  renderHeading?: () => React.ReactElement | null;
+  style?: SelectAccountComponentStyles;
+  emptyAccountsComponent?: {
+    style?: EmptyBankAccountStyles;
+    placeholderIcon?: ReactNode;
+  };
+  accountItemComponent?: {
+    style?: AccountItemComponentStyles;
+    tickIcon?: ReactNode;
+    renderItem?: (
+      index: number,
+      account: BankAccount,
+      isSelected: boolean
+    ) => React.ReactElement | null;
+  };
+  accessInfoComponent?: {
+    style?: AccessInfoComponentStyles;
+    data?: string[];
+    renderContent?: () => React.ReactElement | null;
+  };
+};
+
+export type SelectAccountComponentStyles = {
+  containerStyle?: StyleProp<ViewStyle>;
+  headingTextStyle?: StyleProp<TextStyle>;
+  ctaButtonWrapper?: StyleProp<ViewStyle>;
+  listStyle?: StyleProp<ViewStyle>;
+  listContentStyle?: StyleProp<ViewStyle>;
+  listDivider?: StyleProp<ViewStyle>;
+};
+
+export type EmptyBankAccountStyles = {
+  containerStyle?: StyleProp<ViewStyle>;
+  messageTextStyle?: StyleProp<TextStyle>;
+};
+
+export type AccountItemComponentStyles = {
+  containerStyle?: StyleProp<ViewStyle>;
+  activeContainerStyle?: StyleProp<ViewStyle>;
+  inactiveContainerStyle?: StyleProp<ViewStyle>;
+  accountNameTextStyle?: StyleProp<TextStyle>;
+  accountIdTextStyle?: StyleProp<TextStyle>;
+};
+
+export type AccessInfoComponentStyles = {
+  containerStyle?: StyleProp<ViewStyle>;
+  titleTextStyle?: StyleProp<TextStyle>;
+  dotContainerStyle?: StyleProp<ViewStyle>;
+  contentTextStyle?: StyleProp<TextStyle>;
+  itemContentContainerStyle?: StyleProp<ViewStyle>;
 };

@@ -1,9 +1,9 @@
+import { TickIcon, CloseIcon } from '../../../assets/images';
 import React, { useContext } from 'react';
 import { Text, View } from 'react-native';
 import { ThemeContext } from 'react-native-theme-component';
-import { StepperComponentProps, StepperComponentStyles } from '../../types';
+import { Step, StepperComponentProps, StepperComponentStyles } from '../../types';
 import useMergeStyles from './styles';
-const DEFAULT_STEPS = ['Consent', 'Authorise', 'Confirm'];
 
 const StepperComponent = (props: StepperComponentProps) => {
   const {
@@ -18,18 +18,32 @@ const StepperComponent = (props: StepperComponentProps) => {
   } = props;
   const styles: StepperComponentStyles = useMergeStyles(style);
   const { colors } = useContext(ThemeContext);
-  const _steps = steps ?? DEFAULT_STEPS;
   const _activeColor = activeColor ?? colors.primaryColor;
   const _inActiveColor = inActiveColor ?? '#BFBFBF';
   const _activeNumberColor = activeNumberColor ?? '#fff';
   const _inActiveNumberColor = inActiveNumberColor ?? '#000';
   const _dotSize = stepDotSize ?? 30;
 
+  const _getDotContent = (index: number, step: Step) => {
+    if (activeStep < index) {
+      return (
+        <Text style={[styles.stepNumberTextStyle, { color: _inActiveNumberColor }]}>
+          {index + 1}
+        </Text>
+      );
+    }
+    return step.status === 'success' ? (
+      <TickIcon color={_activeNumberColor} size={15} />
+    ) : (
+      <CloseIcon color={_activeNumberColor} size={15} />
+    );
+  };
+
   return (
     <View style={styles.containerStyle}>
       <View style={styles.contentContainerStyle}>
-        {_steps.map((item, index) => (
-          <View key={item} style={styles.stepContainerStyle}>
+        {steps.map((item, index) => (
+          <View key={item.title} style={styles.stepContainerStyle}>
             {index === 0 ? (
               <View style={{ flex: 1 }} />
             ) : (
@@ -54,17 +68,10 @@ const StepperComponent = (props: StepperComponentProps) => {
                   },
                 ]}
               >
-                <Text
-                  style={[
-                    styles.stepNumberTextStyle,
-                    { color: activeStep >= index ? _activeNumberColor : _inActiveNumberColor },
-                  ]}
-                >
-                  {index + 1}
-                </Text>
+                {_getDotContent(index, item)}
               </View>
             </>
-            {index === _steps.length - 1 ? (
+            {index === steps.length - 1 ? (
               <View style={{ flex: 1 }} />
             ) : (
               <View
@@ -78,15 +85,15 @@ const StepperComponent = (props: StepperComponentProps) => {
         ))}
       </View>
       <View style={styles.titleContainerStyle}>
-        {_steps.map((item, index) => (
+        {steps.map((item, index) => (
           <Text
-            key={item}
+            key={item.title}
             style={[
               styles.titleTextStyle,
               { color: activeStep >= index ? _activeColor : _inActiveColor },
             ]}
           >
-            {item}
+            {item.title}
           </Text>
         ))}
       </View>

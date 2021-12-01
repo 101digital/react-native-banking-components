@@ -1,9 +1,9 @@
 import { isEmpty, BankAccount } from '@banking-component/core';
 import React, { ReactNode, useContext } from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
-import { BCheckedIcon } from '../../../assets/checked.icon';
+import { BCheckedIcon } from '../../../../../assets/images';
 import { ThemeContext } from 'react-native-theme-component';
-import { AccountItemComponentStyles } from '../../types';
+import { AccountItemComponentStyles } from '../../../../types';
 
 import useMergeStyles from './styles';
 
@@ -26,9 +26,12 @@ const AccountItemComponent = (props: AccountItemComponentProps) => {
       return '';
     }
     const identification = account.account[0].identification;
-    let sortCode = identification.substr(0, 6);
+    let sortCode = identification.substring(0, 6);
     const accountNumber = identification.replace(sortCode, '');
-    sortCode = `${sortCode.substr(0, 2)}-${sortCode.substr(2, 2)}-${sortCode.substr(4, 2)}`;
+    sortCode = `${sortCode.substring(0, 2)}-${sortCode.substring(2, 2)}-${sortCode.substring(
+      4,
+      2
+    )}`;
     return `${sortCode} ${accountNumber}`;
   };
 

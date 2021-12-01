@@ -2,7 +2,7 @@ import { defaultsDeep } from '@banking-component/core';
 import { useContext } from 'react';
 import { StyleSheet } from 'react-native';
 import { ThemeContext } from 'react-native-theme-component';
-import { EmptyBankAccountStyles } from '../../types';
+import { EmptyBankAccountStyles } from '../../../../types';
 
 const useMergeStyles = (style?: EmptyBankAccountStyles): EmptyBankAccountStyles => {
   const { fonts } = useContext(ThemeContext);

@@ -1,14 +1,14 @@
 import React, { useContext, useEffect } from 'react';
 import { ActivityIndicator, View } from 'react-native';
 import WebView, { WebViewNavigation } from 'react-native-webview';
-import { BankLoginComponentProps } from './types';
 import styles from './styles';
 import { ThemeContext } from 'react-native-theme-component';
-import { AccountLinkingContext } from '../../src/context/account-linking-context';
+import { AccountLinkingContext } from '../../../context/account-linking-context';
 import { getUrlParameter } from '@banking-component/core';
+import { BankLoginComponentProps } from '../../types';
 
 const BankLoginComponent = (props: BankLoginComponentProps) => {
-  const { containerStyle, bank, loadingIndicator, onConfirmed, onLinked } = props;
+  const { bank, loadingIndicator, onConfirmed, onLinked } = props;
   const {
     consentData,
     isLoadingConsent,
@@ -54,7 +54,7 @@ const BankLoginComponent = (props: BankLoginComponentProps) => {
   };
 
   return (
-    <View style={[styles.containerStyle, containerStyle]}>
+    <View style={styles.containerStyle}>
       <WebView
         scalesPageToFit
         incognito

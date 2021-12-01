@@ -1,18 +1,18 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useContext } from 'react';
 import { Text, View } from 'react-native';
-import { BNoWalletIcon } from '../../../assets/no-wallet.icon';
-import { EmptyBankAccountStyles } from '../../types';
+import { ThemeContext } from 'react-native-theme-component';
+import { BNoWalletIcon } from '../../../../../assets/images';
+import { EmptyBankAccountStyles } from '../../../../types';
 import useMergeStyles from './styles';
 
 export type EmptyAccountComponentProps = {
-  i18n?: any;
   placeholderIcon?: ReactNode;
-  messageLabel?: string;
   style?: EmptyBankAccountStyles;
 };
 
 const EmptyAccountComponent = (props: EmptyAccountComponentProps) => {
-  const { placeholderIcon, messageLabel, style, i18n } = props;
+  const { placeholderIcon, style } = props;
+  const { i18n } = useContext(ThemeContext);
 
   const styles = useMergeStyles(style);
 
@@ -20,7 +20,7 @@ const EmptyAccountComponent = (props: EmptyAccountComponentProps) => {
     <View style={styles.containerStyle}>
       {placeholderIcon ?? <BNoWalletIcon size={105} />}
       <Text style={styles.messageTextStyle}>
-        {messageLabel ?? i18n?.t('link_bank_component.msg_empty_account') ?? 'No Accounts Found'}
+        {i18n?.t('link_bank_component.msg_empty_account') ?? 'No Accounts Found'}
       </Text>
     </View>
   );

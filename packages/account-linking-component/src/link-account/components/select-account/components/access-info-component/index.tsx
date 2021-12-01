@@ -1,17 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { View, Text } from 'react-native';
-import { AccessInfoComponentStyles } from '../../types';
+import { ThemeContext } from 'react-native-theme-component';
+import { AccessInfoComponentStyles } from '../../../../types';
 import useMergeStyles from './styles';
 
 export type AccessInfoComponentProps = {
-  i18n?: any;
-  titleLabel?: string;
+  companyName: string;
   data?: string[];
   style?: AccessInfoComponentStyles;
 };
 
 const AccessInfoComponent = (props: AccessInfoComponentProps) => {
-  const { titleLabel, data, style, i18n } = props;
+  const { companyName, data, style } = props;
+  const { i18n } = useContext(ThemeContext);
 
   const styles = useMergeStyles(style);
 
@@ -24,9 +25,10 @@ const AccessInfoComponent = (props: AccessInfoComponentProps) => {
   return (
     <View style={styles.containerStyle}>
       <Text style={styles.titleTextStyle}>
-        {titleLabel ??
+        {(
           i18n?.t('link_bank_component.lbl_access_info') ??
-          '101 Digital PTE LTD will have access to the below Information'}
+          '%s will have access to the below Information'
+        ).replace('%s', companyName)}
       </Text>
       {_infos.map((item, index) => (
         <View key={`${item}-${index}`} style={styles.itemContentContainerStyle}>

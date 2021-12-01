@@ -2,11 +2,11 @@ import { defaultsDeep } from '@banking-component/core';
 import { useContext } from 'react';
 import { StyleSheet } from 'react-native';
 import { ThemeContext } from 'react-native-theme-component';
-import { DynamicConsentComponentStyles } from './types';
+import { LinkAccountComponentStyles } from './types';
 
-const useMergeStyles = (style?: DynamicConsentComponentStyles): DynamicConsentComponentStyles => {
+const useMergeStyles = (style?: LinkAccountComponentStyles): LinkAccountComponentStyles => {
   const { fonts } = useContext(ThemeContext);
-  const defaultStyles: DynamicConsentComponentStyles = StyleSheet.create({
+  const defaultStyles: LinkAccountComponentStyles = StyleSheet.create({
     containerStyle: {
       flex: 1,
     },
