@@ -70,25 +70,25 @@ export type LinkAccountComponentProps = {
     inActiveNumberColor?: string;
     style?: StepperComponentStyles;
   };
-  periodComponent: {
+  periodComponent?: {
     activeColor?: string;
     style?: PeriodSelectionComponentStyles;
   };
-  permissionSelectionComponent: {
+  permissionSelectionComponent?: {
     style?: PermissonSelectionComponentStyles;
   };
-  consentSummaryComponent: {
+  consentSummaryComponent?: {
     dateFormat?: string;
     onPressedLink?: (link: string) => void;
     style?: ConsentSummaryComponentStyles;
   };
-  authoriseComponent: {
+  authoriseComponent?: {
     style?: AuthoriseComponentStyles;
   };
-  bankLoginComponent: {
+  bankLoginComponent?: {
     loadingIndicator?: ReactNode;
   };
-  selectAccountComponent: {
+  selectAccountComponent?: {
     loadingIndicator?: ReactNode;
     renderHeading?: () => React.ReactElement | null;
     style?: SelectAccountComponentStyles;
@@ -110,6 +110,11 @@ export type LinkAccountComponentProps = {
       data?: string[];
       renderContent?: () => React.ReactElement | null;
     };
+  };
+  confirmLinkingComponent?: {
+    successIcon?: ReactNode;
+    failedIcon?: ReactNode;
+    style?: ConfirmLinkingComponentStyles;
   };
 };
 
@@ -275,7 +280,21 @@ export type BankLoginComponentProps = {
 };
 
 export type ConfirmLinkingComponentProps = {
-  lastStep: Step;
+  bank: Bank;
+  status: LinkBankStatus;
+  successIcon?: ReactNode;
+  failedIcon?: ReactNode;
+  style?: ConfirmLinkingComponentStyles;
+};
+
+export type ConfirmLinkingComponentStyles = {
+  containerStyle?: StyleProp<ViewStyle>;
+  contentContainerStyle?: StyleProp<ViewStyle>;
+  statusIconContainerStyle?: StyleProp<ViewStyle>;
+  titleTextStyle?: StyleProp<TextStyle>;
+  subTitleTextStyle?: StyleProp<TextStyle>;
+  messageTextStyle?: StyleProp<TextStyle>;
+  goAccountButtonStyle?: ButtonStyles;
 };
 
 export type SelectAccountComponentProps = {

@@ -21,6 +21,7 @@ import {
 import BankLoginComponent from './components/bank-login';
 import ConfirmLinkingComponent from './components/confirm-linking-component';
 import SelectAccountComponent from './components/select-account';
+import { AccountLinkingContext } from '../context/account-linking-context';
 
 const LinkAccountComponent = forwardRef((componentsProps: LinkAccountComponentProps, ref) => {
   const {
@@ -31,6 +32,7 @@ const LinkAccountComponent = forwardRef((componentsProps: LinkAccountComponentPr
     authoriseComponent,
     bankLoginComponent,
     selectAccountComponent,
+    confirmLinkingComponent,
     style,
     props,
   } = componentsProps;
@@ -39,8 +41,10 @@ const LinkAccountComponent = forwardRef((componentsProps: LinkAccountComponentPr
   const [period, setPeriod] = useState<ConsentPeriod | undefined>(undefined);
   const [permissions, setPermissions] = useState<BankPermission[]>([]);
   const [consentId, setConsentId] = useState<string | undefined>(undefined);
+  const [linkBankStatus, setLinkBankStatus] = useState<LinkBankStatus>(LinkBankStatus.isLinking);
   const styles: LinkAccountComponentStyles = useMergeStyles(style);
   const { i18n, colors } = useContext(ThemeContext);
+  const { getConsent } = useContext(AccountLinkingContext);
 
   const [steps, setSteps] = useState<Step[]>(
     stepperComponent?.steps ?? [
@@ -54,6 +58,7 @@ const LinkAccountComponent = forwardRef((componentsProps: LinkAccountComponentPr
       },
       {
         title: 'Confirm',
+        status: 'success',
       },
     ]
   );
@@ -80,6 +85,7 @@ const LinkAccountComponent = forwardRef((componentsProps: LinkAccountComponentPr
     }
     const _stepsLength = steps.length;
     setSteps(steps.map((s, i) => (i === _stepsLength - 1 ? { ...s, status: _status } : s)));
+    setLinkBankStatus(status);
     if (activeStep !== ProgressStep.confirmResult) {
       setActiveStep(ProgressStep.confirmResult);
     }
@@ -127,7 +133,7 @@ const LinkAccountComponent = forwardRef((componentsProps: LinkAccountComponentPr
   };
 
   return (
-    <View>
+    <>
       {activeStep !== ProgressStep.loginBank && activeStep !== ProgressStep.selectAccounts && (
         <StepperComponent steps={steps} activeStep={getActiveStep()} {...stepperComponent} />
       )}
@@ -194,6 +200,7 @@ const LinkAccountComponent = forwardRef((componentsProps: LinkAccountComponentPr
           bank={bank}
           appIcon={appIcon}
           onContinue={() => {
+            getConsent(bank.id);
             setActiveStep(ProgressStep.loginBank);
           }}
           {...authoriseComponent}
@@ -220,9 +227,9 @@ const LinkAccountComponent = forwardRef((componentsProps: LinkAccountComponentPr
         />
       )}
       {activeStep === ProgressStep.confirmResult && (
-        <ConfirmLinkingComponent lastStep={steps[steps.length - 1]} />
+        <ConfirmLinkingComponent bank={bank} status={linkBankStatus} {...confirmLinkingComponent} />
       )}
-    </View>
+    </>
   );
 });
 

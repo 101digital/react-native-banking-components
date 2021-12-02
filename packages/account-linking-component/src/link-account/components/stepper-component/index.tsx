@@ -25,9 +25,14 @@ const StepperComponent = (props: StepperComponentProps) => {
   const _dotSize = stepDotSize ?? 30;
 
   const _getDotContent = (index: number, step: Step) => {
-    if (activeStep < index) {
+    if (activeStep <= index) {
       return (
-        <Text style={[styles.stepNumberTextStyle, { color: _inActiveNumberColor }]}>
+        <Text
+          style={[
+            styles.stepNumberTextStyle,
+            { color: activeStep >= index ? _activeNumberColor : _inActiveNumberColor },
+          ]}
+        >
           {index + 1}
         </Text>
       );
