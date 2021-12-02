@@ -56,7 +56,7 @@ const ItemConsentPermission = (props: ItemConsentPermissionProps) => {
           onPress={() => setShowFull(!isShowFull)}
         >
           <Text style={styles.viewFullTextStyle}>
-            {i18n?.t('dynamic_consent_component.btn_show_full_list_data') ?? 'Show full data list'}
+            {i18n?.t('link_bank_component.btn_show_full_list_data') ?? 'Show full data list'}
           </Text>
           <View
             style={{

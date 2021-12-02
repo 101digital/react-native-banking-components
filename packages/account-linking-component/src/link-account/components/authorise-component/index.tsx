@@ -26,16 +26,16 @@ const AuthoriseComponent = (props: AuthoriseComponentProps) => {
           </View>
         </View>
         <Text style={styles.titleTextStyle}>
-          {i18n?.t('dynamic_consent_component.lbl_need_to_connect_bank') ??
+          {i18n?.t('link_bank_component.lbl_need_to_connect_bank') ??
             'We need to securely connect you with your bank'}
         </Text>
         <Text style={styles.messageTextStyle}>
-          {i18n?.t('dynamic_consent_component.msg_continue_connect_bank') ??
+          {i18n?.t('link_bank_component.msg_continue_connect_bank') ??
             'By selecting “Continue” you will be securely transfered to your bank to authorise Data Sharing.'}
         </Text>
       </ScrollView>
       <Button
-        label={i18n?.t('dynamic_consent_component.btn_continue') ?? 'Continue'}
+        label={i18n?.t('link_bank_component.btn_continue') ?? 'Continue'}
         onPress={onContinue}
         style={
           styles?.continueButtonStyle ?? {

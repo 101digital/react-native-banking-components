@@ -25,22 +25,22 @@ const StepperComponent = (props: StepperComponentProps) => {
   const _dotSize = stepDotSize ?? 30;
 
   const _getDotContent = (index: number, step: Step) => {
-    if (activeStep <= index) {
-      return (
-        <Text
-          style={[
-            styles.stepNumberTextStyle,
-            { color: activeStep >= index ? _activeNumberColor : _inActiveNumberColor },
-          ]}
-        >
-          {index + 1}
-        </Text>
+    if ((activeStep === steps.length - 1 || activeStep > index) && step.status !== undefined) {
+      return step.status === 'success' ? (
+        <TickIcon color={_activeNumberColor} size={15} />
+      ) : (
+        <CloseIcon color={_activeNumberColor} size={15} />
       );
     }
-    return step.status === 'success' ? (
-      <TickIcon color={_activeNumberColor} size={15} />
-    ) : (
-      <CloseIcon color={_activeNumberColor} size={15} />
+    return (
+      <Text
+        style={[
+          styles.stepNumberTextStyle,
+          { color: activeStep >= index ? _activeNumberColor : _inActiveNumberColor },
+        ]}
+      >
+        {index + 1}
+      </Text>
     );
   };
 

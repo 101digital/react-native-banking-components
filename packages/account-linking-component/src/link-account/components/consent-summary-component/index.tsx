@@ -63,7 +63,7 @@ const ConsentSummaryComponent = (props: ConsentSummaryComponentProps) => {
         })}
       </ScrollView>
       <Button
-        label={i18n?.t('dynamic_consent_component.btn_consent') ?? 'I consent'}
+        label={i18n?.t('link_bank_component.btn_consent') ?? 'I consent'}
         onPress={onConsented}
         style={
           styles?.consentButtonStyle ?? {

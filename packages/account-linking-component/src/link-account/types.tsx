@@ -59,6 +59,7 @@ export type LinkAccountComponentProps = {
     consentData: DynamicConsent;
     appIcon: ReactNode;
     onLinkAccount: (bankId: string, consentId: string, accountIds: string[]) => void;
+    onGoToAccount: () => void;
   };
   style?: LinkAccountComponentStyles;
   stepperComponent?: {
@@ -285,6 +286,7 @@ export type ConfirmLinkingComponentProps = {
   successIcon?: ReactNode;
   failedIcon?: ReactNode;
   style?: ConfirmLinkingComponentStyles;
+  onGoToAccount: () => void;
 };
 
 export type ConfirmLinkingComponentStyles = {

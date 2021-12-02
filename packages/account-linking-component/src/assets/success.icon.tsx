@@ -14,6 +14,7 @@ const SuccessIcon = () => {
  </g>
  </svg>
  `}
+      fill={'#009A10'}
     />
   );
 };

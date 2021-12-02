@@ -36,7 +36,7 @@ const LinkAccountComponent = forwardRef((componentsProps: LinkAccountComponentPr
     style,
     props,
   } = componentsProps;
-  const { onLinkAccount, onStepChanged, bank, consentData, appIcon } = props;
+  const { onLinkAccount, onStepChanged, bank, consentData, appIcon, onGoToAccount } = props;
   const [activeStep, setActiveStep] = useState<ProgressStep>(ProgressStep.accessiblePeriod);
   const [period, setPeriod] = useState<ConsentPeriod | undefined>(undefined);
   const [permissions, setPermissions] = useState<BankPermission[]>([]);
@@ -155,8 +155,7 @@ const LinkAccountComponent = forwardRef((componentsProps: LinkAccountComponentPr
       {activeStep === ProgressStep.permissionRequest && (
         <>
           {_renderCatalogItem(
-            i18n?.t('dynamic_consent_component.lbl_data_accessible_period') ??
-              'Data accessible period',
+            i18n?.t('link_bank_component.lbl_data_accessible_period') ?? 'Data accessible period',
             () => {
               setActiveStep(ProgressStep.accessiblePeriod);
             }
@@ -175,14 +174,13 @@ const LinkAccountComponent = forwardRef((componentsProps: LinkAccountComponentPr
       {activeStep === ProgressStep.summaryData && period && (
         <>
           {_renderCatalogItem(
-            i18n?.t('dynamic_consent_component.lbl_data_accessible_period') ??
-              'Data accessible period',
+            i18n?.t('link_bank_component.lbl_data_accessible_period') ?? 'Data accessible period',
             () => {
               setActiveStep(ProgressStep.accessiblePeriod);
             }
           )}
           {_renderCatalogItem(
-            i18n?.t('dynamic_consent_component.lbl_data_we_need') ?? 'Data we need',
+            i18n?.t('link_bank_component.lbl_data_we_need') ?? 'Data we need',
             () => {
               setActiveStep(ProgressStep.permissionRequest);
             }
@@ -227,7 +225,12 @@ const LinkAccountComponent = forwardRef((componentsProps: LinkAccountComponentPr
         />
       )}
       {activeStep === ProgressStep.confirmResult && (
-        <ConfirmLinkingComponent bank={bank} status={linkBankStatus} {...confirmLinkingComponent} />
+        <ConfirmLinkingComponent
+          bank={bank}
+          status={linkBankStatus}
+          {...confirmLinkingComponent}
+          onGoToAccount={onGoToAccount}
+        />
       )}
     </>
   );

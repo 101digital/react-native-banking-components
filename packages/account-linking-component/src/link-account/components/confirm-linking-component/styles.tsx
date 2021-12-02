@@ -16,7 +16,7 @@ const useMergeStyle = (style?: ConfirmLinkingComponentStyles): ConfirmLinkingCom
     contentContainerStyle: {
       flex: 1,
       paddingHorizontal: 27,
-      justifyContent: 'center',
+      alignItems: 'center',
     },
     titleTextStyle: {
       fontSize: 22,

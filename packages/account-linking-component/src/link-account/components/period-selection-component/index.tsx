@@ -44,27 +44,25 @@ const PeriodSelectionComponent = (props: PeriodSelectionComponentProps) => {
   return (
     <View style={styles.containerStyle}>
       <Text style={styles.headerTitleStyle}>
-        {i18n?.t('dynamic_consent_component.lbl_data_accessible_period') ??
-          'Data accessible period'}
+        {i18n?.t('link_bank_component.lbl_data_accessible_period') ?? 'Data accessible period'}
       </Text>
       <View style={styles.companyContainerStyle}>
         <CDRIcon />
         <View style={styles.companyContentContainerStyle}>
           <Text style={styles.companyReciepientStyle}>
-            {i18n?.t('dynamic_consent_component.lbl_consumer_data_recipient') ??
+            {i18n?.t('link_bank_component.lbl_consumer_data_recipient') ??
               'Accredited Consumer Data Right Recipient'}
           </Text>
           <Text style={styles.companyNameStyle}>{companyName}</Text>
           <Text style={styles.companyReciepientStyle}>
             {(
-              i18n?.t('dynamic_consent_component.lbl_recipient_id') ??
-              'Accredited Data Recipient: %s'
+              i18n?.t('link_bank_component.lbl_recipient_id') ?? 'Accredited Data Recipient: %s'
             ).replace('%s', recipientId)}
           </Text>
         </View>
       </View>
       <Text style={styles.dataAccessTitleStyle}>
-        {i18n?.t('dynamic_consent_component.lbl_data_can_accessed') ?? 'Data can be accessed'}
+        {i18n?.t('link_bank_component.lbl_data_can_accessed') ?? 'Data can be accessed'}
       </Text>
       <FlatList
         keyExtractor={(item) => item.period.toString()}
@@ -75,7 +73,7 @@ const PeriodSelectionComponent = (props: PeriodSelectionComponentProps) => {
         renderItem={({ item }) => _renderPeriodItem(item)}
       />
       <Button
-        label={i18n?.t('dynamic_consent_component.btn_next') ?? 'Next'}
+        label={i18n?.t('link_bank_component.btn_next') ?? 'Next'}
         onPress={() => onNext(period!)}
         disabled={!period}
         style={

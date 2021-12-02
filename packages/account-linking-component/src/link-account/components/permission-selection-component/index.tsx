@@ -13,10 +13,10 @@ const PermissionSelectionComponent = (props: PermissionSelectionComponentProps) 
   return (
     <View style={styles.containerStyle}>
       <Text style={styles.headerTitleStyle}>
-        {i18n?.t('dynamic_consent_component.lbl_data_we_need') ?? 'Data we need'}
+        {i18n?.t('link_bank_component.lbl_data_we_need') ?? 'Data we need'}
       </Text>
       <Text style={styles.headerMessageStyle}>
-        {i18n?.t('dynamic_consent_component.msg_select_data_to_share') ??
+        {i18n?.t('link_bank_component.msg_select_data_to_share') ??
           'Plese select the data you like to share. We use the data to provide you a consolidated view of your money, to provide recomendation, and help you to reconcile your finances.'}
       </Text>
       <FlatList
@@ -41,7 +41,7 @@ const PermissionSelectionComponent = (props: PermissionSelectionComponentProps) 
       />
       <Button
         onPress={onNext}
-        label={i18n?.t('dynamic_consent_component.btn_next') ?? 'Next'}
+        label={i18n?.t('link_bank_component.btn_next') ?? 'Next'}
         disabled={permissions.length !== bank.permissions.length}
         style={{
           primaryContainerStyle: {
