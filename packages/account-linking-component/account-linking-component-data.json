@@ -50,7 +50,7 @@
       "btn_link": "Link"
     },
     "link_bank_component": {
-      "lbl_heading": "Select the account to share information with\n101 Digital PTE LTD",
+      "lbl_heading": "Select the account to share information with\n%s",
       "btn_continue": "Continue",
       "lbl_access_info": "%s will have access to the below Information",
       "lbl_account_details": "Account details",

@@ -76,8 +76,10 @@ const SelectAccountComponent = (props: SelectAccountComponentProps) => {
           return (
             renderHeading?.() ?? (
               <Text style={styles.headingTextStyle}>
-                {i18n?.t('link_bank_component.lbl_heading') ??
-                  'Select the account to share information with\n101 Digital PTE LTD'}
+                {(
+                  i18n?.t('link_bank_component.lbl_heading') ??
+                  'Select the account to share information with\n%s'
+                ).replace('%s', companyName)}
               </Text>
             )
           );
