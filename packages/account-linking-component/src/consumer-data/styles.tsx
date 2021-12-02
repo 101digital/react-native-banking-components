@@ -48,6 +48,7 @@ const useMergeStyle = (style?: ComsumerDataComponentStyles): ComsumerDataCompone
     placeholderContainerStyle: {
       flexDirection: 'row',
       marginHorizontal: '25%',
+      marginVertical: 10,
     },
     connectorContainerStyle: {
       width: 45,

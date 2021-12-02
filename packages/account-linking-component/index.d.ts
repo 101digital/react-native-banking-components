@@ -4,4 +4,4 @@ export { AccountLinkingService } from './src/service/account-linking-service';
 export { default as SelectBankComponent } from './src/select-bank';
 export { default as ConsumerDataComponent } from './src/consumer-data';
 export { default as LinkAccountComponent } from './src/link-account';
-export { default as ConsentManagerComponent } from './src/consent-manager';
+export { default as DataSharingListComponent } from './src/consent-manager/data-sharing-list-component';
