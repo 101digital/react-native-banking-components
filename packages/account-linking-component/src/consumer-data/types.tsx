@@ -29,6 +29,10 @@ export type ComsumerDataComponentStyles = {
   cdrPolicyTextStyle?: StyleProp<TextStyle>;
   linkButtonStyle?: ButtonStyles;
   cdrListContainerStyle?: StyleProp<ViewStyle>;
+  placeholderContainerStyle?: StyleProp<ViewStyle>;
+  connectorContainerStyle?: StyleProp<ViewStyle>;
+  dashlineContainerStyle?: StyleProp<ViewStyle>;
+  cdrIconContainerStyle?: StyleProp<ViewStyle>;
 };
 
 export type ItemCDRStyles = {

@@ -6,7 +6,6 @@ export * from './checked.icon';
 export * from './warning.icon';
 export * from './no-wallet.icon';
 export * from './search.icon';
-export * from './consumer-data-right.icon'
 export * from './consumer.icon'
 export * from './control-data.icon'
 export * from './security.icon'
@@ -19,3 +18,7 @@ export * from './tick.icon'
 export * from './close.icon'
 export * from './failed.icon'
 export * from './success.icon'
+export * from './up-dashline.icon'
+export * from './down-dashline.icon'
+export * from './mobile.icon'
+export * from './bank.icon'

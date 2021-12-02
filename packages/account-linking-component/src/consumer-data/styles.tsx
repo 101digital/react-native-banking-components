@@ -45,6 +45,32 @@ const useMergeStyle = (style?: ComsumerDataComponentStyles): ComsumerDataCompone
     cdrListContainerStyle: {
       marginVertical: 15,
     },
+    placeholderContainerStyle: {
+      flexDirection: 'row',
+      marginHorizontal: '25%',
+    },
+    connectorContainerStyle: {
+      width: 45,
+      height: 45,
+      borderWidth: 1,
+      borderColor: '#E1E1E1',
+      borderRadius: 3,
+      elevation: 4,
+      shadowOffset: { width: 0, height: 0 },
+      shadowColor: 'grey',
+      shadowOpacity: 0.2,
+      shadowRadius: 3,
+      backgroundColor: 'white',
+      justifyContent: 'center',
+      alignItems: 'center',
+      marginHorizontal: 5,
+    },
+    dashlineContainerStyle: {
+      marginTop: 32,
+    },
+    cdrIconContainerStyle: {
+      marginTop: 32,
+    },
   });
 
   return defaultsDeep(style, defaultStyles);

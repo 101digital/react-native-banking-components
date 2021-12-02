@@ -12,9 +12,7 @@ const ConsentManagerComponent = () => {
   const { colors, fonts } = useContext(ThemeContext);
 
   useEffect(() => {
-    if (isEmpty(accountConsents)) {
-      getAccountConsents();
-    }
+    getAccountConsents();
   }, []);
 
   if (isEmpty(accountConsents)) {

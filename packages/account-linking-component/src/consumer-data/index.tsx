@@ -4,10 +4,14 @@ import { Button, ThemeContext } from 'react-native-theme-component';
 import useMergeStyle from './styles';
 import { CDRData, ComsumerDataComponentProps, ComsumerDataComponentStyles } from './types';
 import {
-  ConsumerDataRightIcon,
   ConsumerIcon,
   SecurityIcon,
   ControlDataIcon,
+  UpDashlineIcon,
+  DownDashlineIcon,
+  CDRIcon,
+  MobileIcon,
+  BankIcon,
 } from '../assets/images';
 import ItemCDR from './components/item-cdr';
 
@@ -44,7 +48,23 @@ const ConsumerDataComponent = ({ style, props }: ComsumerDataComponentProps) => 
           </Text>{' '}
           {i18n?.t('consumer_data_component.lbl_to_link_account') ?? 'to link your account'}
         </Text>
-        <ConsumerDataRightIcon size={100} />
+        <View style={styles.placeholderContainerStyle}>
+          <View style={styles.connectorContainerStyle}>
+            <MobileIcon />
+          </View>
+          <View style={styles.dashlineContainerStyle}>
+            <DownDashlineIcon size={36} />
+          </View>
+          <View style={styles.cdrIconContainerStyle}>
+            <CDRIcon width={40} height={56} />
+          </View>
+          <View style={styles.dashlineContainerStyle}>
+            <UpDashlineIcon size={36} />
+          </View>
+          <View style={styles.connectorContainerStyle}>
+            <BankIcon />
+          </View>
+        </View>
         <FlatList
           keyExtractor={(item) => item.title}
           data={cdrData ?? DEFAULT_CDR_DATA}
