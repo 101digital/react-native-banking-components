@@ -27,20 +27,26 @@ const AdditionalInformation = (props: AdditionalDataProps) => {
           <ArrowDownIcon size={10} color={colors.primaryColor} />
         </View>
       </TouchableOpacity>
-      <Text style={styles.messageTextStyle}>
-        {`101 Digittal is a accredited data recepient, you can check more details `}
-        <Text style={styles.hiperLinkTextStyle}>{'here.'}</Text>
-      </Text>
-      <View style={styles.cdrContainerStyle}>
-        <CDRIcon />
-        <View style={styles.cdrContentContainerStyle}>
-          <Text style={styles.cdrMessageStyle}>{'Accredited Consumer Data Right Reciepient'}</Text>
-          <Text style={styles.cdrCompanyNameStyle}>{companyName}</Text>
-          <Text style={styles.cdrMessageStyle}>{`Accredited Data Recipeint: ${
-            accountConsent.aspspInfo.accreditedDataRecipientId ?? ''
-          }`}</Text>
-        </View>
-      </View>
+      {isShowFull && (
+        <>
+          <Text style={styles.messageTextStyle}>
+            {`101 Digittal is a accredited data recepient, you can check more details `}
+            <Text style={styles.hiperLinkTextStyle}>{'here.'}</Text>
+          </Text>
+          <View style={styles.cdrContainerStyle}>
+            <CDRIcon />
+            <View style={styles.cdrContentContainerStyle}>
+              <Text style={styles.cdrMessageStyle}>
+                {'Accredited Consumer Data Right Reciepient'}
+              </Text>
+              <Text style={styles.cdrCompanyNameStyle}>{companyName}</Text>
+              <Text style={styles.cdrMessageStyle}>{`Accredited Data Recipeint: ${
+                accountConsent.aspspInfo.accreditedDataRecipientId ?? ''
+              }`}</Text>
+            </View>
+          </View>
+        </>
+      )}
     </View>
   );
 };
@@ -58,7 +64,7 @@ const useMergeStyles = (style?: AddtionalDataStyles): AddtionalDataStyles => {
       marginRight: 15,
       alignItems: 'center',
       justifyContent: 'space-between',
-      marginBottom: 15,
+      marginBottom: 10,
     },
     titleTextStyle: {
       fontFamily: fonts.regular,
@@ -68,7 +74,7 @@ const useMergeStyles = (style?: AddtionalDataStyles): AddtionalDataStyles => {
     },
     messageTextStyle: {
       fontFamily: fonts.regular,
-      fontSize: 16,
+      fontSize: 12,
       color: '#244065',
       lineHeight: 24,
     },

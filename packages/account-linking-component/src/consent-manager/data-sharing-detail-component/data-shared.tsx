@@ -55,7 +55,14 @@ const DataShared = (props: DataSharedProps) => {
               }}
               style={styles.itemContainerStyle}
             >
-              <View style={styles.itemHeaderContainerStyle}>
+              <View
+                style={[
+                  styles.itemHeaderContainerStyle,
+                  {
+                    borderBottomWidth: _isActive ? 1 : 0,
+                  },
+                ]}
+              >
                 <Text style={styles.itemTitleTextStyle}>{item.permissionTitle}</Text>
                 <View
                   style={{
@@ -65,32 +72,43 @@ const DataShared = (props: DataSharedProps) => {
                   <ArrowDownIcon size={10} color={colors.primaryColor} />
                 </View>
               </View>
-              <Text style={styles.itemShortDesTextStyle}>{cleanHTML(item.shortDescription)}</Text>
-              <Text style={styles.fullDataTextStyle}>{'Full data list'}</Text>
-              <HTML
-                contentWidth={width}
-                systemFonts={fonts.regular ? [fonts.regular] : []}
-                source={{ html: item.description }}
-                tagsStyles={{
-                  ul: {
-                    margin: 0,
-                    marginBottom: 15,
-                    marginLeft: 10,
-                    marginTop: 10,
-                  },
-                  li: {
-                    fontFamily: fonts.regular,
-                    fontSize: 12,
-                    color: '#244065',
-                  },
-                  p: {
-                    fontFamily: fonts.regular,
-                    margin: 2,
-                    fontSize: 12,
-                    color: '#244065',
-                  },
-                }}
-              />
+              {_isActive && (
+                <>
+                  <Text style={styles.itemShortDesTextStyle}>
+                    {cleanHTML(item.shortDescription)}
+                  </Text>
+                  {!isEmpty(item.description) && (
+                    <>
+                      <Text style={styles.fullDataTextStyle}>{'Full data list'}</Text>
+                      <HTML
+                        contentWidth={width}
+                        systemFonts={fonts.regular ? [fonts.regular] : []}
+                        source={{ html: item.description }}
+                        tagsStyles={{
+                          ul: {
+                            margin: 0,
+                            marginBottom: 15,
+                            marginLeft: 10,
+                            marginTop: 10,
+                          },
+                          li: {
+                            fontFamily: fonts.regular,
+                            fontSize: 12,
+                            color: '#244065',
+                          },
+                          p: {
+                            fontFamily: fonts.regular,
+                            margin: 2,
+                            fontSize: 12,
+                            color: '#244065',
+                            marginHorizontal: 20,
+                          },
+                        }}
+                      />
+                    </>
+                  )}
+                </>
+              )}
             </TouchableOpacity>
           );
         }}
@@ -119,7 +137,7 @@ const useMergeStyles = (style?: DataSharedStyles): DataSharedStyles => {
       marginBottom: 10,
     },
     listDividerStyle: {
-      height: 10,
+      height: 15,
     },
     itemContainerStyle: {
       borderRadius: 5,
@@ -138,6 +156,7 @@ const useMergeStyles = (style?: DataSharedStyles): DataSharedStyles => {
       paddingVertical: 10,
       borderBottomColor: 'rgba(191, 191, 191, 0.3)',
       borderBottomWidth: 1,
+      alignItems: 'center',
     },
     itemTitleTextStyle: {
       flex: 1,
@@ -150,14 +169,15 @@ const useMergeStyles = (style?: DataSharedStyles): DataSharedStyles => {
       fontFamily: fonts.regular,
       fontSize: 12,
       color: '#244065',
-      padding: 15,
+      paddingHorizontal: 15,
+      paddingVertical: 10,
       lineHeight: 24,
     },
     fullDataTextStyle: {
       fontFamily: fonts.medium,
       color: '#244065',
-      paddingVertical: 6,
       fontSize: 12,
+      marginHorizontal: 15,
     },
   });
   return defaultsDeep(style, defaultStyles);
