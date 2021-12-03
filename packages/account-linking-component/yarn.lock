@@ -667,8 +667,8 @@
     to-fast-properties "^2.0.0"
 
 "@banking-component/core@https://gitpkg.now.sh/101digital/react-native-banking-components/packages/core":
-  version "1.1.18"
-  resolved "https://gitpkg.now.sh/101digital/react-native-banking-components/packages/core#e3bca467ebe4eeba6ed49610398cb70368391e76"
+  version "1.1.19"
+  resolved "https://gitpkg.now.sh/101digital/react-native-banking-components/packages/core#335a90bffbcc27ddf9acbca11d4795033ce46c41"
   dependencies:
     lodash "^4.17.21"
 

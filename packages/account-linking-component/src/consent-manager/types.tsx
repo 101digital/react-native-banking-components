@@ -2,6 +2,8 @@ import { AccountConsent } from '@banking-component/core';
 import { ImageStyle, StyleProp, TextStyle, ViewStyle } from 'react-native';
 
 export type DataSharingListComponentProps = {
+  periodFormat?: string;
+  onItemPressed: (data: AccountConsent) => void;
   style?: DataSharingListComponentStyles;
 };
 
