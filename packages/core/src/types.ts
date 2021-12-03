@@ -169,8 +169,8 @@ export interface CashflowPeriod {
 }
 
 export interface GroupAccountConsent {
-  status: string;
-  accountConsents: AccountConsent[]
+  section: string;
+  data: AccountConsent[]
 }
 export interface AccountConsent {
   accountConsentId: string;
