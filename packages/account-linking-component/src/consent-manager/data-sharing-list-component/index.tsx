@@ -1,6 +1,13 @@
 import { AccountLinkingContext } from '../../context/account-linking-context';
 import React, { useContext, useEffect } from 'react';
-import { ActivityIndicator, FlatList, Text, TouchableOpacity, View } from 'react-native';
+import {
+  ActivityIndicator,
+  FlatList,
+  SectionList,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import { isEmpty } from '@banking-component/core';
 import { Image, ThemeContext } from 'react-native-theme-component';
 import { ArrowRightIcon, images } from '../../assets/images';
@@ -31,10 +38,12 @@ const DataSharingListComponent = (props: DataSharingListComponentProps) => {
 
   return (
     <View style={styles.containerStyle}>
-      <FlatList
+      <SectionList
+        removeClippedSubviews={false}
         keyExtractor={(item) => item.accountConsentId}
-        data={accountConsents}
-        style={styles.listContainerStyle}
+        sections={accountConsents}
+        stickySectionHeadersEnabled={false}
+        contentContainerStyle={styles.listContainerStyle}
         ItemSeparatorComponent={() => <View style={styles.listDividerStyle} />}
         renderItem={({ item }) => {
           return (
@@ -52,6 +61,13 @@ const DataSharingListComponent = (props: DataSharingListComponentProps) => {
               </View>
               <ArrowRightIcon size={13} color='rgba(13, 32, 80, 0.5)' />
             </TouchableOpacity>
+          );
+        }}
+        renderSectionHeader={({ section: { section } }) => {
+          return (
+            <View style={styles.sectionContainerStyle}>
+              <Text style={styles.sectionTitleStyle}>{section}</Text>
+            </View>
           );
         }}
       />

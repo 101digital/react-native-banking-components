@@ -7,7 +7,9 @@ import {
   BankImagesMap,
   BankingConsentData,
   GroupAccountConsent,
+  groupBy,
 } from '@banking-component/core';
+import moment from 'moment';
 
 const accountService = AccountLinkingService.instance();
 
@@ -35,7 +37,7 @@ export interface AccountLinkingContextData {
   errorLoadAccounts?: Error;
   clearBankErrors: () => void;
   clearAccounts: () => void;
-  accountConsents?: GroupAccountConsent;
+  accountConsents: GroupAccountConsent[];
   isLoadingAccountConsents: boolean;
   errorLoadAccountConsents?: Error;
   getAccountConsents: () => void;
@@ -58,6 +60,7 @@ export const bankDefaultValue: AccountLinkingContextData = {
   clearAccounts: () => null,
   isLoadingAccountConsents: false,
   getAccountConsents: () => null,
+  accountConsents: [],
 };
 
 export const AccountLinkingContext = React.createContext<AccountLinkingContextData>(
@@ -81,9 +84,7 @@ export function useBankContextValue(): AccountLinkingContextData {
   const [_errorLoadAccountConsents, setErrorLoadAccountConsents] = useState<Error | undefined>(
     undefined
   );
-  const [_accountConsents, setAccountConsents] = useState<GroupAccountConsent | undefined>(
-    undefined
-  );
+  const [_accountConsents, setAccountConsents] = useState<GroupAccountConsent[]>([]);
 
   const getBanks = useCallback(async (searchText?: string) => {
     try {
@@ -160,7 +161,26 @@ export function useBankContextValue(): AccountLinkingContextData {
     try {
       setLoadingAccountConsent(true);
       const { data } = await accountService.getAccountConsents();
-      setAccountConsents(data);
+      const _groupConsent = groupBy<AccountConsent>(
+        data.map((consent: AccountConsent) => {
+          return {
+            ...consent,
+            expiredAt: moment(consent.createdAt).add(1, 'y'),
+          };
+        }),
+        (consent: AccountConsent) => {
+          if (moment(consent.expiredAt).isAfter(moment())) {
+            return 'Expired';
+          }
+          return 'Active';
+        }
+      );
+      setAccountConsents(
+        Object.keys(_groupConsent).map((key) => ({
+          section: key,
+          data: _groupConsent[key],
+        }))
+      );
       setLoadingAccountConsent(false);
     } catch (error) {
       setLoadingAccountConsent(false);
