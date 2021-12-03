@@ -17,6 +17,7 @@
   "author": "tuyen101D",
   "license": "MIT",
   "dependencies": {
+    "moment": "^2.29.1",
     "react-native-render-html": "^6.3.0"
   },
   "devDependencies": {
