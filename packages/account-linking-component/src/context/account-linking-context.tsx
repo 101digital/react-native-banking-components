@@ -6,6 +6,7 @@ import {
   BankAccount,
   BankImagesMap,
   BankingConsentData,
+  GroupAccountConsent,
 } from '@banking-component/core';
 
 const accountService = AccountLinkingService.instance();
@@ -34,7 +35,7 @@ export interface AccountLinkingContextData {
   errorLoadAccounts?: Error;
   clearBankErrors: () => void;
   clearAccounts: () => void;
-  accountConsents: AccountConsent[];
+  accountConsents?: GroupAccountConsent;
   isLoadingAccountConsents: boolean;
   errorLoadAccountConsents?: Error;
   getAccountConsents: () => void;
@@ -57,7 +58,6 @@ export const bankDefaultValue: AccountLinkingContextData = {
   clearAccounts: () => null,
   isLoadingAccountConsents: false,
   getAccountConsents: () => null,
-  accountConsents: [],
 };
 
 export const AccountLinkingContext = React.createContext<AccountLinkingContextData>(
@@ -81,7 +81,9 @@ export function useBankContextValue(): AccountLinkingContextData {
   const [_errorLoadAccountConsents, setErrorLoadAccountConsents] = useState<Error | undefined>(
     undefined
   );
-  const [_accountConsents, setAccountConsents] = useState<AccountConsent[]>([]);
+  const [_accountConsents, setAccountConsents] = useState<GroupAccountConsent | undefined>(
+    undefined
+  );
 
   const getBanks = useCallback(async (searchText?: string) => {
     try {
