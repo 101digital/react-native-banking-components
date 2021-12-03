@@ -667,8 +667,8 @@
     to-fast-properties "^2.0.0"
 
 "@banking-component/core@https://gitpkg.now.sh/101digital/react-native-banking-components/packages/core":
-  version "1.1.16"
-  resolved "https://gitpkg.now.sh/101digital/react-native-banking-components/packages/core#33d35eafc523a80b4733f537904e1e3996dad7ef"
+  version "1.1.19"
+  resolved "https://gitpkg.now.sh/101digital/react-native-banking-components/packages/core#335a90bffbcc27ddf9acbca11d4795033ce46c41"
   dependencies:
     lodash "^4.17.21"
 
@@ -693,11 +693,11 @@
     "@hapi/hoek" "^9.0.0"
 
 "@jest/create-cache-key-function@^27.0.1":
-  version "27.4.1"
-  resolved "https://registry.yarnpkg.com/@jest/create-cache-key-function/-/create-cache-key-function-27.4.1.tgz#7de96c862c0167983b56cce4c7ce2f2892388324"
-  integrity sha512-KAv5JgfVCalOX9n3jEEBcf+bw81bqvULtkPnp+8l4b7U21/IcF1tfBiNruPpxbMLsaXQ4EcNhI3G3h8HPsnuJw==
+  version "27.4.2"
+  resolved "https://registry.yarnpkg.com/@jest/create-cache-key-function/-/create-cache-key-function-27.4.2.tgz#09b585f9dbafec0f56cfb0e4d4edfe2bec0e0768"
+  integrity sha512-aSSCAJwUNX4R1hJQoyimsND5l+2EsFgzlepS8NuOJJHjXij/UdxYFngac44tmv9IYdI+kglAyORg0plt4/aFMQ==
   dependencies:
-    "@jest/types" "^27.4.1"
+    "@jest/types" "^27.4.2"
 
 "@jest/types@^26.6.2":
   version "26.6.2"
@@ -710,10 +710,10 @@
     "@types/yargs" "^15.0.0"
     chalk "^4.0.0"
 
-"@jest/types@^27.4.1":
-  version "27.4.1"
-  resolved "https://registry.yarnpkg.com/@jest/types/-/types-27.4.1.tgz#bceb4ae2ca4634ea8c0a02d195bab7dd380cd498"
-  integrity sha512-Uvy+gMBzj6Yak95w1g83AEwhoqzs2letmwKNvb1QgLsqkCxy9NIpNUjrgmra87FVMDsFFgCxcZ6ZaHkQFXJ7Zg==
+"@jest/types@^27.4.2":
+  version "27.4.2"
+  resolved "https://registry.yarnpkg.com/@jest/types/-/types-27.4.2.tgz#96536ebd34da6392c2b7c7737d693885b5dd44a5"
+  integrity sha512-j35yw0PMTPpZsUoOBiuHzr1zTYoad1cVIE0ajEjcrJONxxrko/IRGKkXx3os0Nsi4Hu3+5VmDbVfq5WhG/pWAg==
   dependencies:
     "@types/istanbul-lib-coverage" "^2.0.0"
     "@types/istanbul-reports" "^3.0.0"
@@ -905,10 +905,10 @@
   resolved "https://registry.yarnpkg.com/@react-native/polyfills/-/polyfills-1.0.0.tgz#05bb0031533598f9458cf65a502b8df0eecae780"
   integrity sha512-0jbp4RxjYopTsIdLl+/Fy2TiwVYHy4mgeu07DG4b/LyM0OS/+lPP5c9sbnt/AMlnF6qz2JRZpPpGw1eMNS6A4w==
 
-"@sideway/address@^4.1.0":
-  version "4.1.2"
-  resolved "https://registry.yarnpkg.com/@sideway/address/-/address-4.1.2.tgz#811b84333a335739d3969cfc434736268170cad1"
-  integrity sha512-idTz8ibqWFrPU8kMirL0CoPH/A29XOzzAzpyN3zQ4kAWnzmNfFmRaoMNN6VI8ske5M73HZyhIaW4OuSFIdM4oA==
+"@sideway/address@^4.1.3":
+  version "4.1.3"
+  resolved "https://registry.yarnpkg.com/@sideway/address/-/address-4.1.3.tgz#d93cce5d45c5daec92ad76db492cc2ee3c64ab27"
+  integrity sha512-8ncEUtmnTsMmL7z1YPB47kPUq7LpKWJNFPsRzHiIajGC5uXlWGn+AmkYPcHNl8S4tcEGx+cnORnNYaw2wvL+LQ==
   dependencies:
     "@hapi/hoek" "^9.0.0"
 
@@ -959,9 +959,9 @@
   integrity sha512-rZ5drC/jWjrArrS8BR6SIr4cWpW09RNTYt9AMZo3Jwwif+iacXAqgVjm0B0Bv/S1jhDXKHqRVNCbACkJ89RAnQ==
 
 "@types/ramda@^0.27.40", "@types/ramda@^0.27.44":
-  version "0.27.56"
-  resolved "https://registry.yarnpkg.com/@types/ramda/-/ramda-0.27.56.tgz#f7290f48865ea1c231d0ace268f83118e8d24e6c"
-  integrity sha512-fMloxwXvaL/nsLpYAkDKdoo4U8d6Gm2MSLz6Csv38Pst19MSCVs4tLf0HjsXETkBMj/wZmFZ0kUwoq0kluvi8w==
+  version "0.27.58"
+  resolved "https://registry.yarnpkg.com/@types/ramda/-/ramda-0.27.58.tgz#54c87ac069f7d3df8ffd858371b3d55e9a07683b"
+  integrity sha512-rdHO+hTyMn2kndZX5JW/4jp0J0I0nb5Vuj1yD0vii2/+BbdgYwWXEijqI/2xWm7Dd4CnJRt+JVfgy0+285KMGw==
   dependencies:
     ts-toolbelt "^6.15.1"
 
@@ -1802,9 +1802,9 @@ domelementtype@^2.0.1, domelementtype@^2.2.0:
   integrity sha512-DtBMo82pv1dFtUmHyr48beiuq792Sxohr+8Hm9zoxklYPfa6n0Z3Byjj2IV7bmr2IyqClnqEQhfgHJJ5QF0R5A==
 
 domhandler@^4.2.0, domhandler@^4.2.2:
-  version "4.2.2"
-  resolved "https://registry.yarnpkg.com/domhandler/-/domhandler-4.2.2.tgz#e825d721d19a86b8c201a35264e226c678ee755f"
-  integrity sha512-PzE9aBMsdZO8TK4BnuJwH0QT41wgMbRzuZrHUcpYncEjmQazq8QEaBWgLG7ZyC/DAZKEgglpIA6j4Qn/HmxS3w==
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/domhandler/-/domhandler-4.3.0.tgz#16c658c626cf966967e306f966b431f77d4a5626"
+  integrity sha512-fC0aXNQXqKSFTr2wDNZDhsEYjCiYsDWl3D01kwt25hm1YIPyDGHvvi3rw+PLqHAl/m71MaiF7d5zvBr0p5UB2g==
   dependencies:
     domelementtype "^2.2.0"
 
@@ -1831,9 +1831,9 @@ ee-first@1.1.1:
   integrity sha1-WQxhFWsK4vTwJVcyoViyZrxWsh0=
 
 electron-to-chromium@^1.3.896:
-  version "1.4.5"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.5.tgz#912e8fd1645edee2f0f212558f40916eb538b1f9"
-  integrity sha512-YKaB+t8ul5crdh6OeqT2qXdxJGI0fAYb6/X8pDIyye+c3a7ndOCk5gVeKX+ABwivCGNS56vOAif3TN0qJMpEHw==
+  version "1.4.9"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.9.tgz#4854fa55f94f18f5d0ad4ac49034ff6443fff5b9"
+  integrity sha512-7AyB4SiLtGJbLACXezs8BDjDbZizuoiyHTQxbcvzfi5LYWRXVSFdmPvuDjtlWQmsVSONRicZfSBj3xgft0Wvrg==
 
 emoji-regex@^8.0.0:
   version "8.0.0"
@@ -2533,13 +2533,13 @@ jetifier@^1.6.2:
   integrity sha512-3Zi16h6L5tXDRQJTb221cnRoVG9/9OvreLdLU2/ZjRv/GILL+2Cemt0IKvkowwkDpvouAU1DQPOJ7qaiHeIdrw==
 
 joi@^17.2.1:
-  version "17.4.2"
-  resolved "https://registry.yarnpkg.com/joi/-/joi-17.4.2.tgz#02f4eb5cf88e515e614830239379dcbbe28ce7f7"
-  integrity sha512-Lm56PP+n0+Z2A2rfRvsfWVDXGEWjXxatPopkQ8qQ5mxCEhwHG+Ettgg5o98FFaxilOxozoa14cFhrE/hOzh/Nw==
+  version "17.5.0"
+  resolved "https://registry.yarnpkg.com/joi/-/joi-17.5.0.tgz#7e66d0004b5045d971cf416a55fb61d33ac6e011"
+  integrity sha512-R7hR50COp7StzLnDi4ywOXHrBrgNXuUUfJWIR5lPY5Bm/pOD3jZaTwpluUXVLRWcoWZxkrHBBJ5hLxgnlehbdw==
   dependencies:
     "@hapi/hoek" "^9.0.0"
     "@hapi/topo" "^5.0.0"
-    "@sideway/address" "^4.1.0"
+    "@sideway/address" "^4.1.3"
     "@sideway/formula" "^3.0.0"
     "@sideway/pinpoint" "^2.0.0"
 
@@ -3095,7 +3095,7 @@ mkdirp@^0.5.1:
   dependencies:
     minimist "^1.2.5"
 
-moment@^2.24.0:
+moment@^2.24.0, moment@^2.29.1:
   version "2.29.1"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.29.1.tgz#b2be769fa31940be9eeea6469c075e35006fa3d3"
   integrity sha512-kHmoybcPV8Sqy59DwNDY3Jefr64lK/by/da0ViFcuA4DH0vQg5Q6Ze5VimxkfQNSC+Mls/Kx53s7TjP1RhFEDQ==

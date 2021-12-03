@@ -1,7 +1,7 @@
 {
   "name": "@banking-component/account-linking",
   "private": true,
-  "version": "1.1.41",
+  "version": "1.1.42",
   "description": "Manage link bank accounts flow",
   "repository": {
     "type": "git",
@@ -17,6 +17,7 @@
   "author": "tuyen101D",
   "license": "MIT",
   "dependencies": {
+    "moment": "^2.29.1",
     "react-native-render-html": "^6.3.0"
   },
   "devDependencies": {
