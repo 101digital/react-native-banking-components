@@ -176,6 +176,7 @@ export interface AccountConsent {
   accountConsentId: string;
   accountRequestId: string;
   createdAt: string;
+  expiredAt: string;
   organisationId: string;
   status: string;
   userId: string;
