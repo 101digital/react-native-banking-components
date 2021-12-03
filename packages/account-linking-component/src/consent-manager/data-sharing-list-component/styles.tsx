@@ -9,6 +9,7 @@ const useMergeStyles = (style?: DataSharingListComponentStyles): DataSharingList
   const defaultStyles: DataSharingListComponentStyles = StyleSheet.create({
     containerStyle: {
       flex: 1,
+      backgroundColor: '#F6F8FA',
     },
     loadingContainerStyle: {
       flex: 1,
