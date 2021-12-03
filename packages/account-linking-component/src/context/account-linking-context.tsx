@@ -170,9 +170,9 @@ export function useBankContextValue(): AccountLinkingContextData {
         }),
         (consent: AccountConsent) => {
           if (moment(consent.expiredAt).isAfter(moment())) {
-            return 'Expired';
+            return 'Active';
           }
-          return 'Active';
+          return 'Expired';
         }
       );
       setAccountConsents(
