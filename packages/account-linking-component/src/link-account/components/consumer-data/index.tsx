@@ -42,11 +42,11 @@ const ConsumerDataComponent = (props: ComsumerDataComponentProps) => {
     <View style={styles.containerStyle}>
       <View style={styles.mainContainerStyle}>
         <Text style={styles.titleTextStyle}>
-          {i18n?.t('consumer_data_component.lbl_we_using') ?? 'We are using'}{' '}
+          {i18n?.t('link_bank_component.lbl_we_using') ?? 'We are using'}{' '}
           <Text style={styles.highlightTitleTextStyle}>
-            {i18n?.t('consumer_data_component.lbl_open_banking') ?? 'Open Banking'}
+            {i18n?.t('link_bank_component.lbl_open_banking') ?? 'Open Banking'}
           </Text>{' '}
-          {i18n?.t('consumer_data_component.lbl_to_link_account') ?? 'to link your account'}
+          {i18n?.t('link_bank_component.lbl_to_link_account') ?? 'to link your account'}
         </Text>
         <View style={styles.placeholderContainerStyle}>
           <View style={styles.connectorContainerStyle}>
@@ -82,11 +82,11 @@ const ConsumerDataComponent = (props: ComsumerDataComponentProps) => {
         onPress={onCDRPolicyPressed}
       >
         <Text style={styles.cdrPolicyTextStyle}>
-          {i18n?.t('consumer_data_component.btn_view_cdr_policy') ?? 'View our CDR policy'}
+          {i18n?.t('link_bank_component.btn_view_cdr_policy') ?? 'View our CDR policy'}
         </Text>
       </TouchableOpacity>
       <Button
-        label={i18n?.t('consumer_data_component.btn_link') ?? 'Link'}
+        label={i18n?.t('link_bank_component.btn_link') ?? 'Link'}
         onPress={onNext}
         style={
           style?.linkButtonStyle ?? {

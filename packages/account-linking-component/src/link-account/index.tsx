@@ -47,7 +47,7 @@ const LinkAccountComponent = forwardRef((componentsProps: LinkAccountComponentPr
     onGoToAccount,
     onPressedLink,
   } = props;
-  const [activeStep, setActiveStep] = useState<ProgressStep>(ProgressStep.accessiblePeriod);
+  const [activeStep, setActiveStep] = useState<ProgressStep>(ProgressStep.consumerData);
   const [period, setPeriod] = useState<ConsentPeriod | undefined>(undefined);
   const [permissions, setPermissions] = useState<BankPermission[]>([]);
   const [consentId, setConsentId] = useState<string | undefined>(undefined);

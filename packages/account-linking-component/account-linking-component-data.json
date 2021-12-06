@@ -42,14 +42,12 @@
       "lbl_how_link_account": "How to link an account?",
       "btn_view_guide": "View here"
     },
-    "consumer_data_component": {
+    "link_bank_component": {
       "lbl_we_using": "We are using",
       "lbl_to_link_account": "to link your account",
       "lbl_open_banking": "Open Banking",
       "btn_view_cdr_policy": "View our CDR policy",
-      "btn_link": "Link"
-    },
-    "link_bank_component": {
+      "btn_link": "Link",
       "lbl_heading": "Select the account to share information with\n%s",
       "btn_continue": "Continue",
       "lbl_access_info": "%s will have access to the below Information",
