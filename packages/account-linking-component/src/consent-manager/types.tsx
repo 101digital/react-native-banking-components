@@ -40,6 +40,7 @@ export type DataSharingDetailComponentProps = {
   wallets: Wallet[];
   style?: DataSharingDetailComponentStyles;
   periodFormat?: string;
+  onPressedLink: (link: string) => void;
 };
 
 export type DataSharingDetailComponentStyles = {
@@ -102,6 +103,8 @@ export type AccountsStyles = {
 export type AdditionalDataProps = {
   accountConsent: AccountConsent;
   companyName: string;
+  companyLink: string;
+  onPressedLink: (link: string) => void;
   style?: AddtionalDataStyles;
 };
 

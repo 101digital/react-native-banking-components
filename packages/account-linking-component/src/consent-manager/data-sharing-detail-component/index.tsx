@@ -10,7 +10,7 @@ import KeyInformation from './key-information';
 import useMergeStyles from './styles';
 
 const DataSharingDetailComponent = (props: DataSharingDetailComponentProps) => {
-  const { accountConsent, wallets, periodFormat, style, consentData } = props;
+  const { accountConsent, wallets, periodFormat, style, consentData, onPressedLink } = props;
   const [bankWallets, setBankWallets] = useState<Wallet[]>([]);
   const _dateFormat = periodFormat ?? 'DD MMM YYYY';
   const styles: DataSharingDetailComponentStyles = useMergeStyles(style);
@@ -44,7 +44,9 @@ const DataSharingDetailComponent = (props: DataSharingDetailComponentProps) => {
       <AdditionalInformation
         accountConsent={accountConsent}
         companyName={consentData.companyName}
+        companyLink={consentData.companyLink}
         style={style?.additionalInformationStyle}
+        onPressedLink={onPressedLink}
       />
     </ScrollView>
   );

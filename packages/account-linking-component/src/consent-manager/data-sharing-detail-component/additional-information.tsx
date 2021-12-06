@@ -6,7 +6,7 @@ import { AdditionalDataProps, AddtionalDataStyles } from '../types';
 import { ArrowDownIcon, CDRIcon } from '../../assets/images';
 
 const AdditionalInformation = (props: AdditionalDataProps) => {
-  const { accountConsent, style, companyName } = props;
+  const { accountConsent, style, companyName, onPressedLink, companyLink } = props;
   const [isShowFull, setIsShowFull] = useState(false);
   const { colors, i18n } = useContext(ThemeContext);
   const styles: AddtionalDataStyles = useMergeStyles(style);
@@ -36,7 +36,7 @@ const AdditionalInformation = (props: AdditionalDataProps) => {
               i18n?.t('consent_manager.msg_additional_information') ??
               '%s is a accredited data recepient, you can check more details '
             ).replace('%s', companyName)}
-            <Text style={styles.hiperLinkTextStyle}>{`${
+            <Text onPress={() => onPressedLink(companyLink)} style={styles.hiperLinkTextStyle}>{`${
               i18n?.t('consent_manager.btn_here') ?? 'here'
             }.`}</Text>
           </Text>

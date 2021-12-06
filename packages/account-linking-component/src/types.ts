@@ -24,6 +24,7 @@ export interface ConsentPeriod {
     companyName: string;
     cdrPolicyLink: string;
     guideLinkAccountLink: string;
+    companyLink: string;
     consentPeriods: ConsentPeriod[];
     consentSummaries: ConsentSummary[];
   }
