@@ -1,19 +1,29 @@
 import { defaultsDeep } from '@banking-component/core';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { ThemeContext } from 'react-native-theme-component';
 import { AccountsProps, AccountsStyles } from '../types';
 import { ArrowDownIcon } from '../../assets/images';
+import { ConsentSummaryItem } from '../../types';
 
 const Accounts = (props: AccountsProps) => {
-  const { wallets, style, frequencyAccessDataMessage } = props;
+  const { wallets, style, consentSummary } = props;
   const styles: AccountsStyles = useMergeStyles(style);
   const [isShowFull, setIsShowFull] = useState(false);
-  const { colors } = useContext(ThemeContext);
+  const { colors, i18n } = useContext(ThemeContext);
+  const [accessFrequency, setAccessFrequency] = useState<ConsentSummaryItem | undefined>(undefined);
+
+  useEffect(() => {
+    if (consentSummary) {
+      setAccessFrequency(consentSummary.items.find((i) => i.id === 'access_frequency'));
+    }
+  }, [consentSummary]);
 
   return (
     <View style={styles.containerStyle}>
-      <Text style={styles.titleTextStyle}>{'Accounts'}</Text>
+      <Text style={styles.titleTextStyle}>
+        {i18n?.t('consent_manager.lbl_accounts') ?? 'Accounts'}
+      </Text>
       {wallets.map((w) => {
         return (
           <View key={w.walletId} style={styles.accountItemContainerStyle}>
@@ -24,22 +34,26 @@ const Accounts = (props: AccountsProps) => {
           </View>
         );
       })}
-      <TouchableOpacity
-        onPress={() => setIsShowFull(!isShowFull)}
-        activeOpacity={0.8}
-        style={styles.accessDataContainerStyle}
-      >
-        <Text style={styles.accessDataTitleStyle}>{'How often we’ll access your data?'}</Text>
-        <View
-          style={{
-            transform: [{ rotate: isShowFull ? '180deg' : '0deg' }],
-          }}
-        >
-          <ArrowDownIcon size={10} color={colors.primaryColor} />
-        </View>
-      </TouchableOpacity>
-      {isShowFull && (
-        <Text style={styles.accessDataMessageStyle}>{frequencyAccessDataMessage}</Text>
+      {accessFrequency && (
+        <>
+          <TouchableOpacity
+            onPress={() => setIsShowFull(!isShowFull)}
+            activeOpacity={0.8}
+            style={styles.accessDataContainerStyle}
+          >
+            <Text style={styles.accessDataTitleStyle}>{accessFrequency.title}</Text>
+            <View
+              style={{
+                transform: [{ rotate: isShowFull ? '180deg' : '0deg' }],
+              }}
+            >
+              <ArrowDownIcon size={10} color={colors.primaryColor} />
+            </View>
+          </TouchableOpacity>
+          {isShowFull && (
+            <Text style={styles.accessDataMessageStyle}>{accessFrequency.message}</Text>
+          )}
+        </>
       )}
     </View>
   );

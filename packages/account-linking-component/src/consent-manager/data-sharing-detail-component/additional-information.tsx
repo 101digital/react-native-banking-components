@@ -8,7 +8,7 @@ import { ArrowDownIcon, CDRIcon } from '../../assets/images';
 const AdditionalInformation = (props: AdditionalDataProps) => {
   const { accountConsent, style, companyName } = props;
   const [isShowFull, setIsShowFull] = useState(false);
-  const { colors } = useContext(ThemeContext);
+  const { colors, i18n } = useContext(ThemeContext);
   const styles: AddtionalDataStyles = useMergeStyles(style);
 
   return (
@@ -18,7 +18,9 @@ const AdditionalInformation = (props: AdditionalDataProps) => {
         style={styles.headerContainerStyle}
         onPress={() => setIsShowFull(!isShowFull)}
       >
-        <Text style={styles.titleTextStyle}>{'Additional information'}</Text>
+        <Text style={styles.titleTextStyle}>
+          {i18n?.t('consent_manager.lbl_additional_information') ?? 'Additional information'}
+        </Text>
         <View
           style={{
             transform: [{ rotate: isShowFull ? '180deg' : '0deg' }],
@@ -30,19 +32,27 @@ const AdditionalInformation = (props: AdditionalDataProps) => {
       {isShowFull && (
         <>
           <Text style={styles.messageTextStyle}>
-            {`101 Digittal is a accredited data recepient, you can check more details `}
-            <Text style={styles.hiperLinkTextStyle}>{'here.'}</Text>
+            {(
+              i18n?.t('consent_manager.msg_additional_information') ??
+              '%s is a accredited data recepient, you can check more details '
+            ).replace('%s', companyName)}
+            <Text style={styles.hiperLinkTextStyle}>{`${
+              i18n?.t('consent_manager.btn_here') ?? 'here'
+            }.`}</Text>
           </Text>
           <View style={styles.cdrContainerStyle}>
             <CDRIcon />
             <View style={styles.cdrContentContainerStyle}>
               <Text style={styles.cdrMessageStyle}>
-                {'Accredited Consumer Data Right Reciepient'}
+                {i18n?.t('consent_manager.lbl_consumer_data_recipient') ??
+                  'Accredited Consumer Data Right Recipient'}
               </Text>
               <Text style={styles.cdrCompanyNameStyle}>{companyName}</Text>
-              <Text style={styles.cdrMessageStyle}>{`Accredited Data Recipeint: ${
-                accountConsent.aspspInfo.accreditedDataRecipientId ?? ''
-              }`}</Text>
+              <Text style={styles.cdrMessageStyle}>
+                {(
+                  i18n?.t('consent_manager.lbl_recipient_id') ?? 'Accredited Data Recipeint: %s'
+                ).replace('%s', accountConsent.aspspInfo.accreditedDataRecipientId ?? '')}
+              </Text>
             </View>
           </View>
         </>

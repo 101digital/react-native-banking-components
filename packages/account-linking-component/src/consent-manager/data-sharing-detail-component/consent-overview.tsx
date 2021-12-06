@@ -9,6 +9,7 @@ import moment from 'moment';
 const ConsentOverview = (props: ConsentOverviewProps) => {
   const { style, accountConsent, dateFormat } = props;
   const styles: ConsentOverviewStyles = useMergeStyles(style);
+  const { i18n } = useContext(ThemeContext);
 
   const isActive = moment(accountConsent.expiredAt).isAfter(moment());
   const statusBackground = isActive ? '#05944F' : '#F2F2F2';
@@ -29,7 +30,11 @@ const ConsentOverview = (props: ConsentOverviewProps) => {
         )} - ${moment(accountConsent.expiredAt).format(dateFormat)}`}</Text>
       </View>
       <View style={[styles.statusContainerStyle, { backgroundColor: statusBackground }]}>
-        <Text style={styles.statusTextStyle}>{isActive ? 'Active' : 'Expired'}</Text>
+        <Text style={styles.statusTextStyle}>
+          {isActive
+            ? i18n?.t('consent_manager.lbl_active') ?? 'Active'
+            : i18n?.t('consent_manager.lbl_expired') ?? 'Expired'}
+        </Text>
       </View>
     </View>
   );

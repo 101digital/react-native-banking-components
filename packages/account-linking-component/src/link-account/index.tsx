@@ -10,7 +10,6 @@ import PermissionSelectionComponent from './components/permission-selection-comp
 import StepperComponent from './components/stepper-component';
 import useMergeStyles from './styles';
 import {
-  ConsentPeriod,
   LinkAccountComponentProps,
   LinkAccountComponentRefs,
   LinkAccountComponentStyles,
@@ -23,6 +22,7 @@ import ConfirmLinkingComponent from './components/confirm-linking-component';
 import SelectAccountComponent from './components/select-account';
 import ConsumerDataComponent from './components/consumer-data';
 import { AccountLinkingContext } from '../context/account-linking-context';
+import { ConsentPeriod } from '../types';
 
 const LinkAccountComponent = forwardRef((componentsProps: LinkAccountComponentProps, ref) => {
   const {

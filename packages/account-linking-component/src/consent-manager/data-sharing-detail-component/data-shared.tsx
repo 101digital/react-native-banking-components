@@ -14,7 +14,7 @@ const DataShared = (props: DataSharedProps) => {
   const { banks, getBanks } = useContext(AccountLinkingContext);
   const [permissions, setPermissions] = useState<BankPermission[]>([]);
   const [activeIndexs, setActiveIndexs] = useState<number[]>([]);
-  const { colors, fonts } = useContext(ThemeContext);
+  const { colors, fonts, i18n } = useContext(ThemeContext);
 
   useEffect(() => {
     if (isEmpty(banks)) {
@@ -35,7 +35,9 @@ const DataShared = (props: DataSharedProps) => {
 
   return (
     <View style={styles.containerStyle}>
-      <Text style={styles.titleTextStyle}>{'Data you’ve shared'}</Text>
+      <Text style={styles.titleTextStyle}>
+        {i18n?.t('consent_manager.lbl_data_shared') ?? 'Data you’ve shared'}
+      </Text>
       <FlatList
         keyExtractor={(item) => item.id}
         data={permissions}
@@ -79,7 +81,9 @@ const DataShared = (props: DataSharedProps) => {
                   </Text>
                   {!isEmpty(item.description) && (
                     <>
-                      <Text style={styles.fullDataTextStyle}>{'Full data list'}</Text>
+                      <Text style={styles.fullDataTextStyle}>
+                        {i18n?.t('consent_manager.lbl_full_data_list') ?? 'Full data list'}
+                      </Text>
                       <HTML
                         contentWidth={width}
                         systemFonts={fonts.regular ? [fonts.regular] : []}

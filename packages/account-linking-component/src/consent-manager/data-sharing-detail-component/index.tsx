@@ -1,6 +1,6 @@
 import { Wallet } from '@banking-component/core';
 import React, { useEffect, useState } from 'react';
-import { ScrollView, Text } from 'react-native';
+import { ScrollView } from 'react-native';
 import { DataSharingDetailComponentProps, DataSharingDetailComponentStyles } from '../types';
 import Accounts from './accounts';
 import AdditionalInformation from './additional-information';
@@ -10,14 +10,7 @@ import KeyInformation from './key-information';
 import useMergeStyles from './styles';
 
 const DataSharingDetailComponent = (props: DataSharingDetailComponentProps) => {
-  const {
-    accountConsent,
-    wallets,
-    periodFormat,
-    style,
-    frequencyAccessDataMessage,
-    companyName,
-  } = props;
+  const { accountConsent, wallets, periodFormat, style, consentData } = props;
   const [bankWallets, setBankWallets] = useState<Wallet[]>([]);
   const _dateFormat = periodFormat ?? 'DD MMM YYYY';
   const styles: DataSharingDetailComponentStyles = useMergeStyles(style);
@@ -44,13 +37,13 @@ const DataSharingDetailComponent = (props: DataSharingDetailComponentProps) => {
       />
       <Accounts
         wallets={bankWallets}
-        frequencyAccessDataMessage={frequencyAccessDataMessage}
+        consentSummary={consentData.consentSummaries.find((cs) => cs.id === 'key_ìnformation')}
         style={style?.accountsStyle}
       />
       <DataShared accountConsent={accountConsent} style={style?.dataSharedStyle} />
       <AdditionalInformation
         accountConsent={accountConsent}
-        companyName={companyName}
+        companyName={consentData.companyName}
         style={style?.additionalInformationStyle}
       />
     </ScrollView>

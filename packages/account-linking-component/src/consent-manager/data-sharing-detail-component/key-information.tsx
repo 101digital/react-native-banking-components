@@ -8,19 +8,33 @@ import { KeyInformationProps, KeyInformationStyles } from '../types';
 const KeyInformation = (props: KeyInformationProps) => {
   const { style, accountConsent, dateFormat } = props;
   const styles: KeyInformationStyles = useMergeStyles(style);
+  const { i18n } = useContext(ThemeContext);
 
   return (
     <View style={styles.containerStyle}>
-      <Text style={styles.titleTextStyle}>{'Key information'}</Text>
-      <Text style={styles.messageTextStyle}>{`The consent was given on ${moment(
-        accountConsent.createdAt
-      ).format(dateFormat)} which will expire on ${moment(accountConsent.expiredAt).format(
-        dateFormat
-      )}.`}</Text>
-      <Text style={styles.periodTextStyle}>{`Sharing period: ${moment(
-        accountConsent.createdAt
-      ).format(dateFormat)} - ${moment(accountConsent.expiredAt).format(dateFormat)}`}</Text>
-      <Text style={styles.viewConfirmationTextStyle}>{'View your confirmation of consent'}</Text>
+      <Text style={styles.titleTextStyle}>
+        {i18n?.t('consent_manager.lbl_key_information') ?? 'Key information'}
+      </Text>
+      <Text style={styles.messageTextStyle}>
+        {(
+          i18n?.t('consent_manager.lbl_consent_period_time') ??
+          'The consent was given on %s1 which will expire on %s2.'
+        )
+          .replace('%s1', moment(accountConsent.createdAt).format(dateFormat))
+          .replace('%s2', moment(accountConsent.expiredAt).format(dateFormat))}
+      </Text>
+      <Text style={styles.periodTextStyle}>
+        {(i18n?.t('consent_manager.lbl_sharing_period') ?? 'Sharing period: %s').replace(
+          '%s',
+          `${moment(accountConsent.createdAt).format(dateFormat)} - ${moment(
+            accountConsent.expiredAt
+          ).format(dateFormat)}`
+        )}
+      </Text>
+      <Text style={styles.viewConfirmationTextStyle}>
+        {i18n?.t('consent_manager.btn_view_confirmation_consent') ??
+          'View your confirmation of consent'}
+      </Text>
     </View>
   );
 };

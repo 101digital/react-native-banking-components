@@ -1,4 +1,5 @@
 import { Bank, BankAccount, BankPermission } from '@banking-component/core';
+import { ConsentPeriod, ConsentSummary, DynamicConsent } from '../types';
 import { ReactNode } from 'react';
 import { ImageStyle, StyleProp, TextStyle, ViewStyle } from 'react-native';
 import { ButtonStyles } from 'react-native-theme-component/src/button';
@@ -25,33 +26,6 @@ export type LinkAccountComponentRefs = {
   currentStep: () => ProgressStep;
   updateLinkBankStatus: (status: LinkBankStatus) => void;
 };
-export interface ConsentPeriod {
-  period: number;
-  type: string;
-}
-
-export interface ConsentSummaryItem {
-  id: string;
-  title: string;
-  message?: string;
-}
-
-export interface ConsentSummary {
-  summaryTitle: string;
-  summaryMessage?: string;
-  items: ConsentSummaryItem[];
-  directUrl?: {
-    title: string;
-    link: string;
-  };
-}
-export interface DynamicConsent {
-  companyName: string;
-  cdrPolicyLink: string;
-  guideLinkAccountLink: string;
-  consentPeriods: ConsentPeriod[];
-  consentSummaries: ConsentSummary[];
-}
 
 export type LinkAccountComponentProps = {
   props: {

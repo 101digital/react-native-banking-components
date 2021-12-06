@@ -73,6 +73,22 @@
       "msg_link_bank_success": "You can manage the Consent by going to Settings > Manage Data Sharing.",
       "msg_link_bank_failed": "You can retry Account Linking by going to  Accounts > Link Account.",
       "btn_go_to_account": "Go to Accounts"
+    },
+    "consent_manager": {
+      "lbl_active": "Active",
+      "lbl_expired": "Expired",
+      "lbl_accounts": "Accounts",
+      "lbl_additional_information": "Additional information",
+      "msg_additional_information": "%s is a accredited data recepient, you can check more details ",
+      "btn_here": "here",
+      "lbl_consumer_data_recipient": "Accredited Consumer Data Right Recipient",
+      "lbl_recipient_id": "Accredited Data Recipient: %s",
+      "lbl_data_shared": "Data you’ve shared",
+      "lbl_full_data_list": "Full data list",
+      "lbl_key_information": "Key information",
+      "lbl_consent_period_time": "The consent was given on %s1 which will expire on %s2.",
+      "lbl_sharing_period": "Sharing period: %s",
+      "btn_view_confirmation_consent": "View your confirmation of consent"
     }
   }
 }

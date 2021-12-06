@@ -1,4 +1,5 @@
 import { AccountConsent, Wallet } from '@banking-component/core';
+import { ConsentSummary, DynamicConsent } from '../types';
 import { ImageStyle, StyleProp, TextStyle, ViewStyle } from 'react-native';
 
 export type DataSharingListComponentProps = {
@@ -35,9 +36,8 @@ export type ItemConsentStyles = {
 
 export type DataSharingDetailComponentProps = {
   accountConsent: AccountConsent;
+  consentData: DynamicConsent;
   wallets: Wallet[];
-  frequencyAccessDataMessage: string;
-  companyName: string;
   style?: DataSharingDetailComponentStyles;
   periodFormat?: string;
 };
@@ -84,7 +84,7 @@ export type KeyInformationStyles = {
 
 export type AccountsProps = {
   wallets: Wallet[];
-  frequencyAccessDataMessage: string;
+  consentSummary?: ConsentSummary;
   style?: AccountsStyles;
 };
 
