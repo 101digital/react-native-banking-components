@@ -1,8 +1,27 @@
 import { defaultsDeep } from '@banking-component/core';
-import { useContext } from 'react';
-import { StyleSheet } from 'react-native';
+import React, { useContext } from 'react';
+import { StyleSheet, Text, View } from 'react-native';
 import { ThemeContext } from 'react-native-theme-component';
-import { ItemCDRStyles } from '../types';
+import { ItemCDRStyles, CDRData } from '../../types';
+
+export type ItemCDRProps = {
+  data: CDRData;
+  style?: ItemCDRStyles;
+};
+
+const ItemCDR = (props: ItemCDRProps) => {
+  const { data, style } = props;
+  const styles: ItemCDRStyles = useMergeStyle(style);
+  return (
+    <View style={styles.containerStyle}>
+      {data.icon}
+      <View style={styles.contentContainerStyle}>
+        <Text style={styles.titleTextStyle}>{data.title}</Text>
+        <Text style={styles.descriptionTextStyle}>{data.description}</Text>
+      </View>
+    </View>
+  );
+};
 
 const useMergeStyle = (style?: ItemCDRStyles): ItemCDRStyles => {
   const { fonts } = useContext(ThemeContext);
@@ -34,4 +53,4 @@ const useMergeStyle = (style?: ItemCDRStyles): ItemCDRStyles => {
   return defaultsDeep(style, defaultStyles);
 };
 
-export default useMergeStyle;
+export default ItemCDR;

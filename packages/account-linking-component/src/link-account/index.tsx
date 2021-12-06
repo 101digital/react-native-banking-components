@@ -21,6 +21,7 @@ import {
 import BankLoginComponent from './components/bank-login';
 import ConfirmLinkingComponent from './components/confirm-linking-component';
 import SelectAccountComponent from './components/select-account';
+import ConsumerDataComponent from './components/consumer-data';
 import { AccountLinkingContext } from '../context/account-linking-context';
 
 const LinkAccountComponent = forwardRef((componentsProps: LinkAccountComponentProps, ref) => {
@@ -33,10 +34,19 @@ const LinkAccountComponent = forwardRef((componentsProps: LinkAccountComponentPr
     bankLoginComponent,
     selectAccountComponent,
     confirmLinkingComponent,
+    consumerDataComponent,
     style,
     props,
   } = componentsProps;
-  const { onLinkAccount, onStepChanged, bank, consentData, appIcon, onGoToAccount } = props;
+  const {
+    onLinkAccount,
+    onStepChanged,
+    bank,
+    consentData,
+    appIcon,
+    onGoToAccount,
+    onPressedLink,
+  } = props;
   const [activeStep, setActiveStep] = useState<ProgressStep>(ProgressStep.accessiblePeriod);
   const [period, setPeriod] = useState<ConsentPeriod | undefined>(undefined);
   const [permissions, setPermissions] = useState<BankPermission[]>([]);
@@ -117,6 +127,7 @@ const LinkAccountComponent = forwardRef((componentsProps: LinkAccountComponentPr
 
   const getActiveStep = () => {
     switch (activeStep) {
+      case ProgressStep.consumerData:
       case ProgressStep.accessiblePeriod:
       case ProgressStep.permissionRequest:
       case ProgressStep.summaryData:
@@ -134,8 +145,24 @@ const LinkAccountComponent = forwardRef((componentsProps: LinkAccountComponentPr
 
   return (
     <>
-      {activeStep !== ProgressStep.loginBank && activeStep !== ProgressStep.selectAccounts && (
-        <StepperComponent steps={steps} activeStep={getActiveStep()} {...stepperComponent} />
+      {activeStep !== ProgressStep.consumerData &&
+        activeStep !== ProgressStep.loginBank &&
+        activeStep !== ProgressStep.selectAccounts && (
+          <StepperComponent steps={steps} activeStep={getActiveStep()} {...stepperComponent} />
+        )}
+      {activeStep === ProgressStep.consumerData && (
+        <ConsumerDataComponent
+          onNext={() => {
+            setPeriod(undefined);
+            setPermissions([]);
+            setConsentId(undefined);
+            setActiveStep(ProgressStep.accessiblePeriod);
+          }}
+          onCDRPolicyPressed={() => {
+            onPressedLink(consentData.cdrPolicyLink);
+          }}
+          {...consumerDataComponent}
+        />
       )}
       {activeStep === ProgressStep.accessiblePeriod && (
         <>
@@ -189,6 +216,7 @@ const LinkAccountComponent = forwardRef((componentsProps: LinkAccountComponentPr
             summaries={consentData.consentSummaries}
             period={period}
             onConsented={() => setActiveStep(ProgressStep.confirmLogin)}
+            onPressedLink={onPressedLink}
             {...consentSummaryComponent}
           />
         </>

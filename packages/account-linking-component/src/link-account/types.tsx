@@ -4,13 +4,14 @@ import { ImageStyle, StyleProp, TextStyle, ViewStyle } from 'react-native';
 import { ButtonStyles } from 'react-native-theme-component/src/button';
 
 export enum ProgressStep {
-  accessiblePeriod = 0,
-  permissionRequest = 1,
-  summaryData = 2,
-  confirmLogin = 3,
-  loginBank = 4,
-  selectAccounts = 5,
-  confirmResult = 6,
+  consumerData = 0,
+  accessiblePeriod = 1,
+  permissionRequest = 2,
+  summaryData = 3,
+  confirmLogin = 4,
+  loginBank = 5,
+  selectAccounts = 6,
+  confirmResult = 7,
 }
 
 export enum LinkBankStatus {
@@ -60,8 +61,14 @@ export type LinkAccountComponentProps = {
     appIcon: ReactNode;
     onLinkAccount: (bankId: string, consentId: string, accountIds: string[]) => void;
     onGoToAccount: () => void;
+    onPressedLink: (link: string) => void;
   };
   style?: LinkAccountComponentStyles;
+  consumerDataComponent?: {
+    placeHolderImage?: ReactNode;
+    cdrData?: CDRData[];
+    style?: ComsumerDataComponentStyles;
+  };
   stepperComponent?: {
     steps?: Step[];
     stepDotSize?: number;
@@ -80,7 +87,6 @@ export type LinkAccountComponentProps = {
   };
   consentSummaryComponent?: {
     dateFormat?: string;
-    onPressedLink?: (link: string) => void;
     style?: ConsentSummaryComponentStyles;
   };
   authoriseComponent?: {
@@ -355,4 +361,41 @@ export type AccessInfoComponentStyles = {
   dotContainerStyle?: StyleProp<ViewStyle>;
   contentTextStyle?: StyleProp<TextStyle>;
   itemContentContainerStyle?: StyleProp<ViewStyle>;
+};
+
+export type ComsumerDataComponentProps = {
+  placeHolderImage?: ReactNode;
+  cdrData?: CDRData[];
+  onNext: () => void;
+  onCDRPolicyPressed: () => void;
+  style?: ComsumerDataComponentStyles;
+};
+
+export interface CDRData {
+  icon: ReactNode;
+  title: string;
+  description: string;
+}
+
+export type ComsumerDataComponentStyles = {
+  containerStyle?: StyleProp<ViewStyle>;
+  mainContainerStyle?: StyleProp<ViewStyle>;
+  titleTextStyle?: StyleProp<TextStyle>;
+  highlightTitleTextStyle?: StyleProp<TextStyle>;
+  buttonCDRPolicyStyle?: StyleProp<ViewStyle>;
+  cdrPolicyTextStyle?: StyleProp<TextStyle>;
+  linkButtonStyle?: ButtonStyles;
+  cdrListContainerStyle?: StyleProp<ViewStyle>;
+  placeholderContainerStyle?: StyleProp<ViewStyle>;
+  connectorContainerStyle?: StyleProp<ViewStyle>;
+  dashlineContainerStyle?: StyleProp<ViewStyle>;
+  cdrIconContainerStyle?: StyleProp<ViewStyle>;
+  itemCDRStyle?: ItemCDRStyles;
+};
+
+export type ItemCDRStyles = {
+  containerStyle?: StyleProp<ViewStyle>;
+  contentContainerStyle?: StyleProp<ViewStyle>;
+  titleTextStyle?: StyleProp<TextStyle>;
+  descriptionTextStyle?: StyleProp<TextStyle>;
 };

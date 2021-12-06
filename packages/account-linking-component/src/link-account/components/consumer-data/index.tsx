@@ -1,8 +1,7 @@
 import React, { useContext } from 'react';
 import { TouchableOpacity, View, Text, FlatList } from 'react-native';
 import { Button, ThemeContext } from 'react-native-theme-component';
-import useMergeStyle from './styles';
-import { CDRData, ComsumerDataComponentProps, ComsumerDataComponentStyles } from './types';
+import { CDRData, ComsumerDataComponentProps, ComsumerDataComponentStyles } from '../../types';
 import {
   ConsumerIcon,
   SecurityIcon,
@@ -12,8 +11,9 @@ import {
   CDRIcon,
   MobileIcon,
   BankIcon,
-} from '../assets/images';
-import ItemCDR from './components/item-cdr';
+} from '../../../assets/images';
+import ItemCDR from './item-cdr';
+import useMergeStyle from './styles';
 
 const DEFAULT_CDR_DATA: CDRData[] = [
   {
@@ -33,9 +33,9 @@ const DEFAULT_CDR_DATA: CDRData[] = [
   },
 ];
 
-const ConsumerDataComponent = ({ style, props }: ComsumerDataComponentProps) => {
+const ConsumerDataComponent = (props: ComsumerDataComponentProps) => {
+  const { onNext, cdrData, onCDRPolicyPressed, style } = props;
   const styles: ComsumerDataComponentStyles = useMergeStyle(style);
-  const { onLinkPressed, cdrData, onCDRPolicyPressed } = props;
   const { i18n } = useContext(ThemeContext);
 
   return (
@@ -73,7 +73,7 @@ const ConsumerDataComponent = ({ style, props }: ComsumerDataComponentProps) => 
           horizontal={false}
           showsHorizontalScrollIndicator={false}
           showsVerticalScrollIndicator={false}
-          renderItem={({ item }) => <ItemCDR data={item} />}
+          renderItem={({ item }) => <ItemCDR data={item} style={style?.itemCDRStyle} />}
         />
       </View>
       <TouchableOpacity
@@ -87,7 +87,7 @@ const ConsumerDataComponent = ({ style, props }: ComsumerDataComponentProps) => 
       </TouchableOpacity>
       <Button
         label={i18n?.t('consumer_data_component.btn_link') ?? 'Link'}
-        onPress={onLinkPressed}
+        onPress={onNext}
         style={
           style?.linkButtonStyle ?? {
             primaryContainerStyle: {
