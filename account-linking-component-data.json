@@ -1,0 +1,94 @@
+{
+  "id": "account-linking-component",
+  "name": "Account Linking Component",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/101digital/react-native-banking-components.git",
+    "directory": "packages/wallet-component"
+  },
+  "config": {
+    "env": {
+      "development": {
+        "openBankAispBaseUrl": "https://sandbox.101digital.io/open-banking-aisp-service/1.0.0",
+        "openBankAuthBaseUrl": "https://sandbox.101digital.io/open-banking-auth-service/1.0.0"
+      },
+      "staging": {
+        "openBankAispBaseUrl": "https://sandbox.101digital.io/open-banking-aisp-service/1.0.0",
+        "openBankAuthBaseUrl": "https://sandbox.101digital.io/open-banking-auth-service/1.0.0"
+      },
+      "production": {
+        "openBankAispBaseUrl": "https://api.101digital.io/open-banking-aisp-service/v1.0",
+        "openBankAuthBaseUrl": "https://api.101digital.io/open-banking-auth-service/v1.0"
+      }
+    }
+  },
+  "dependencies": [
+    {
+      "name": "https://github.com/101digital/react-native-theme-component.git"
+    },
+    {
+      "name": "https://gitpkg.now.sh/101digital/react-native-banking-components/packages/core"
+    },
+    {
+      "name": "https://github.com/react-native-webview/react-native-webview",
+      "version": "11.13.0"
+    }
+  ],
+  "templates": [],
+  "texts": {
+    "select_bank_component": {
+      "lbl_heading": "Please select the banking provider you are\nbanking with",
+      "plh_search_bank": "Search",
+      "lbl_how_link_account": "How to link an account?",
+      "btn_view_guide": "View here"
+    },
+    "link_bank_component": {
+      "lbl_we_using": "We are using",
+      "lbl_to_link_account": "to link your account",
+      "lbl_open_banking": "Open Banking",
+      "btn_view_cdr_policy": "View our CDR policy",
+      "btn_link": "Link",
+      "lbl_heading": "Select the account to share information with\n%s",
+      "btn_continue": "Continue",
+      "lbl_access_info": "%s will have access to the below Information",
+      "lbl_account_details": "Account details",
+      "lbl_transactions": "Transactions",
+      "lbl_account_balance": "Account balance",
+      "msg_empty_account": "No Accounts Found",
+      "lbl_data_accessible_period": "Data accessible period",
+      "btn_next": "Next",
+      "lbl_data_can_accessed": "Data can be accessed",
+      "lbl_consumer_data_recipient": "Accredited Consumer Data Right Recipient",
+      "lbl_recipient_id": "Accredited Data Recipient: %s",
+      "lbl_data_we_need": "Data we need",
+      "msg_select_data_to_share": "Plese select the data you like to share. We use the data to provide you a consolidated view of your money, to provide recomendation, and help you to reconcile your finances.",
+      "btn_show_full_list_data": "Show full data list",
+      "btn_consent" : "I consent",
+      "lbl_need_to_connect_bank": "We need to securely connect you with your bank",
+      "msg_continue_connect_bank": "By selecting “Continue” you will be securely transfered to your bank to authorise Data Sharing.",
+      "lbl_success": "Success!",
+      "lbl_failed": "Failed!",
+      "lbl_link_bank_success": "Your %s account successfully linked.",
+      "lbl_link_bank_failed": "Your %s account linking failed.",
+      "msg_link_bank_success": "You can manage the Consent by going to Settings > Manage Data Sharing.",
+      "msg_link_bank_failed": "You can retry Account Linking by going to  Accounts > Link Account.",
+      "btn_go_to_account": "Go to Accounts"
+    },
+    "consent_manager": {
+      "lbl_active": "Active",
+      "lbl_expired": "Expired",
+      "lbl_accounts": "Accounts",
+      "lbl_additional_information": "Additional information",
+      "msg_additional_information": "%s is a accredited data recepient, you can check more details ",
+      "btn_here": "here",
+      "lbl_consumer_data_recipient": "Accredited Consumer Data Right Recipient",
+      "lbl_recipient_id": "Accredited Data Recipient: %s",
+      "lbl_data_shared": "Data you’ve shared",
+      "lbl_full_data_list": "Full data list",
+      "lbl_key_information": "Key information",
+      "lbl_consent_period_time": "The consent was given on %s1 which will expire on %s2.",
+      "lbl_sharing_period": "Sharing period: %s",
+      "btn_view_confirmation_consent": "View your confirmation of consent"
+    }
+  }
+}

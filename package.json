@@ -1,0 +1,42 @@
+{
+  "name": "@banking-component/account-linking",
+  "private": true,
+  "version": "1.1.51",
+  "description": "Manage link bank accounts flow",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/101digital/react-native-banking-components.git",
+    "directory": "packages/account-linking-component"
+  },
+  "main": "index.js",
+  "types": "index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "tuyen101D",
+  "license": "MIT",
+  "dependencies": {
+    "moment": "^2.29.1",
+    "react-native-render-html": "^6.3.0"
+  },
+  "devDependencies": {
+    "@banking-component/core": "https://gitpkg.now.sh/101digital/react-native-banking-components/packages/core",
+    "@types/react": "^17.0.20",
+    "@types/react-native": "^0.65.0",
+    "react": "^17.0.2",
+    "react-native": "^0.65.1",
+    "react-native-svg": "^12.1.1",
+    "react-native-theme-component": "https://github.com/101digital/react-native-theme-component.git",
+    "react-native-webview": "^11.13.0",
+    "typescript": "^4.4.2"
+  },
+  "peerDependencies": {
+    "@banking-component/core": "https://gitpkg.now.sh/101digital/react-native-banking-components/packages/core",
+    "react": "^17.0.2",
+    "react-native": "^0.65.1",
+    "react-native-svg": "^12.1.1",
+    "react-native-theme-component": "https://github.com/101digital/react-native-theme-component.git",
+    "react-native-webview": "^11.13.0"
+  }
+}
