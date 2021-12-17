@@ -1,0 +1,15 @@
+[submodule "cashflow-component"]
+	path = cashflow-component
+	url = https://github.com/101digital/cashflow-component.git
+[submodule "wallet-component"]
+	path = wallet-component
+	url = https://github.com/101digital/wallet-component.git
+[submodule "transaction-component"]
+	path = transaction-component
+	url = https://github.com/101digital/transaction-component.git
+[submodule "account-linking-component"]
+	path = account-linking-component
+	url = https://github.com/101digital/account-linking-component.git
+[submodule "core"]
+	path = core
+	url = https://github.com/101digital/banking-component-core.git

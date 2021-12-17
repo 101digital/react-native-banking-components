@@ -1,21 +1,23 @@
 # 101D Banking Component
 
-<b>101D Banking Component</b> has 3 Sub-Components
+<b>101D Banking Component</b> has 4 Sub-Components
 
 - Wallet Component: manage wallets, change default wallet and unlink a wallet
 - Transactions Component: manage the transaction of individual wallets and aggregated wallets
-- OB Account Linking Component: contain steps to link a new account to user's wallets
+- Cashflow Component: manage cashflow of linked wallets
+- Account Linking Component: contain steps to link a new account to user's wallets
 
 With high UI customizable, you can change the component's style to your styles or override these components.
 
 ## Sub-Component Version
 
-| Name                                                                                |                Latest Version                 |
-| ----------------------------------------------------------------------------------- | :-------------------------------------------: |
-| [@banking-component/core](/packages/core)                                           |           [v1.1.6](/packages/core)            |
-| [@banking-component/wallet-component](/packages/wallet-component)                   |     [v1.1.9](/packages/wallet-component)      |
-| [@banking-component/transaction-component](/packages/transaction-component)         |   [v1.1.6](/packages/transaction-component)   |
-| [@banking-component/account-linking-component](/packages/account-linking-component) | [v1.1.9](/packages/account-linking-component) |
+| Name                                                                                                    | Latest Version                                                     |
+| ------------------------------------------------------------------------------------------------------- | :----------------------------------------------------------------- |
+| [@banking-component/core](https://github.com/101digital/banking-component-core)                         | [v1.1.15](https://github.com/101digital/banking-component-core)    |
+| [@banking-component/wallet-component](https://github.com/101digital/wallet-component)                   | [v1.1.46](https://github.com/101digital/wallet-component)          |
+| [@banking-component/transaction-component](https://github.com/101digital/transaction-component)         | [v1.1.16](https://github.com/101digital/transaction-component)     |
+| [@banking-component/account-linking-component](https://github.com/101digital/account-linking-component) | [v1.1.51](https://github.com/101digital/account-linking-component) |
+| [@banking-component/cashflow-component](https://github.com/101digital/cashflow-component)               | [v1.1.12](https://github.com/101digital/cashflow-component)        |
 
 ## Issue While Installing Sub-Component
 
@@ -26,3 +28,7 @@ rm -rf yarn.lock && yarn cache clean && yarn
 ```
 
 If have error while running `yarn` (like "sha512" or "sha1") you should restart your IDE then re-run above command
+
+## How to submodule work
+
+https://github.blog/2016-02-01-working-with-submodules/
