@@ -13,11 +13,11 @@ With high UI customizable, you can change the component's style to your styles o
 
 | Name                                                                                                    | Latest Version                                                     |
 | ------------------------------------------------------------------------------------------------------- | :----------------------------------------------------------------- |
-| [@banking-component/core](https://github.com/101digital/banking-component-core)                         | [v1.1.15](https://github.com/101digital/banking-component-core)    |
-| [@banking-component/wallet-component](https://github.com/101digital/wallet-component)                   | [v1.1.46](https://github.com/101digital/wallet-component)          |
-| [@banking-component/transaction-component](https://github.com/101digital/transaction-component)         | [v1.1.16](https://github.com/101digital/transaction-component)     |
-| [@banking-component/account-linking-component](https://github.com/101digital/account-linking-component) | [v1.1.51](https://github.com/101digital/account-linking-component) |
-| [@banking-component/cashflow-component](https://github.com/101digital/cashflow-component)               | [v1.1.12](https://github.com/101digital/cashflow-component)        |
+| [@banking-component/core](https://github.com/101digital/banking-component-core)                         | [v1.1.17](https://github.com/101digital/banking-component-core)    |
+| [@banking-component/wallet-component](https://github.com/101digital/wallet-component)                   | [v1.1.47](https://github.com/101digital/wallet-component)          |
+| [@banking-component/transaction-component](https://github.com/101digital/transaction-component)         | [v1.1.17](https://github.com/101digital/transaction-component)     |
+| [@banking-component/account-linking-component](https://github.com/101digital/account-linking-component) | [v1.1.52](https://github.com/101digital/account-linking-component) |
+| [@banking-component/cashflow-component](https://github.com/101digital/cashflow-component)               | [v1.1.13](https://github.com/101digital/cashflow-component)        |
 
 ## Issue While Installing Sub-Component
 
